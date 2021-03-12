@@ -21,10 +21,9 @@
               </div>
               <input
                 type="email"
-                name="email"
                 class="form-control input_user"
-                value=""
                 placeholder="email"
+                v-model="login.email"
               />
             </div>
             <div class="input-group mb-2">
@@ -33,14 +32,18 @@
               </div>
               <input
                 type="password"
-                name="password"
                 class="form-control input_pass"
-                value=""
                 placeholder="password"
+                v-model="login.password"
               />
             </div>
             <div class="d-flex justify-content-center mt-3 login_container">
-              <button type="button" name="button" class="btn login_btn">
+              <button
+                type="button"
+                name="button"
+                class="btn login_btn"
+                @click="onSubmitLogin(login)"
+              >
                 Login
               </button>
             </div>
@@ -57,7 +60,19 @@
 </template>
 <script>
 export default {
-  name: "LogIn",
+  data() {
+    return {
+      login: {
+        email: "",
+        password: "",
+      },
+    };
+  },
+  methods: {
+    onSubmitLogin(login) {
+      
+    },
+  },
 };
 </script>
 <style scoped>
