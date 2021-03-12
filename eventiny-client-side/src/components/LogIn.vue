@@ -79,6 +79,7 @@ export default {
 .container {
   margin-top: 10%;
 }
+
 .user_card {
   height: 400px;
   width: 350px;
