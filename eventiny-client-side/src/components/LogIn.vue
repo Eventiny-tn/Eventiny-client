@@ -88,7 +88,7 @@ export default {
   width: 170px;
   top: -75px;
   border-radius: 50%;
-  background: #60a3bc;
+  background: #c0392b;
   padding: 10px;
   text-align: center;
 }
