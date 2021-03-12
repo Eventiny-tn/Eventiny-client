@@ -98,11 +98,17 @@ export default {
             "error"
           )
 	}
-	else if(signup.password !== "" && signup.confirmPassword !== "" && signup.password === signup.confirmPassword){
-		  
-    console.log(signup)
+	else if( signup.password === signup.confirmPassword){
+	 axios
+        .post("http://localhost:3000/login", login)
+        .then((res) => {
+          console.log(res);
+        })
+		 .catch((err) => {
+          console.log(err);
+		 })
       }
-    }
+    }	
 	
 	
 },
