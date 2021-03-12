@@ -164,8 +164,9 @@ export default {
     console.log(signup);
 
       }
-    },
+    }
   },
+  }
 };
 </script>
 
