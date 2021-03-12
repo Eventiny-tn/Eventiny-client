@@ -70,7 +70,7 @@ export default {
   },
   methods: {
     onSubmitLogin(login) {
-      
+      console.log(login);
     },
   },
 };
