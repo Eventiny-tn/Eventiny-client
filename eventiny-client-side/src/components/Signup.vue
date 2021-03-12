@@ -130,7 +130,7 @@ export default {
   name: "Signup",
   methods: {
     signin() {
-      this.$router.push("/");
+      this.$router.push("/Login");
     },
     onSubmitSignup(signup) {
       for (let value of Object.values(signup)) {
@@ -141,21 +141,25 @@ export default {
             "error"
           );
         } else if (signup.password !== signup.confirmPassword) {
-          console.log("not match password");
           swal(
             "Password not match",
             "Put again your password  please!",
             "error"
           );
-        } else if (signup.password === signup.confirmPassword) {
+        } else if (
+          signup.password !== "" &&
+          signup.confirmPassword !== "" &&
+          signup.password === signup.confirmPassword
+        ) {
           axios
             .post("http://localhost:3000/signup", signup)
             .then((res) => {
-              console.log("done");
+              console.log("sent");
             })
             .catch((err) => {
               console.log(err);
             });
+          console.log(signup);
         }
       }
     },
