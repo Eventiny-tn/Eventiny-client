@@ -60,6 +60,8 @@
   </div>
 </template>
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
@@ -74,7 +76,7 @@ export default {
       axios
         .post("http://localhost:3000/login", login)
         .then((res) => {
-          console.log(res);
+          console.log("done");
         })
         .catch((err) => {
           console.log(err);

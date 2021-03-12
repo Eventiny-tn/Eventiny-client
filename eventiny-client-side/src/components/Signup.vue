@@ -115,62 +115,52 @@ import swal from "sweetalert";
 import axios from "axios";
 
 export default {
-
-
-
-
-	data(){
-		return {
-			signup :{
-				username : "",
-				password : "",
-				confirmPassword: "",
-				email : "",
-				address : "",
-				phone : ""
-			},
-		};
-	},
-  name: 'Signup',
+  data() {
+    return {
+      signup: {
+        username: "",
+        password: "",
+        confirmPassword: "",
+        email: "",
+        address: "",
+        phone: "",
+      },
+    };
+  },
+  name: "Signup",
   methods: {
-      signin() {
+    signin() {
       this.$router.push("/");
     },
-    onSubmitSignup(signup){
-     for (let value of Object.values(signup) ){
-    if(value === "") {
-     swal(
+    onSubmitSignup(signup) {
+      for (let value of Object.values(signup)) {
+        if (value === "") {
+          swal(
             "Please fill up all the informations",
-			"Missing informations",
+            "Missing informations",
             "error"
-          )
-	
-	}else if(signup.password !== signup.confirmPassword){
-	 console.log('not match password')
-      swal(
+          );
+        } else if (signup.password !== signup.confirmPassword) {
+          console.log("not match password");
+          swal(
             "Password not match",
             "Put again your password  please!",
             "error"
-          )
-	}
-	else if( signup.password === signup.confirmPassword){
-	 axios
-        .post("http://localhost:3000/login", login)
-        .then((res) => {
-          console.log(res);
-        })
-		 .catch((err) => {
-          console.log(err);
-		 })
+          );
+        } else if (signup.password === signup.confirmPassword) {
+          axios
+            .post("http://localhost:3000/signup", signup)
+            .then((res) => {
+              console.log("done");
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
       }
-    }	
-	
-	
-},
-  
-}
-}
-
+    },
+  },
+};
 </script>
 
 <style scoped>
