@@ -129,7 +129,9 @@ export default {
   },
   name: "Signup",
   methods: {
-    signin() {
+
+      signin() {
+
       this.$router.push("/Login");
     },
     onSubmitSignup(signup) {
@@ -139,28 +141,28 @@ export default {
             "Please fill up all the informations",
             "Missing informations",
             "error"
+
           );
-        } else if (signup.password !== signup.confirmPassword) {
-          swal(
+        
+	
+	}else if(signup.password !== signup.confirmPassword){
+      swal(
             "Password not match",
             "Put again your password  please!",
             "error"
-          );
-        } else if (
-          signup.password !== "" &&
-          signup.confirmPassword !== "" &&
-          signup.password === signup.confirmPassword
-        ) {
-          axios
-            .post("http://localhost:3000/signup", signup)
-            .then((res) => {
-              console.log("sent");
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-          console.log(signup);
-        }
+          )
+	}
+	else if( signup.password !== '' && signup.confirmPassword !== '' && signup.password === signup.confirmPassword){
+     axios
+        .post("http://localhost:3000/signup", signup)
+        .then((res) => {
+            console.log('sent');
+        })
+		 .catch((err) => {
+          console.log(err);
+		 })
+    console.log(signup);
+
       }
     },
   },
