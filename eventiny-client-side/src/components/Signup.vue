@@ -75,27 +75,39 @@ export default {
 				confirmPassword: "",
 				email : "",
 				address : "",
-				phone : "",
+				phone : ""
 			},
 		};
 	},
   name: 'Signup',
   methods: {
     onSubmitSignup(signup){
-      if(signup.password === signup.confirmPassword){
-    console.log(signup)
-      }
-    else {
-      console.log('not match password')
+     for (let value of Object.values(signup) ){
+    if(value === "") {
+     swal(
+            "Please fill up all the informations",
+			"Missing informations",
+            "error"
+          )
+	
+	}else if(signup.password !== signup.confirmPassword){
+	 console.log('not match password')
       swal(
             "Password not match",
             "Put again your password  please!",
             "error"
-          );
-    }
+          )
+	}
+	else if(signup.password !== "" && signup.confirmPassword !== "" && signup.password === signup.confirmPassword){
+		  
+    console.log(signup)
       }
+    }
+	
+	
 },
   
+}
 }
 </script>
 
