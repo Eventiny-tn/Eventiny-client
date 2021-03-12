@@ -115,35 +115,35 @@ import swal from "sweetalert";
 import axios from "axios";
 
 export default {
-
-
-
-
-	data(){
-		return {
-			signup :{
-				username : "",
-				password : "",
-				confirmPassword: "",
-				email : "",
-				address : "",
-				phone : ""
-			},
-		};
-	},
-  name: 'Signup',
+  data() {
+    return {
+      signup: {
+        username: "",
+        password: "",
+        confirmPassword: "",
+        email: "",
+        address: "",
+        phone: "",
+      },
+    };
+  },
+  name: "Signup",
   methods: {
+
       signin() {
+
       this.$router.push("/Login");
     },
-    onSubmitSignup(signup){
-     for (let value of Object.values(signup) ){
-    if(value === "") {
-     swal(
+    onSubmitSignup(signup) {
+      for (let value of Object.values(signup)) {
+        if (value === "") {
+          swal(
             "Please fill up all the informations",
-			"Missing informations",
+            "Missing informations",
             "error"
-          )
+
+          );
+        
 	
 	}else if(signup.password !== signup.confirmPassword){
       swal(
@@ -162,18 +162,13 @@ export default {
           console.log(err);
 		 })
     console.log(signup);
-      }
-    }	
-	
-	
-},
-  
-}
-}
 
+      }
+    },
+  },
+};
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .container {
   margin-top: 10%;
