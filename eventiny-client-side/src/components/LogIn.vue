@@ -51,7 +51,8 @@
         </div>
         <div class="mt-4">
           <div class="d-flex justify-content-center links">
-            Don't have an account? <a href="#" class="ml-2">Sign Up</a>
+            Don't have an account?
+            <a href="#" class="ml-2" @click="signup()">Sign Up</a>
           </div>
         </div>
       </div>
@@ -70,7 +71,17 @@ export default {
   },
   methods: {
     onSubmitLogin(login) {
-      console.log(login);
+      axios
+        .post("http://localhost:3000/login", login)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    signup() {
+      this.$router.push("/Signup");
     },
   },
 };
