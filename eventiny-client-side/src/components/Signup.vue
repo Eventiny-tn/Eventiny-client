@@ -10,38 +10,43 @@
 				</div>
 				<div class="d-flex justify-content-center form_container">
 					<form>
-						<div class="input-group mb-3">
+						 
+						
+						<div class="input-group mb-3" id="inputblock1">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
-							<input type="text" name="" class="form-control input_user" value="" placeholder="username">
+							<input type="text" name="" class="form-control input_user"  placeholder="username" v-model="signup.username">
+								<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-key"></i></span>
+							</div>
+							<input type="password" name="" class="form-control input_user"  placeholder="password" v-model="signup.password">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-key"></i></span>
+							</div>
+							<input type="password" name="" class="form-control input_user"  placeholder="confirm password" v-model="signup.confirmPassword">
+							
 						</div>
-						<div class="input-group mb-2">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-key"></i></span>
-							</div>
-							<input type="password" name="" class="form-control input_pass" value="" placeholder="password">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-key"></i></span>
-							</div>
-							<input type="password" name="" class="form-control input_pass" value="" placeholder="confirm password">
+						<div class="input-group mb-2" id="inputblock2">
+						
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-money-check"></i></span>
 							</div>
-							<input type="email" name="" class="form-control input_email" value="" placeholder="email">
+							<input type="email" name="" class="form-control input_user"  placeholder="email" v-model="signup.email">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-receipt"></i></span>
 							</div>
-							<input type="address" name="" class="form-control input_address" value="" placeholder="address">
+							<input type="address" name="" class="form-control input_user"  placeholder="address" v-model="signup.address">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-bullhorn"></i></span>
 							</div>
-							<input type="phone" name="" class="form-control input_phone" value="" placeholder="phone">
+							<input type="phone" name="" class="form-control input_user"  placeholder="phone" v-model="signup.phone">
 						</div>
 						
 							<div class="d-flex justify-content-center mt-3 login_container">
-				 	<button type="button" name="button" class="btn login_btn">Signup</button>
+				 	<button type="button" name="button" class="btn login_btn" @click="onSubmitSignup(signup)">Signup</button>
 				   </div>
+				   
 					</form>
 				</div>
 		
@@ -57,11 +62,40 @@
 </template>
 
 <script>
+import swal from 'sweetalert';
+import axios from 'axios';
+
+
 export default {
+	data(){
+		return {
+			signup :{
+				username : "",
+				password : "",
+				confirmPassword: "",
+				email : "",
+				address : "",
+				phone : "",
+			},
+		};
+	},
   name: 'Signup',
-  props: {
-    msg: String
-  }
+  methods: {
+    onSubmitSignup(signup){
+      if(signup.password === signup.confirmPassword){
+    console.log(signup)
+      }
+    else {
+      console.log('not match password')
+      swal(
+            "Password not match",
+            "Put again your password  please!",
+            "error"
+          );
+    }
+      }
+},
+  
 }
 </script>
 
@@ -95,6 +129,11 @@ export default {
 			border-radius: 5px;
 
 		}
+		.cont-form{
+			display:block;
+			
+		}
+		
 		.brand_logo_container {
 			position: absolute;
 			height: 170px;
@@ -131,13 +170,16 @@ export default {
 			color: white !important;
 			border: 0 !important;
 			border-radius: 0.25rem 0 0 0.25rem !important;
+			
 		}
 		.input_user,
 		.input_pass:focus {
 			box-shadow: none !important;
 			outline: 0px !important;
+			
 		}
 		.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
 			background-color: #c0392b !important;
 		}
+	
 </style>
