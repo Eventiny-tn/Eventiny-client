@@ -50,7 +50,7 @@
             <div class="input-group mb-2" id="inputblock2">
               <div class="input-group-append">
                 <span class="input-group-text"
-                  ><i class="fas fa-money-check"></i
+                  ><i class="fas fa-at"></i
                 ></span>
               </div>
               <input
@@ -74,16 +74,50 @@
               />
               <div class="input-group-append">
                 <span class="input-group-text"
-                  ><i class="fas fa-bullhorn"></i
+                  ><i class="fas fa-receipt"></i
                 ></span>
               </div>
               <input
-                type="phone"
+                type="address2"
+                name=""
+                class="form-control input_user"
+                placeholder="address2"
+                v-model="signup.address2"
+              />
+              <div class="input-group-append">
+                <span class="input-group-text"
+                  ><i class="fas fa-phone"></i
+                ></span>
+              </div>
+              <input
+                 type="number"
                 name=""
                 class="form-control input_user"
                 placeholder="phone"
                 v-model="signup.phone"
               />
+              <div class="input-group-append">
+     <span class="input-group-text"
+                  ><i class="fas fa-birthday-cake"></i
+                ></span>
+    <input type="date" id="birthday" name="birthday" placeholder="date of birthday"  v-model="signup.birthday">
+
+    
+   
+             </div>
+              <div class="input-group-append">
+                <span class="input-group-text"
+                  ><i class="fas fa-map-marker-alt"></i
+                ></span>
+              </div>
+              <input
+                type="text"
+                name=""
+                class="form-control input_user"
+                placeholder="city"
+                v-model="signup.city"
+              />
+
             </div>
 
             <div class="d-flex justify-content-center mt-3 login_container">
@@ -120,10 +154,13 @@ export default {
       signup: {
         username: "",
         password: "",
-        confirmPassword: "",
+        confirmPassword:"",
         email: "",
         address: "",
+        address2: "",
         phone: "",
+        birthday:"",
+        city:""
       },
     };
   },
@@ -154,9 +191,18 @@ export default {
 	}
 	else if( signup.password !== '' && signup.confirmPassword !== '' && signup.password === signup.confirmPassword){
      axios
-        .post("http://localhost:3000/signup", signup)
+        .post("http://localhost:3000/signup", {
+        username: "",
+        password: "",
+        email: "",
+        address: "",
+        address2: "",
+        phone: "",
+        birthday:"",
+        city:""
+      })
         .then((res) => {
-            console.log('sent');
+            console.log(res);
         })
 		 .catch((err) => {
           console.log(err);
