@@ -176,9 +176,10 @@ export default {
         if (valarr[i] === "") {
           swal(
             "Please fill up all the informations",
-            "Missing informations",
+            "sqkfqskfqsdflqsflesjf",
             "error"
           );
+          //console.log(valarr)
           return;
         } else if (
           signup.password === signup.confirmPassword &&
