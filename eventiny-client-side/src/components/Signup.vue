@@ -49,9 +49,7 @@
             </div>
             <div class="input-group mb-2" id="inputblock2">
               <div class="input-group-append">
-                <span class="input-group-text"
-                  ><i class="fas fa-at"></i
-                ></span>
+                <span class="input-group-text"><i class="fas fa-at"></i></span>
               </div>
               <input
                 type="email"
@@ -90,21 +88,24 @@
                 ></span>
               </div>
               <input
-                 type="number"
+                type="text"
                 name=""
                 class="form-control input_user"
                 placeholder="phone"
                 v-model="signup.phone"
               />
               <div class="input-group-append">
-     <span class="input-group-text"
+                <span class="input-group-text"
                   ><i class="fas fa-birthday-cake"></i
                 ></span>
-    <input type="date" id="birthday" name="birthday" placeholder="date of birthday"  v-model="signup.birthday">
-
-    
-   
-             </div>
+                <input
+                  type="date"
+                  id="birthday"
+                  name="birthday"
+                  placeholder="date of birthday"
+                  v-model="signup.birthday"
+                />
+              </div>
               <div class="input-group-append">
                 <span class="input-group-text"
                   ><i class="fas fa-map-marker-alt"></i
@@ -117,7 +118,6 @@
                 placeholder="city"
                 v-model="signup.city"
               />
-
             </div>
 
             <div class="d-flex justify-content-center mt-3 login_container">
@@ -154,65 +154,59 @@ export default {
       signup: {
         username: "",
         password: "",
-        confirmPassword:"",
+        confirmPassword: "",
         email: "",
         address: "",
         address2: "",
         phone: "",
-        birthday:"",
-        city:""
+        birthday: "",
+        city: "",
       },
     };
   },
   name: "Signup",
   methods: {
-
-      signin() {
-
+    signin() {
       this.$router.push("/Login");
     },
     onSubmitSignup(signup) {
-      for (let value of Object.values(signup)) {
-        if (value === "") {
+      let valarr = Object.values(signup);
+
+      for (let i = 0; i < valarr.length; i++) {
+        if (valarr[i] === "") {
           swal(
             "Please fill up all the informations",
             "Missing informations",
             "error"
-
           );
-        
-	
-	}else if(signup.password !== signup.confirmPassword){
-      swal(
+          return;
+        } else if (
+          signup.password === signup.confirmPassword &&
+          signup.password !== "" &&
+          signup.confirmPassword !== ""
+        ) {
+          console.log(valarr);
+          axios
+            .post("http://localhost:3000/signup", signup)
+            .then((res) => {
+              console.log(res);
+            })
+            .catch((err) => {
+              swal("Username or email exist", "Please check again", "error");
+              console.log(err);
+              return;
+            });
+        } else if (signup.password !== signup.confirmPassword) {
+          swal(
             "Password not match",
             "Put again your password  please!",
             "error"
-          )
-	}
-	else if( signup.password !== '' && signup.confirmPassword !== '' && signup.password === signup.confirmPassword){
-     axios
-        .post("http://localhost:3000/signup", {
-        username: "",
-        password: "",
-        email: "",
-        address: "",
-        address2: "",
-        phone: "",
-        birthday:"",
-        city:""
-      })
-        .then((res) => {
-            console.log(res);
-        })
-		 .catch((err) => {
-          console.log(err);
-		 })
-    console.log(signup);
-
+          );
+          return;
+        }
       }
-    }
+    },
   },
-  }
 };
 </script>
 

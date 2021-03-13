@@ -17,7 +17,7 @@ export class User {
   @Column()
   address2: string;
   @Column()
-  phone: number;
+  phone: string;
   @Column()
   birthday: string;
   @Column()
@@ -30,7 +30,7 @@ export interface Userinfo {
   email: string;
   address: string;
   address2: string;
-  phone: number;
+  phone: string;
   birthday: string;
   city: string;
 }
