@@ -179,6 +179,7 @@ export default {
             "Missing informations",
             "error"
           );
+          //console.log(valarr)
           return;
         } else if (
           signup.password === signup.confirmPassword &&
