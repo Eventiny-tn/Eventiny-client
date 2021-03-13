@@ -170,13 +170,22 @@ export default {
       this.$router.push("/Login");
     },
     onSubmitSignup(signup) {
-      for (let value of Object.values(signup)) {
-        if (
-          signup.password !== "" &&
-          signup.confirmPassword !== "" &&
+      let valarr = Object.values(signup);
+
+      for (let i = 0; i < valarr.length; i++) {
+        if (valarr[i] === "") {
+          swal(
+            "Please fill up all the informations",
+            "Missing informations",
+            "error"
+          );
+          return;
+        } else if (
           signup.password === signup.confirmPassword &&
-          value !== ""
+          signup.password !== "" &&
+          signup.confirmPassword !== ""
         ) {
+          console.log(valarr);
           axios
             .post("http://localhost:3000/signup", signup)
             .then((res) => {
@@ -187,13 +196,6 @@ export default {
               console.log(err);
               return;
             });
-        } else if (value === "") {
-          swal(
-            "Please fill up all the informations",
-            "Missing informations",
-            "error"
-          );
-          return;
         } else if (signup.password !== signup.confirmPassword) {
           swal(
             "Password not match",
