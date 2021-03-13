@@ -116,7 +116,7 @@
           <div class="col-md-4 mb-3 wow bounceInUp" data-wow-duration="1.4s">
             <div class="big-img">
               <img
-                src="https://images.pexels.com/photos/167631/pexels-photo-167631.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+                src="https://cdns-images.dzcdn.net/images/artist/6884b5c198045ed120614f5b01844717/264x264.jpg"
                 class="img-fluid"
               />
             </div>
@@ -445,7 +445,7 @@
           >
             <div class="music-gal item box">
               <a
-                href="https://images.pexels.com/photos/838696/pexels-photo-838696.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+                href="https://pbs.twimg.com/profile_images/704747899750629376/anYFUGY3.jpg"
                 class="fancybox"
                 rel="ligthbox"
               >
@@ -462,13 +462,13 @@
           >
             <div class="music-gal item box">
               <a
-                href="https://images.pexels.com/photos/1047930/pexels-photo-1047930.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+                href="https://pbs.twimg.com/profile_images/704747899750629376/anYFUGY3.jpg"
                 class="fancybox"
                 rel="ligthbox"
               >
                 <img
                   class="img-fluid"
-                  src="https://images.pexels.com/photos/1047930/pexels-photo-1047930.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+                  src="https://pbs.twimg.com/profile_images/704747899750629376/anYFUGY3.jpg"
                 />
               </a>
             </div>
