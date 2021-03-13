@@ -75,8 +75,8 @@ export default {
     onSubmitLogin(login) {
       axios
         .post("http://localhost:3000/login", login)
-        .then((res) => {
-          console.log("done");
+        .then(({ data }) => {
+          console.log(data);
         })
         .catch((err) => {
           console.log(err);

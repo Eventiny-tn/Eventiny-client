@@ -49,9 +49,7 @@
             </div>
             <div class="input-group mb-2" id="inputblock2">
               <div class="input-group-append">
-                <span class="input-group-text"
-                  ><i class="fas fa-money-check"></i
-                ></span>
+                <span class="input-group-text"><i class="fas fa-at"></i></span>
               </div>
               <input
                 type="email"
@@ -74,15 +72,51 @@
               />
               <div class="input-group-append">
                 <span class="input-group-text"
-                  ><i class="fas fa-bullhorn"></i
+                  ><i class="fas fa-receipt"></i
                 ></span>
               </div>
               <input
-                type="phone"
+                type="address2"
+                name=""
+                class="form-control input_user"
+                placeholder="address2"
+                v-model="signup.address2"
+              />
+              <div class="input-group-append">
+                <span class="input-group-text"
+                  ><i class="fas fa-phone"></i
+                ></span>
+              </div>
+              <input
+                type="number"
                 name=""
                 class="form-control input_user"
                 placeholder="phone"
                 v-model="signup.phone"
+              />
+              <div class="input-group-append">
+                <span class="input-group-text"
+                  ><i class="fas fa-birthday-cake"></i
+                ></span>
+                <input
+                  type="date"
+                  id="birthday"
+                  name="birthday"
+                  placeholder="date of birthday"
+                  v-model="signup.birthday"
+                />
+              </div>
+              <div class="input-group-append">
+                <span class="input-group-text"
+                  ><i class="fas fa-map-marker-alt"></i
+                ></span>
+              </div>
+              <input
+                type="text"
+                name=""
+                class="form-control input_user"
+                placeholder="city"
+                v-model="signup.city"
               />
             </div>
 
@@ -123,7 +157,10 @@ export default {
         confirmPassword: "",
         email: "",
         address: "",
+        address2: "",
         phone: "",
+        birthday: "",
+        city: "",
       },
     };
   },
@@ -154,7 +191,7 @@ export default {
           axios
             .post("http://localhost:3000/signup", signup)
             .then((res) => {
-              console.log("sent");
+              console.log(res);
             })
             .catch((err) => {
               console.log(err);
