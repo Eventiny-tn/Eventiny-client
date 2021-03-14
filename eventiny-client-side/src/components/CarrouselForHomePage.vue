@@ -21,8 +21,8 @@
         <div class="slide-1"></div>
         <div class="hero">
           <hgroup>
-            <h1>We are creative</h1>
-            <h3>Get start your next awesome project</h3>
+            <h1>Join The Largest Events</h1>
+            <h3>Find Time To Enjoy</h3>
           </hgroup>
           <button class="btn btn-hero btn-lg" role="button">
             See all features
@@ -33,8 +33,8 @@
         <div class="slide-2"></div>
         <div class="hero">
           <hgroup>
-            <h1>We are smart</h1>
-            <h3>Get start your next awesome project</h3>
+            <h1>We are Family</h1>
+            <h3>Find Time To Enjoy</h3>
           </hgroup>
           <button class="btn btn-hero btn-lg" role="button">
             See all features
@@ -45,8 +45,8 @@
         <div class="slide-3"></div>
         <div class="hero">
           <hgroup>
-            <h1>We are amazing</h1>
-            <h3>Get start your next awesome project</h3>
+            <h1>You Decide Who We Are</h1>
+            <h3>Join Our Community</h3>
           </hgroup>
           <button class="btn btn-hero btn-lg" role="button">
             See all features
@@ -56,6 +56,11 @@
     </div>
   </div>
 </template>
+<script>
+export default{
+}
+</script>
+
 <style scoped>
 /********************************/
 /*       Fade Bs-carousel       */
@@ -161,13 +166,13 @@
   background-repeat: no-repeat;
 }
 .fade-carousel .slides .slide-1 {
-  background-image: url(https://ununsplash.imgix.net/photo-1416339134316-0e91dc9ded92?q=75&fm=jpg&s=883a422e10fc4149893984019f63c818);
+  background-image: url("https://images.pexels.com/photos/3601425/pexels-photo-3601425.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
 }
 .fade-carousel .slides .slide-2 {
-  background-image: url(https://ununsplash.imgix.net/photo-1416339684178-3a239570f315?q=75&fm=jpg&s=c39d9a3bf66d6566b9608a9f1f3765af);
+  background-image: url("https://images.pexels.com/photos/2240763/pexels-photo-2240763.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
 }
 .fade-carousel .slides .slide-3 {
-  background-image: url(https://ununsplash.imgix.net/photo-1416339276121-ba1dfa199912?q=75&fm=jpg&s=9bf9f2ef5be5cb5eee5255e7765cb327);
+  background-image: url("https://images.pexels.com/photos/1549196/pexels-photo-1549196.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
 }
 
 /********************************/

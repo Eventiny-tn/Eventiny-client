@@ -256,7 +256,7 @@
         <div class="row">
           <div class="col-md-8 mx-auto wow fadeInUp">
             <h3 class="text-center font-weight-bold">
-              JOIN Eventiny<span class="bg-main">Tn</span> GROUPS
+              JOIN EVENTINY<span class="bg-main">Tn</span> GROUPS
             </h3>
             <p class=" text-center">
               Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -411,7 +411,7 @@
         <div class="row">
           <div class="col-md-12 wow fadeInUp">
             <h3 class="title-heading text-center font-weight-bold">
-              EventinyTn LATEST MUSIC
+              EventinyTn LATEST Event
             </h3>
             <p class="myp text-center">
               Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -730,7 +730,7 @@
         <div class="row">
           <div class="col-md-8 mx-auto wow fadeInUp">
             <h3 class="text-center font-weight-bold">
-              Eventiny<span class="bg-main">Tn</span> FEATURED ARTIST
+              Eventiny<span class="bg-main">Tn</span> FEATURED 
             </h3>
             <p class=" text-center">
               Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -746,7 +746,7 @@
           >
             <div class="big-img-3">
               <img
-                src="https://images.pexels.com/photos/167480/pexels-photo-167480.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+                src="https://images.pexels.com/photos/4514032/pexels-photo-4514032.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
                 class="img-fluid"
               />
             </div>
@@ -767,8 +767,8 @@
                 text ever since the 1500s, when an unknown.
               </p>
 
-              <a href="#" class="link-color">Michael U</a>
-              <p class="text-muted">Lorem Ipsum Dolor Sit Amet</p>
+              <a href="#" class="link-color">Eventiny</a>
+              <p class="text-muted">name of the event</p>
             </div>
           </div>
         </div>
@@ -856,7 +856,7 @@ header.masthead {
   position: relative;
   height: 100vh;
   background-color: #343a40;
-  background: url("https://images.pexels.com/photos/167480/pexels-photo-167480.jpeg?auto=compress&cs=tinysrgb&h=650&w=940")
+  background: url("https://images.pexels.com/photos/332688/pexels-photo-332688.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
     no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -1051,7 +1051,7 @@ hr.my-border {
 }
 
 .mybg-events {
-  background: url("https://images.pexels.com/photos/167491/pexels-photo-167491.jpeg?auto=compress&cs=tinysrgb&h=650&w=940")
+  background: url("http://i1.wp.com/siccajazz.siccaveneria.com/wp-content/uploads/2020/02/Sicca2020-en-marge-du-festivalsiccajaaz-a-boumakhlouf.png")
     no-repeat center center fixed;
   background-size: cover;
 }
@@ -1165,7 +1165,7 @@ section#group {
 }
 
 .mybg-music {
-  background: url("https://images.pexels.com/photos/1267317/pexels-photo-1267317.jpeg?auto=compress&cs=tinysrgb&h=650&w=940")
+  background: url("https://images.pexels.com/photos/767239/pexels-photo-767239.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
     no-repeat center center fixed;
   background-size: cover;
 }
