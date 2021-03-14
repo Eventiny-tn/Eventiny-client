@@ -176,35 +176,32 @@ export default {
         if (valarr[i] === "") {
           swal(
             "Please fill up all the informations",
-            "sqkfqskfqsdflqsflesjf",
+            "Missing informations",
             "error"
           );
-          //console.log(valarr)
-          return;
-        } else if (
-          signup.password === signup.confirmPassword &&
-          signup.password !== "" &&
-          signup.confirmPassword !== ""
-        ) {
-          console.log(valarr);
-          axios
-            .post("http://localhost:3000/signup", signup)
-            .then((res) => {
-              console.log(res);
-            })
-            .catch((err) => {
-              swal("Username or email exist", "Please check again", "error");
-              console.log(err);
-              return;
-            });
-        } else if (signup.password !== signup.confirmPassword) {
-          swal(
-            "Password not match",
-            "Put again your password  please!",
-            "error"
-          );
+
           return;
         }
+      }
+      if (
+        signup.password === signup.confirmPassword &&
+        signup.password !== "" &&
+        signup.confirmPassword !== ""
+      ) {
+        axios
+          .post("http://localhost:3000/signup", signup)
+          .then((res) => {
+            console.log(res);
+            if (res.data.message === "NOT FOUND") {
+              swal("Username or email exist", "Please check again", "error");
+            }
+          })
+          .catch((err) => {
+            swal("Username or email exist", "Please check again", "error");
+            console.log(err);
+          });
+      } else if (signup.password !== signup.confirmPassword) {
+        swal("Password not match", "Put again your password  please!", "error");
       }
     },
   },
