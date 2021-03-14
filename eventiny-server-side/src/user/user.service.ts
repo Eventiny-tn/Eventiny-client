@@ -19,9 +19,8 @@ export class UserService {
       username: user.username,
     });
     const email = await this.userRepository.findOne({ email: user.email });
-    console.log(username);
-
     if (username || email) {
+      console.log('here same username');
       return new NotFoundException('NOT FOUND');
     }
     const saltRounds = 10;
