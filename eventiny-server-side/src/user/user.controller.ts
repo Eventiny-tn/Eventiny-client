@@ -9,7 +9,7 @@ export class UserController {
     return this.userRepo.signup(body);
   }
   @Post('login')
-  login(@Body() body: UserLog): Promise<string | Error> {
+  login(@Body() body: UserLog): Promise<object | string | Error> {
     return this.userRepo.login(body);
   }
 }

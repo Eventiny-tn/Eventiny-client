@@ -76,10 +76,18 @@ export default {
       axios
         .post("http://localhost:3000/login", login)
         .then(({ data }) => {
-          console.log(data);
+          console.log("==>", data);
+          if (data.token == undefined) {
+            localStorage.removeItem("token");
+            this.$router.push("/Signup");
+          } else if (data.token !== undefined) {
+            localStorage.setItem("token", data.token);
+            this.$router.push("/");
+          }
         })
         .catch((err) => {
           console.log(err);
+          this.$router.push("/Signup");
         });
     },
     signup() {
