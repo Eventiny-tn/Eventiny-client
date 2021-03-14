@@ -6,7 +6,41 @@
     id="bs-carousel"
   >
     <!-- Overlay -->
-    <div class="overlay"></div>
+    <div class="overlay">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-5 col-md-offset-3" style="margin-top: 10%;">
+            <form class="form">
+              <h3 class="col_g">Sign in</h3>
+              <br />
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  name=""
+                  placeholder="Email, Phone Enter Here"
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  name=""
+                  placeholder="Enter Password Here"
+                />
+              </div>
+
+              <div class="form-group">
+                <button class="btn col-xs-4 submit_h">Login</button>
+              </div>
+              <br /><br />
+              <br /><br />
+              <a href="#">No Account ? Create One!</a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -57,11 +91,56 @@
   </div>
 </template>
 <script>
-export default{
-}
+export default {};
 </script>
 
 <style scoped>
+a {
+  color: #1985e2;
+}
+.container {
+  position: relative;
+  float: left;
+  width: 800px;
+}
+.col_g {
+  color: #887c7c;
+}
+.form-control {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 1px;
+  box-shadow: none;
+  background: none;
+}
+.submit_h {
+  color: #fff;
+  background-color: #0067b8;
+}
+
+.login_footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #353434d1;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+.login_footer li {
+  float: right;
+}
+
+.login_footer ul {
+  list-style: none;
+}
+
+.login_footer li a {
+  padding: 0px 10px;
+  color: white;
+}
 /********************************/
 /*       Fade Bs-carousel       */
 /********************************/
