@@ -179,7 +179,6 @@ export default {
             "Missing informations",
             "error"
           );
-
           return;
         }
       }

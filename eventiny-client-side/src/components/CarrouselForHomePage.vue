@@ -9,7 +9,7 @@
     <div class="overlay">
       <div class="container">
         <div class="row">
-          <div class="col-md-5 col-md-offset-3" style="margin-top: 10%;">
+          <div class="col-md-5 col-md-offset-3" style="margin-top: 10%">
             <form class="form">
               <h3 class="col_g">Sign in</h3>
               <br />
