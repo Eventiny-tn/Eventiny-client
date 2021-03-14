@@ -730,7 +730,7 @@
         <div class="row">
           <div class="col-md-8 mx-auto wow fadeInUp">
             <h3 class="text-center font-weight-bold">
-              Eventiny<span class="bg-main">Tn</span> FEATURED 
+              Eventiny<span class="bg-main">Tn</span> FEATURED
             </h3>
             <p class=" text-center">
               Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -856,7 +856,7 @@ header.masthead {
   position: relative;
   height: 100vh;
   background-color: #343a40;
-  background: url("https://images.pexels.com/photos/332688/pexels-photo-332688.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
+  background: url("https://images.pexels.com/photos/1267350/pexels-photo-1267350.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
     no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -1051,7 +1051,7 @@ hr.my-border {
 }
 
 .mybg-events {
-  background: url("http://i1.wp.com/siccajazz.siccaveneria.com/wp-content/uploads/2020/02/Sicca2020-en-marge-du-festivalsiccajaaz-a-boumakhlouf.png")
+  background: url("https://images.pexels.com/photos/277092/pexels-photo-277092.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
     no-repeat center center fixed;
   background-size: cover;
 }
