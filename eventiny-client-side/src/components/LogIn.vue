@@ -1,61 +1,95 @@
 <template>
-<div>
-<CarrouselForHomePage/>
-  <div class="container h-100">
-    <div class="d-flex justify-content-center h-100">
-      <div class="user_card">
-        <div class="d-flex justify-content-center">
-          <div class="brand_logo_container">
-            <img
-              src="https://i.pinimg.com/originals/27/49/69/27496910bdeb9581f521ae0e66f7c0cd.gif"
-              class="brand_logo"
-              alt="Logo"
-            />
+
+  <div
+    class="carousel fade-carousel slide"
+    data-ride="carousel"
+    data-interval="4000"
+    id="bs-carousel"
+  >
+    <!-- Overlay -->
+    <div class="overlay">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-5 col-md-offset-3" style="margin-top: 10%;">
+            <form class="form">
+              <h3 class="col_g">Sign in</h3>
+              <br />
+              <div class="form-group">
+                <input
+                  type="email"
+                  class="form-control"
+                  v-model="login.email"
+                  placeholder="Email..."
+                />
+
+              </div>
+              <div class="form-group">
+                <input
+                  type="password"
+                  class="form-control"
+                  v-model="login.password"
+                  placeholder="Enter Password Here"
+                />
+              </div>
+
+              <div class="form-group" @click.prevent="onSubmitLogin(login)">
+                <button class="btn col-xs-4 submit_h">
+                  Login
+                </button>
+              </div>
+              <br /><br />
+              <br /><br />
+
+              <a @click="signup()">No Account ? Create One!</a>
+            </form>
           </div>
         </div>
-        <div class="d-flex justify-content-center form_container">
-          <form>
-            <div class="input-group mb-3">
-              <div class="input-group-append">
-                <span class="input-group-text"
-                  ><i class="fas fa-user"></i
-                ></span>
-              </div>
-              <input
-                type="email"
-                class="form-control input_user"
-                placeholder="email"
-                v-model="login.email"
-              />
-            </div>
-            <div class="input-group mb-2">
-              <div class="input-group-append">
-                <span class="input-group-text"><i class="fas fa-key"></i></span>
-              </div>
-              <input
-                type="password"
-                class="form-control input_pass"
-                placeholder="password"
-                v-model="login.password"
-              />
-            </div>
-            <div class="d-flex justify-content-center mt-3 login_container">
-              <button
-                type="button"
-                name="button"
-                class="btn login_btn"
-                @click="onSubmitLogin(login)"
-              >
-                Login
-              </button>
-            </div>
-          </form>
+      </div>
+    </div>
+
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#bs-carousel" data-slide-to="0" class="active"></li>
+      <li data-target="#bs-carousel" data-slide-to="1"></li>
+      <li data-target="#bs-carousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+      <div class="item slides active">
+        <div class="slide-1"></div>
+        <div class="hero">
+          <hgroup>
+            <h1>Join The Largest Events</h1>
+            <h3>Find Time To Enjoy</h3>
+          </hgroup>
+          <button class="btn btn-hero btn-lg" role="button">
+            See all features
+          </button>
         </div>
-        <div class="mt-4">
-          <div class="d-flex justify-content-center links">
-            Don't have an account?
-            <a href="#" class="ml-2" @click="signup()">Sign Up</a>
-          </div>
+      </div>
+      <div class="item slides">
+        <div class="slide-2"></div>
+        <div class="hero">
+          <hgroup>
+            <h1>We are Family</h1>
+            <h3>Find Time To Enjoy</h3>
+          </hgroup>
+          <button class="btn btn-hero btn-lg" role="button">
+            See all features
+          </button>
+        </div>
+      </div>
+      <div class="item slides">
+        <div class="slide-3"></div>
+        <div class="hero">
+          <hgroup>
+            <h1>You Decide Who We Are</h1>
+            <h3>Join Our Community</h3>
+          </hgroup>
+          <button class="btn btn-hero btn-lg" role="button">
+            See all features
+          </button>
         </div>
       </div>
     </div>
@@ -64,7 +98,7 @@
 </template>
 <script>
 import axios from "axios";
-import CarrouselForHomePage from "./CarrouselForHomePage.vue"
+
 export default {
   data() {
     return {
@@ -78,13 +112,22 @@ export default {
     onSubmitLogin(login) {
       axios
         .post("http://localhost:3000/login", login)
-        .then((res) => {
-          console.log("done");
+        .then(({ data }) => {
+          console.log("==>", data);
+          if (data.token == undefined) {
+            localStorage.removeItem("token");
+            this.$router.push("/Signup");
+          } else if (data.token !== undefined) {
+            localStorage.setItem("token", data.token);
+            this.$router.push("/");
+          }
         })
         .catch((err) => {
           console.log(err);
+          this.$router.push("/Signup");
         });
     },
+
     signup() {
       this.$router.push("/Signup");
     },
@@ -94,69 +137,178 @@ export default {
   }
 };
 </script>
+
 <style scoped>
+a {
+  color: #1985e2;
+}
 .container {
-  margin-top: 10%;
+  position: relative;
+  float: left;
+  width: 800px;
+}
+.col_g {
+  color: #887c7c;
+}
+.form-control {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 1px;
+  box-shadow: none;
+  background: none;
+}
+.submit_h {
+  color: #fff;
+  background-color: #0067b8;
 }
 
-.user_card {
-  height: 400px;
-  width: 350px;
-  margin-top: auto;
-  margin-bottom: auto;
-  background: #f39c12;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  padding: 4%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-    0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-    0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  border-radius: 5px;
-}
-.brand_logo_container {
-  position: absolute;
-  height: 170px;
-  width: 170px;
-  top: -75px;
-  border-radius: 50%;
-  background: #c0392b;
-  padding: 10px;
-  text-align: center;
-}
-.brand_logo {
-  height: 150px;
-  width: 150px;
-  border-radius: 50%;
-  border: 2px solid white;
-}
-.form_container {
-  margin-top: 100px;
-}
-.login_btn {
+.login_footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
   width: 100%;
-  background: #c0392b !important;
-  color: white !important;
+  background-color: #353434d1;
+  color: white;
+  text-align: center;
+  padding: 10px;
 }
-.login_btn:focus {
-  box-shadow: none !important;
-  outline: 0px !important;
+.login_footer li {
+  float: right;
 }
-.login_container {
-  padding: 0 2rem;
+
+.login_footer ul {
+  list-style: none;
 }
-.input-group-text {
-  background: #c0392b !important;
-  color: white !important;
-  border: 0 !important;
-  border-radius: 0.25rem 0 0 0.25rem !important;
+
+.login_footer li a {
+  padding: 0px 10px;
+  color: white;
 }
-.input_user,
-.input_pass:focus {
-  box-shadow: none !important;
-  outline: 0px !important;
+/********************************/
+/*       Fade Bs-carousel       */
+/********************************/
+.fade-carousel {
+  position: relative;
+  height: 100vh;
+}
+.fade-carousel .carousel-inner .item {
+  height: 100vh;
+}
+.fade-carousel .carousel-indicators > li {
+  margin: 0 2px;
+  background-color: #f39c12;
+  border-color: #f39c12;
+  opacity: 0.7;
+}
+.fade-carousel .carousel-indicators > li.active {
+  width: 10px;
+  height: 10px;
+  opacity: 1;
+}
+
+/********************************/
+/*          Hero Headers        */
+/********************************/
+.hero {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 3;
+  color: #fff;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.75);
+  -webkit-transform: translate3d(-50%, -50%, 0);
+  -moz-transform: translate3d(-50%, -50%, 0);
+  -ms-transform: translate3d(-50%, -50%, 0);
+  -o-transform: translate3d(-50%, -50%, 0);
+  transform: translate3d(-50%, -50%, 0);
+}
+.hero h1 {
+  font-size: 6em;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+}
+
+.fade-carousel .carousel-inner .item .hero {
+  opacity: 0;
+  -webkit-transition: 2s all ease-in-out 0.1s;
+  -moz-transition: 2s all ease-in-out 0.1s;
+  -ms-transition: 2s all ease-in-out 0.1s;
+  -o-transition: 2s all ease-in-out 0.1s;
+  transition: 2s all ease-in-out 0.1s;
+}
+.fade-carousel .carousel-inner .item.active .hero {
+  opacity: 1;
+  -webkit-transition: 2s all ease-in-out 0.1s;
+  -moz-transition: 2s all ease-in-out 0.1s;
+  -ms-transition: 2s all ease-in-out 0.1s;
+  -o-transition: 2s all ease-in-out 0.1s;
+  transition: 2s all ease-in-out 0.1s;
+}
+
+/********************************/
+/*            Overlay           */
+/********************************/
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background-color: #080d15;
+  opacity: 0.7;
+}
+
+/********************************/
+/*          Custom Buttons      */
+/********************************/
+.btn.btn-lg {
+  padding: 10px 40px;
+}
+.btn.btn-hero,
+.btn.btn-hero:hover,
+.btn.btn-hero:focus {
+  color: #f5f5f5;
+  background-color: #1abc9c;
+  border-color: #1abc9c;
+  outline: none;
+  margin: 20px auto;
+}
+
+/********************************/
+/*       Slides backgrounds     */
+/********************************/
+.fade-carousel .slides .slide-1,
+.fade-carousel .slides .slide-2,
+.fade-carousel .slides .slide-3 {
+  height: 100vh;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.fade-carousel .slides .slide-1 {
+  background-image: url("https://images.pexels.com/photos/3601425/pexels-photo-3601425.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+}
+.fade-carousel .slides .slide-2 {
+  background-image: url("https://images.pexels.com/photos/2240763/pexels-photo-2240763.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+}
+.fade-carousel .slides .slide-3 {
+  background-image: url("https://images.pexels.com/photos/1549196/pexels-photo-1549196.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+}
+
+/********************************/
+/*          Media Queries       */
+/********************************/
+@media screen and (min-width: 980px) {
+  .hero {
+    width: 980px;
+  }
+}
+@media screen and (max-width: 640px) {
+  .hero h1 {
+    font-size: 4em;
+  }
 }
 </style>

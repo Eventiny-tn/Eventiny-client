@@ -34,3 +34,10 @@ export interface Userinfo {
   birthday: string;
   city: string;
 }
+
+
+export interface UserLog {
+  email: string;
+  password: string;
+}
+
