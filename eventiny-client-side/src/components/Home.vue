@@ -797,7 +797,7 @@
               </li>
             </ul>
             <p class="text-muted small mb-4 mb-lg-0">
-              © EventinyTn 2020. All Rights Reserved.
+              © EventinyTn 2021. All Rights Reserved.
             </p>
           </div>
           <div class="col-lg-6 text-center text-lg-right my-auto  wow zoomIn">

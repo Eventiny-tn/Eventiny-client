@@ -1,99 +1,98 @@
 <template>
+  <div>
+    <div
+      class="carousel fade-carousel slide"
+      data-ride="carousel"
+      data-interval="4000"
+      id="bs-carousel"
+    >
+      <!-- Overlay -->
+      <div class="overlay">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-5 col-md-offset-3" style="margin-top: 10%;">
+              <form class="form">
+                <h3 class="col_g">Sign in</h3>
+                <br />
+                <div class="form-group">
+                  <input
+                    type="email"
+                    class="form-control"
+                    v-model="login.email"
+                    placeholder="Email..."
+                  />
+                </div>
+                <div class="form-group">
+                  <input
+                    type="password"
+                    class="form-control"
+                    v-model="login.password"
+                    placeholder="Enter Password Here"
+                  />
+                </div>
 
-  <div
-    class="carousel fade-carousel slide"
-    data-ride="carousel"
-    data-interval="4000"
-    id="bs-carousel"
-  >
-    <!-- Overlay -->
-    <div class="overlay">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-5 col-md-offset-3" style="margin-top: 10%;">
-            <form class="form">
-              <h3 class="col_g">Sign in</h3>
-              <br />
-              <div class="form-group">
-                <input
-                  type="email"
-                  class="form-control"
-                  v-model="login.email"
-                  placeholder="Email..."
-                />
+                <div class="form-group" @click.prevent="onSubmitLogin(login)">
+                  <button class="btn col-xs-4 submit_h">
+                    Login
+                  </button>
+                </div>
+                <br /><br />
+                <br /><br />
 
-              </div>
-              <div class="form-group">
-                <input
-                  type="password"
-                  class="form-control"
-                  v-model="login.password"
-                  placeholder="Enter Password Here"
-                />
-              </div>
+                <a @click="signup()">No Account ? Create One!</a>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
 
-              <div class="form-group" @click.prevent="onSubmitLogin(login)">
-                <button class="btn col-xs-4 submit_h">
-                  Login
-                </button>
-              </div>
-              <br /><br />
-              <br /><br />
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#bs-carousel" data-slide-to="0" class="active"></li>
+        <li data-target="#bs-carousel" data-slide-to="1"></li>
+        <li data-target="#bs-carousel" data-slide-to="2"></li>
+      </ol>
 
-              <a @click="signup()">No Account ? Create One!</a>
-            </form>
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner">
+        <div class="item slides active">
+          <div class="slide-1"></div>
+          <div class="hero">
+            <hgroup>
+              <h1>Join The Largest Events</h1>
+              <h3>Find Time To Enjoy</h3>
+            </hgroup>
+            <button class="btn btn-hero btn-lg" role="button">
+              See all features
+            </button>
+          </div>
+        </div>
+        <div class="item slides">
+          <div class="slide-2"></div>
+          <div class="hero">
+            <hgroup>
+              <h1>We are Family</h1>
+              <h3>Find Time To Enjoy</h3>
+            </hgroup>
+            <button class="btn btn-hero btn-lg" role="button">
+              See all features
+            </button>
+          </div>
+        </div>
+        <div class="item slides">
+          <div class="slide-3"></div>
+          <div class="hero">
+            <hgroup>
+              <h1>You Decide Who We Are</h1>
+              <h3>Join Our Community</h3>
+            </hgroup>
+            <button class="btn btn-hero btn-lg" role="button">
+              See all features
+            </button>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#bs-carousel" data-slide-to="0" class="active"></li>
-      <li data-target="#bs-carousel" data-slide-to="1"></li>
-      <li data-target="#bs-carousel" data-slide-to="2"></li>
-    </ol>
-
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-      <div class="item slides active">
-        <div class="slide-1"></div>
-        <div class="hero">
-          <hgroup>
-            <h1>Join The Largest Events</h1>
-            <h3>Find Time To Enjoy</h3>
-          </hgroup>
-          <button class="btn btn-hero btn-lg" role="button">
-            See all features
-          </button>
-        </div>
-      </div>
-      <div class="item slides">
-        <div class="slide-2"></div>
-        <div class="hero">
-          <hgroup>
-            <h1>We are Family</h1>
-            <h3>Find Time To Enjoy</h3>
-          </hgroup>
-          <button class="btn btn-hero btn-lg" role="button">
-            See all features
-          </button>
-        </div>
-      </div>
-      <div class="item slides">
-        <div class="slide-3"></div>
-        <div class="hero">
-          <hgroup>
-            <h1>You Decide Who We Are</h1>
-            <h3>Join Our Community</h3>
-          </hgroup>
-          <button class="btn btn-hero btn-lg" role="button">
-            See all features
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
   </div>
 </template>
 <script>
@@ -132,9 +131,6 @@ export default {
       this.$router.push("/Signup");
     },
   },
-  components:{
-    CarrouselForHomePage
-  }
 };
 </script>
 

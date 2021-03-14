@@ -35,9 +35,7 @@ export interface Userinfo {
   city: string;
 }
 
-
 export interface UserLog {
   email: string;
   password: string;
 }
-
