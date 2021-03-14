@@ -1,4 +1,6 @@
 <template>
+<div>
+<CarrouselForHomePage/>
   <div class="container h-100">
     <div class="d-flex justify-content-center h-100">
       <div class="user_card">
@@ -58,10 +60,11 @@
       </div>
     </div>
   </div>
+  </div>
 </template>
 <script>
 import axios from "axios";
-
+import CarrouselForHomePage from "./CarrouselForHomePage.vue"
 export default {
   data() {
     return {
@@ -86,6 +89,9 @@ export default {
       this.$router.push("/Signup");
     },
   },
+  components:{
+    CarrouselForHomePage
+  }
 };
 </script>
 <style scoped>
