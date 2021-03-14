@@ -1,5 +1,4 @@
 <template>
-
   <div
     class="carousel fade-carousel slide"
     data-ride="carousel"
@@ -16,31 +15,27 @@
               <br />
               <div class="form-group">
                 <input
-                  type="email"
+                  type="text"
                   class="form-control"
-                  v-model="login.email"
-                  placeholder="Email..."
+                  name=""
+                  placeholder="Email, Phone Enter Here"
                 />
-
               </div>
               <div class="form-group">
                 <input
-                  type="password"
+                  type="text"
                   class="form-control"
-                  v-model="login.password"
+                  name=""
                   placeholder="Enter Password Here"
                 />
               </div>
 
-              <div class="form-group" @click.prevent="onSubmitLogin(login)">
-                <button class="btn col-xs-4 submit_h">
-                  Login
-                </button>
+              <div class="form-group">
+                <button class="btn col-xs-4 submit_h">Login</button>
               </div>
               <br /><br />
               <br /><br />
-
-              <a @click="signup()">No Account ? Create One!</a>
+              <a href="#">No Account ? Create One!</a>
             </form>
           </div>
         </div>
@@ -94,48 +89,9 @@
       </div>
     </div>
   </div>
-  </div>
 </template>
 <script>
-import axios from "axios";
-
-export default {
-  data() {
-    return {
-      login: {
-        email: "",
-        password: "",
-      },
-    };
-  },
-  methods: {
-    onSubmitLogin(login) {
-      axios
-        .post("http://localhost:3000/login", login)
-        .then(({ data }) => {
-          console.log("==>", data);
-          if (data.token == undefined) {
-            localStorage.removeItem("token");
-            this.$router.push("/Signup");
-          } else if (data.token !== undefined) {
-            localStorage.setItem("token", data.token);
-            this.$router.push("/");
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-          this.$router.push("/Signup");
-        });
-    },
-
-    signup() {
-      this.$router.push("/Signup");
-    },
-  },
-  components:{
-    CarrouselForHomePage
-  }
-};
+export default {};
 </script>
 
 <style scoped>
