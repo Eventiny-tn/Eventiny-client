@@ -88,7 +88,7 @@
                 ></span>
               </div>
               <input
-                type="number"
+                type="text"
                 name=""
                 class="form-control input_user"
                 placeholder="phone"
@@ -170,33 +170,40 @@ export default {
       this.$router.push("/Login");
     },
     onSubmitSignup(signup) {
-      for (let value of Object.values(signup)) {
-        if (value === "") {
+      let valarr = Object.values(signup);
+
+      for (let i = 0; i < valarr.length; i++) {
+        if (valarr[i] === "") {
           swal(
             "Please fill up all the informations",
-            "Missing informations",
+            "sqkfqskfqsdflqsflesjf",
             "error"
           );
-        } else if (signup.password !== signup.confirmPassword) {
-          swal(
-            "Password not match",
-            "Put again your password  please!",
-            "error"
-          );
+          //console.log(valarr)
+          return;
         } else if (
+          signup.password === signup.confirmPassword &&
           signup.password !== "" &&
-          signup.confirmPassword !== "" &&
-          signup.password === signup.confirmPassword
+          signup.confirmPassword !== ""
         ) {
+          console.log(valarr);
           axios
             .post("http://localhost:3000/signup", signup)
             .then((res) => {
               console.log(res);
             })
             .catch((err) => {
+              swal("Username or email exist", "Please check again", "error");
               console.log(err);
+              return;
             });
-          console.log(signup);
+        } else if (signup.password !== signup.confirmPassword) {
+          swal(
+            "Password not match",
+            "Put again your password  please!",
+            "error"
+          );
+          return;
         }
       }
     },
