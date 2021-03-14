@@ -22,7 +22,15 @@ export class User {
   birthday: string;
   @Column()
   city: string;
+  @Column()
+  isBanned: false;
+  @Column()
+  plannerDemand: false;
+  @Column()
+  reportCounter: 0;
 }
+
+
 
 export interface Userinfo {
   username: string;
@@ -34,6 +42,7 @@ export interface Userinfo {
   birthday: string;
   city: string;
 }
+
 
 
 export interface UserLog {

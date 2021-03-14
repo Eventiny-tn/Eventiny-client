@@ -40,11 +40,8 @@
             <li class="nav-item">
               <a class="nav-link" href="#">Featured Artists</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link">Login</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link">Register</a>
+            <li class="nav-item" @click.prevent="signin()">
+              <a class="nav-link">Sign in</a>
             </li>
           </ul>
         </div>
@@ -60,18 +57,11 @@
             <button class="btn btn-light"><i class="fa fa-search"></i></button>
           </form>
           <ul class="navbar-nav ml-auto">
-            <li class="nav-link">
+            <li class="nav-link" id='loginbtn'>
               <a
                 class="btn btn-primary btn-block btn-login"
                 @click.prevent="signin()"
-                >Login</a
-              >
-            </li>
-            <li class="nav-link">
-              <a
-                class="btn btn-primary btn-block btn-register"
-                @click.prevent="signup()"
-                >Register</a
+                >Sign in</a
               >
             </li>
           </ul>
@@ -94,7 +84,7 @@
               SHARE YOUR MEMORIES   |   CONNECT WITH OTHERS   |   MAKE NEW
               FRIENDS
             </p>
-            <a class="btn btn-primary btn-join" href="#">JOIN THE COMMUNITY</a>
+            <a class="btn btn-primary btn-join" @click.prevent="signup()">JOIN THE COMMUNITY</a>
           </div>
           <div class="col-md-12 text-center mt-5">
             <div class="scroll-down">
@@ -843,6 +833,9 @@ body {
   background: #fff;
   color: #222;
 }
+#loginbtn{
+  float: right;
+}
 
 .navbar-shrink {
   padding-top: 0;
@@ -937,8 +930,14 @@ a.btn.btn-default.btn-scroll {
 
 .btn-login {
   width: 138px;
+  color: white!important;
   background: #1fc6d8 !important;
   border: 1px solid #1fc6d8 !important;
+  height:38px;
+  padding: 5px;
+  font-size:20px;
+  
+  
 }
 .btn-login:hover {
   background: #3683a1 !important;

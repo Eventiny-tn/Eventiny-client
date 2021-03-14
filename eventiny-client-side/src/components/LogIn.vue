@@ -1,5 +1,5 @@
 <template>
-
+<div>
   <div
     class="carousel fade-carousel slide"
     data-ride="carousel"
@@ -40,7 +40,7 @@
               <br /><br />
               <br /><br />
 
-              <a @click="signup()">No Account ? Create One!</a>
+              <a class='noaccount' @click="signup()">No Account ? Create One!</a>
             </form>
           </div>
         </div>
@@ -61,11 +61,9 @@
         <div class="hero">
           <hgroup>
             <h1>Join The Largest Events</h1>
-            <h3>Find Time To Enjoy</h3>
+            <h3>Find Time To Enjoy
+            </h3>
           </hgroup>
-          <button class="btn btn-hero btn-lg" role="button">
-            See all features
-          </button>
         </div>
       </div>
       <div class="item slides">
@@ -132,15 +130,18 @@ export default {
       this.$router.push("/Signup");
     },
   },
-  components:{
-    CarrouselForHomePage
-  }
+ 
 };
 </script>
 
 <style scoped>
 a {
   color: #1985e2;
+}
+
+.noaccount{
+  color: #1985e2 !important;
+  cursor: pointer;
 }
 .container {
   position: relative;
