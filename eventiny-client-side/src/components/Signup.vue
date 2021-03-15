@@ -110,12 +110,7 @@
 
   </div>
 
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#bs-carousel" data-slide-to="0" class="active"></li>
-      <li data-target="#bs-carousel" data-slide-to="1"></li>
-      <li data-target="#bs-carousel" data-slide-to="2"></li>
-    </ol>
+   
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
@@ -232,6 +227,10 @@ a {
   border-radius: 1px;
   box-shadow: none;
   background: none;
+ 
+}
+.form-control:focus{
+  color: white
 }
 .submit_h {
   color: #fff;
