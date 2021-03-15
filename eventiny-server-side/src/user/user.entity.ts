@@ -22,6 +22,12 @@ export class User {
   birthday: string;
   @Column()
   city: string;
+  @Column({ default: false })
+  isBanned: boolean;
+  @Column({ default: false })
+  plannerDemand: boolean;
+  @Column({ default: 0 })
+  reportCounter: number;
 }
 
 export interface Userinfo {

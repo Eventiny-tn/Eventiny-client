@@ -19,12 +19,12 @@
 
         <div id="main">
           <a href="javascript:void(0)" class="openNav"
-            ><span class="fa fa-bars" onclick="openNav()"></span
+            ><span class="fa fa-bars" @click="openNav()"></span
           ></a>
         </div>
 
         <div id="mySidenav" class="sidenav">
-          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
+          <a href="javascript:void(0)" class="closebtn" @click="closeNav()"
             >×</a
           >
           <ul class="mob-ul">
@@ -40,11 +40,8 @@
             <li class="nav-item">
               <a class="nav-link" href="#">Featured Artists</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link">Login</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link">Register</a>
+            <li class="nav-item" @click.prevent="signin()">
+              <a class="nav-link">Sign in</a>
             </li>
           </ul>
         </div>
@@ -60,18 +57,11 @@
             <button class="btn btn-light"><i class="fa fa-search"></i></button>
           </form>
           <ul class="navbar-nav ml-auto">
-            <li class="nav-link">
+            <li class="nav-link" id="loginbtn">
               <a
                 class="btn btn-primary btn-block btn-login"
                 @click.prevent="signin()"
-                >Login</a
-              >
-            </li>
-            <li class="nav-link">
-              <a
-                class="btn btn-primary btn-block btn-register"
-                @click.prevent="signup()"
-                >Register</a
+                >Sign in</a
               >
             </li>
           </ul>
@@ -91,10 +81,12 @@
               Where musicians unite and become better together
             </p>
             <p class="myp text-center">
-              SHARE YOUR MEMORIES   |   CONNECT WITH OTHERS   |   MAKE NEW
-              FRIENDS
+              FIND THE BEST EVENTS   |   CONNECT WITH OTHERS   |   HAVE FUN
+              MEETING OTHERS
             </p>
-            <a class="btn btn-primary btn-join" href="#">JOIN THE COMMUNITY</a>
+            <a class="btn btn-primary btn-join" @click.prevent="signup()"
+              >JOIN THE COMMUNITY</a
+            >
           </div>
           <div class="col-md-12 text-center mt-5">
             <div class="scroll-down">
@@ -123,7 +115,7 @@
           </div>
           <div class="col-md-8">
             <div class="inner-section wow fadeInUp">
-              <h3>Follow the <span class="bg-main">Next Event</span></h3>
+              <h3>GGA <span class="bg-main">Next Event</span></h3>
               <br />
               <p class="text-justify">
                 Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -825,6 +817,7 @@
   </div>
 </template>
 <script>
+import $ from "jquery";
 export default {
   methods: {
     signin() {
@@ -834,7 +827,31 @@ export default {
     signup() {
       this.$router.push("/Signup");
     },
+    openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
+      document.getElementById("main").style.display = "0";
+      document.body.style.backgroundColor = "white";
+    },
+
+    closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+      document.getElementById("main").style.marginRight = "0";
+      document.body.style.backgroundColor = "white";
+    },
+    load() {
+      $(window).scroll(function() {
+        var topWindow = $(window).scrollTop();
+        var topWindow = topWindow * 1.5;
+        var windowHeight = $(window).height();
+        var position = topWindow / windowHeight;
+        position = 1 - position;
+
+        $("#bottom").css("opacity", position);
+      });
+    },
   },
+
+  beforeMount() {},
 };
 </script>
 <style scoped>
@@ -843,6 +860,9 @@ body {
   background: #fff;
   color: #222;
 }
+#loginbtn {
+  float: right;
+}
 
 .navbar-shrink {
   padding-top: 0;
@@ -850,6 +870,9 @@ body {
 }
 .mybg-dark {
   background: #000000 !important;
+}
+.fa-bars {
+  cursor: pointer;
 }
 
 header.masthead {
@@ -937,8 +960,12 @@ a.btn.btn-default.btn-scroll {
 
 .btn-login {
   width: 138px;
+  color: white !important;
   background: #1fc6d8 !important;
   border: 1px solid #1fc6d8 !important;
+  height: 38px;
+  padding: 5px;
+  font-size: 20px;
 }
 .btn-login:hover {
   background: #3683a1 !important;
