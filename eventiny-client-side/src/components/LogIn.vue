@@ -1,96 +1,94 @@
 <template>
-<div>
-  <div
-    class="carousel fade-carousel slide"
-    data-ride="carousel"
-    data-interval="4000"
-    id="bs-carousel"
-  >
-    <!-- Overlay -->
-    <div class="overlay">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-5 col-md-offset-3" style="margin-top: 10%;">
-            <form class="form">
-              <h3 class="col_g">Sign in</h3>
-              <br />
-              <div class="form-group">
-                <input
-                  type="email"
-                  class="form-control"
-                  v-model="login.email"
-                  placeholder="Email..."
-                />
+  <div>
+    <div
+      class="carousel fade-carousel slide"
+      data-ride="carousel"
+      data-interval="4000"
+      id="bs-carousel"
+    >
+      <!-- Overlay -->
+      <div class="overlay">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-5 col-md-offset-3" style="margin-top: 10%;">
+              <form class="form">
+                <h3 class="col_g">Sign in</h3>
+                <br />
+                <div class="form-group">
+                  <input
+                    type="email"
+                    class="form-control"
+                    v-model="login.email"
+                    placeholder="Email..."
+                  />
+                </div>
+                <div class="form-group">
+                  <input
+                    type="password"
+                    class="form-control"
+                    v-model="login.password"
+                    placeholder="Enter Password Here"
+                  />
+                </div>
 
-              </div>
-              <div class="form-group">
-                <input
-                  type="password"
-                  class="form-control"
-                  v-model="login.password"
-                  placeholder="Enter Password Here"
-                />
-              </div>
+                <div class="form-group" @click.prevent="onSubmitLogin(login)">
+                  <button class="btn col-xs-4 submit_h">
+                    Login
+                  </button>
+                </div>
+                <br /><br />
+                <br /><br />
 
-              <div class="form-group" @click.prevent="onSubmitLogin(login)">
-                <button class="btn col-xs-4 submit_h">
-                  Login
-                </button>
-              </div>
-              <br /><br />
-              <br /><br />
+                <a class="noaccount" @click="signup()"
+                  >No Account ? Create One!</a
+                >
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
 
-              <a class='noaccount' @click="signup()">No Account ? Create One!</a>
-            </form>
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner">
+        <div class="item slides active">
+          <div class="slide-1"></div>
+          <div class="hero">
+            <hgroup>
+              <h1>Join The Largest Events</h1>
+              <h3>Find Time To Enjoy</h3>
+            </hgroup>
+          </div>
+        </div>
+        <div class="item slides">
+          <div class="slide-2"></div>
+          <div class="hero">
+            <hgroup>
+              <h1>We are Family</h1>
+              <h3>Find Time To Enjoy</h3>
+            </hgroup>
+            <button class="btn btn-hero btn-lg" role="button">
+              See all features
+            </button>
+          </div>
+        </div>
+        <div class="item slides">
+          <div class="slide-3"></div>
+          <div class="hero">
+            <hgroup>
+              <h1>You Decide Who We Are</h1>
+              <h3>Join Our Community</h3>
+            </hgroup>
+            <button class="btn btn-hero btn-lg" role="button">
+              See all features
+            </button>
           </div>
         </div>
       </div>
     </div>
-
-
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-      <div class="item slides active">
-        <div class="slide-1"></div>
-        <div class="hero">
-          <hgroup>
-            <h1>Join The Largest Events</h1>
-            <h3>Find Time To Enjoy
-            </h3>
-          </hgroup>
-        </div>
-      </div>
-      <div class="item slides">
-        <div class="slide-2"></div>
-        <div class="hero">
-          <hgroup>
-            <h1>We are Family</h1>
-            <h3>Find Time To Enjoy</h3>
-          </hgroup>
-          <button class="btn btn-hero btn-lg" role="button">
-            See all features
-          </button>
-        </div>
-      </div>
-      <div class="item slides">
-        <div class="slide-3"></div>
-        <div class="hero">
-          <hgroup>
-            <h1>You Decide Who We Are</h1>
-            <h3>Join Our Community</h3>
-          </hgroup>
-          <button class="btn btn-hero btn-lg" role="button">
-            See all features
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
   </div>
 </template>
 <script>
 import axios from "axios";
-
 export default {
   data() {
     return {
@@ -119,12 +117,10 @@ export default {
           this.$router.push("/Signup");
         });
     },
-
     signup() {
       this.$router.push("/Signup");
     },
   },
- 
 };
 </script>
 
@@ -132,8 +128,7 @@ export default {
 a {
   color: #1985e2;
 }
-
-.noaccount{
+.noaccount {
   color: #1985e2 !important;
   cursor: pointer;
 }
@@ -153,14 +148,13 @@ a {
   box-shadow: none;
   background: none;
 }
-.form-control:focus{
-  color: white
+.form-control:focus {
+  color: white;
 }
 .submit_h {
   color: #fff;
   background-color: #0067b8;
 }
-
 .login_footer {
   position: fixed;
   left: 0;
@@ -174,11 +168,9 @@ a {
 .login_footer li {
   float: right;
 }
-
 .login_footer ul {
   list-style: none;
 }
-
 .login_footer li a {
   padding: 0px 10px;
   color: white;
@@ -204,7 +196,6 @@ a {
   height: 10px;
   opacity: 1;
 }
-
 /********************************/
 /*          Hero Headers        */
 /********************************/
@@ -229,7 +220,6 @@ a {
   margin: 0;
   padding: 0;
 }
-
 .fade-carousel .carousel-inner .item .hero {
   opacity: 0;
   -webkit-transition: 2s all ease-in-out 0.1s;
@@ -246,7 +236,6 @@ a {
   -o-transition: 2s all ease-in-out 0.1s;
   transition: 2s all ease-in-out 0.1s;
 }
-
 /********************************/
 /*            Overlay           */
 /********************************/
@@ -258,7 +247,6 @@ a {
   background-color: #080d15;
   opacity: 0.7;
 }
-
 /********************************/
 /*          Custom Buttons      */
 /********************************/
@@ -274,7 +262,6 @@ a {
   outline: none;
   margin: 20px auto;
 }
-
 /********************************/
 /*       Slides backgrounds     */
 /********************************/
@@ -295,7 +282,6 @@ a {
 .fade-carousel .slides .slide-3 {
   background-image: url("https://images.pexels.com/photos/1549196/pexels-photo-1549196.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
 }
-
 /********************************/
 /*          Media Queries       */
 /********************************/

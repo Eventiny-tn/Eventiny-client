@@ -5,14 +5,12 @@ import { User, Userinfo, UserLog } from './user.entity';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 
-
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(User) private userRepository: Repository<User>,
 
     private jwtService: JwtService,
-
   ) {}
   async signup(user: Userinfo): Promise<string | Error> {
     const username = await this.userRepository.findOne({
@@ -48,5 +46,4 @@ export class UserService {
       return new NotFoundException('NOT FOUND');
     }
   }
-
 }
