@@ -34,18 +34,12 @@
             <li class="nav-item"><a class="nav-link" href="#">Events</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Groups</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Music</a></li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Marketplace</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Featured Artists</a>
-            </li>
+
             <li class="nav-item" @click.prevent="signin()">
               <a class="nav-link">Sign in</a>
             </li>
           </ul>
         </div>
-
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <form class="form-inline my-2 my-lg-0 col-md-7">
             <input
@@ -63,6 +57,9 @@
                 @click.prevent="signin()"
                 >Sign in</a
               >
+            </li>
+            <li id="signupcss">
+              <a id="signupbtn" @click.prevent="signup()">/ Signup</a>
             </li>
           </ul>
         </div>
@@ -849,9 +846,35 @@ export default {
         $("#bottom").css("opacity", position);
       });
     },
+    animations() {
+      $(function() {
+        $("#bottom").click(function() {
+          if (
+            location.pathname.replace(/^\//, "") ==
+              this.pathname.replace(/^\//, "") &&
+            location.hostname == this.hostname
+          ) {
+            var target = $(this.hash);
+            target = target.length
+              ? target
+              : $("[name=" + this.hash.slice(1) + "]");
+            if (target.length) {
+              $("html,body").animate(
+                {
+                  scrollTop: target.offset().top,
+                },
+                500
+              );
+              return false;
+            }
+          }
+        });
+      });
+    },
   },
-
-  beforeMount() {},
+  mounted() {
+    this.animations();
+  },
 };
 </script>
 <style scoped>
@@ -862,6 +885,18 @@ body {
 }
 #loginbtn {
   float: right;
+}
+#signupbtn {
+  background-color: none !important;
+  color: white !important;
+  font-size: 20px;
+}
+.signupcss {
+  border: 1px solid block;
+}
+.navbar-dark {
+  opacity: 0.85;
+  background-color: #343a40;
 }
 
 .navbar-shrink {
@@ -961,8 +996,8 @@ a.btn.btn-default.btn-scroll {
 .btn-login {
   width: 138px;
   color: white !important;
-  background: #1fc6d8 !important;
-  border: 1px solid #1fc6d8 !important;
+  background: transparent !important;
+  border: 0px !important;
   height: 38px;
   padding: 5px;
   font-size: 20px;
