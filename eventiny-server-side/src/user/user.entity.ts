@@ -22,12 +22,12 @@ export class User {
   birthday: string;
   @Column()
   city: string;
-  @Column()
-  isBanned: false;
-  @Column()
-  plannerDemand: false;
-  @Column()
-  reportCounter: 0;
+  @Column({default: false})
+  isBanned: boolean;
+  @Column({default: false})
+  plannerDemand: boolean;
+  @Column({default: 0})
+  reportCounter: number;
 }
 
 

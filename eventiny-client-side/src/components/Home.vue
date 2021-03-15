@@ -34,18 +34,13 @@
             <li class="nav-item"><a class="nav-link" href="#">Events</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Groups</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Music</a></li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Marketplace</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Featured Artists</a>
-            </li>
+          
+        
             <li class="nav-item" @click.prevent="signin()">
               <a class="nav-link">Sign in</a>
             </li>
           </ul>
         </div>
-
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <form class="form-inline my-2 my-lg-0 col-md-7">
             <input
@@ -62,6 +57,14 @@
                 class="btn btn-primary btn-block btn-login"
                 @click.prevent="signin()"
                 >Sign in</a
+              >
+            </li>
+            <li  id="signupcss">
+              <a
+                id='signupbtn'
+                
+                @click.prevent="signup()"
+                >/ Signup</a
               >
             </li>
           </ul>
@@ -836,6 +839,21 @@ body {
 #loginbtn{
   float: right;
 }
+#signupbtn{
+  background-color: none !important;
+  color:white !important;
+  font-size: 20px;
+  
+}
+.signupcss{
+  border: 1px solid block;
+}
+ .navbar-dark{
+  
+   opacity: 0.85;
+   background-color: #343a40;
+
+ }
 
 .navbar-shrink {
   padding-top: 0;
@@ -931,9 +949,9 @@ a.btn.btn-default.btn-scroll {
 .btn-login {
   width: 138px;
   color: white!important;
-  background: #1fc6d8 !important;
-  border: 1px solid #1fc6d8 !important;
-  height:38px;
+  background: transparent !important;
+  border: 0px  !important;
+  height:38px;  
   padding: 5px;
   font-size:20px;
   
