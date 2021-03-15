@@ -52,19 +52,19 @@
             <button class="btn btn-light"><i class="fa fa-search"></i></button>
           </form>
           <ul class="navbar-nav ml-auto">
-            <li class="nav-link" id='loginbtn'>
+            <li class="nav-link" >
               <a
-                class="btn btn-primary btn-block btn-login"
+               
                 @click.prevent="signin()"
                 >Sign in</a
               >
             </li>
-            <li  id="signupcss">
+            <li  class="btn btn-primary btn-block btn-login" >
               <a
-                id='signupbtn'
+                
                 
                 @click.prevent="signup()"
-                >/ Signup</a
+                >Signup</a
               >
             </li>
           </ul>
@@ -954,7 +954,8 @@ a.btn.btn-default.btn-scroll {
   height:38px;  
   padding: 5px;
   font-size:20px;
-  
+  margin-left: 215%;
+  margin-top: 4%;
   
 }
 .btn-login:hover {
@@ -1300,6 +1301,7 @@ a.openNav {
 .sidenav .nav-link {
   font-size: 13px;
   font-weight: bold;
+  
 }
 .mob-ul {
   list-style-type: none;
