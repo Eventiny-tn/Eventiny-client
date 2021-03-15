@@ -15,6 +15,7 @@
       <div class="container">
         <div class="row">
       <div class="col-md-5 col-md-offset-3" style="margin-top: 10%">
+         
         <form class="form">
           <h3 class="col_g">Sign up</h3>
           <br />
@@ -100,6 +101,8 @@
           <br /><br />
 
           <a class="noaccount" @click="signin()">Have an Account ? Go login!</a>
+          <br><br>
+           <a class ="col_g" id = 'home-signup'> Go back to <strong @click="gohome()" id='cursor'>Home</strong></a>
         </form>
       </div>
     </div>
@@ -161,6 +164,9 @@ export default {
     signin() {
       this.$router.push("/Login");
     },
+    gohome() {
+      this.$router.push("/");
+    },
     onSubmitSignup(signup) {
       let valarr = Object.values(signup);
 
@@ -202,6 +208,15 @@ export default {
 <style scoped>
 a {
   color: #1985e2;
+}
+#home-signup{
+  color: #887c7c ! important;
+  float:right !important;
+  float: left !important;
+
+}
+#cursor{
+  cursor: pointer
 }
 
 
