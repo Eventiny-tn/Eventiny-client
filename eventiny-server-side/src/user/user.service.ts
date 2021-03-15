@@ -30,6 +30,7 @@ export class UserService {
   }
   async login(body: UserLog): Promise<object | Error | string> {
     console.log(body);
+
     const logger = await this.userRepository.findOne({ email: body.email });
 
     if (logger) {
