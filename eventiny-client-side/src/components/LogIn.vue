@@ -1,4 +1,5 @@
 <template>
+<div>
   <div
     class="carousel fade-carousel slide"
     data-ride="carousel"
@@ -20,6 +21,7 @@
                   v-model="login.email"
                   placeholder="Email..."
                 />
+
               </div>
               <div class="form-group">
                 <input
@@ -38,19 +40,13 @@
               <br /><br />
               <br /><br />
 
-              <a @click="signup()">No Account ? Create One!</a>
+              <a class='noaccount' @click="signup()">No Account ? Create One!</a>
             </form>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#bs-carousel" data-slide-to="0" class="active"></li>
-      <li data-target="#bs-carousel" data-slide-to="1"></li>
-      <li data-target="#bs-carousel" data-slide-to="2"></li>
-    </ol>
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
@@ -59,11 +55,9 @@
         <div class="hero">
           <hgroup>
             <h1>Join The Largest Events</h1>
-            <h3>Find Time To Enjoy</h3>
+            <h3>Find Time To Enjoy
+            </h3>
           </hgroup>
-          <button class="btn btn-hero btn-lg" role="button">
-            See all features
-          </button>
         </div>
       </div>
       <div class="item slides">
@@ -92,9 +86,11 @@
       </div>
     </div>
   </div>
+  </div>
 </template>
 <script>
 import axios from "axios";
+
 export default {
   data() {
     return {
@@ -128,12 +124,18 @@ export default {
       this.$router.push("/Signup");
     },
   },
+ 
 };
 </script>
 
 <style scoped>
 a {
   color: #1985e2;
+}
+
+.noaccount{
+  color: #1985e2 !important;
+  cursor: pointer;
 }
 .container {
   position: relative;
@@ -150,6 +152,9 @@ a {
   border-radius: 1px;
   box-shadow: none;
   background: none;
+}
+.form-control:focus{
+  color: white
 }
 .submit_h {
   color: #fff;

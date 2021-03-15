@@ -1,4 +1,5 @@
 import { Body, Controller, Post } from '@nestjs/common';
+
 import { Userinfo, UserLog } from './user.entity';
 import { UserService } from './user.service';
 @Controller()
@@ -11,5 +12,6 @@ export class UserController {
   @Post('login')
   login(@Body() body: UserLog): Promise<object | string | Error> {
     return this.userRepo.login(body);
+
   }
 }

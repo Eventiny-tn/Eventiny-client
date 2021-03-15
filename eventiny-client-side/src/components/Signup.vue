@@ -1,146 +1,138 @@
 <template>
-  <div class="container h-100">
-    <div class="d-flex justify-content-center h-100">
-      <div class="user_card">
-        <div class="d-flex justify-content-center">
-          <div class="brand_logo_container">
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEOF3W-iZ0X_8aGZjRZSFkNp3UEuE2OGrBuw&usqp=CAU"
-              class="brand_logo"
-              alt="Logo"
+ 
+
+  <div>
+  <div
+    class="carousel fade-carousel slide"
+    data-ride="carousel"
+    data-interval="4000"
+    id="bs-carousel"
+  >
+    <!-- Overlay -->
+    <div >
+    <div class="container-signup" >
+       <div class="overlay">
+      <div class="container">
+        <div class="row">
+      <div class="col-md-5 col-md-offset-3" style="margin-top: 10%">
+        <form class="form">
+          <h3 class="col_g">Sign up</h3>
+          <br />
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              v-model="signup.username"
+              placeholder="Username..."
             />
           </div>
-        </div>
-        <div class="d-flex justify-content-center form_container">
-          <form>
-            <div class="input-group mb-3" id="inputblock1">
-              <div class="input-group-append">
-                <span class="input-group-text"
-                  ><i class="fas fa-user"></i
-                ></span>
-              </div>
-              <input
-                type="text"
-                name=""
-                class="form-control input_user"
-                placeholder="username"
-                v-model="signup.username"
-              />
-              <div class="input-group-append">
-                <span class="input-group-text"><i class="fas fa-key"></i></span>
-              </div>
-              <input
-                type="password"
-                name=""
-                class="form-control input_user"
-                placeholder="password"
-                v-model="signup.password"
-              />
-              <div class="input-group-append">
-                <span class="input-group-text"><i class="fas fa-key"></i></span>
-              </div>
-              <input
-                type="password"
-                name=""
-                class="form-control input_user"
-                placeholder="confirm password"
-                v-model="signup.confirmPassword"
-              />
-            </div>
-            <div class="input-group mb-2" id="inputblock2">
-              <div class="input-group-append">
-                <span class="input-group-text"><i class="fas fa-at"></i></span>
-              </div>
-              <input
-                type="email"
-                name=""
-                class="form-control input_user"
-                placeholder="email"
-                v-model="signup.email"
-              />
-              <div class="input-group-append">
-                <span class="input-group-text"
-                  ><i class="fas fa-receipt"></i
-                ></span>
-              </div>
-              <input
-                type="address"
-                name=""
-                class="form-control input_user"
-                placeholder="address"
-                v-model="signup.address"
-              />
-              <div class="input-group-append">
-                <span class="input-group-text"
-                  ><i class="fas fa-receipt"></i
-                ></span>
-              </div>
-              <input
-                type="address2"
-                name=""
-                class="form-control input_user"
-                placeholder="address2"
-                v-model="signup.address2"
-              />
-              <div class="input-group-append">
-                <span class="input-group-text"
-                  ><i class="fas fa-phone"></i
-                ></span>
-              </div>
-              <input
-                type="text"
-                name=""
-                class="form-control input_user"
-                placeholder="phone"
-                v-model="signup.phone"
-              />
-              <div class="input-group-append">
-                <span class="input-group-text"
-                  ><i class="fas fa-birthday-cake"></i
-                ></span>
-                <input
-                  type="date"
-                  id="birthday"
-                  name="birthday"
-                  placeholder="date of birthday"
-                  v-model="signup.birthday"
-                />
-              </div>
-              <div class="input-group-append">
-                <span class="input-group-text"
-                  ><i class="fas fa-map-marker-alt"></i
-                ></span>
-              </div>
-              <input
-                type="text"
-                name=""
-                class="form-control input_user"
-                placeholder="city"
-                v-model="signup.city"
-              />
-            </div>
-
-            <div class="d-flex justify-content-center mt-3 login_container">
-              <button
-                type="button"
-                name="button"
-                class="btn login_btn"
-                @click="onSubmitSignup(signup)"
-              >
-                Signup
-              </button>
-            </div>
-          </form>
-        </div>
-
-        <div class="mt-4">
-          <div class="d-flex justify-content-center links">
-            Already have an account?
-            <a href="#" class="ml-2" @click="signin()">Log in</a>
+          <div class="form-group">
+            <input
+              type="password"
+              class="form-control"
+              v-model="signup.password"
+              placeholder="Password... "
+            />
           </div>
+          <div class="form-group">
+            <input
+              type="password"
+              class="form-control"
+              v-model="signup.confirmPassword"
+              placeholder="Confirm pasword..."
+            />
+          </div>
+
+          <div class="form-group">
+            <input
+              type="email"
+              class="form-control"
+              v-model="signup.email"
+              placeholder="Email..."
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              v-model="signup.address"
+              placeholder="Address..."
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              v-model="signup.address2"
+              placeholder="Address2..."
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              v-model="signup.phone"
+              placeholder="Phone..."
+            />
+          </div>
+          <div id="dob" class="form-group">
+            Date of birth :
+            <input type="date" class="birthday" id="birthday" v-model="signup.birthday" />
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              v-model="signup.city"
+              placeholder="City..."
+            />
+          </div>
+
+          <div class="form-group">
+            <button
+              @click.prevent="onSubmitSignup(signup)"
+              class="btn col-xs-4 submit_h"
+            >
+              Sign up
+            </button>
+          </div>
+          <br /><br />
+          <br /><br />
+
+          <a class="noaccount" @click="signin()">Have an Account ? Go login!</a>
+        </form>
+      </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    
+
+  </div>
+
+   
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+      <div class="item slides active">
+        <div class="slide-1"></div>
+        
+      </div>
+      
+      <div class="item slides">
+        <div class="slide-3"></div>
+        <div class="hero">
+          <hgroup>
+            <h1>You Decide Who We Are</h1>
+            <h3>Join Our Community</h3>
+          </hgroup>
+          <button class="btn btn-hero btn-lg" role="button">
+            See all features
+          </button>
         </div>
       </div>
     </div>
+  </div>
   </div>
 </template>
 
@@ -176,35 +168,31 @@ export default {
         if (valarr[i] === "") {
           swal(
             "Please fill up all the informations",
-            "sqkfqskfqsdflqsflesjf",
-            "error"
-          );
-          //console.log(valarr)
-          return;
-        } else if (
-          signup.password === signup.confirmPassword &&
-          signup.password !== "" &&
-          signup.confirmPassword !== ""
-        ) {
-          console.log(valarr);
-          axios
-            .post("http://localhost:3000/signup", signup)
-            .then((res) => {
-              console.log(res);
-            })
-            .catch((err) => {
-              swal("Username or email exist", "Please check again", "error");
-              console.log(err);
-              return;
-            });
-        } else if (signup.password !== signup.confirmPassword) {
-          swal(
-            "Password not match",
-            "Put again your password  please!",
+            "Missing informations",
             "error"
           );
           return;
         }
+      }
+      if (
+        signup.password === signup.confirmPassword &&
+        signup.password !== "" &&
+        signup.confirmPassword !== ""
+      ) {
+        axios
+          .post("http://localhost:3000/signup", signup)
+          .then((res) => {
+            console.log(res);
+            if (res.data.message === "NOT FOUND") {
+              swal("Username or email exist", "Please check again", "error");
+            }
+          })
+          .catch((err) => {
+            swal("Username or email exist", "Please check again", "error");
+            console.log(err);
+          });
+      } else if (signup.password !== signup.confirmPassword) {
+        swal("Password not match", "Put again your password  please!", "error");
       }
     },
   },
@@ -212,82 +200,189 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  margin-top: 10%;
+a {
+  color: #1985e2;
 }
 
-body,
-html {
+
+.noaccount {
+  color: #1985e2 !important;
+  cursor: pointer;
+}
+.birthday{
+  background-color: white;
+  opacity: 0.8;
+}
+#dob{
+ color: #887c7c !important;
+}
+
+.col_g {
+  color: #887c7c;
+}
+.form-control {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 1px;
+  box-shadow: none;
+  background: none;
+ 
+}
+.form-control:focus{
+  color: white
+}
+.submit_h {
+  color: #fff;
+  background-color: #0067b8;
+}
+
+.login_footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #353434d1;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+.login_footer li {
+  float: right;
+}
+
+.login_footer ul {
+  list-style: none;
+}
+
+.login_footer li a {
+  padding: 0px 10px;
+  color: white;
+}
+
+/**                 */
+.fade-carousel {
+  position: relative;
+  height: 100vh;
+}
+.fade-carousel .carousel-inner .item {
+  height: 100vh;
+}
+.fade-carousel .carousel-indicators > li {
+  margin: 0 2px;
+  background-color: #f39c12;
+  border-color: #f39c12;
+  opacity: 0.7;
+}
+.fade-carousel .carousel-indicators > li.active {
+  width: 10px;
+  height: 10px;
+  opacity: 1;
+}
+
+/********************************/
+/*          Hero Headers        */
+/********************************/
+.hero {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 3;
+  color: #fff;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.75);
+  -webkit-transform: translate3d(-50%, -50%, 0);
+  -moz-transform: translate3d(-50%, -50%, 0);
+  -ms-transform: translate3d(-50%, -50%, 0);
+  -o-transform: translate3d(-50%, -50%, 0);
+  transform: translate3d(-50%, -50%, 0);
+}
+.hero h1 {
+  font-size: 6em;
+  font-weight: bold;
   margin: 0;
   padding: 0;
-  height: 100%;
-  background: #60a3bc !important;
-}
-.user_card {
-  height: 500px;
-  width: 750px;
-  margin-top: auto;
-  margin-bottom: auto;
-  background: #f39c12;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  padding: 10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-    0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-    0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  border-radius: 5px;
-}
-.cont-form {
-  display: block;
 }
 
-.brand_logo_container {
+.fade-carousel .carousel-inner .item .hero {
+  opacity: 0;
+  -webkit-transition: 2s all ease-in-out 0.1s;
+  -moz-transition: 2s all ease-in-out 0.1s;
+  -ms-transition: 2s all ease-in-out 0.1s;
+  -o-transition: 2s all ease-in-out 0.1s;
+  transition: 2s all ease-in-out 0.1s;
+}
+.fade-carousel .carousel-inner .item.active .hero {
+  opacity: 1;
+  -webkit-transition: 2s all ease-in-out 0.1s;
+  -moz-transition: 2s all ease-in-out 0.1s;
+  -ms-transition: 2s all ease-in-out 0.1s;
+  -o-transition: 2s all ease-in-out 0.1s;
+  transition: 2s all ease-in-out 0.1s;
+}
+
+/********************************/
+/*            Overlay           */
+/********************************/
+.overlay {
   position: absolute;
-  height: 170px;
-  width: 170px;
-  top: -75px;
-  border-radius: 50%;
-  background: #c0392b;
-  padding: 10px;
-  text-align: center;
-}
-.brand_logo {
-  height: 150px;
-  width: 150px;
-  border-radius: 50%;
-  border: 2px solid white;
-}
-.form_container {
-  margin-top: 100px;
-}
-.login_btn {
   width: 100%;
-  background: #c0392b !important;
-  color: white !important;
+  height: 100%;
+  z-index: 2;
+  background-color: #080d15;
+  opacity: 0.8;
+  float:right  !important;
 }
-.login_btn:focus {
-  box-shadow: none !important;
-  outline: 0px !important;
+
+/********************************/
+/*          Custom Buttons      */
+/********************************/
+.btn.btn-lg {
+  padding: 10px 40px;
 }
-.login_container {
-  padding: 0 2rem;
+.btn.btn-hero,
+.btn.btn-hero:hover,
+.btn.btn-hero:focus {
+  color: #f5f5f5;
+  background-color: #1abc9c;
+  border-color: #1abc9c;
+  outline: none;
+  margin: 20px auto;
 }
-.input-group-text {
-  background: #c0392b !important;
-  color: white !important;
-  border: 0 !important;
-  border-radius: 0.25rem 0 0 0.25rem !important;
+
+/********************************/
+/*       Slides backgrounds     */
+/********************************/
+.fade-carousel .slides .slide-1,
+.fade-carousel .slides .slide-2,
+.fade-carousel .slides .slide-3 {
+  height: 100vh;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
-.input_user,
-.input_pass:focus {
-  box-shadow: none !important;
-  outline: 0px !important;
+.fade-carousel .slides .slide-1 {
+  background-image: url("https://images.pexels.com/photos/3601425/pexels-photo-3601425.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
 }
-.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
-  background-color: #c0392b !important;
+.fade-carousel .slides .slide-2 {
+  background-image: url("https://images.pexels.com/photos/2240763/pexels-photo-2240763.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+}
+.fade-carousel .slides .slide-3 {
+  background-image: url("https://images.pexels.com/photos/1549196/pexels-photo-1549196.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+}
+
+/********************************/
+/*          Media Queries       */
+/********************************/
+@media screen and (min-width: 980px) {
+  .hero {
+    width: 980px;
+  }
+}
+@media screen and (max-width: 640px) {
+  .hero h1 {
+    font-size: 4em;
+  }
 }
 </style>
