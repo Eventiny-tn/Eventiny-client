@@ -5,6 +5,7 @@
         <a class="navbar-brand" href="/">
           <h3 class="my-heading ">Eventiny<span class="bg-main">TN</span></h3>
         </a>
+        <p></p>
         <button
           class="navbar-toggler navbar-toggler-right"
           type="button"
