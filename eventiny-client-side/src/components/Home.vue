@@ -867,7 +867,7 @@ export default {
                   scrollTop: target.offset().top,
                 },
                 500
-              );
+              );  
               return false;
             }
           }
