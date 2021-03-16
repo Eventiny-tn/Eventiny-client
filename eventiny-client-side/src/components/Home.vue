@@ -39,6 +39,9 @@
             <li class="nav-item" @click.prevent="signin()">
               <a class="nav-link">Sign in</a>
             </li>
+            <li class="nav-item" @click.prevent="signup()">
+              <a class="nav-link">Sign up</a>
+            </li>
           </ul>
         </div>
         <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -53,13 +56,9 @@
           </form>
           <ul class="navbar-nav ml-auto">
             <li class="nav-link" id="loginbtn">
-              <a
-                class="btn btn-primary btn-block btn-login"
-                @click.prevent="signin()"
-                >Sign in</a
-              >
+              <a @click.prevent="signin()">Sign in</a>
             </li>
-            <li id="signupcss">
+            <li class="nav-link">
               <a id="signupbtn" @click.prevent="signup()">/ Signup</a>
             </li>
           </ul>
@@ -884,14 +883,13 @@ body {
   background: #fff;
   color: #222;
 }
-#loginbtn {
-  float: right;
-}
+
 #signupbtn {
   background-color: none !important;
   color: white !important;
-  font-size: 20px;
+  font-size: 17px;
 }
+
 .signupcss {
   border: 1px solid block;
 }
@@ -1121,6 +1119,9 @@ hr.my-border {
 
 .h-262 {
   height: 262px !important;
+}
+.navbar {
+  margin-bottom: 0 !important;
 }
 
 h3.title-heading.text-center {

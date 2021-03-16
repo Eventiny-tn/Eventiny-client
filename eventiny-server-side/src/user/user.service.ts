@@ -27,10 +27,11 @@ export class UserService {
     user.password = hash;
     this.userRepository.save(user);
     return 'done';
+    
   }
 
   async login(body: UserLog): Promise<object | Error | string> {
-    console.log(body);
+
     const logger = await this.userRepository.findOne({ email: body.email });
 
     if (logger) {
