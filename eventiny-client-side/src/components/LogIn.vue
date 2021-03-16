@@ -123,7 +123,7 @@ export default {
               return;
             } else if (data.token !== undefined) {
               localStorage.setItem("token", data.token);
-              this.$router.push("/");
+              this.$router.push("/GeneralPage");
             }
           })
           .catch((err) => {
