@@ -42,6 +42,8 @@
                 <a class="noaccount" @click="signup()"
                   >No Account ? Create One!</a
                 >
+                <br><br>
+           <a class ="col_g" id = 'home-login'> Go back to <strong @click="gohome()" id='cursor'>Home</strong></a>
               </form>
             </div>
           </div>
@@ -89,6 +91,7 @@
 </template>
 <script>
 import axios from "axios";
+
 import swal from "sweetalert";
 
 export default {
@@ -102,6 +105,7 @@ export default {
   },
   methods: {
     onSubmitLogin(login) {
+
       if (login.email == "" || login.password == "") {
         swal(
           "Please fill up all the informations",
@@ -130,11 +134,15 @@ export default {
             console.log(err);
           });
       }
-    },
 
+    },
     signup() {
       this.$router.push("/Signup");
     },
+     gohome() {
+      this.$router.push("/");
+    },
+
   },
 };
 </script>
@@ -143,7 +151,15 @@ export default {
 a {
   color: #1985e2;
 }
+#home-login{
+  color: #887c7c ! important;
+  float:right !important;
+  float: left !important;
 
+}
+#cursor{
+  cursor: pointer
+}
 .noaccount {
   color: #1985e2 !important;
   cursor: pointer;
@@ -171,7 +187,6 @@ a {
   color: #fff;
   background-color: #0067b8;
 }
-
 .login_footer {
   position: fixed;
   left: 0;
@@ -185,11 +200,9 @@ a {
 .login_footer li {
   float: right;
 }
-
 .login_footer ul {
   list-style: none;
 }
-
 .login_footer li a {
   padding: 0px 10px;
   color: white;
@@ -215,7 +228,6 @@ a {
   height: 10px;
   opacity: 1;
 }
-
 /********************************/
 /*          Hero Headers        */
 /********************************/
@@ -240,7 +252,6 @@ a {
   margin: 0;
   padding: 0;
 }
-
 .fade-carousel .carousel-inner .item .hero {
   opacity: 0;
   -webkit-transition: 2s all ease-in-out 0.1s;
@@ -257,7 +268,6 @@ a {
   -o-transition: 2s all ease-in-out 0.1s;
   transition: 2s all ease-in-out 0.1s;
 }
-
 /********************************/
 /*            Overlay           */
 /********************************/
@@ -269,7 +279,6 @@ a {
   background-color: #080d15;
   opacity: 0.7;
 }
-
 /********************************/
 /*          Custom Buttons      */
 /********************************/
@@ -285,7 +294,6 @@ a {
   outline: none;
   margin: 20px auto;
 }
-
 /********************************/
 /*       Slides backgrounds     */
 /********************************/
@@ -306,7 +314,6 @@ a {
 .fade-carousel .slides .slide-3 {
   background-image: url("https://images.pexels.com/photos/1549196/pexels-photo-1549196.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
 }
-
 /********************************/
 /*          Media Queries       */
 /********************************/
