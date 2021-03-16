@@ -2,7 +2,7 @@
   <header class="header-area overlay">
     <nav class="navbar navbar-expand-md navbar-dark">
       <div class="container">
-        <a class="navbar-brand" href="/">
+        <a class="navbar-brand">
           <h3 class="my-heading ">Eventiny<span class="bg-main">TN</span></h3>
         </a>
 
@@ -19,27 +19,23 @@
 
         <div id="main-nav" class="collapse navbar-collapse">
           <ul class="navbar-nav ml-auto">
-            <li><a href="#" class="nav-item nav-link active">Home</a></li>
+            <li><a class="nav-item nav-link active">Home</a></li>
 
             <li class="dropdown">
-              <a href="#" class="nav-item nav-link" data-toggle="dropdown"
-                >Events</a
-              >
+              <a class="nav-item nav-link" data-toggle="dropdown">Events</a>
               <div class="dropdown-menu">
-                <a href="#" class="dropdown-item">category 1</a>
-                <a href="#" class="dropdown-item">category 2</a>
-                <a href="#" class="dropdown-item">category 3</a>
+                <a class="dropdown-item">category 1</a>
+                <a class="dropdown-item">category 2</a>
+                <a class="dropdown-item">category 3</a>
               </div>
             </li>
             <li class="dropdown">
-              <a href="#" class="nav-item nav-link" data-toggle="dropdown"
-                >Profile</a
-              >
+              <a class="nav-item nav-link" data-toggle="dropdown">Profile</a>
               <div class="dropdown-menu">
-                <a @click="goprofile()" href="#" class="dropdown-item">
+                <a @click="goprofile()" class="dropdown-item">
                   <i class="far fa-user"></i> My Profile</a
                 >
-                <a href="#" class="dropdown-item">
+                <a class="dropdown-item">
                   <i class="fas fa-sign-out-alt"></i> Logout</a
                 >
               </div>
@@ -72,6 +68,13 @@
                   />
                   <div class="box-content">
                     <h4 class="title">willimson</h4>
+                    <h6 class="title Location-date">
+                      <i class="fas event-icons fa-map-marker-alt"></i>Bizerte
+                      <span
+                        ><i class="fas event-icons fa-calendar "></i>
+                        12/12/2015</span
+                      >
+                    </h6>
                     <p class="description">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                       Sed mattis augue in odio suscipit, at.
@@ -89,6 +92,13 @@
                   />
                   <div class="box-content">
                     <h4 class="title">Kristiana</h4>
+                    <h6 class="title Location-date">
+                      <i class="fas event-icons fa-map-marker-alt"></i>Bizerte
+                      <span
+                        ><i class="fas event-icons fa-calendar "></i>
+                        12/12/2015</span
+                      >
+                    </h6>
                     <p class="description">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                       Sed mattis augue in odio suscipit, at.
@@ -106,6 +116,13 @@
                   />
                   <div class="box-content">
                     <h4 class="title">David Guetta</h4>
+                    <h6 class="title Location-date">
+                      <i class="fas event-icons fa-map-marker-alt"></i>Bizerte
+                      <span
+                        ><i class="fas event-icons fa-calendar "></i>
+                        12/12/2015</span
+                      >
+                    </h6>
                     <p class="description">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                       Sed mattis augue in odio suscipit, at.
@@ -123,6 +140,13 @@
                   />
                   <div class="box-content">
                     <h4 class="title">Championship Chess</h4>
+                    <h6 class="title Location-date">
+                      <i class="fas event-icons fa-map-marker-alt"></i>Bizerte
+                      <span
+                        ><i class="fas event-icons fa-calendar "></i>
+                        12/12/2015</span
+                      >
+                    </h6>
                     <p class="description">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                       Sed mattis augue in odio suscipit, at.
@@ -140,6 +164,13 @@
                   />
                   <div class="box-content">
                     <h4 class="title">willimson</h4>
+                    <h6 class="title Location-date">
+                      <i class="fas event-icons fa-map-marker-alt"></i>Bizerte
+                      <span
+                        ><i class="fas event-icons fa-calendar "></i>
+                        12/12/2015</span
+                      >
+                    </h6>
                     <p class="description">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                       Sed mattis augue in odio suscipit, at.
@@ -157,6 +188,13 @@
                   />
                   <div class="box-content">
                     <h4 class="title">Kristiana</h4>
+                    <h6 class="title Location-date">
+                      <i class="fas event-icons fa-map-marker-alt"></i>Bizerte
+                      <span
+                        ><i class="fas event-icons fa-calendar "></i>
+                        12/12/2015</span
+                      >
+                    </h6>
                     <p class="description">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                       Sed mattis augue in odio suscipit, at.
@@ -191,6 +229,13 @@
                   />
                   <div class="box-content">
                     <h4 class="title">Championship Chess</h4>
+                    <h6 class="title Location-date">
+                      <i class="fas event-icons fa-map-marker-alt"></i>Bizerte
+                      <span
+                        ><i class="fas event-icons fa-calendar "></i>
+                        12/12/2015</span
+                      >
+                    </h6>
                     <p class="description">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                       Sed mattis augue in odio suscipit, at.
@@ -722,6 +767,18 @@ span.bg-main {
 .col-sm-6 {
   margin-top: 2%;
 }
+.Location-date {
+  font-size: 1em !important ;
+  font-weight: 700 !important;
+  color: #fff;
+}
+.event-icons {
+  color: #178993;
+  font-size: 1.5em !important;
+  margin-right: 3%;
+  margin-left: 3%;
+}
+
 @media only screen and (max-width: 990px) {
   .box21 {
     margin-bottom: 30px;
