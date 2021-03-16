@@ -1,607 +1,767 @@
 <template>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-<div class="container">
-   <div class="row">
-      <div class="col-md-12">
-         <div id="content" class="content content-full-width">
-            <!-- begin profile -->
-            <div class="profile">
-               <div class="profile-header">
-                  <!-- BEGIN profile-header-cover -->
-                  <div class="profile-header-cover"></div>
-                  <!-- END profile-header-cover -->
-                  <!-- BEGIN profile-header-content -->
-                  <div class="profile-header-content">
-                     <!-- BEGIN profile-header-img -->
-                     <div class="profile-header-img">
-                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="">
-                     </div>
-                     <!-- END profile-header-img -->
-                     <!-- BEGIN profile-header-info -->
-                     <div class="profile-header-info">
-                        <h4 class="m-t-10 m-b-5">John Doe</h4>
-                        <p class="m-b-10">Web And Frontend Developer</p>
-                        
-                     </div>
-                     <!-- END profile-header-info -->
-                  </div>
-                  <!-- END profile-header-content -->
-                 
-                  <!-- END profile-header-tab -->
-               </div>
-            </div>
-            <!-- end profile -->
-            <!-- begin profile-content -->
-            <div class="profile-content">
-               <!-- begin tab-content -->
-               <div class="tab-content p-0">
+<div class="header-area overlay">
+    <nav class="navbar navbar-expand-md navbar-dark">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <h3 class="my-heading ">Eventiny<span class="bg-main">TN</span></h3>
+        </a>
 
-                  <!-- begin #profile-about tab -->
-                  <div class="tab-pane fade in active show" id="profile-about">
-                     <!-- begin table -->
-                     <div class="table-responsive">
-                        <table class="table table-profile">
-                           <thead>
-                              <tr>
-                                 <th></th>
-                                 <th>
-                                    <h4>Micheal    Meyer <small>Lorraine Stokes</small></h4>
-                                 </th>
-                              </tr>
-                           </thead>
-                           <tbody>
-                              <tr class="highlight">
-                                 <td class="field">Mood</td>
-                                 <td><a href="javascript:;">Add Mood Message</a></td>
-                              </tr>
-                              <tr class="divider">
-                                 <td colspan="2"></td>
-                              </tr>
-                              <tr>
-                                 <td class="field">Mobile</td>
-                                 <td><i class="fa fa-mobile fa-lg m-r-5"></i> +1-(847)- 367-8924 <a href="javascript:;" class="m-l-5">Edit</a></td>
-                              </tr>
-                              <tr>
-                                 <td class="field">Home</td>
-                                 <td><a href="javascript:;">Add Number</a></td>
-                              </tr>
-                              <tr>
-                                 <td class="field">Office</td>
-                                 <td><a href="javascript:;">Add Number</a></td>
-                              </tr>
-                              <tr class="divider">
-                                 <td colspan="2"></td>
-                              </tr>
-                              <tr class="highlight">
-                                 <td class="field">About Me</td>
-                                 <td><a href="javascript:;">Add Description</a></td>
-                              </tr>
-                              <tr class="divider">
-                                 <td colspan="2"></td>
-                              </tr>
-                              <tr>
-                                 <td class="field">Country/Region</td>
-                                 <td>
-                                    <select class="form-control input-inline input-xs" name="region">
-                                       <option value="US" selected="">United State</option>
-                                       <option value="AF">Afghanistan</option>
-                                       <option value="AL">Albania</option>
-                                       <option value="DZ">Algeria</option>
-                                       <option value="AS">American Samoa</option>
-                                       <option value="AD">Andorra</option>
-                                       <option value="AO">Angola</option>
-                                       <option value="AI">Anguilla</option>
-                                       <option value="AQ">Antarctica</option>
-                                       <option value="AG">Antigua and Barbuda</option>
-                                    </select>
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <td class="field">City</td>
-                                 <td>Los Angeles</td>
-                              </tr>
-                              <tr>
-                                 <td class="field">State</td>
-                                 <td><a href="javascript:;">Add State</a></td>
-                              </tr>
-                              <tr>
-                                 <td class="field">Website</td>
-                                 <td><a href="javascript:;">Add Webpage</a></td>
-                              </tr>
-                              <tr>
-                                 <td class="field">Gender</td>
-                                 <td>
-                                    <select class="form-control input-inline input-xs" name="gender">
-                                       <option value="male">Male</option>
-                                       <option value="female">Female</option>
-                                    </select>
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <td class="field">Birthdate</td>
-                                 <td>
-                                    <select class="form-control input-inline input-xs" name="day">
-                                       <option value="04" selected="">04</option>
-                                    </select>
-                                    -
-                                    <select class="form-control input-inline input-xs" name="month">
-                                       <option value="11" selected="">11</option>
-                                    </select>
-                                    -
-                                    <select class="form-control input-inline input-xs" name="year">
-                                       <option value="1989" selected="">1989</option>
-                                    </select>
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <td class="field">Language</td>
-                                 <td>
-                                    <select class="form-control input-inline input-xs" name="language">
-                                       <option value="" selected="">English</option>
-                                    </select>
-                                 </td>
-                              </tr>
-                              <tr class="divider">
-                                 <td colspan="2"></td>
-                              </tr>
-                              <tr class="highlight">
-                                 <td class="field">&nbsp;</td>
-                                 <td class="p-t-10 p-b-10">
-                                    <button type="submit" class="btn btn-primary width-150">Update</button>
-                                    <button type="submit" class="btn btn-white btn-white-without-border width-150 m-l-5">Cancel</button>
-                                 </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                     <!-- end table -->
-                  </div>
-                  <!-- end #profile-about tab -->
-               </div>
-               <!-- end tab-content -->
-            </div>
-            <!-- end profile-content -->
-         </div>
+        <button
+          type="button"
+          class="navbar-toggler collapsed"
+          data-toggle="collapse"
+          data-target="#main-nav"
+        >
+          <span class="menu-icon-bar"></span>
+          <span class="menu-icon-bar"></span>
+          <span class="menu-icon-bar"></span>
+        </button>
+
+        <div id="main-nav" class="collapse navbar-collapse">
+          <ul class="navbar-nav ml-auto">
+            <li><a href="#" class="nav-item nav-link active">Home</a></li>
+
+            <li class="dropdown">
+              <a href="#" class="nav-item nav-link" data-toggle="dropdown"
+                >Events</a
+              >
+              <div class="dropdown-menu">
+                <a href="#" class="dropdown-item">category 1</a>
+                <a href="#" class="dropdown-item">category 2</a>
+                <a href="#" class="dropdown-item">category 3</a>
+              </div>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="nav-item nav-link" data-toggle="dropdown"
+                >Profile</a
+              >
+              <div class="dropdown-menu">
+                <a @click="goprofile()" href="#" class="dropdown-item">
+                  <i class="far fa-user"></i> My Profile</a
+                >
+                <a href="#" class="dropdown-item">
+                  <i class="fas fa-sign-out-alt"></i> Logout</a
+                >
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
-   </div>
-</div>
-    	</div>
-	</div>
-</div>
+    </nav>
+    <div class = 'background'>
+   <div id = 'container1' class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+
+                    <div class="card-body">
+                        <div class="card-title mb-4">
+                            <div class="d-flex justify-content-start">
+                                <div class="image-container">
+                                    <img src="http://placehold.it/150x150" id="imgProfile" style="width: 150px; height: 150px" class="img-thumbnail" />
+                                    <div class="middle">
+                                        <input type="button" class="btn btn-secondary" id="btnChangePicture" value="Change" />
+                                        <input type="file" style="display: none;" id="profilePicture" name="file" />
+                                    </div>
+                                </div>
+                                <div class="userData ml-3">
+                                    <h2 class="d-block" style=" font-size: 1.5rem; font-weight: bold"><a >Profile</a></h2>
+                                    <h6 class="d-block1"> Jdidi Daoud</h6>
+                                    <h6 class="d-block1"> Under construction</h6>
+                                    
+                                </div>
+                                <div class="ml-auto">
+                                    <input type="button" class="btn btn-primary d-none" id="btnDiscard" value="Discard Changes" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="basicInfo-tab" data-toggle="tab" href="#basicInfo" role="tab" aria-controls="basicInfo" aria-selected="true">Basic Info</a>
+                                    </li>
+                                   
+                                </ul>
+                                <div class="tab-content ml-1" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
+                                        
+
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Username</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                Jdidi Daoud
+                                            </div>
+                                        </div>
+                                        <hr />
+
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Pasword</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                March 22, 1994.
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        
+                                        
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Adress</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                Something
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Address2</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                Something
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Phone</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                Something
+                                            </div>
+                                        </div>
+                                         
+                                        <hr />
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Birthday</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                Something
+                                            </div>
+                                        </div>
+                                         
+                                        <hr />
+                                         <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">City</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                Something
+                                            </div>
+                                        </div>
+                                         
+                                        <hr />
+
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    
+  
+
+
 </template>
 
 <script>
 
+$(document).ready(function () {
+            $imgSrc = $('#imgProfile').attr('src');
+            function readURL(input) {
 
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
 
+                    reader.onload = function (e) {
+                        $('#imgProfile').attr('src', e.target.result);
+                    };
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+            $('#btnChangePicture').on('click', function () {
+                // document.getElementById('profilePicture').click();
+                if (!$('#btnChangePicture').hasClass('changing')) {
+                    $('#profilePicture').click();
+                }
+                else {
+                    // change
+                }
+            });
+            $('#profilePicture').on('change', function () {
+                readURL(this);
+                $('#btnChangePicture').addClass('changing');
+                $('#btnChangePicture').attr('value', 'Confirm');
+                $('#btnDiscard').removeClass('d-none');
+                // $('#imgProfile').attr('src', '');
+            });
+            $('#btnDiscard').on('click', function () {
+                // if ($('#btnDiscard').hasClass('d-none')) {
+                $('#btnChangePicture').removeClass('changing');
+                $('#btnChangePicture').attr('value', 'Change');
+                $('#btnDiscard').addClass('d-none');
+                $('#imgProfile').attr('src', $imgSrc);
+                $('#profilePicture').val('');
+                // }
+            });
+            
+
+           
+        });
 
   
+
 </script>
 
 <style scoped>
 
-
-
-body{
-    margin-top:20px;
-    background: #343a40 !important;
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700,800");
+@import url("https://fonts.googleapis.com/css?family=Lobster");
+html {
+  font-size: 62.5%;
 }
 
-.profile-header {
-    position: relative;
-    overflow: hidden
-}
-
-.nav-item{
-  float:left;
-}
-.profile-header .profile-header-cover {
-    background-color: #343a40;
-    opacity:0.85;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0
-}
-
-.profile-header .profile-header-cover:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, .75) 100%)
-}
-
-.profile-header .profile-header-content {
-    color: #fff;
-    padding: 25px
-}
-
-.profile-header-img {
-    float: left;
-    width: 120px;
-    height: 120px;
-    overflow: hidden;
-    position: relative;
-    z-index: 10;
-    margin: 0 0 -20px;
-    padding: 3px;
-    border-radius: 4px;
-    background: #fff
-}
-
-.profile-header-img img {
-    max-width: 100%
-}
-
-.profile-header-info h4 {
-    font-weight: 500;
-    color: #fff
-}
-
-.profile-header-img+.profile-header-info {
-    margin-left: 140px
-}
-
-.profile-header .profile-header-content,
-.profile-header .profile-header-tab {
-    position: relative;
+#container1{
+    margin-top: 150px;
     
 }
 
-.b-minus-1,
-.b-minus-10,
-.b-minus-2,
-.b-minus-3,
-.b-minus-4,
-.b-minus-5,
-.b-minus-6,
-.b-minus-7,
-.b-minus-8,
-.b-minus-9,
-.b-plus-1,
-.b-plus-10,
-.b-plus-2,
-.b-plus-3,
-.b-plus-4,
-.b-plus-5,
-.b-plus-6,
-.b-plus-7,
-.b-plus-8,
-.b-plus-9,
-.l-minus-1,
-.l-minus-2,
-.l-minus-3,
-.l-minus-4,
-.l-minus-5,
-.l-minus-6,
-.l-minus-7,
-.l-minus-8,
-.l-minus-9,
-.l-plus-1,
-.l-plus-10,
-.l-plus-2,
-.l-plus-3,
-.l-plus-4,
-.l-plus-5,
-.l-plus-6,
-.l-plus-7,
-.l-plus-8,
-.l-plus-9,
-.r-minus-1,
-.r-minus-10,
-.r-minus-2,
-.r-minus-3,
-.r-minus-4,
-.r-minus-5,
-.r-minus-6,
-.r-minus-7,
-.r-minus-8,
-.r-minus-9,
-.r-plus-1,
-.r-plus-10,
-.r-plus-2,
-.r-plus-3,
-.r-plus-4,
-.r-plus-5,
-.r-plus-6,
-.r-plus-7,
-.r-plus-8,
-.r-plus-9,
-.t-minus-1,
-.t-minus-10,
-.t-minus-2,
-.t-minus-3,
-.t-minus-4,
-.t-minus-5,
-.t-minus-6,
-.t-minus-7,
-.t-minus-8,
-.t-minus-9,
-.t-plus-1,
-.t-plus-10,
-.t-plus-2,
-.t-plus-3,
-.t-plus-4,
-.t-plus-5,
-.t-plus-6,
-.t-plus-7,
-.t-plus-8,
-.t-plus-9 {
-    position: relative!important
+
+body {
+  font-family: "Kaushan Script", cursive;
+  font-size: 1.6rem;
+  font-weight: 400;
+ 
+}
+#btnDiscard{
+    background-color: #008ba3;
+    color:white;
+}
+h1 {
+  margin-bottom: 0.5em;
+  font-size: 3.6rem;
+}
+p {
+  margin-bottom: 0.5em;
+  font-size: 1.6rem;
+  line-height: 1.6;
+}
+.button {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 8px 25px;
+  border-radius: 4px;
+}
+.button-primary {
+  position: relative;
+  background-color: #008ba3;
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: 700;
+  transition: color 0.3s ease-in;
+  z-index: 1;
+}
+.button-primary:hover {
+  color: #008ba3;
+  background-color: #fff;
+  text-decoration: none;
+}
+.d-block{
+    color:#008ba3
+}
+.button-primary::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  background-color: #008ba3;
+  border-radius: 4px;
+  opacity: 0;
+  -webkit-transform: scaleX(0.8);
+  -ms-transform: scaleX(0.8);
+  transform: scaleX(0.8);
+  transition: all 0.3s ease-in;
+  z-index: -1;
+}
+.button-primary:hover::after {
+  opacity: 1;
+  -webkit-transform: scaleX(1);
+  -ms-transform: scaleX(1);
+  transform: scaleX(1);
+}
+.overlay {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.header-area {
+ 
+  background: #999999;
+  opacity:0.85
+  
+}
+.banner {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 100%;
+  color: #fff;
+  text-align: center;
+  z-index: 1;
+  background-color: #999999;
+  font-family: "Kaushan Script", cursive;
+}
+.banner h1 {
+  font-weight: 800;
+}
+.banner p {
+  font-weight: 700;
+}
+.navbar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 0;
+  width: 100%;
+  transition: background 0.6s ease-in;
+  z-index: 99999;
+}
+.navbar .navbar-brand {
+  font-family: "Kaushan Script", cursive;
+  font-size: 2.5rem;
+}
+.navbar .navbar-toggler {
+  position: relative;
+  height: 50px;
+  width: 50px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+.navbar .navbar-toggler .menu-icon-bar {
+  position: absolute;
+  left: 15px;
+  right: 15px;
+  height: 2px;
+  background-color: #fff;
+  opacity: 0;
+  -webkit-transform: translateY(-1px);
+  -ms-transform: translateY(-1px);
+  transform: translateY(-1px);
+  transition: all 0.3s ease-in;
+}
+.navbar .navbar-toggler .menu-icon-bar:first-child {
+  opacity: 1;
+  -webkit-transform: translateY(-1px) rotate(45deg);
+  -ms-sform: translateY(-1px) rotate(45deg);
+  transform: translateY(-1px) rotate(45deg);
+}
+.navbar .navbar-toggler .menu-icon-bar:last-child {
+  opacity: 1;
+  -webkit-transform: translateY(-1px) rotate(135deg);
+  -ms-sform: translateY(-1px) rotate(135deg);
+  transform: translateY(-1px) rotate(135deg);
+}
+.navbar .navbar-toggler.collapsed .menu-icon-bar {
+  opacity: 1;
+}
+.navbar .navbar-toggler.collapsed .menu-icon-bar:first-child {
+  -webkit-transform: translateY(-7px) rotate(0);
+  -ms-sform: translateY(-7px) rotate(0);
+  transform: translateY(-7px) rotate(0);
+}
+.navbar .navbar-toggler.collapsed .menu-icon-bar:last-child {
+  -webkit-transform: translateY(5px) rotate(0);
+  -ms-sform: translateY(5px) rotate(0);
+  transform: translateY(5px) rotate(0);
 }
 
-.profile-header .profile-header-tab {
-    background:  #343a40;
-    opacity: 0.85;
-    list-style-type: none;
-    margin: -10px 0 0;
-    padding: 0 0 0 140px;
-    white-space: nowrap;
-    border-radius: 0
+.navbar-dark .navbar-nav .nav-link {
+  position: relative;
+  font-family: "Kaushan Script", cursive;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+.navbar-dark .navbar-nav .nav-link:focus,
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: #fff;
+}
+.navbar .dropdown-menu {
+  padding: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+.navbar .dropdown-menu .dropdown-item {
+  position: relative;
+  padding: 10px 20px;
+  font-family: "Kaushan Script", cursive;
+  color: #fff;
+  font-size: 1.4rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: color 0.2s ease-in;
+}
+.navbar .dropdown-menu .dropdown-item:last-child {
+  border-bottom: none;
+}
+.navbar .dropdown-menu .dropdown-item:hover {
+  background: transparent;
+  color: #008ba3;
+}
+.navbar .dropdown-menu .dropdown-item::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  width: 5px;
+  background-color: #008ba3;
+  opacity: 0;
+  transition: opacity 0.2s ease-in;
+}
+.navbar .dropdown-menu .dropdown-item:hover::before {
+  opacity: 1;
+}
+.navbar.fixed-top {
+  position: fixed;
+  -webkit-animation: navbar-animation 0.6s;
+  animation: navbar-animation 0.6s;
+  background-color: rgba(77, 73, 73, 0.85);
+}
+.navbar.fixed-top.navbar-dark .navbar-nav .nav-link.active {
+  color: #008ba3;
+}
+.navbar.fixed-top.navbar-dark .navbar-nav .nav-link::after {
+  background-color: #008ba3;
+}
+.content {
+  padding: 120px 0;
+}
+@media screen and (max-width: 768px) {
+  .navbar-brand {
+    margin-left: 20px;
+  }
+  .navbar-nav {
+    padding: 0 20px;
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+  .navbar.fixed-top .navbar-nav {
+    background: transparent;
+  }
+}
+@media screen and (min-width: 767px) {
+  .banner {
+    padding: 0 150px;
+  }
+  .banner h1 {
+    font-size: 5rem;
+  }
+  .banner p {
+    font-size: 2rem;
+  }
+  .navbar-dark .navbar-nav .nav-link {
+    padding: 23px 15px;
+  }
+  .navbar-dark .navbar-nav .nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: 15px;
+    left: 30%;
+    right: 30%;
+    height: 1px;
+    background-color: #fff;
+    -webkit-transform: scaleX(0);
+    -ms-transform: scaleX(0);
+    transform: scaleX(0);
+    transition: transform 0.1s ease-in;
+  }
+  .navbar-dark .navbar-nav .nav-link:hover::after {
+    -webkit-transform: scaleX(1);
+    -ms-transform: scaleX(1);
+    transform: scaleX(1);
+  }
+  .dropdown-menu {
+    min-width: 200px;
+    -webkit-animation: dropdown-animation 0.3s;
+    animation: dropdown-animation 0.3s;
+    -webkit-transform-origin: top;
+    -ms-transform-origin: top;
+    transform-origin: top;
+  }
+}
+@-webkit-keyframes navbar-animation {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-100%);
+    -ms-transform: translateY(-100%);
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+@keyframes navbar-animation {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-100%);
+    -ms-transform: translateY(-100%);
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+@-webkit-keyframes dropdown-animation {
+  0% {
+    -webkit-transform: scaleY(0);
+    -ms-transform: scaleY(0);
+    transform: scaleY(0);
+  }
+  75% {
+    -webkit-transform: scaleY(1.1);
+    -ms-transform: scaleY(1.1);
+    transform: scaleY(1.1);
+  }
+  100% {
+    -webkit-transform: scaleY(1);
+    -ms-transform: scaleY(1);
+    transform: scaleY(1);
+  }
+}
+@keyframes dropdown-animation {
+  0% {
+    -webkit-transform: scaleY(0);
+    -ms-transform: scaleY(0);
+    transform: scaleY(0);
+  }
+  75% {
+    -webkit-transform: scaleY(1.1);
+    -ms-transform: scaleY(1.1);
+    transform: scaleY(1.1);
+  }
+  100% {
+    -webkit-transform: scaleY(1);
+    -ms-transform: scaleY(1);
+    transform: scaleY(1);
+  }
+}
+h3.my-heading {
+  font-family: "Kaushan Script", cursive;
+  color: #fff;
+  font-weight: bold;
+  font-size: 30px;
+  margin: 0;
+}
+span.bg-main {
+  color: #008ba3;
+}
+/* Galery*/
+.box21 {
+  text-align: center;
+  position: relative;
+}
+.box21:after,
+.box21:before {
+  content: "";
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.35);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: scale(0);
+  -moz-transform: scale(0);
+  -ms-transform: scale(0);
+  -o-transform: scale(0);
+  transform: scale(0);
+}
+.box21:hover:after,
+.box21:hover:before {
+  -webkit-transform: scale(225);
+  -moz-transform: scale(225);
+  -ms-transform: scale(225);
+  -o-transform: scale(225);
+  transform: scale(225);
+}
+.box21:before {
+  -o-transition: all 0.5s linear 0.3s;
+  -moz-transition: all 0.5s linear 0.3s;
+  -ms-transition: all 0.5s linear 0.3s;
+  -webkit-transition: all 0.5s linear 0.3s;
+  transition: all 0.5s linear 0.3s;
+}
+.box21:hover:before {
+  -moz-transition-delay: 0s;
+  -webkit-transition-delay: 0s;
+  -o-transition-delay: 0s;
+  -ms-transition-delay: 0s;
+  transition-delay: 0s;
+}
+.box21:after {
+  -o-transition: all 0.5s linear 0.6s;
+  -moz-transition: all 0.5s linear 0.6s;
+  -ms-transition: all 0.5s linear 0.6s;
+  -webkit-transition: all 0.5s linear 0.6s;
+  transition: all 0.5s linear 0.6s;
+}
+.box21:hover:after {
+  -moz-transition-delay: 0.2s;
+  -webkit-transition-delay: 0.2s;
+  -o-transition-delay: 0.2s;
+  -ms-transition-delay: 0.2s;
+  transition-delay: 0.2s;
+}
+/* .box21 img {
+  width: 100%;
+  height: auto;
+} */
+.box21 .box-content {
+  margin-top: 3%;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: 0 0;
+  color: #fff;
+  padding-top: 25px;
+  -webkit-transform: scale(0);
+  -moz-transform: scale(0);
+  -ms-transform: scale(0);
+  -o-transform: scale(0);
+  transform: scale(0);
+  -ms-transition: all 0.3s linear 0s;
+  -o-transition: all 0.3s linear 0s;
+  -webkit-transition: all 0.3s linear 0s;
+  -moz-transition: all 0.3s linear 0s;
+  transition: all 0.3s linear 0s;
+  z-index: 1;
+}
+.box21:hover .box-content {
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
+  -moz-transition-delay: 0.4s;
+  -webkit-transition-delay: 0.4s;
+  -o-transition-delay: 0.4s;
+  -ms-transition-delay: 0.4s;
+  transition-delay: 0.4s;
+}
+.box21 .title {
+  font-size: 21px;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-bottom: 1px solid #fff;
+  padding-bottom: 20px;
+  margin-top: 20px;
+}
+.box21 .description {
+  font-size: 14px;
+  font-style: italic;
+  padding: 0 10px;
+  margin: 15px 0;
+}
+.box21 .read-more {
+  display: block;
+  width: 120px;
+  background: #178993;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #fff;
+  text-transform: capitalize;
+  padding: 10px 0;
+  margin: 0 auto;
+}
+.event-img {
+  width: 100%;
+  height: 20em;
+  object-fit: cover;
+}
+.col-sm-6 {
+  margin-top: 2%;
+}
+@media only screen and (max-width: 990px) {
+  .box21 {
+    margin-bottom: 30px;
+  }
+}
+@media only screen and (max-width: 479px) {
+  .box21 .box-content {
+    padding-top: 0;
+  }
+}
+@media only screen and (max-width: 359px) {
+  .box21 .title {
+    padding-bottom: 10px;
+  }
 }
 
-.text-ellipsis,
-.text-nowrap {
-    white-space: nowrap!important
+body{
+    padding-top: 68px;
+    padding-bottom: 50px;
 }
+        .image-container {
+            position: relative;
+        }
 
-.profile-header .profile-header-tab>li {
-    display: inline-block;
-    margin: 0
-}
+        .image {
+            opacity: 1;
+            display: block;
+            width: 100%;
+            height: auto;
+            transition: .5s ease;
+            backface-visibility: hidden;
+        }
 
-.profile-header .profile-header-tab>li>a {
-    display: block;
-    color: #929ba1;
-    line-height: 20px;
-    padding: 10px 20px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 12px;
-    border: none
-}
+        .middle {
+            transition: .5s ease;
+            opacity: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            text-align: center;
+        }
 
-.profile-header .profile-header-tab>li.active>a,
-.profile-header .profile-header-tab>li>a.active {
-    color: #242a30
-}
+        .image-container:hover .image {
+            opacity: 0.3;
+        }
 
-.profile-content {
-    padding: 25px;
-    border-radius: 4px
-}
+        .image-container:hover .middle {
+            opacity: 1;
+        }
 
-.profile-content:after,
-.profile-content:before {
-    content: '';
-    display: table;
-    clear: both
-}
 
-.profile-content .tab-content,
-.profile-content .tab-pane {
-    background: 0 0
-}
-
-.profile-left {
-    width: 200px;
-    float: left
-}
-
-.profile-right {
-    margin-left: 240px;
-    padding-right: 20px
-}
-
-.profile-image {
-    height: 175px;
-    line-height: 175px;
-    text-align: center;
-    font-size: 72px;
-    margin-bottom: 10px;
-    border: 2px solid #E2E7EB;
-    overflow: hidden;
-    border-radius: 4px
-}
-
-.profile-image img {
-    display: block;
-    max-width: 100%
-}
-
-.profile-highlight {
-    padding: 12px 15px;
-    background: #FEFDE1;
-    border-radius: 4px
-}
-
-.profile-highlight h4 {
-    margin: 0 0 7px;
-    font-size: 12px;
-    font-weight: 700
-}
-
-.table.table-profile>thead>tr>th {
-    border-bottom: none!important
-}
-
-.table.table-profile>thead>tr>th h4 {
-    font-size: 20px;
-    margin-top: 0
-}
-
-.table.table-profile>thead>tr>th h4 small {
-    display: block;
-    font-size: 12px;
-    font-weight: 400;
-    margin-top: 5px
-}
-
-.table.table-profile>tbody>tr>td,
-.table.table-profile>thead>tr>th {
-    border: none;
-    padding-top: 7px;
-    padding-bottom: 7px;
-    color: #242a30;
-    background: 0 0
-}
-
-.table.table-profile>tbody>tr>td.field {
-    width: 20%;
-    text-align: right;
-    font-weight: 600;
-    color: #2d353c
-}
-
-.table.table-profile>tbody>tr.highlight>td {
-    border-top: 1px solid #b9c3ca;
-    border-bottom: 1px solid #b9c3ca
-}
-
-.table.table-profile>tbody>tr.divider>td {
-    padding: 0!important;
-    height: 10px
-}
-
-.profile-section+.profile-section {
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1px solid #b9c3ca
-}
-
-.profile-section:after,
-.profile-section:before {
-    content: '';
-    display: table;
-    clear: both
-}
-
-.profile-section .title {
-    font-size: 20px;
-    margin: 0 0 15px
-}
-
-.profile-section .title small {
-    font-weight: 400
-}
-
-body.flat-black {
-    background: #E7E7E7
-}
-
-.flat-black .navbar.navbar-inverse {
-    background: #212121
-}
-
-.flat-black .navbar.navbar-inverse .navbar-form .form-control {
-    background: #4a4a4a;
-    border-color: #4a4a4a
-}
-
-.flat-black .sidebar,
-.flat-black .sidebar-bg {
-    background: #3A3A3A
-}
-
-.flat-black .page-with-light-sidebar .sidebar,
-.flat-black .page-with-light-sidebar .sidebar-bg {
-    background: #fff
-}
-
-.flat-black .sidebar .nav>li>a {
-    color: #b2b2b2
-}
-
-.flat-black .sidebar.sidebar-grid .nav>li>a {
-    border-bottom: 1px solid #474747;
-    border-top: 1px solid #474747
-}
-
-.flat-black .sidebar .active .sub-menu>li.active>a,
-.flat-black .sidebar .nav>li.active>a,
-.flat-black .sidebar .nav>li>a:focus,
-.flat-black .sidebar .nav>li>a:hover,
-.flat-black .sidebar .sub-menu>li>a:focus,
-.flat-black .sidebar .sub-menu>li>a:hover,
-.sidebar .nav>li.nav-profile>a {
-    color: #fff
-}
-
-.flat-black .sidebar .sub-menu>li>a,
-.flat-black .sidebar .sub-menu>li>a:before {
-    color: #999
-}
-
-.flat-black .page-with-light-sidebar .sidebar .active .sub-menu>li.active>a,
-.flat-black .page-with-light-sidebar .sidebar .active .sub-menu>li.active>a:focus,
-.flat-black .page-with-light-sidebar .sidebar .active .sub-menu>li.active>a:hover,
-.flat-black .page-with-light-sidebar .sidebar .nav>li.active>a,
-.flat-black .page-with-light-sidebar .sidebar .nav>li.active>a:focus,
-.flat-black .page-with-light-sidebar .sidebar .nav>li.active>a:hover {
-    color: #000
-}
-
-.flat-black .page-sidebar-minified .sidebar .nav>li.has-sub:focus>a,
-.flat-black .page-sidebar-minified .sidebar .nav>li.has-sub:hover>a {
-    background: #323232
-}
-
-.flat-black .page-sidebar-minified .sidebar .nav li.has-sub>.sub-menu,
-.flat-black .sidebar .nav>li.active>a,
-.flat-black .sidebar .nav>li.active>a:focus,
-.flat-black .sidebar .nav>li.active>a:hover,
-.flat-black .sidebar .nav>li.nav-profile,
-.flat-black .sidebar .sub-menu>li.has-sub>a:before,
-.flat-black .sidebar .sub-menu>li:before,
-.flat-black .sidebar .sub-menu>li>a:after {
-    background: #2A2A2A
-}
-
-.flat-black .page-sidebar-minified .sidebar .sub-menu>li:before,
-.flat-black .page-sidebar-minified .sidebar .sub-menu>li>a:after {
-    background: #3e3e3e
-}
-
-.flat-black .sidebar .nav>li.nav-profile .cover.with-shadow:before {
-    background: rgba(42, 42, 42, .75)
-}
-
-.bg-white {
-    background-color: #fff!important;
-}
-.p-10 {
-    padding: 10px!important;
-}
-.media.media-xs .media-object {
-    width: 32px;
-}
-.m-b-2 {
-    margin-bottom: 2px!important;
-}
-.media>.media-left, .media>.pull-left {
-    padding-right: 15px;
-}
-.media-body, .media-left, .media-right {
-    display: table-cell;
-    vertical-align: top;
-}
-select.form-control:not([size]):not([multiple]) {
-    height: 34px;
-}
-.form-control.input-inline {
-    display: inline;
-    width: auto;
-    padding: 0 7px;
-}
 </style>
