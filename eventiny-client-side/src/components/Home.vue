@@ -38,7 +38,7 @@
             <li class="nav-item" @click.prevent="signin()">
               <a class="nav-link">Sign in</a>
             </li>
-             <li class="nav-item" @click.prevent="signup()">
+            <li class="nav-item" @click.prevent="signup()">
               <a class="nav-link">Sign up</a>
             </li>
           </ul>
@@ -53,15 +53,11 @@
             />
             <button class="btn btn-light"><i class="fa fa-search"></i></button>
           </form>
-          <ul  class="navbar-nav ml-auto">
+          <ul class="navbar-nav ml-auto">
             <li class="nav-link" id="loginbtn">
-              <a
-               
-                @click.prevent="signin()"
-                >Sign in</a
-              >
+              <a @click.prevent="signin()">Sign in</a>
             </li>
-            <li  class="nav-link">
+            <li class="nav-link">
               <a id="signupbtn" @click.prevent="signup()">/ Signup</a>
             </li>
           </ul>
@@ -867,7 +863,7 @@ export default {
                   scrollTop: target.offset().top,
                 },
                 500
-              );  
+              );
               return false;
             }
           }
@@ -891,8 +887,6 @@ body {
   background-color: none !important;
   color: white !important;
   font-size: 17px;
-
-  
 }
 
 .signupcss {
@@ -1125,6 +1119,9 @@ hr.my-border {
 .h-262 {
   height: 262px !important;
 }
+.navbar {
+  margin-bottom: 0 !important;
+}
 
 h3.title-heading.text-center {
   color: #fff;
@@ -1349,7 +1346,6 @@ a.openNav {
 .sidenav .nav-link {
   font-size: 13px;
   font-weight: bold;
-  
 }
 .mob-ul {
   list-style-type: none;
