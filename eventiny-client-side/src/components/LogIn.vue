@@ -91,6 +91,9 @@
 </template>
 <script>
 import axios from "axios";
+
+import swal from "sweetalert";
+
 export default {
   data() {
     return {
@@ -102,22 +105,36 @@ export default {
   },
   methods: {
     onSubmitLogin(login) {
-      axios
-        .post("http://localhost:3000/login", login)
-        .then(({ data }) => {
-          console.log("==>", data);
-          if (data.token == undefined) {
-            localStorage.removeItem("token");
-            this.$router.push("/Signup");
-          } else if (data.token !== undefined) {
-            localStorage.setItem("token", data.token);
-            this.$router.push("/Profile");
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-          this.$router.push("/Signup");
-        });
+
+      if (login.email == "" || login.password == "") {
+        swal(
+          "Please fill up all the informations",
+          "Missing informations",
+          "error"
+        );
+      } else {
+        axios
+          .post("http://localhost:3000/login", login)
+          .then(({ data }) => {
+            console.log("==>", data);
+            if (data.token == undefined) {
+              localStorage.removeItem("token");
+              swal(
+                "sorry no user with these informations",
+                "wrong informations",
+                "error"
+              );
+              return;
+            } else if (data.token !== undefined) {
+              localStorage.setItem("token", data.token);
+          
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+
     },
     signup() {
       this.$router.push("/Signup");
@@ -125,9 +142,7 @@ export default {
      gohome() {
       this.$router.push("/");
     },
-    goprofile() {
-      this.$router.push("/Profile")
-    }
+
   },
 };
 </script>
