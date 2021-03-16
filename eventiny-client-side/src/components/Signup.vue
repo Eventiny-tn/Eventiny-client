@@ -1,141 +1,139 @@
 <template>
- 
-
   <div>
-  <div
-    class="carousel fade-carousel slide"
-    data-ride="carousel"
-    data-interval="4000"
-    id="bs-carousel"
-  >
-    <!-- Overlay -->
-    <div >
-    <div class="container-signup" >
-       <div class="overlay">
-      <div class="container">
-        <div class="row">
-      <div class="col-md-5 col-md-offset-3" style="margin-top: 10%">
-         
-        <form class="form">
-          <h3 class="col_g">Sign up</h3>
-          <br />
-          <div class="form-group">
-            <input
-              type="text"
-              class="form-control"
-              v-model="signup.username"
-              placeholder="Username..."
-            />
-          </div>
-          <div class="form-group">
-            <input
-              type="password"
-              class="form-control"
-              v-model="signup.password"
-              placeholder="Password... "
-            />
-          </div>
-          <div class="form-group">
-            <input
-              type="password"
-              class="form-control"
-              v-model="signup.confirmPassword"
-              placeholder="Confirm pasword..."
-            />
-          </div>
+    <div
+      class="carousel fade-carousel slide"
+      data-ride="carousel"
+      data-interval="4000"
+      id="bs-carousel"
+    >
+      <!-- Overlay -->
+      <div>
+        <div class="container-signup">
+          <div class="overlay">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-5 col-md-offset-3" style="margin-top: 10%">
+                  <form class="form">
+                    <h3 class="col_g">Sign up</h3>
+                    <br />
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        v-model="signup.username"
+                        placeholder="Username..."
+                      />
+                    </div>
+                    <div class="form-group">
+                      <input
+                        type="password"
+                        class="form-control"
+                        v-model="signup.password"
+                        placeholder="Password... "
+                      />
+                    </div>
+                    <div class="form-group">
+                      <input
+                        type="password"
+                        class="form-control"
+                        v-model="signup.confirmPassword"
+                        placeholder="Confirm pasword..."
+                      />
+                    </div>
 
-          <div class="form-group">
-            <input
-              type="email"
-              class="form-control"
-              v-model="signup.email"
-              placeholder="Email..."
-            />
-          </div>
-          <div class="form-group">
-            <input
-              type="text"
-              class="form-control"
-              v-model="signup.address"
-              placeholder="Address..."
-            />
-          </div>
-          <div class="form-group">
-            <input
-              type="text"
-              class="form-control"
-              v-model="signup.address2"
-              placeholder="Address2..."
-            />
-          </div>
-          <div class="form-group">
-            <input
-              type="text"
-              class="form-control"
-              v-model="signup.phone"
-              placeholder="Phone..."
-            />
-          </div>
-          <div id="dob" class="form-group">
-            Date of birth :
-            <input type="date" class="birthday" id="birthday" v-model="signup.birthday" />
-          </div>
-          <div class="form-group">
-            <input
-              type="text"
-              class="form-control"
-              v-model="signup.city"
-              placeholder="City..."
-            />
-          </div>
+                    <div class="form-group">
+                      <input
+                        type="email"
+                        class="form-control"
+                        v-model="signup.email"
+                        placeholder="Email..."
+                      />
+                    </div>
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        v-model="signup.address"
+                        placeholder="Address..."
+                      />
+                    </div>
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        v-model="signup.address2"
+                        placeholder="Address2..."
+                      />
+                    </div>
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        v-model="signup.phone"
+                        placeholder="Phone..."
+                      />
+                    </div>
+                    <div id="dob" class="form-group">
+                      Date of birth :
+                      <input
+                        type="date"
+                        class="birthday"
+                        id="birthday"
+                        v-model="signup.birthday"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        v-model="signup.city"
+                        placeholder="City..."
+                      />
+                    </div>
 
-          <div class="form-group">
-            <button
-              @click.prevent="onSubmitSignup(signup)"
-              class="btn col-xs-4 submit_h"
-            >
-              Sign up
-            </button>
-          </div>
-          <br /><br />
-          <br /><br />
+                    <div class="form-group">
+                      <button
+                        @click.prevent="onSubmitSignup(signup)"
+                        class="btn col-xs-4 submit_h"
+                      >
+                        Sign up
+                      </button>
+                    </div>
+                    <br /><br />
+                    <br /><br />
 
-          <a class="noaccount" @click="signin()">Have an Account ? Go login!</a>
-          <br><br>
-           <a class ="col_g" id = 'home-signup'> Go back to <strong @click="gohome()" id='cursor'>Home</strong></a>
-        </form>
+                    <a class="noaccount" @click="signin()"
+                      >Have an Account ? Go login!</a
+                    >
+                    <br /><br />
+                    <a class="col_g" id="home-signup">
+                      Go back to
+                      <strong @click="gohome()" id="cursor">Home</strong></a
+                    >
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    
 
-  </div>
-
-   
-
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-      <div class="item slides active">
-        <div class="slide-1"></div>
-        
-      </div>
-      
-      <div class="item slides">
-        <div class="slide-3"></div>
-        <div class="hero">
-          <hgroup>
-            <h1>You Decide Who We Are</h1>
-            <h3>Join Our Community</h3>
-          </hgroup>
-          <button class="btn btn-hero btn-lg" role="button">
-            See all features
-          </button>
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner">
+        <div class="item slides active">
+          <div class="slide-1"></div>
+        </div>
+        <div class="item slides">
+          <div class="slide-3"></div>
+          <div class="hero">
+            <hgroup>
+              <h1>You Decide Who We Are</h1>
+              <h3>Join Our Community</h3>
+            </hgroup>
+          </div>
         </div>
       </div>
     </div>
-  </div>
   </div>
 </template>
 
@@ -192,6 +190,7 @@ export default {
             if (res.data.message === "NOT FOUND") {
               swal("Username or email exist", "Please check again", "error");
             }
+            this.$router.push("/Generalpage");
           })
           .catch((err) => {
             swal("Username or email exist", "Please check again", "error");
@@ -209,27 +208,25 @@ export default {
 a {
   color: #1985e2;
 }
-#home-signup{
-  color: #887c7c ! important;
-  float:right !important;
+#home-signup {
+  color: #887c7c !important;
+  float: right !important;
   float: left !important;
-
 }
-#cursor{
-  cursor: pointer
+#cursor {
+  cursor: pointer;
 }
-
 
 .noaccount {
   color: #1985e2 !important;
   cursor: pointer;
 }
-.birthday{
+.birthday {
   background-color: white;
   opacity: 0.8;
 }
-#dob{
- color: #887c7c !important;
+#dob {
+  color: #887c7c !important;
 }
 
 .col_g {
@@ -242,10 +239,9 @@ a {
   border-radius: 1px;
   box-shadow: none;
   background: none;
- 
 }
-.form-control:focus{
-  color: white
+.form-control:focus {
+  color: white;
 }
 .submit_h {
   color: #fff;
@@ -347,7 +343,7 @@ a {
   z-index: 2;
   background-color: #080d15;
   opacity: 0.8;
-  float:right  !important;
+  float: right !important;
 }
 
 /********************************/
