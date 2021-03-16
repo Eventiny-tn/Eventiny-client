@@ -42,6 +42,8 @@
                 <a class="noaccount" @click="signup()"
                   >No Account ? Create One!</a
                 >
+                <br><br>
+           <a class ="col_g" id = 'home-login'> Go back to <strong @click="gohome()" id='cursor'>Home</strong></a>
               </form>
             </div>
           </div>
@@ -103,6 +105,7 @@ export default {
   },
   methods: {
     onSubmitLogin(login) {
+
       if (login.email == "" || login.password == "") {
         swal(
           "Please fill up all the informations",
@@ -131,10 +134,15 @@ export default {
             console.log(err);
           });
       }
+
     },
     signup() {
       this.$router.push("/Signup");
     },
+     gohome() {
+      this.$router.push("/");
+    },
+
   },
 };
 </script>
@@ -143,10 +151,15 @@ export default {
 a {
   color: #1985e2;
 }
+#home-login{
+  color: #887c7c ! important;
+  float:right !important;
+  float: left !important;
 
-
-
-
+}
+#cursor{
+  cursor: pointer
+}
 .noaccount {
   color: #1985e2 !important;
   cursor: pointer;

@@ -36,7 +36,7 @@
                 >Profile</a
               >
               <div class="dropdown-menu">
-                <a href="#" class="dropdown-item">
+                <a  @click="goprofile()" href="#" class="dropdown-item">
                   <i class="far fa-user"></i> My Profile</a
                 >
                 <a href="#" class="dropdown-item">
@@ -137,6 +137,13 @@
 </template>
 
 <script>
+export default {
+methods: {
+    goprofile() {
+      this.$router.push("/Profile");
+    },
+}
+}
 jQuery(function($) {
   $(window).on("scroll", function() {
     if ($(this).scrollTop() >= 200) {
@@ -174,6 +181,7 @@ jQuery(function($) {
 
   adjustNav();
 });
+
 </script>
 
 <style scoped>
