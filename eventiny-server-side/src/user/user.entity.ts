@@ -29,7 +29,7 @@ export class User {
   @Column({ default: 0 })
   reportCounter: number;
   @Column()
-  userimg:string;
+  userimg: string;
 }
 
 export interface Userinfo {
