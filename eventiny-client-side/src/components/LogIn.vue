@@ -119,7 +119,7 @@ export default {
           .post("http://localhost:3000/login", login)
           .then(({ data }) => {
             console.log("==>", data);
-            if (data.token == undefined) {
+            if (data.token === undefined) {
               localStorage.removeItem("token");
               swal(
                 "sorry no user with these informations",
@@ -143,7 +143,6 @@ export default {
     gohome() {
       this.$router.push("/");
     },
-    
   },
 };
 </script>

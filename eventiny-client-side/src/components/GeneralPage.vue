@@ -46,16 +46,26 @@
     </nav>
     <div class="banner">
       <div class="container">
-        <h1>Start</h1>
+        <h1 class="getReady">Get ready</h1>
         <p>
-          Create Your Event
+          Good times are coming, and you're invited to create your Event
         </p>
-        <a class="button button-primary">Go</a>
+        <a class="button button-primary">Start</a>
+        <div class="col-md-12 text-center mt-5">
+          <div class="scroll-down">
+            <a
+              class="btn btn-default btn-scroll floating-arrow"
+              href="#gobottom"
+              id="bottom"
+              ><i class="fa fa-angle-down"></i
+            ></a>
+          </div>
+        </div>
       </div>
     </div>
     <div>
       <main>
-        <section id="content" class="content">
+        <section id="gobottom" class="content">
           <div class="container mt-40 mb-30">
             <h3 class="text-center">Events</h3>
             <div class="row mt-30">
@@ -79,7 +89,7 @@
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                       Sed mattis augue in odio suscipit, at.
                     </p>
-                    <a class="read-more" href="#">read more</a>
+                    <a class="read-more">read more</a>
                   </div>
                 </div>
               </div>
@@ -103,7 +113,7 @@
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                       Sed mattis augue in odio suscipit, at.
                     </p>
-                    <a class="read-more" href="#">read more</a>
+                    <a class="read-more">read more</a>
                   </div>
                 </div>
               </div>
@@ -127,7 +137,7 @@
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                       Sed mattis augue in odio suscipit, at.
                     </p>
-                    <a class="read-more" href="#">read more</a>
+                    <a class="read-more">read more</a>
                   </div>
                 </div>
               </div>
@@ -151,7 +161,7 @@
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                       Sed mattis augue in odio suscipit, at.
                     </p>
-                    <a class="read-more" href="#">read more</a>
+                    <a class="read-more">read more</a>
                   </div>
                 </div>
               </div>
@@ -175,7 +185,7 @@
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                       Sed mattis augue in odio suscipit, at.
                     </p>
-                    <a class="read-more" href="#">read more</a>
+                    <a class="read-more">read more</a>
                   </div>
                 </div>
               </div>
@@ -199,7 +209,7 @@
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                       Sed mattis augue in odio suscipit, at.
                     </p>
-                    <a class="read-more" href="#">read more</a>
+                    <a class="read-more">read more</a>
                   </div>
                 </div>
               </div>
@@ -216,7 +226,7 @@
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                       Sed mattis augue in odio suscipit, at.
                     </p>
-                    <a class="read-more" href="#">read more</a>
+                    <a class="read-more">read more</a>
                   </div>
                 </div>
               </div>
@@ -240,7 +250,7 @@
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                       Sed mattis augue in odio suscipit, at.
                     </p>
-                    <a class="read-more" href="#">read more</a>
+                    <a class="read-more">read more</a>
                   </div>
                 </div>
               </div>
@@ -253,17 +263,41 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
+  data() {
+    return {
+      data: [],
+    };
+  },
   methods: {
     goprofile() {
       this.$router.push("/Profile");
     },
-    logOut() {
-      localStorage.removeItem("token");
-      this.$router.push("/");
+    getinfos() {
+      const token = localStorage.getItem("token");
+      const header = {
+        Authorisation: `Bearer ${token}`,
+      };
+      console.log("header generalpage ===>", header);
+      axios
+        .get("http://localhost:3000/profile", { headers: header })
+        .then(({ data }) => {
+          this.$data.data = data;
+          console.log("data from general", data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      console.log("okokkok");
     },
   },
+  beforeMount() {
+    this.getinfos();
+  },
 };
+
 jQuery(function($) {
   $(window).on("scroll", function() {
     if ($(this).scrollTop() >= 200) {
@@ -800,5 +834,26 @@ span.bg-main {
   .box21 .title {
     padding-bottom: 10px;
   }
+}
+
+/* last */
+.scroll-down {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  top: 45px;
+}
+.floating-arrow {
+  -webkit-animation: floating-arrow 1.6s infinite ease-in-out 0s;
+  -o-animation: floating-arrow 1.6s infinite ease-in-out 0s;
+  animation: floating-arrow 1.6s infinite ease-in-out 0s;
+}
+a.btn.btn-default.btn-scroll {
+  border: 2px solid #fff;
+  color: #fff;
+  border-radius: 100%;
+}
+.getReady {
+  color: #008ba3;
 }
 </style>

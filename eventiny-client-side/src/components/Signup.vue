@@ -17,11 +17,35 @@
                     <h3 class="col_g">Sign up</h3>
                     <br />
                     <div class="form-group">
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          v-model="signup.username"
+                          placeholder="Username..."
+                        />
+                      </div>
                       <input
                         type="text"
                         class="form-control"
-                        v-model="signup.username"
-                        placeholder="Username..."
+                        v-model="signup.firstname"
+                        placeholder="First name..."
+                      />
+                    </div>
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        v-model="signup.lastname"
+                        placeholder="Last name..."
+                      />
+                    </div>
+                    <div class="form-group">
+                      <input
+                        type="email"
+                        class="form-control"
+                        v-model="signup.email"
+                        placeholder="Email..."
                       />
                     </div>
                     <div class="form-group">
@@ -38,56 +62,6 @@
                         class="form-control"
                         v-model="signup.confirmPassword"
                         placeholder="Confirm pasword..."
-                      />
-                    </div>
-
-                    <div class="form-group">
-                      <input
-                        type="email"
-                        class="form-control"
-                        v-model="signup.email"
-                        placeholder="Email..."
-                      />
-                    </div>
-                    <div class="form-group">
-                      <input
-                        type="text"
-                        class="form-control"
-                        v-model="signup.address"
-                        placeholder="Address..."
-                      />
-                    </div>
-                    <div class="form-group">
-                      <input
-                        type="text"
-                        class="form-control"
-                        v-model="signup.address2"
-                        placeholder="Address2..."
-                      />
-                    </div>
-                    <div class="form-group">
-                      <input
-                        type="text"
-                        class="form-control"
-                        v-model="signup.phone"
-                        placeholder="Phone..."
-                      />
-                    </div>
-                    <div id="dob" class="form-group">
-                      Date of birth :
-                      <input
-                        type="date"
-                        class="birthday"
-                        id="birthday"
-                        v-model="signup.birthday"
-                      />
-                    </div>
-                    <div class="form-group">
-                      <input
-                        type="text"
-                        class="form-control"
-                        v-model="signup.city"
-                        placeholder="City..."
                       />
                     </div>
 
@@ -130,6 +104,9 @@
               <h1>You Decide Who We Are</h1>
               <h3>Join Our Community</h3>
             </hgroup>
+            <button class="btn btn-hero btn-lg" role="button">
+              See all features
+            </button>
           </div>
         </div>
       </div>
@@ -146,14 +123,11 @@ export default {
     return {
       signup: {
         username: "",
+        firstname: "",
+        lastname: "",
+        email: "",
         password: "",
         confirmPassword: "",
-        email: "",
-        address: "",
-        address2: "",
-        phone: "",
-        birthday: "",
-        city: "",
       },
     };
   },
@@ -185,12 +159,13 @@ export default {
       ) {
         axios
           .post("http://localhost:3000/signup", signup)
-          .then((res) => {
-            console.log(res);
-            if (res.data.message === "NOT FOUND") {
+          .then(({ data }) => {
+            if (data.message === "NOT FOUND") {
               swal("Username or email exist", "Please check again", "error");
+              return;
             }
-            this.$router.push("/Generalpage");
+            localStorage.setItem("token", data.token);
+            this.$router.push("/GeneralPage");
           })
           .catch((err) => {
             swal("Username or email exist", "Please check again", "error");
