@@ -34,9 +34,10 @@
                       src="https://demos.creative-tim.com/argon-dashboard/assets/img/theme/team-4.jpg"
                     />
                   </span>
+
                   <div class="media-body ml-2 d-none d-lg-block" v-if="data">
                     <span class="mb-0 text-sm  font-weight-bold">
-                      {{ data.username }}</span
+                      Welcome {{ data.username }}</span
                     >
                   </div>
                 </div>
@@ -93,7 +94,7 @@
               >
               <p class="text-white mt-0 mb-5">
                 Welcome to EventinyTN community, Be your own hero! Join,
-                organise and sponorise events!
+                organise and sponsorise events!
               </p>
               <a href="#!" class="btn btn-info">Update profile</a>
             </div>
@@ -129,9 +130,10 @@
                     ></div>
                   </div>
                 </div>
-                <div class="text-center">
+                <div class="text-center" v-if="data">
                   <h3>
-                    firstname lastname<span class="font-weight-light"></span>
+                    {{ data.firstname }} {{ data.lastname
+                    }}<span class="font-weight-light"></span>
                   </h3>
                   <div class="h5 font-weight-300">
                     <i class="ni location_pin mr-2"></i>Bucharest, Romania
@@ -146,9 +148,8 @@
                   </div>
                   <hr class="my-4" />
                   <p>
-                    Ryan — the name taken by Melbourne-raised, Brooklyn-based
-                    Nick Murphy — writes, performs and records all of his own
-                    music.
+                    Welcome to EventinyTN community, Be your own hero! Join,
+                    organise and sponsorise events!
                   </p>
                 </div>
               </div>
@@ -176,11 +177,12 @@
                             >Username</label
                           >
                           <input
+                            v-if="data"
                             type="text"
                             id="input-username"
                             class="form-control form-control-alternative"
                             placeholder="Username"
-                            value="lucky.jesse"
+                            :value="data.username"
                           />
                         </div>
                       </div>
@@ -193,7 +195,7 @@
                             type="email"
                             id="input-email"
                             class="form-control form-control-alternative"
-                            placeholder="jesse@example.com"
+                            :value="data.email"
                           />
                         </div>
                       </div>
@@ -211,7 +213,7 @@
                             id="input-first-name"
                             class="form-control form-control-alternative"
                             placeholder="First name"
-                            value="Lucky"
+                            :value="data.firstname"
                           />
                         </div>
                       </div>
@@ -227,7 +229,7 @@
                             id="input-last-name"
                             class="form-control form-control-alternative"
                             placeholder="Last name"
-                            value="Jesse"
+                            :value="data.lastname"
                           />
                         </div>
                         <div class="form-group focused">
@@ -240,8 +242,8 @@
                             type="text"
                             id="input-birthdate"
                             class="form-control form-control-alternative"
-                            placeholder="Last name"
-                            value="Jesse"
+                            placeholder="Birthday"
+                            :value="data.birthday"
                           />
                         </div>
                       </div>
@@ -263,7 +265,7 @@
                             id="input-address"
                             class="form-control form-control-alternative"
                             placeholder="Home Address"
-                            value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
+                            :value="data.birthday"
                             type="text"
                           />
                         </div>
@@ -280,7 +282,7 @@
                             id="input-city"
                             class="form-control form-control-alternative"
                             placeholder="City"
-                            value="New York"
+                            :value="data.city"
                           />
                         </div>
                       </div>
@@ -294,7 +296,7 @@
                             id="input-country"
                             class="form-control form-control-alternative"
                             placeholder="Country"
-                            value="United States"
+                            :value="data.city"
                           />
                         </div>
                       </div>
@@ -308,6 +310,7 @@
                             id="input-postal-code"
                             class="form-control form-control-alternative"
                             placeholder="Postal code"
+                            :value="data.postalcode"
                           />
                         </div>
                       </div>

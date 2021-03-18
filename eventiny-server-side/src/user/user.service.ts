@@ -32,7 +32,6 @@ export class UserService {
       secret: 'Liiim',
     });
     return { user: user, token: access_token };
-
   }
 
   async login(body: UserLog): Promise<object | Error | string> {
@@ -52,7 +51,6 @@ export class UserService {
     }
   }
 
-
   async getinfo(header): Promise<object | Error | string> {
     console.log('service ===>', header);
 
@@ -69,5 +67,4 @@ export class UserService {
       return new NotFoundException('NOT FOUND');
     }
   }
-
 }
