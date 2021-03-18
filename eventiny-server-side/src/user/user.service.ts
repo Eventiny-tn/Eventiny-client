@@ -12,7 +12,7 @@ export class UserService {
 
     private jwtService: JwtService,
   ) {}
-  async signup(user: Userinfo): Promise<string | Error> {
+  async signup(user: Userinfo): Promise<object | Error> {
     const username = await this.userRepository.findOne({
       username: user.username,
     });
@@ -26,12 +26,14 @@ export class UserService {
     const hash = bcrypt.hashSync(user.password, salt);
     user.password = hash;
     this.userRepository.save(user);
-    return 'done';
-    
+    let access_token = this.jwtService.sign({
+      username: user.email,
+      secret: 'Liiim',
+    });
+    return { user: user, token: access_token };
   }
 
   async login(body: UserLog): Promise<object | Error | string> {
-
     const logger = await this.userRepository.findOne({ email: body.email });
 
     if (logger) {
@@ -48,4 +50,20 @@ export class UserService {
     }
   }
 
+  async getinfo(header): Promise<object | Error | string> {
+    console.log('service ===>', header);
+
+    // if (header) {
+    const token = header.split(' ')[1];
+    let access_token = this.jwtService.verify(token, { secret: 'Liiim' });
+    const info = await this.userRepository.findOne({
+      email: access_token.username,
+    });
+    console.log(info);
+    if (info) {
+      return info;
+    } else {
+      return new NotFoundException('NOT FOUND');
+    }
+  }
 }
