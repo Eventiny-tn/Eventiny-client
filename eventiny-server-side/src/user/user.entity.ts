@@ -28,8 +28,6 @@ export class User {
   plannerDemand: boolean;
   @Column({ default: 0 })
   reportCounter: number;
-  @Column()
-  userimg: string;
 }
 
 export interface Userinfo {

@@ -7,7 +7,6 @@ import { User } from './user.entity';
 import { UserService } from './user.service';
 
 @Module({
-
   imports: [
     TypeOrmModule.forFeature([User]),
     JwtModule.register({
@@ -15,7 +14,6 @@ import { UserService } from './user.service';
       signOptions: { expiresIn: '10s' },
     }),
   ],
-
 
   controllers: [UserController],
   providers: [UserService],

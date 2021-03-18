@@ -12,6 +12,5 @@ export class UserController {
   @Post('login')
   login(@Body() body: UserLog): Promise<object | string | Error> {
     return this.userRepo.login(body);
-
   }
 }
