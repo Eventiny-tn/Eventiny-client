@@ -26,11 +26,13 @@ export class UserService {
     const hash = bcrypt.hashSync(user.password, salt);
     user.password = hash;
     this.userRepository.save(user);
+
     let access_token = this.jwtService.sign({
       username: user.email,
       secret: 'Liiim',
     });
     return { user: user, token: access_token };
+
   }
 
   async login(body: UserLog): Promise<object | Error | string> {
@@ -50,6 +52,7 @@ export class UserService {
     }
   }
 
+
   async getinfo(header): Promise<object | Error | string> {
     console.log('service ===>', header);
 
@@ -66,4 +69,5 @@ export class UserService {
       return new NotFoundException('NOT FOUND');
     }
   }
+
 }
