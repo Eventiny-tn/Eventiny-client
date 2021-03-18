@@ -12,6 +12,7 @@ export class UserController {
   @Post('login')
   login(@Body() body: UserLog): Promise<object | string | Error> {
     return this.userRepo.login(body);
+
   }
 
   @Get('profile')
@@ -19,5 +20,6 @@ export class UserController {
     console.log('controller ====>', header.authorisation);
 
     return this.userRepo.getinfo(header.authorisation);
+
   }
 }
