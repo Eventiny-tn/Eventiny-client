@@ -263,13 +263,41 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
+  data(){
+    return {
+      data: []
+    }
+  },
   methods: {
     goprofile() {
       this.$router.push("/Profile");
     },
+    getinfos() {
+      const token = localStorage.getItem("token");
+      const header = {
+        Authorisation: `Bearer ${token}`,
+      };
+      console.log("header generalpage ===>", header);
+      axios
+        .get("http://localhost:3000/profile", { headers: header })
+        .then(({ data }) => {
+          this.$data.data = data;
+          console.log("data from general", data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      console.log("okokkok");
+    },
+  },
+  beforeMount() {
+    this.getinfos();
   },
 };
+
 jQuery(function($) {
   $(window).on("scroll", function() {
     if ($(this).scrollTop() >= 200) {

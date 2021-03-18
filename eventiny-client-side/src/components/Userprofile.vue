@@ -8,27 +8,14 @@
       >
         <div class="container-fluid">
           <!-- Brand -->
-          <a
-            class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block"
-            href="https://www.creative-tim.com/product/argon-dashboard"
-            target="_blank"
-            >User profile</a
+          <a class="navbar-brand" href="/">
+            <h3 class="my-heading ">Eventiny<span class="bg-main">TN</span></h3>
+          </a>
           >
           <!-- Form -->
           <form
             class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto"
-          >
-            <div class="form-group mb-0">
-              <div class="input-group input-group-alternative">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"
-                    ><i class="fas fa-search"></i
-                  ></span>
-                </div>
-                <input class="form-control" placeholder="Search" type="text" />
-              </div>
-            </div>
-          </form>
+          ></form>
           <!-- User -->
           <ul class="navbar-nav align-items-center d-none d-md-flex">
             <li class="nav-item dropdown">
@@ -47,9 +34,9 @@
                       src="https://demos.creative-tim.com/argon-dashboard/assets/img/theme/team-4.jpg"
                     />
                   </span>
-                  <div class="media-body ml-2 d-none d-lg-block">
-                    <span class="mb-0 text-sm  font-weight-bold"
-                      >Jessica Jones</span
+                  <div class="media-body ml-2 d-none d-lg-block" v-if="data">
+                    <span class="mb-0 text-sm  font-weight-bold">
+                      {{ data.username }}</span
                     >
                   </div>
                 </div>
@@ -60,7 +47,10 @@
                 <div class=" dropdown-header noti-title">
                   <h6 class="text-overflow m-0">Welcome!</h6>
                 </div>
-                <a href="../examples/profile.html" class="dropdown-item">
+                <a
+                  href="https://upload.wikimedia.org/wikipedia/commons/d/d9/Festival_de_cinema_de_plein_air_de_visan.jpg"
+                  class="dropdown-item"
+                >
                   <i class="ni ni-single-02"></i>
                   <span>My profile</span>
                 </a>
@@ -89,7 +79,7 @@
       <!-- Header -->
       <div
         class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
-        style="min-height: 600px; background-image: url(https://raw.githack.com/creativetimofficial/argon-dashboard/master/assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;"
+        style=" background-image: url(https://upload.wikimedia.org/wikipedia/commons/d/d9/Festival_de_cinema_de_plein_air_de_visan.jpg); background-position: center top;"
       >
         <!-- Mask -->
         <span class="mask bg-gradient-default opacity-8"></span>
@@ -97,12 +87,15 @@
         <div class="container-fluid d-flex align-items-center">
           <div class="row">
             <div class="col-lg-7 col-md-10">
-              <h1 class="display-2 text-white">Hello Jesse</h1>
+              <h1 class="display-2 text-white" v-if="data">
+                Hello {{ data.username }}
+              </h1>
+              >
               <p class="text-white mt-0 mb-5">
-                This is your profile page. You can see the progress you've made
-                with your work and manage your projects or assigned tasks
+                Welcome to EventinyTN community, Be your own hero! Join,
+                organise and sponorise events!
               </p>
-              <a href="#!" class="btn btn-info">Edit profile</a>
+              <a href="#!" class="btn btn-info">Update profile</a>
             </div>
           </div>
         </div>
@@ -120,44 +113,25 @@
                         src="https://demos.creative-tim.com/argon-dashboard/assets/img/theme/team-4.jpg"
                         class="rounded-circle"
                       />
+                      <a><i type="file" class="fas fa-download"></i></a>
                     </a>
                   </div>
                 </div>
               </div>
               <div
                 class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4"
-              >
-                <div class="d-flex justify-content-between">
-                  <a href="#" class="btn btn-sm btn-info mr-4">Connect</a>
-                  <a href="#" class="btn btn-sm btn-default float-right"
-                    >Message</a
-                  >
-                </div>
-              </div>
+              ></div>
               <div class="card-body pt-0 pt-md-4">
                 <div class="row">
                   <div class="col">
                     <div
                       class="card-profile-stats d-flex justify-content-center mt-md-5"
-                    >
-                      <div>
-                        <span class="heading">22</span>
-                        <span class="description">Friends</span>
-                      </div>
-                      <div>
-                        <span class="heading">10</span>
-                        <span class="description">Photos</span>
-                      </div>
-                      <div>
-                        <span class="heading">89</span>
-                        <span class="description">Comments</span>
-                      </div>
-                    </div>
+                    ></div>
                   </div>
                 </div>
                 <div class="text-center">
                   <h3>
-                    Jessica Jones<span class="font-weight-light">, 27</span>
+                    firstname lastname<span class="font-weight-light"></span>
                   </h3>
                   <div class="h5 font-weight-300">
                     <i class="ni location_pin mr-2"></i>Bucharest, Romania
@@ -176,7 +150,6 @@
                     Nick Murphy — writes, performs and records all of his own
                     music.
                   </p>
-                  <a href="#">Show more</a>
                 </div>
               </div>
             </div>
@@ -187,9 +160,6 @@
                 <div class="row align-items-center">
                   <div class="col-8">
                     <h3 class="mb-0">My account</h3>
-                  </div>
-                  <div class="col-4 text-right">
-                    <a href="#!" class="btn btn-sm btn-primary">Settings</a>
                   </div>
                 </div>
               </div>
@@ -255,6 +225,20 @@
                           <input
                             type="text"
                             id="input-last-name"
+                            class="form-control form-control-alternative"
+                            placeholder="Last name"
+                            value="Jesse"
+                          />
+                        </div>
+                        <div class="form-group focused">
+                          <label
+                            class="form-control-label"
+                            for="input-last-name"
+                            >Date of birth</label
+                          >
+                          <input
+                            type="text"
+                            id="input-birthdate"
                             class="form-control form-control-alternative"
                             placeholder="Last name"
                             value="Jesse"
@@ -331,19 +315,6 @@
                   </div>
                   <hr class="my-4" />
                   <!-- Description -->
-                  <h6 class="heading-small text-muted mb-4">About me</h6>
-                  <div class="pl-lg-4">
-                    <div class="form-group focused">
-                      <label>About Me</label>
-                      <textarea
-                        rows="4"
-                        class="form-control form-control-alternative"
-                        placeholder="A few words about you ..."
-                      >
-A beautiful Dashboard for Bootstrap 4. It is Free and Open Source.</textarea
-                      >
-                    </div>
-                  </div>
                 </form>
               </div>
             </div>
@@ -356,13 +327,11 @@ A beautiful Dashboard for Bootstrap 4. It is Free and Open Source.</textarea
         <div class="col-xl-6 m-auto text-center">
           <div class="copyright">
             <p>
-              Made with
-              <a
-                href="https://www.creative-tim.com/product/argon-dashboard"
-                target="_blank"
-                >Argon Dashboard</a
+              EventinyTN
+              <a href="https://github.com/Eventiny-tn " target="_blank"
+                >With love</a
               >
-              by Creative Tim
+              from the devlopment team.
             </p>
           </div>
         </div>
@@ -372,44 +341,37 @@ A beautiful Dashboard for Bootstrap 4. It is Free and Open Source.</textarea
 </template>
 
 <script>
-$(document).ready(function() {
-  $imgSrc = $("#imgProfile").attr("src");
-  function readURL(input) {
-    if (input.files && input.files[0]) {
-      var reader = new FileReader();
-
-      reader.onload = function(e) {
-        $("#imgProfile").attr("src", e.target.result);
+import axios from "axios";
+export default {
+  data() {
+    return {
+      data: [],
+    };
+  },
+  props: {},
+  methods: {
+    getinfos() {
+      const token = localStorage.getItem("token");
+      const header = {
+        Authorisation: `Bearer ${token}`,
       };
-
-      reader.readAsDataURL(input.files[0]);
-    }
-  }
-  $("#btnChangePicture").on("click", function() {
-    // document.getElementById('profilePicture').click();
-    if (!$("#btnChangePicture").hasClass("changing")) {
-      $("#profilePicture").click();
-    } else {
-      // change
-    }
-  });
-  $("#profilePicture").on("change", function() {
-    readURL(this);
-    $("#btnChangePicture").addClass("changing");
-    $("#btnChangePicture").attr("value", "Confirm");
-    $("#btnDiscard").removeClass("d-none");
-    // $('#imgProfile').attr('src', '');
-  });
-  $("#btnDiscard").on("click", function() {
-    // if ($('#btnDiscard').hasClass('d-none')) {
-    $("#btnChangePicture").removeClass("changing");
-    $("#btnChangePicture").attr("value", "Change");
-    $("#btnDiscard").addClass("d-none");
-    $("#imgProfile").attr("src", $imgSrc);
-    $("#profilePicture").val("");
-    // }
-  });
-});
+      console.log("header generalpage ===>", header);
+      axios
+        .get("http://localhost:3000/profile", { headers: header })
+        .then(({ data }) => {
+          this.$data.data = data;
+          console.log("data from general", data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      console.log("okokkok");
+    },
+  },
+  mounted() {
+    this.getinfos();
+  },
+};
 </script>
 
 <style scoped>
@@ -464,6 +426,17 @@ html {
   -ms-text-size-adjust: 100%;
   -ms-overflow-style: scrollbar;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+h3.my-heading {
+  font-family: "Kaushan Script", cursive;
+  color: #fff;
+  font-weight: bold;
+  font-size: 30px;
+  margin: 0;
+}
+span.bg-main {
+  color: #008ba3;
 }
 
 @-ms-viewport {
@@ -552,6 +525,9 @@ a:hover {
 a:not([href]):not([tabindex]) {
   text-decoration: none;
   color: inherit;
+}
+#upload {
+  width: 150px;
 }
 
 a:not([href]):not([tabindex]):hover,
@@ -870,6 +846,15 @@ a > code {
 
   .order-lg-2 {
     order: 2;
+    position: relative;
+  }
+  .order-lg-2 img {
+    display: block;
+  }
+  .order-lg-2 .fa-download {
+    position: absolute;
+    bottom: 0;
+    left: 0;
   }
 }
 
@@ -1084,8 +1069,8 @@ textarea.form-control {
 
 .btn-info {
   color: #fff;
-  border-color: #11cdef;
-  background-color: #11cdef;
+  border-color: #008ba3;
+  background-color: #008ba3;
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 

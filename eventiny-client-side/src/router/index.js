@@ -11,6 +11,7 @@ const routes = [
     name: "Home",
     component: Home,
   },
+
   {
     path: "/Signup",
     name: "Signup",
@@ -22,11 +23,13 @@ const routes = [
     name: "Login",
     component: LogIn,
   },
+
   {
     path: "/Profile",
     name: "Profile",
     component: Userprofile,
   },
+
   {
     path: "/GeneralPage",
     name: "GeneralPage",
