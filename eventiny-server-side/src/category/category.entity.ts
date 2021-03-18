@@ -21,6 +21,9 @@ export class Category {
   })
   Event: Event[];
 }
+
+
 export interface CategoryType {
+  id: number;
   name: string;
 }

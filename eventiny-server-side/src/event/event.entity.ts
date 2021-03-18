@@ -11,7 +11,7 @@ export class Event {
   id: number;
   @Column({ length: 25 })
   name: string;
-  @Column({ type: 'date' })
+  @Column({ type: 'timestamp' })
   date_only: Date;
   @Column({ type: 'timestamp' })
   date_time: Date;
