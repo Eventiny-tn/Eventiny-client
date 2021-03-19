@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Headers } from '@nestjs/common';
+import { Body, Controller, Get, Post, Headers, Param } from '@nestjs/common';
 
 import { Userinfo, UserLog } from './user.entity';
 import { UserService } from './user.service';
@@ -12,14 +12,15 @@ export class UserController {
   @Post('login')
   login(@Body() body: UserLog): Promise<object | string | Error> {
     return this.userRepo.login(body);
-
   }
 
   @Get('profile')
   getinfo(@Headers() header): Promise<object | string> {
-    console.log('controller ====>', header.authorisation);
-
     return this.userRepo.getinfo(header.authorisation);
+  }
 
+  @Get('verify')
+  verifyUser(@Headers() token: string): Promise<Error | object | boolean> {
+    return this.userRepo.verifyUser(token);
   }
 }

@@ -74,6 +74,9 @@
                 </a>
               </div>
             </li>
+            <li class="nav-item" @click.prevent="feed()" v-if="isLogged">
+              <a class="nav-link">Feed</a>
+            </li>
           </ul>
         </div>
       </nav>
@@ -430,7 +433,10 @@ html {
   -ms-overflow-style: scrollbar;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-
+li.nav-item a:hover {
+  background: #008ba3;
+  color: #ffffff !important;
+}
 h3.my-heading {
   font-family: "Kaushan Script", cursive;
   color: #fff;
