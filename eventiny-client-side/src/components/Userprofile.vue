@@ -8,8 +8,10 @@
       >
         <div class="container-fluid">
           <!-- Brand -->
-          <a class="navbar-brand" href="/">
-            <h3 class="my-heading ">Eventiny<span class="bg-main">TN</span></h3>
+          <a class="navbar-brand">
+            <h3 class="my-heading " @click="gohome()">
+              Eventiny<span class="bg-main">TN</span>
+            </h3>
           </a>
           >
           <!-- Form -->
@@ -138,16 +140,17 @@
                     }}<span class="font-weight-light"></span>
                   </h3>
                   <div class="h5 font-weight-300">
-                    <i class="ni location_pin mr-2"></i>Bucharest, Romania
+                    <i class="ni location_pin mr-2"></i>{{ data.city }},
+                    {{ data.country }}
                   </div>
-                  <div class="h5 mt-4">
+                  <!-- <div class="h5 mt-4">
                     <i class="ni business_briefcase-24 mr-2"></i>Solution
                     Manager - Creative Tim Officer
                   </div>
                   <div>
                     <i class="ni education_hat mr-2"></i>University of Computer
                     Science
-                  </div>
+                  </div> -->
                   <hr class="my-4" />
                   <p>
                     Welcome to EventinyTN community, Be your own hero! Join,
@@ -394,6 +397,9 @@ export default {
   },
   props: {},
   methods: {
+    gohome() {
+      this.$router.push("/GeneralPage");
+    },
     onSubmitUpdateInfo() {
       console.log("clicked");
       console.log(this.data.username);
