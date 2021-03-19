@@ -1,33 +1,3 @@
-// import {
-//   Entity,
-//   Column,
-//   PrimaryGeneratedColumn,
-//   ManyToMany,
-//   JoinTable,
-// } from 'typeorm';
-// @Entity('event')
-// export class Event {
-//   @PrimaryGeneratedColumn()
-//   id: number;
-//   @Column({ length: 25 })
-//   name: string;
-//   @Column({ type: 'timestamp' })
-//   date_only: Date;
-//   @Column({ type: 'timestamp' })
-//   date_time: Date;
-//   @Column()
-//   location: string;
-//   @Column()
-//   price: number;
-//   @Column()
-//   caption: string;
-//   @Column()
-//   cover: string;
-//   @Column('simple-array')
-//   images: string[];
-//   @Column({ default: false })
-//   pending: boolean;
-// }
 import { Category } from 'src/category/category.entity';
 import {
   Entity,
@@ -36,7 +6,6 @@ import {
   ManyToMany,
   JoinTable,
 } from 'typeorm';
-// import moment from 'moment';
 @Entity('event')
 export class Event {
   @PrimaryGeneratedColumn()

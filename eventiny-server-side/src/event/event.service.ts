@@ -1,7 +1,3 @@
-// import { Injectable } from '@nestjs/common';
-
-// @Injectable()
-// export class EventService {}
 import { Event } from './event.entity';
 import { Body, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';

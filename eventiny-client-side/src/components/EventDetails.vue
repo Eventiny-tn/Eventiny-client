@@ -40,30 +40,12 @@
         <div class="item slides active">
           <div class="slide-1"></div>
           <div class="container">
-            <!-- <div class="carousel-caption">
-              <h1>New carousel layout</h1>
-              <p>Responsive thumbnail preview in carousel indicators.</p>
-              <p>
-                <a class="btn btn-lg btn-primary" href="#" role="button"
-                  >Sign up today</a
-                >
-              </p>
-            </div> -->
           </div>
         </div>
         <div class="item slides">
           <div class="slide-2"></div>
           <div class="container">
             <div class="carousel-caption">
-              <!-- <h1>Another example headline.</h1>
-              <p>
-                Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-              </p>
-              <p>
-                <a class="btn btn-lg btn-primary" href="#" role="button"
-                  >Learn more</a
-                >
-              </p> -->
             </div>
           </div>
         </div>
@@ -71,13 +53,6 @@
           <div class="slide-3"></div>
           <div class="container">
             <div class="carousel-caption">
-              <!-- <h1>One more for good measure.</h1>
-              <p>Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p>
-                <a class="btn btn-lg btn-primary" href="#" role="button"
-                  >Browse gallery</a
-                >
-              </p> -->
             </div>
           </div>
         </div>

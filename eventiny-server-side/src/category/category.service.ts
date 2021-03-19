@@ -26,6 +26,8 @@ export class CategoryService {
   async getAllCategory(req): Promise<Error | object> {
     if (req) {
       const data = await this.categoryRepository.find();
+      console.log('fakhri', data);
+
       return data;
     } else {
       return new NotFoundException('NOT FOUND');
