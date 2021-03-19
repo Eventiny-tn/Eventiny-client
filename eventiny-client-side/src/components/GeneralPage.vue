@@ -38,7 +38,7 @@
                 <a @click="goprofile()" class="dropdown-item">
                   <i class="far fa-user"></i> My Profile</a
                 >
-                <a class="dropdown-item">
+                <a class="dropdown-item" @click="logOut()">
                   <i class="fas fa-sign-out-alt"></i> Logout</a
                 >
               </div>
@@ -111,6 +111,7 @@ export default {
   data() {
     return {
       data: [],
+
       dataCategories: [],
       dataEvents: [],
     };
@@ -203,6 +204,9 @@ jQuery(function($) {
 @import url("https://fonts.googleapis.com/css?family=Lobster");
 html {
   font-size: 62.5%;
+}
+.fa-sign-out-alt {
+  cursor: pointer;
 }
 body {
   font-family: "Kaushan Script", cursive;
