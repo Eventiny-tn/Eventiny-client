@@ -67,4 +67,15 @@ export class UserService {
       return new NotFoundException('NOT FOUND');
     }
   }
+
+  async updateInfo(id, body): Promise<Error | string> {
+    console.log(body);
+
+    if (id && body) {
+      await this.userRepository.update(id, body);
+      return 'done';
+    } else {
+      return new NotFoundException('NOT FOUND');
+    }
+  }
 }
