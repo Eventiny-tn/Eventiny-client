@@ -116,7 +116,8 @@
                       />
                       <a><i type="file" class="fas fa-download"></i></a>
                     </a>
-                  </div>
+                  </div>    <GeneralPage :dataCategories="dataCategories" :dataEvents="dataEvents" />
+
                 </div>
               </div>
               <div
