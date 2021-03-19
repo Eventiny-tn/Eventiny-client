@@ -852,6 +852,10 @@ export default {
           Authorization: `Bearer ${token}`,
         },
       };
+      if (token == null) {
+        this.$router.push("/");
+        return;
+      }
       axios
         .get("http://localhost:3000/verify", headers)
         .then(({ data }) => {

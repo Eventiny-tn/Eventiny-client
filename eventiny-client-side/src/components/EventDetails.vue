@@ -39,21 +39,18 @@
       <div class="carousel-inner">
         <div class="item slides active">
           <div class="slide-1"></div>
-          <div class="container">
-          </div>
+          <div class="container"></div>
         </div>
         <div class="item slides">
           <div class="slide-2"></div>
           <div class="container">
-            <div class="carousel-caption">
-            </div>
+            <div class="carousel-caption"></div>
           </div>
         </div>
         <div class="item slides">
           <div class="slide-3"></div>
           <div class="container">
-            <div class="carousel-caption">
-            </div>
+            <div class="carousel-caption"></div>
           </div>
         </div>
       </div>
@@ -179,6 +176,43 @@
     </div>
   </div>
 </template>
+<script>
+export default {
+  methods: {
+    getUserInfo() {
+      const token = localStorage.getItem("token");
+      const headers = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      if (token == null) {
+        this.$router.push("/");
+        return;
+      }
+      axios
+        .get("http://localhost:3000/verify", headers)
+        .then(({ data }) => {
+          console.log("==>", data);
+          if (data.username !== undefined) {
+            this.$data.isLogged = true;
+            this.$data.userinfo = data;
+            return;
+          } else {
+            localStorage.removeItem("token");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          localStorage.removeItem("token");
+        });
+    },
+  },
+  created() {
+    this.getUserInfo();
+  },
+};
+</script>
 <style scoped>
 .details-event {
   margin-top: 3%;

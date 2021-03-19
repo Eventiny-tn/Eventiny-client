@@ -136,14 +136,26 @@ export default {
       const header = {
         Authorisation: `Bearer ${token}`,
       };
+      if (token == null) {
+        this.$router.push("/");
+        return;
+      }
       console.log("header generalpage ===>", header);
       axios
         .get("http://localhost:3000/profile", { headers: header })
         .then(({ data }) => {
-          this.$data.data = data;
+          if (data) {
+            this.$data.data = data;
+            return;
+          } else {
+            localStorage.removeItem("token");
+            this.$router.push("/");
+          }
         })
         .catch((error) => {
           console.log(error);
+          localStorage.removeItem("token");
+          this.$router.push("/");
         });
     },
     getevents() {
