@@ -97,7 +97,6 @@
         <div class="item slides active">
           <div class="slide-1"></div>
         </div>
-
         <div class="item slides">
           <div class="slide-3"></div>
           <div class="hero">

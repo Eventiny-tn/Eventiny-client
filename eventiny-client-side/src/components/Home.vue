@@ -5,6 +5,7 @@
         <a class="navbar-brand" href="/">
           <h3 class="my-heading ">Eventiny<span class="bg-main">TN</span></h3>
         </a>
+        <p></p>
         <button
           class="navbar-toggler navbar-toggler-right"
           type="button"
@@ -54,17 +55,16 @@
             <button class="btn btn-light"><i class="fa fa-search"></i></button>
           </form>
           <ul class="navbar-nav ml-auto">
-            <li class="nav-link" id="loginbtn">
+            <li class="nav-link " id="loginbtn">
               <a @click.prevent="signin()">Sign in</a>
             </li>
-            <li class="nav-link">
-              <a id="signupbtn" @click.prevent="signup()">/ Signup</a>
+            <li class="nav-link" id="loginbtn">
+              <a id="signupbtn" @click.prevent="signup()">Get started</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
-
     <header class="masthead text-white ">
       <div class="overlay"></div>
       <div class="container slider-top-text">
@@ -74,7 +74,7 @@
               WELCOME TO Eventiny<span class="bg-main">TN</span>
             </h3>
             <p class="myp-slider text-center">
-              Where musicians unite and become better together
+              Where people unite and become better together
             </p>
             <p class="myp text-center">
               FIND THE BEST EVENTS   |   CONNECT WITH OTHERS   |   HAVE FUN
@@ -888,7 +888,16 @@ body {
   color: white !important;
   font-size: 17px;
 }
-
+#loginbtn {
+  font-size: 15px;
+  border-radius: 2%;
+  color: white;
+  cursor: pointer;
+}
+#loginbtn:hover {
+  background-color: #008ba3;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 .signupcss {
   border: 1px solid block;
 }
@@ -1228,7 +1237,7 @@ section#group {
 }
 
 .mybg-music {
-  background: url("https://images.pexels.com/photos/767239/pexels-photo-767239.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
+  background: url("https://images.pexels.com/photos/1540406/pexels-photo-1540406.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
     no-repeat center center fixed;
   background-size: cover;
 }
