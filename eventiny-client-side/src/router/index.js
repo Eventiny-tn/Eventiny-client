@@ -4,7 +4,7 @@ import Signup from "../components/Signup";
 import LogIn from "../components/LogIn";
 import Userprofile from "../components/Userprofile";
 import GeneralPage from "../components/GeneralPage";
-
+import EventDetails from "../components/EventDetails";
 const routes = [
   {
     path: "/",
@@ -34,6 +34,11 @@ const routes = [
     path: "/GeneralPage",
     name: "GeneralPage",
     component: GeneralPage,
+  },
+  {
+    path: "/EventDetails",
+    name: "EventDetails",
+    component: EventDetails,
   },
 ];
 
