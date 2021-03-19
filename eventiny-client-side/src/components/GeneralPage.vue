@@ -2,8 +2,8 @@
   <header class="header-area overlay">
     <nav class="navbar navbar-expand-md navbar-dark">
       <div class="container">
-        <a class="navbar-brand">
-          <h3 class="my-heading ">Eventiny<span class="bg-main">TN</span></h3>
+        <a class="navbar-brand" @click="langingPage()">
+          <h3 class="my-heading">Eventiny<span class="bg-main">TN</span></h3>
         </a>
 
         <button
@@ -19,7 +19,9 @@
 
         <div id="main-nav" class="collapse navbar-collapse">
           <ul class="navbar-nav ml-auto">
-            <li><a class="nav-item nav-link active">Home</a></li>
+            <li>
+              <a class="nav-item nav-link active" href="/GeneralPage">Home</a>
+            </li>
 
             <li class="dropdown">
               <a class="nav-item nav-link" data-toggle="dropdown"> Events</a>
@@ -36,7 +38,7 @@
               <a class="nav-item nav-link" data-toggle="dropdown">Profile</a>
               <div class="dropdown-menu">
                 <a @click="goprofile()" class="dropdown-item">
-                  <i class="far fa-user"></i> My Profile</a
+                  <i class="far fa-user"></i>Profile: {{ data.username }}</a
                 >
                 <a class="dropdown-item" @click="logOut()">
                   <i class="fas fa-sign-out-alt"></i> Logout</a
@@ -111,29 +113,49 @@ export default {
   data() {
     return {
       data: [],
-
+      isLogged: false,
+      userinfo: {},
       dataCategories: [],
       dataEvents: [],
     };
   },
 
   methods: {
+    logOut() {
+      localStorage.removeItem("token");
+      this.$router.push("/");
+    },
     goprofile() {
       this.$router.push("/Profile");
+    },
+    langingPage() {
+      this.$router.push("/");
     },
     getinfos() {
       const token = localStorage.getItem("token");
       const header = {
         Authorisation: `Bearer ${token}`,
       };
+      if (token == null) {
+        this.$router.push("/");
+        return;
+      }
       console.log("header generalpage ===>", header);
       axios
         .get("http://localhost:3000/profile", { headers: header })
         .then(({ data }) => {
-          this.$data.data = data;
+          if (data) {
+            this.$data.data = data;
+            return;
+          } else {
+            localStorage.removeItem("token");
+            this.$router.push("/");
+          }
         })
         .catch((error) => {
           console.log(error);
+          localStorage.removeItem("token");
+          this.$router.push("/");
         });
     },
     getevents() {
@@ -311,6 +333,7 @@ p {
 .navbar .navbar-brand {
   font-family: "Kaushan Script", cursive;
   font-size: 2.5rem;
+  cursor: pointer;
 }
 .navbar .navbar-toggler {
   position: relative;
@@ -364,14 +387,17 @@ p {
   color: #fff;
   font-size: 1.1rem;
   font-weight: 700;
+  cursor: pointer;
 }
 .navbar-dark .navbar-nav .nav-link:focus,
 .navbar-dark .navbar-nav .nav-link:hover {
   color: #fff;
+  cursor: pointer;
 }
 .navbar .dropdown-menu {
   padding: 0;
   background-color: rgba(0, 0, 0, 0.9);
+  cursor: pointer;
 }
 .navbar .dropdown-menu .dropdown-item {
   position: relative;

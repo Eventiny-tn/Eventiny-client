@@ -36,11 +36,22 @@
             <li class="nav-item"><a class="nav-link" href="#">Groups</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Music</a></li>
 
-            <li class="nav-item" @click.prevent="signin()">
+            <li
+              class="nav-item"
+              @click.prevent="signin()"
+              v-if="isLogged == false"
+            >
               <a class="nav-link">Sign in</a>
             </li>
-            <li class="nav-item" @click.prevent="signup()">
+            <li
+              class="nav-item"
+              @click.prevent="signup()"
+              v-if="isLogged == false"
+            >
               <a class="nav-link">Sign up</a>
+            </li>
+            <li class="nav-item" @click.prevent="feed()" v-if="isLogged">
+              <a class="nav-link">Feed</a>
             </li>
           </ul>
         </div>
@@ -55,11 +66,27 @@
             <button class="btn btn-light"><i class="fa fa-search"></i></button>
           </form>
           <ul class="navbar-nav ml-auto">
-            <li class="nav-link " id="loginbtn">
+            <li class="nav-link " id="loginbtn" v-if="isLogged == false">
               <a @click.prevent="signin()">Sign in</a>
             </li>
-            <li class="nav-link" id="loginbtn">
+            <li class="nav-link" id="loginbtn" v-if="isLogged == false">
               <a id="signupbtn" @click.prevent="signup()">Get started</a>
+            </li>
+            <li
+              class="nav-item"
+              id="loginbtn"
+              @click.prevent="feed()"
+              v-if="isLogged"
+            >
+              <a class="nav-link" id="signupbtn">Feed</a>
+            </li>
+            <li
+              class="nav-item"
+              id="loginbtn"
+              v-if="isLogged"
+              @click="profile()"
+            >
+              <a class="nav-link" id="signupbtn">{{ userinfo.username }}</a>
             </li>
           </ul>
         </div>
@@ -814,8 +841,44 @@
 </template>
 <script>
 import $ from "jquery";
+import axios from "axios";
+
 export default {
   methods: {
+    getUserInfo() {
+      const token = localStorage.getItem("token");
+      const headers = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      if (token == null) {
+        this.$router.push("/");
+        return;
+      }
+      axios
+        .get("http://localhost:3000/verify", headers)
+        .then(({ data }) => {
+          console.log("==>", data);
+          if (data.username !== undefined) {
+            this.$data.isLogged = true;
+            this.$data.userinfo = data;
+            return;
+          } else {
+            localStorage.removeItem("token");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          localStorage.removeItem("token");
+        });
+    },
+    feed() {
+      this.$router.push("/GeneralPage");
+    },
+    profile() {
+      this.$router.push("/profile");
+    },
     signin() {
       console.log("clicked");
       this.$router.push("/Login");
@@ -871,8 +934,18 @@ export default {
       });
     },
   },
+  beforeMount() {
+    this.getUserInfo();
+  },
   mounted() {
     this.animations();
+  },
+
+  data() {
+    return {
+      userinfo: "",
+      isLogged: false,
+    };
   },
 };
 </script>

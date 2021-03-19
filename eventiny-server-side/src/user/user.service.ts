@@ -67,4 +67,17 @@ export class UserService {
       return new NotFoundException('NOT FOUND');
     }
   }
+  async verifyUser(token): Promise<Error | boolean | object> {
+    try {
+      const tokeN = await token.authorization.split(' ')[1];
+      const verify = await this.jwtService.verify(tokeN, { secret: 'Liiim' });
+      const user = await this.userRepository.findOne({
+        email: verify.username,
+      });
+
+      return user;
+    } catch (err) {
+      return new NotFoundException('NOT FOUND');
+    }
+  }
 }
