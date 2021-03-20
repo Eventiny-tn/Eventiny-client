@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Post, Headers, Param } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Headers,
+  Put,
+  Param,
+} from '@nestjs/common';
 
 import { Userinfo, UserLog } from './user.entity';
 import { UserService } from './user.service';
@@ -17,6 +25,14 @@ export class UserController {
   @Get('profile')
   getinfo(@Headers() header): Promise<object | string> {
     return this.userRepo.getinfo(header.authorisation);
+  }
+
+  @Put('updateinfo/:id')
+  updateInfo(
+    @Param() id: number,
+    @Body() body: object,
+  ): Promise<Error | string> {
+    return this.userRepo.updateInfo(id, body);
   }
 
   @Get('verify')
