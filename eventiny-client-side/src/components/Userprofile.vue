@@ -8,8 +8,10 @@
       >
         <div class="container-fluid">
           <!-- Brand -->
-          <a class="navbar-brand" href="/">
-            <h3 class="my-heading ">Eventiny<span class="bg-main">TN</span></h3>
+          <a class="navbar-brand">
+            <h3 class="my-heading " @click="gohome()">
+              Eventiny<span class="bg-main">TN</span>
+            </h3>
           </a>
           >
           <!-- Form -->
@@ -74,6 +76,9 @@
                 </a>
               </div>
             </li>
+            <li class="nav-item" @click.prevent="feed()" v-if="isLogged">
+              <a class="nav-link">Feed</a>
+            </li>
           </ul>
         </div>
       </nav>
@@ -96,7 +101,9 @@
                 Welcome to EventinyTN community, Be your own hero! Join,
                 organise and sponsorise events!
               </p>
-              <a href="#!" class="btn btn-info">Update profile</a>
+              <a @click="onSubmitUpdateInfo()" class="btn btn-info"
+                >Update profile</a
+              >
             </div>
           </div>
         </div>
@@ -116,8 +123,11 @@
                       />
                       <a><i type="file" class="fas fa-download"></i></a>
                     </a>
-                  </div>    <GeneralPage :dataCategories="dataCategories" :dataEvents="dataEvents" />
-
+                  </div>
+                  <GeneralPage
+                    :dataCategories="dataCategories"
+                    :dataEvents="dataEvents"
+                  />
                 </div>
               </div>
               <div
@@ -137,16 +147,17 @@
                     }}<span class="font-weight-light"></span>
                   </h3>
                   <div class="h5 font-weight-300">
-                    <i class="ni location_pin mr-2"></i>Bucharest, Romania
+                    <i class="ni location_pin mr-2"></i>{{ data.city }},
+                    {{ data.country }}
                   </div>
-                  <div class="h5 mt-4">
+                  <!-- <div class="h5 mt-4">
                     <i class="ni business_briefcase-24 mr-2"></i>Solution
                     Manager - Creative Tim Officer
                   </div>
                   <div>
                     <i class="ni education_hat mr-2"></i>University of Computer
                     Science
-                  </div>
+                  </div> -->
                   <hr class="my-4" />
                   <p>
                     Welcome to EventinyTN community, Be your own hero! Join,
@@ -182,42 +193,28 @@
                             type="text"
                             id="input-username"
                             class="form-control form-control-alternative"
-                            placeholder="Username"
-                            :value="data.username"
+                            v-model="username"
                           />
                         </div>
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group">
-                          <label class="form-control-label" for="input-email"
-                            >Email address</label
-                          >
-                          <input
-                            type="email"
-                            id="input-email"
-                            class="form-control form-control-alternative"
-                            :value="data.email"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-lg-6">
-                        <div class="form-group focused">
                           <label
                             class="form-control-label"
                             for="input-first-name"
                             >First name</label
                           >
+
                           <input
-                            type="text"
+                            type="email"
                             id="input-first-name"
                             class="form-control form-control-alternative"
-                            placeholder="First name"
-                            :value="data.firstname"
+                            v-model="firstname"
                           />
                         </div>
                       </div>
+                    </div>
+                    <div class="row">
                       <div class="col-lg-6">
                         <div class="form-group focused">
                           <label
@@ -229,8 +226,35 @@
                             type="text"
                             id="input-last-name"
                             class="form-control form-control-alternative"
-                            placeholder="Last name"
-                            :value="data.lastname"
+                            :placeholder="data.lastname"
+                            v-model="lastname"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group focused">
+                          <label
+                            class="form-control-label"
+                            for="input-last-name"
+                            >Password</label
+                          >
+                          <input
+                            type="password"
+                            class="form-control
+                          form-control-alternative"
+                            v-model="password"
+                          />
+                        </div>
+                        <div class="form-group focused">
+                          <label class="form-control-label" for="input-email"
+                            >Email address</label
+                          >
+                          <input
+                            type="email"
+                            id="input-email"
+                            class="form-control form-control-alternative"
+                            :placeholder="data.email"
+                            v-model="email"
                           />
                         </div>
                         <div class="form-group focused">
@@ -243,8 +267,8 @@
                             type="text"
                             id="input-birthdate"
                             class="form-control form-control-alternative"
-                            placeholder="Birthday"
-                            :value="data.birthday"
+                            :placeholder="data.birthday"
+                            v-model="birthday"
                           />
                         </div>
                       </div>
@@ -265,8 +289,20 @@
                           <input
                             id="input-address"
                             class="form-control form-control-alternative"
-                            placeholder="Home Address"
-                            :value="data.birthday"
+                            :placeholder="data.address"
+                            v-model="address"
+                            type="text"
+                          />
+                        </div>
+                        <div class="form-group focused">
+                          <label class="form-control-label" for="input-phone"
+                            >Phone number</label
+                          >
+                          <input
+                            id="input-address"
+                            class="form-control form-control-alternative"
+                            :placeholder="data.phone"
+                            v-model="phone"
                             type="text"
                           />
                         </div>
@@ -282,8 +318,8 @@
                             type="text"
                             id="input-city"
                             class="form-control form-control-alternative"
-                            placeholder="City"
-                            :value="data.city"
+                            :placeholder="data.city"
+                            v-model="city"
                           />
                         </div>
                       </div>
@@ -296,8 +332,8 @@
                             type="text"
                             id="input-country"
                             class="form-control form-control-alternative"
-                            placeholder="Country"
-                            :value="data.city"
+                            :placeholder="data.country"
+                            v-model="country"
                           />
                         </div>
                       </div>
@@ -310,8 +346,8 @@
                             type="number"
                             id="input-postal-code"
                             class="form-control form-control-alternative"
-                            placeholder="Postal code"
-                            :value="data.postalcode"
+                            :placeholder="data.postalcode"
+                            v-model="postalcode"
                           />
                         </div>
                       </div>
@@ -346,33 +382,103 @@
 
 <script>
 import axios from "axios";
+import swal from "sweetalert";
+
 export default {
   data() {
     return {
       data: [],
+      username: "",
+      firstname: "",
+      lastname: "",
+      password: "",
+      email: "",
+      address: "",
+      phone: "",
+      birthday: "",
+      city: "",
+      country: "",
+      userimg: "",
+      postalcode: "",
     };
   },
   props: {},
   methods: {
+    gohome() {
+      this.$router.push("/GeneralPage");
+    },
+    onSubmitUpdateInfo() {
+      console.log("clicked");
+      console.log(this.data.username);
+      if (this.username && this.email && this.firstname && this.lastname) {
+        axios
+          .put("http://localhost:3000/updateinfo/" + this.data.id, {
+            username: this.$data.username,
+            firstname: this.$data.firstname,
+            lastname: this.$data.lastname,
+            password: this.$data.password,
+            email: this.$data.email,
+            address: this.$data.address,
+            phone: this.$data.phone,
+            birthday: this.$data.birthday,
+            city: this.$data.city,
+            country: this.$data.country,
+            userimg: this.$data.userimg,
+            postalcode: this.$data.postalcode,
+          })
+          .then(({ data }) => console.log(data));
+        swal("Profile Updated", "Profile Updated successfully", "success");
+        return;
+      } else {
+        swal(
+          "Please fill up all the informations",
+          "Missing informations",
+          "error"
+        );
+      }
+    },
     getinfos() {
       const token = localStorage.getItem("token");
       const header = {
         Authorisation: `Bearer ${token}`,
       };
-      console.log("header generalpage ===>", header);
+      if (token == null) {
+        this.$router.push("/");
+        return;
+      }
       axios
         .get("http://localhost:3000/profile", { headers: header })
         .then(({ data }) => {
           this.$data.data = data;
+          this.$data.username = data.username;
+          this.$data.firstname = data.firstname;
+          this.$data.lastname = data.lastname;
+          this.$data.password = data.password;
+          this.$data.email = data.email;
+          this.$data.address = data.address;
+          this.$data.phone = data.phone;
+          this.$data.birthday = data.birthday;
+          this.$data.city = data.city;
+          this.$data.country = data.country;
+          this.$data.userimg = data.userimg;
+          this.$data.postalcode = data.postalcode;
           console.log("data from general", data);
+          if (data) {
+            this.$data.data = data;
+            return;
+          } else {
+            localStorage.removeItem("token");
+            this.$router.push("/");
+          }
         })
         .catch((error) => {
           console.log(error);
+          localStorage.removeItem("token");
+          this.$router.push("/");
         });
-      console.log("okokkok");
     },
   },
-  mounted() {
+  created() {
     this.getinfos();
   },
 };
@@ -431,7 +537,10 @@ html {
   -ms-overflow-style: scrollbar;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-
+li.nav-item a:hover {
+  background: #008ba3;
+  color: #ffffff !important;
+}
 h3.my-heading {
   font-family: "Kaushan Script", cursive;
   color: #fff;
