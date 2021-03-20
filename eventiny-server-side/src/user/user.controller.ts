@@ -24,8 +24,6 @@ export class UserController {
 
   @Get('profile')
   getinfo(@Headers() header): Promise<object | string> {
-    console.log('controller ====>', header.authorisation);
-
     return this.userRepo.getinfo(header.authorisation);
   }
 
@@ -35,5 +33,10 @@ export class UserController {
     @Body() body: object,
   ): Promise<Error | string> {
     return this.userRepo.updateInfo(id, body);
+  }
+
+  @Get('verify')
+  verifyUser(@Headers() token: string): Promise<Error | object | boolean> {
+    return this.userRepo.verifyUser(token);
   }
 }

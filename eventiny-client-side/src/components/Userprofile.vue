@@ -76,6 +76,9 @@
                 </a>
               </div>
             </li>
+            <li class="nav-item" @click.prevent="feed()" v-if="isLogged">
+              <a class="nav-link">Feed</a>
+            </li>
           </ul>
         </div>
       </nav>
@@ -121,6 +124,10 @@
                       <a><i type="file" class="fas fa-download"></i></a>
                     </a>
                   </div>
+                  <GeneralPage
+                    :dataCategories="dataCategories"
+                    :dataEvents="dataEvents"
+                  />
                 </div>
               </div>
               <div
@@ -435,7 +442,10 @@ export default {
       const header = {
         Authorisation: `Bearer ${token}`,
       };
-      console.log("header generalpage ===>", header);
+      if (token == null) {
+        this.$router.push("/");
+        return;
+      }
       axios
         .get("http://localhost:3000/profile", { headers: header })
         .then(({ data }) => {
@@ -453,14 +463,22 @@ export default {
           this.$data.userimg = data.userimg;
           this.$data.postalcode = data.postalcode;
           console.log("data from general", data);
+          if (data) {
+            this.$data.data = data;
+            return;
+          } else {
+            localStorage.removeItem("token");
+            this.$router.push("/");
+          }
         })
         .catch((error) => {
           console.log(error);
+          localStorage.removeItem("token");
+          this.$router.push("/");
         });
-      console.log("okokkok");
     },
   },
-  mounted() {
+  created() {
     this.getinfos();
   },
 };
@@ -519,7 +537,10 @@ html {
   -ms-overflow-style: scrollbar;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-
+li.nav-item a:hover {
+  background: #008ba3;
+  color: #ffffff !important;
+}
 h3.my-heading {
   font-family: "Kaushan Script", cursive;
   color: #fff;

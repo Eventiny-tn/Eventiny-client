@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="home">
-      <div><Home /></div>
+      <div><Home :getUserInfo="getUserInfo" /></div>
     </div>
   </div>
 </template>
@@ -14,5 +14,9 @@ export default {
   components: {
     Home,
   },
+  methods: {},
+  // mounted() {
+  //   this.getUserInfo();
+  // },
 };
 </script>
