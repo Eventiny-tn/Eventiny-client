@@ -77,6 +77,7 @@
                 v-for="event in dataEvents"
                 v-bind:key="event.id"
               >
+              
                 <div class="box21">
                   <img v-bind:src="event.caption" class="event-img" />
                   <div class="box-content">
