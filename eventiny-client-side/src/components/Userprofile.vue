@@ -33,7 +33,7 @@
                   <span class="avatar avatar-sm rounded-circle">
                     <img
                       alt="Image placeholder"
-                      src="https://media-exp1.licdn.com/dms/image/C4E03AQEcYOoDJgbs0g/profile-displayphoto-shrink_800_800/0/1616238063782?e=1621468800&v=beta&t=gk1RPlQmd4M6ojf5e5eyyNzs4DDoHU2es3DMLe0yVAI"
+                      src="https://i.pinimg.com/736x/6d/35/d8/6d35d834fe1b42b4d85c91e4ddea52ff.jpg"
                     />
                   </span>
 
@@ -50,22 +50,19 @@
                 <div class=" dropdown-header noti-title">
                   <h6 class="text-overflow m-0">Welcome!</h6>
                 </div>
-                <a
-                  href="https://upload.wikimedia.org/wikipedia/commons/d/d9/Festival_de_cinema_de_plein_air_de_visan.jpg"
-                  class="dropdown-item"
-                >
+                <a class="dropdown-item">
                   <i class="ni ni-single-02"></i>
                   <span>My profile</span>
                 </a>
-                <a href="../examples/profile.html" class="dropdown-item">
+                <a class="dropdown-item">
                   <i class="ni ni-settings-gear-65"></i>
                   <span>Settings</span>
                 </a>
-                <a href="../examples/profile.html" class="dropdown-item">
+                <a class="dropdown-item">
                   <i class="ni ni-calendar-grid-58"></i>
                   <span>Activity</span>
                 </a>
-                <a href="../examples/profile.html" class="dropdown-item">
+                <a class="dropdown-item">
                   <i class="ni ni-support-16"></i>
                   <span>Support</span>
                 </a>
@@ -85,7 +82,7 @@
       <!-- Header -->
       <div
         class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
-        style=" background-image: url(https://upload.wikimedia.org/wikipedia/commons/d/d9/Festival_de_cinema_de_plein_air_de_visan.jpg); background-position: center top;"
+        style=" background-image: url(https://images.pexels.com/photos/4258936/pexels-photo-4258936.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940); background-position: center top;"
       >
         <!-- Mask -->
         <span class="mask bg-gradient-default opacity-8"></span>
@@ -118,10 +115,14 @@
                   <div class="card-profile-image">
                     <a href="#">
                       <img
-                        src="https://media-exp1.licdn.com/dms/image/C4E03AQEcYOoDJgbs0g/profile-displayphoto-shrink_800_800/0/1616238063782?e=1621468800&v=beta&t=gk1RPlQmd4M6ojf5e5eyyNzs4DDoHU2es3DMLe0yVAI"
+                        src="https://i.pinimg.com/736x/6d/35/d8/6d35d834fe1b42b4d85c91e4ddea52ff.jpg"
                         class="rounded-circle"
                       />
-                      <a><i type="file" class="fas fa-download"></i></a>
+                      <input
+                        type="file"
+                        id="myfile"
+                        name="myfile"
+                      /><br /><br />
                     </a>
                   </div>
                   <GeneralPage
@@ -547,6 +548,9 @@ h3.my-heading {
   font-weight: bold;
   font-size: 30px;
   margin: 0;
+}
+.my-heading {
+  cursor: pointer;
 }
 span.bg-main {
   color: #008ba3;

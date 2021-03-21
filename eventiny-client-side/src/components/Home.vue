@@ -70,7 +70,7 @@
               <a @click.prevent="signin()">Sign in</a>
             </li>
             <li class="nav-link" id="loginbtn" v-if="isLogged == false">
-              <a id="signupbtn" @click.prevent="signup()">Get started</a>
+              <a id="signupbtns" @click.prevent="signup()">Get started</a>
             </li>
             <li
               class="nav-item"
@@ -961,6 +961,7 @@ body {
   color: white !important;
   font-size: 17px;
 }
+
 #loginbtn {
   font-size: 15px;
   border-radius: 2%;
