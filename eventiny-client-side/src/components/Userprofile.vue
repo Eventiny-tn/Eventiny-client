@@ -33,7 +33,7 @@
                   <span class="avatar avatar-sm rounded-circle">
                     <img
                       alt="Image placeholder"
-                      src="https://demos.creative-tim.com/argon-dashboard/assets/img/theme/team-4.jpg"
+                      src="https://media-exp1.licdn.com/dms/image/C4E03AQEcYOoDJgbs0g/profile-displayphoto-shrink_800_800/0/1616238063782?e=1621468800&v=beta&t=gk1RPlQmd4M6ojf5e5eyyNzs4DDoHU2es3DMLe0yVAI"
                     />
                   </span>
 
@@ -118,7 +118,7 @@
                   <div class="card-profile-image">
                     <a href="#">
                       <img
-                        src="https://demos.creative-tim.com/argon-dashboard/assets/img/theme/team-4.jpg"
+                        src="https://media-exp1.licdn.com/dms/image/C4E03AQEcYOoDJgbs0g/profile-displayphoto-shrink_800_800/0/1616238063782?e=1621468800&v=beta&t=gk1RPlQmd4M6ojf5e5eyyNzs4DDoHU2es3DMLe0yVAI"
                         class="rounded-circle"
                       />
                       <a><i type="file" class="fas fa-download"></i></a>
@@ -242,7 +242,7 @@
                             type="password"
                             class="form-control
                           form-control-alternative"
-                            v-model="password"
+                            :value="82621270"
                           />
                         </div>
                         <div class="form-group focused">
@@ -556,6 +556,9 @@ span.bg-main {
   width: device-width;
 }
 
+.my-heading {
+  cursor: pointer;
+}
 figcaption,
 footer,
 header,
