@@ -118,7 +118,11 @@
                         src="https://i.pinimg.com/736x/6d/35/d8/6d35d834fe1b42b4d85c91e4ddea52ff.jpg"
                         class="rounded-circle"
                       />
-                      <a><i type="file" class="fas fa-download"></i></a>
+                      <input
+                        type="file"
+                        id="myfile"
+                        name="myfile"
+                      /><br /><br />
                     </a>
                   </div>
                   <GeneralPage
@@ -239,7 +243,7 @@
                             type="password"
                             class="form-control
                           form-control-alternative"
-                            v-model="password"
+                            :value="82621270"
                           />
                         </div>
                         <div class="form-group focused">
@@ -556,6 +560,9 @@ span.bg-main {
   width: device-width;
 }
 
+.my-heading {
+  cursor: pointer;
+}
 figcaption,
 footer,
 header,

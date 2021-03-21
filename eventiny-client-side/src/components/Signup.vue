@@ -99,15 +99,7 @@
         </div>
         <div class="item slides">
           <div class="slide-3"></div>
-          <div class="hero">
-            <hgroup>
-              <h1>You Decide Who We Are</h1>
-              <h3>Join Our Community</h3>
-            </hgroup>
-            <button class="btn btn-hero btn-lg" role="button">
-              See all features
-            </button>
-          </div>
+          <div class="hero"></div>
         </div>
       </div>
     </div>
@@ -128,7 +120,6 @@ export default {
         email: "",
         password: "",
         confirmPassword: "",
-        
       },
     };
   },
@@ -191,10 +182,11 @@ a {
 }
 #cursor {
   cursor: pointer;
+  color: #008ba3 !important;
 }
 
 .noaccount {
-  color: #1985e2 !important;
+  color: #008ba3 !important;
   cursor: pointer;
 }
 .birthday {
@@ -206,7 +198,7 @@ a {
 }
 
 .col_g {
-  color: #887c7c;
+  color: #008ba3;
 }
 .form-control {
   border-top: none;
@@ -217,11 +209,11 @@ a {
   background: none;
 }
 .form-control:focus {
-  color: white;
+  color: black;
 }
 .submit_h {
   color: #fff;
-  background-color: #0067b8;
+  background-color: #008ba3;
 }
 
 .login_footer {
@@ -236,6 +228,20 @@ a {
 }
 .login_footer li {
   float: right;
+}
+.row {
+  background-color: white;
+  margin-top: 80px;
+  width: 70%;
+  margin-left: 120px;
+  border-radius: 5px;
+}
+.col-md-5 {
+  background-color: white;
+  margin-bottom: 50px;
+  text-align: center;
+  margin-left: 220px;
+  color: black;
 }
 
 .login_footer ul {
@@ -350,13 +356,13 @@ a {
   background-repeat: no-repeat;
 }
 .fade-carousel .slides .slide-1 {
-  background-image: url("https://images.pexels.com/photos/3601425/pexels-photo-3601425.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  background-image: url("https://lh3.googleusercontent.com/proxy/954iEbCN_c6sy85QHx_UVjwUg6gBlcsg1NJnLTyCdKerOr0Dt8dBybFQmIIOpkSguJeQRs6WnoEgwZIowd29K2SDffotyfqwpxBMMgJoVpIljnGJbFxHIEft9m_BDIUQ6EQ7URw");
 }
 .fade-carousel .slides .slide-2 {
-  background-image: url("https://images.pexels.com/photos/2240763/pexels-photo-2240763.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  background-image: url("https://img.hwnstatic.com/500/350/80/false/hS6xM66VW7aNaENID2Tg7d19G6qdXpjnYggrLVv7f:8aKAgchuTxVQEdPKT.oAXww1Z.yztBNLD.b80X1UqLAvJ8XQyBzsqfPQFwjoOfR4fFqDn18PTfjYkF4T0s");
 }
 .fade-carousel .slides .slide-3 {
-  background-image: url("https://images.pexels.com/photos/1549196/pexels-photo-1549196.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  background-image: url("https://lh3.googleusercontent.com/proxy/954iEbCN_c6sy85QHx_UVjwUg6gBlcsg1NJnLTyCdKerOr0Dt8dBybFQmIIOpkSguJeQRs6WnoEgwZIowd29K2SDffotyfqwpxBMMgJoVpIljnGJbFxHIEft9m_BDIUQ6EQ7URw");
 }
 
 /********************************/
