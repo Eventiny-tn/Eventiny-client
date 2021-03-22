@@ -78,24 +78,20 @@
         <div class="row">
           <div class="col-xs-12">
             <h4 style="line-height: 25px;">
-              Tiene capacidad para 150.000 personas, sorprende a todo el mundo y
-              no es el Santiago Bernabéu del Real Madrid, ni el Old Trafford del
-              Manchester United, ni el Camp Nou del FC Barcelona.
+              {{ eventDetails.name }}
             </h4>
           </div>
         </div>
         <div class="row row-eq-height" style="padding-right:15px">
           <div class="col-xs-9 text">
             <p>
-              El estadio de fútbol más grande del mundo es el Reungrado Primero
-              de Mayo, ubicado en Pionyang, capital de la república socialista
-              de Corea del Norte.
+              {{ eventDetails.caption }}
             </p>
             <p>
               Su edificación empezó en el año 1980. Nueve años después,
               concretamente el 1 de mayo de 1989, se abrió al público.
             </p>
-            <p class="semi-title">Tamaño y diseño</p>
+            <p class="semi-title">Title</p>
             <p>
               El área del inmueble es de 207.000 metros cuadrados, con un total
               de ocho pisos, y puede albergar a 150.000 personas.
@@ -120,7 +116,7 @@
               recordar el nacimiento del líder fundador de Corea del Norte, Kim
               Il-sung.
             </p>
-            <p class="semi-title">Remodelación</p>
+            <p class="semi-title">Reclamation</p>
             <p>
               En 2014, el estadio fue remodelado y el año pasado reabrió sus
               puertas.
@@ -135,7 +131,7 @@
           <div class="col-xs-3 side">
             <img
               style="max-width: 100%"
-              src="http://youthnesia.id//assets/img/images/Advertise-here.png"
+              src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8cGhvdG9ncmFwaHl8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&w=1000&q=80"
               alt="Photograph"
             />
 
@@ -177,7 +173,11 @@
   </div>
 </template>
 <script>
+import axios from "axios";
 export default {
+  props: {
+    eventDetails: Object,
+  },
   methods: {
     getUserInfo() {
       const token = localStorage.getItem("token");
@@ -204,7 +204,7 @@ export default {
         })
         .catch((err) => {
           console.log(err);
-          localStorage.removeItem("token");
+          // localStorage.removeItem("token");
         });
     },
   },
