@@ -106,13 +106,16 @@
           </div>
         </section>
       </main>
+      <div>
+        <UpgradeToPremium />
+      </div>
     </div>
   </header>
 </template>
 
 <script>
 import axios from "axios";
-
+import UpgradeToPremium from "./UpgradeToPremium.vue";
 export default {
   data() {
     return {
@@ -122,6 +125,9 @@ export default {
       dataCategories: [],
       dataEvents: [],
     };
+  },
+  components: {
+    UpgradeToPremium,
   },
 
   methods: {

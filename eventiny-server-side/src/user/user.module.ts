@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserController } from './user.controller';
 import { User } from './user.entity';
 import { UserService } from './user.service';
+import { GoogleStrategy } from 'src/auth/google-strategy';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { UserService } from './user.service';
   ],
 
   controllers: [UserController],
-  providers: [UserService],
+  providers: [UserService, GoogleStrategy],
+  exports: [UserService, JwtModule],
 })
 export class UserModule {}

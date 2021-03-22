@@ -37,6 +37,12 @@
                   </button>
                 </div>
                 <br /><br />
+                <div @click="googleLogin()">
+                  <button class="ui google plus button">
+                    <i class="google icon"></i>
+                    Google Plus
+                  </button>
+                </div>
                 <br /><br />
 
                 <a class="noaccount" @click="signup()"
@@ -107,6 +113,14 @@ export default {
     };
   },
   methods: {
+    googleLogin() {
+      // let route = this.$router.resolve(
+      //   { path: "/googleAuth" },
+      //   window.open(route, "http://localhost:3000")
+      // );
+      // window.open(routeData.href, "http://localhost:3000");
+      window.open("http://localhost:3000");
+    },
     onSubmitLogin(login) {
       if (login.email == "" || login.password == "") {
         swal(

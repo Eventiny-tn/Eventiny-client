@@ -6,13 +6,13 @@ import { Entity, Column, PrimaryGeneratedColumn, Unique } from 'typeorm';
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
-  @Column({ length: 25 })
+  @Column({ length: 25, default: null })
   username: string; //required
   @Column()
   firstname: string; //required
   @Column()
   lastname: string; //required
-  @Column()
+  @Column({ default: null })
   password: string; //required
   @Column()
   email: string; //required
