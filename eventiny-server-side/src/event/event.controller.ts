@@ -39,4 +39,8 @@ export class EventController {
   deleteOneById(@Param() id: number): Promise<Error | string> {
     return this.eventService.deleteOneById(id);
   }
+  @Get('category/:id')
+  filterEventByCategory(@Param() category: object): Promise<Error | object> {
+    return this.eventService.filterEventByCategory(category);
+  }
 }

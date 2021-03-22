@@ -27,6 +27,7 @@
               <a class="nav-item nav-link" data-toggle="dropdown"> Events</a>
               <div class="dropdown-menu">
                 <a
+                  @click="getEventByCategory(category.id)"
                   v-for="category in dataCategories"
                   v-bind:key="category.id"
                   class="dropdown-item"
@@ -175,7 +176,15 @@ export default {
         this.$data.dataCategories = data;
       });
     },
-    getEventByCategory() {},
+    getEventByCategory(id) {
+      axios
+        .get("http://localhost:3000/event/category/" + id)
+        .then(({ data }) => {
+          console.log(data);
+          this.$data.dataEvents = data;
+        })
+        .catch((err) => console.log(err));
+    },
   },
   mounted() {},
   beforeMount() {

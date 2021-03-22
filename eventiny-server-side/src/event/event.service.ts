@@ -1,7 +1,7 @@
 import { Event } from './event.entity';
 import { Body, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, Connection } from 'typeorm';
+import { Repository, Connection, getManager } from 'typeorm';
 import { Category } from 'src/category/category.entity';
 
 @Injectable()
@@ -86,5 +86,15 @@ export class EventService {
     } else {
       return new NotFoundException('NOT FOUND');
     }
+  }
+  async filterEventByCategory(id): Promise<Error | Object> {
+    console.log('=======>', id.id);
+    const events = await this.connection.manager
+      .getRepository(Event)
+      .createQueryBuilder('event')
+      .leftJoinAndSelect('event.categories', 'category')
+      .where(`event_id = ${id.id}`)
+      .getMany();
+    return events;
   }
 }
