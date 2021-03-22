@@ -116,6 +116,9 @@
         </div>
         <EventDetails :eventDetails="eventDetails" />
       </div>
+      <div>
+        <UpgradeToPremium />
+      </div>
     </div>
   </header>
 </template>
@@ -123,6 +126,7 @@
 <script>
 import axios from "axios";
 import EventDetails from "./EventDetails.vue";
+import UpgradeToPremium from "./UpgradeToPremium.vue";
 export default {
   data() {
     return {
@@ -137,6 +141,7 @@ export default {
   },
   components: {
     EventDetails,
+    UpgradeToPremium,
   },
 
   methods: {

@@ -151,14 +151,6 @@
                     <i class="ni location_pin mr-2"></i>{{ data.city }},
                     {{ data.country }}
                   </div>
-                  <!-- <div class="h5 mt-4">
-                    <i class="ni business_briefcase-24 mr-2"></i>Solution
-                    Manager - Creative Tim Officer
-                  </div>
-                  <div>
-                    <i class="ni education_hat mr-2"></i>University of Computer
-                    Science
-                  </div> -->
                   <hr class="my-4" />
                   <p>
                     Welcome to EventinyTN community, Be your own hero! Join,

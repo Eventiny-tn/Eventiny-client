@@ -91,4 +91,17 @@ export class UserService {
       return new NotFoundException('NOT FOUND');
     }
   }
+  async googleLogin(req) {
+    if (!req.user) {
+      return 'No user from google';
+    } else {
+      const data = await this.userRepository.save({
+        firstname: req.user.firstname,
+        lastname: req.user.lastname,
+        email: req.user.email,
+        userimg: req.user.userimg,
+      });
+      return data;
+    }
+  }
 }
