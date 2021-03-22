@@ -530,6 +530,7 @@ html {
   -ms-overflow-style: scrollbar;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+
 li.nav-item a:hover {
   background: #008ba3;
   color: #ffffff !important;

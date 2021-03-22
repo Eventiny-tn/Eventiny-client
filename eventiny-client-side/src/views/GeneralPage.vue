@@ -7,7 +7,6 @@
 <script>
 import GeneralPage from "../components/GeneralPage";
 import Userprofile from "../components/Useprofile.vue";
-
 export default {
   name: "GeneralPage",
   components: {

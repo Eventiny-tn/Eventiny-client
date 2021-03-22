@@ -8,7 +8,8 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { CategoryModule } from './category/category.module';
 import { EventModule } from './event/event.module';
-import { User } from './user/user.entity';
+import { PlannerRequestController } from './planner-request/planner-request.controller';
+import { PlannerRequestModule } from './planner-request/planner-request.module';
 
 @Module({
   imports: [
@@ -16,9 +17,9 @@ import { User } from './user/user.entity';
     UserModule,
     EventModule,
     CategoryModule,
-    TypeOrmModule.forFeature([User]),
+    PlannerRequestModule,
   ],
-  controllers: [AppController],
-  providers: [AppService, GoogleStrategy, UserService],
+  controllers: [AppController, PlannerRequestController],
+  providers: [AppService],
 })
 export class AppModule {}

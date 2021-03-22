@@ -1,7 +1,7 @@
-<template :v-if="dataCategories">
-  <header class="header-area overlay">
+<template>
+  <div>
     <nav class="navbar navbar-expand-md navbar-dark">
-      <div class="container">
+      <div class="containernav">
         <a class="navbar-brand" @click="langingPage()">
           <h3 class="my-heading">Eventiny<span class="bg-main">TN</span></h3>
         </a>
@@ -22,236 +22,95 @@
             <li>
               <a class="nav-item nav-link active" href="/GeneralPage">Home</a>
             </li>
-
-            <li class="dropdown">
-              <a class="nav-item nav-link" data-toggle="dropdown"> Events</a>
-              <div class="dropdown-menu">
-                <a
-                  @click="getEventByCategory(category.id, false)"
-                  v-for="category in dataCategories"
-                  v-bind:key="category.id"
-                  class="dropdown-item"
-                  >{{ category.name }}
-                </a>
-              </div>
-            </li>
-            <li class="dropdown">
-              <a class="nav-item nav-link" data-toggle="dropdown">Profile</a>
-              <div class="dropdown-menu">
-                <a @click="goprofile()" class="dropdown-item">
-                  <i class="far fa-user"></i>Profile: {{ data.username }}</a
-                >
-                <a class="dropdown-item" @click="logOut()">
-                  <i class="fas fa-sign-out-alt"></i> Logout</a
-                >
-              </div>
-            </li>
           </ul>
         </div>
       </div>
     </nav>
-    <div
-      class=" banner header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
-      style=" background-image: url(https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940) ; background-position: center top; opacity:0.7;"
-    >
+    <section class="pricing-area pt-100 pb-100" id="pricing">
       <div class="container">
-        <h1 class="getReady">Get ready</h1>
-        <p>
-          Good times are coming, and you're invited to create your Event
-        </p>
-        <a class="button button-primary">Start</a>
-        <div class="col-md-12 text-center mt-5">
-          <div class="scroll-down">
-            <a
-              class="btn btn-default btn-scroll floating-arrow"
-              href="#gobottom"
-              id="bottom"
-              ><i class="fa fa-angle-down"></i
-            ></a>
+        <div class="row">
+          <div class="col-xl-8 mx-auto text-center">
+            <div class="section-title">
+              <h4>cheap rate</h4>
+              <h2>our prices</h2>
+              <p>
+                Welcome to EventinyTN community, Be your own hero! Became an
+                event planner, organise and sponsorise events!
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-4">
+            <div class="single-price">
+              <div class="price-title">
+                <h4>free</h4>
+              </div>
+              <div class="price-tag">
+                <h2>$0 <span> 1 month</span></h2>
+              </div>
+              <div class="price-item">
+                <ul>
+                  <li>Limited posts</li>
+                  <li>Free for the first 50 users</li>
+                  <li>Not sposorised</li>
+                  <li>SSL Shopping Cart</li>
+                  <li>24/7 Live Support</li>
+                </ul>
+              </div>
+              <a href="" class="box-btn">Go for Free</a>
+            </div>
+          </div>
+          <div class="col-xl-4">
+            <div class="single-price">
+              <div class="price-title">
+                <h4>professional</h4>
+              </div>
+              <div class="price-tag center">
+                <h2>$12 <span> 3 month</span></h2>
+              </div>
+              <div class="price-item">
+                <ul>
+                  <li>Limited posts</li>
+                  <li>Mrketing solutions</li>
+                  <li>Sposorised</li>
+                  <li>SSL Shopping Cart</li>
+                  <li>24/7 Live Support</li>
+                </ul>
+              </div>
+              <a href="" class="box-btn">purchase now</a>
+            </div>
+          </div>
+          <div class="col-xl-4">
+            <div class="single-price">
+              <div class="price-title">
+                <h4>business</h4>
+              </div>
+              <div class="price-tag">
+                <h2>$35 <span>year</span></h2>
+              </div>
+              <div class="price-item">
+                <ul>
+                  <li>Unlimited posts</li>
+                  <li>Mrketing solutions</li>
+                  <li>Sposorised</li>
+                  <li>SSL Shopping Cart</li>
+                  <li>24/7 Live Support</li>
+                </ul>
+              </div>
+              <a href="" class="box-btn">purchase now</a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div>
-      <main>
-        <div v-if="onDetails === false">
-          <section id="gobottom" class="content">
-            <div class="container mt-40 mb-30">
-              <h3 class="text-center">Events</h3>
-              <div class="row mt-30">
-                <div
-                  class="col-md-4 col-sm-6"
-                  v-for="event in dataEvents"
-                  v-bind:key="event.id"
-                >
-                  <div class="box21">
-                    <img v-bind:src="event.caption" class="event-img" />
-                    <div class="box-content">
-                      <h4 class="title">{{ event.name }}</h4>
-                      <h6 class="title Location-date">
-                        <i class="fas event-icons fa-map-marker-alt"></i
-                        >{{ event.location }}
-                        <span
-                          ><i class="fas event-icons fa-calendar "></i>
-                          {{ event.dateStart }}</span
-                        >
-                      </h6>
-                      <p class="description">
-                        {{ event.cover }}
-                      </p>
-                      <a class="read-more" @click="changeView(event, true)"
-                        >read more</a
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-        </div>
-      </main>
-      <div v-if="onDetails == true">
-        <div>
-          <h1 class="my-heading">type here</h1>
-        </div>
-        <EventDetails :eventDetails="eventDetails" />
-      </div>
-    </div>
-  </header>
+    </section>
+  </div>
 </template>
 
 <script>
-import axios from "axios";
-import EventDetails from "./EventDetails.vue";
 export default {
-  data() {
-    return {
-      data: [],
-      isLogged: false,
-      userinfo: {},
-      dataCategories: [],
-      dataEvents: [],
-      onDetails: false,
-      eventDetails: [],
-    };
-  },
-  components: {
-    EventDetails,
-  },
-
-  methods: {
-    changeView(details = {}, value) {
-      this.$data.onDetails = value;
-      this.$data.eventDetails = details;
-      // console.log("heeeeeeeeeeeeeeeeeeeeeeeeeey", details);
-    },
-    logOut() {
-      localStorage.removeItem("token");
-      this.$router.push("/");
-    },
-    goprofile() {
-      this.$router.push("/Profile");
-    },
-    langingPage() {
-      this.$router.push("/");
-    },
-    getinfos() {
-      const token = localStorage.getItem("token");
-      const header = {
-        Authorisation: `Bearer ${token}`,
-      };
-      if (token == null) {
-        this.$router.push("/");
-        return;
-      }
-      console.log("header generalpage ===>", header);
-      axios
-        .get("http://localhost:3000/profile", { headers: header })
-        .then(({ data }) => {
-          if (data) {
-            this.$data.data = data;
-            return;
-          } else {
-            localStorage.removeItem("token");
-            this.$router.push("/");
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          localStorage.removeItem("token");
-          this.$router.push("/");
-        });
-    },
-    getevents() {
-      axios
-        .get("http://localhost:3000/event")
-        .then(({ data }) => {
-          console.log("events ============>", data);
-          this.$data.dataEvents = data;
-        })
-        .catch((err) => console.log(err));
-    },
-    getCategories() {
-      axios.get("http://localhost:3000/category").then(({ data }) => {
-        this.$data.dataCategories = data;
-      });
-    },
-    getEventByCategory(id, value) {
-      axios
-        .get("http://localhost:3000/event/category/" + id)
-        .then(({ data }) => {
-          console.log("ikdem====>", data);
-          this.$data.dataEvents = data;
-          this.$data.onDetails = value;
-        })
-        .catch((err) => console.log(err));
-    },
-  },
-  mounted() {},
-  beforeMount() {
-    this.getinfos();
-    this.getCategories();
-    this.getevents();
-  },
+  methods: {},
 };
-
-jQuery(function($) {
-  $(window).on("scroll", function() {
-    if ($(this).scrollTop() >= 200) {
-      $(".navbar").addClass("fixed-top");
-    } else if ($(this).scrollTop() == 0) {
-      $(".navbar").removeClass("fixed-top");
-    }
-  });
-
-  function adjustNav() {
-    var winWidth = $(window).width(),
-      dropdown = $(".dropdown"),
-      dropdownMenu = $(".dropdown-menu");
-
-    if (winWidth >= 768) {
-      dropdown.on("mouseenter", function() {
-        $(this)
-          .addClass("show")
-          .children(dropdownMenu)
-          .addClass("show");
-      });
-
-      dropdown.on("mouseleave", function() {
-        $(this)
-          .removeClass("show")
-          .children(dropdownMenu)
-          .removeClass("show");
-      });
-    } else {
-      dropdown.off("mouseenter mouseleave");
-    }
-  }
-
-  $(window).on("resize", adjustNav);
-
-  adjustNav();
-});
 </script>
 
 <style scoped>
@@ -357,6 +216,7 @@ p {
 }
 .navbar {
   position: absolute;
+  background: rgba(77, 73, 73, 0.85);
   left: 0;
   top: 0;
   padding: 0;
@@ -597,10 +457,11 @@ h3.my-heading {
   color: #fff;
   font-weight: bold;
   font-size: 30px;
-  margin: 0;
+  margin-top: 10px;
 }
 span.bg-main {
   color: #008ba3;
+  margin-top: 10px;
 }
 /* Galery*/
 .box21 {
@@ -777,5 +638,128 @@ a.btn.btn-default.btn-scroll {
 }
 .getReady {
   color: #008ba3;
+}
+
+.pb-100 {
+  padding-bottom: 100px;
+}
+.pt-100 {
+  padding-top: 100px;
+}
+a {
+  text-decoration: none;
+}
+.section-title h4 {
+  font-size: 14px;
+  font-weight: 500;
+  color: #777;
+}
+.section-title h2 {
+  font-size: 32px;
+  text-transform: capitalize;
+  margin: 15px 0;
+  display: inline-block;
+  position: relative;
+  font-weight: 700;
+  padding-bottom: 15px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.section-title p {
+  font-weight: 300;
+  font-size: 14px;
+}
+.black-bg .section-title h2,
+.black-bg .section-title h4,
+.black-bg .section-title p {
+  color: #fff;
+}
+.section-title h2:before {
+  position: absolute;
+  content: "";
+  width: 150px;
+  height: 1px;
+  background-color: #777;
+  bottom: 0;
+  left: 50%;
+  margin-left: -75px;
+}
+.section-title h2:after {
+  position: absolute;
+  content: "";
+  width: 80px;
+  height: 3px;
+  background-color: #008ba3;
+  border: darkblue;
+  bottom: -1px;
+  left: 50%;
+  margin-left: -40px;
+}
+.section-title {
+  margin-bottom: 70px;
+}
+.single-price {
+  text-align: center;
+  padding: 30px;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+}
+.price-title h4 {
+  font-size: 24px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.price-tag {
+  margin: 30px 0;
+}
+.price-tag {
+  margin: 30px 0;
+  background-color: #fafafa;
+  color: #000;
+  padding: 10px 0;
+}
+.center.price-tag {
+  background-color: #008ba3;
+  color: #fff;
+}
+.price-tag h2 {
+  font-size: 45px;
+  font-weight: 600;
+  font-family: poppins;
+}
+.price-tag h2 span {
+  font-weight: 300;
+  font-size: 16px;
+  font-style: italic;
+}
+.price-item ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.price-item ul li {
+  font-size: 14px;
+  padding: 5px 0;
+  border-bottom: 1px dashed #eee;
+  margin: 5px 0;
+}
+.price-item ul li:last-child {
+  border-bottom: 0;
+}
+.single-price a {
+  margin-top: 15px;
+}
+a.box-btn {
+  background-color: #008ba3;
+  padding: 5px 20px;
+  display: inline-block;
+  color: #fff;
+  text-transform: capitalize;
+  border-radius: 3px;
+  font-size: 15px;
+  transition: 0.3s;
+}
+a.box-btn:hover,
+a.border-btn:hover {
+  background-color: #008ba3;
 }
 </style>
