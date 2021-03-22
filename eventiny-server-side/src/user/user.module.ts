@@ -18,6 +18,6 @@ import { GoogleStrategy } from 'src/auth/google-strategy';
 
   controllers: [UserController],
   providers: [UserService, GoogleStrategy],
-  exports: [UserService, JwtModule],
+  exports: [UserService, JwtModule, TypeOrmModule.forFeature([User])],
 })
 export class UserModule {}

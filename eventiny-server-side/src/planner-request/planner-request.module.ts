@@ -8,5 +8,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
   imports: [TypeOrmModule.forFeature([PlannerRequest])],
   controllers: [PlannerRequestController],
   providers: [PlannerRequestService],
+  exports: [PlannerRequestService],
 })
 export class PlannerRequestModule {}
