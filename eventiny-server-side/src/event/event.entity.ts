@@ -57,7 +57,6 @@ export class Event {
     this.location = location;
     this.price = price;
     this.caption = caption;
-
     this.cover = cover;
     this.images = images;
   }
