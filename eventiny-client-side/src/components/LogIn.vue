@@ -57,36 +57,15 @@
       <div class="carousel-inner">
         <div class="item slides active">
           <div class="slide-1"></div>
-          <div class="hero">
-            <hgroup>
-              <h1>Join The Largest Events</h1>
-              <h3>Find Time To Enjoy</h3>
-            </hgroup>
-          </div>
+          <div class="hero"></div>
         </div>
         <div class="item slides">
           <div class="slide-2"></div>
-          <div class="hero">
-            <hgroup>
-              <h1>We are Family</h1>
-              <h3>Find Time To Enjoy</h3>
-            </hgroup>
-            <button class="btn btn-hero btn-lg" role="button">
-              See all features
-            </button>
-          </div>
+          <div class="hero"></div>
         </div>
         <div class="item slides">
           <div class="slide-3"></div>
-          <div class="hero">
-            <hgroup>
-              <h1>You Decide Who We Are</h1>
-              <h3>Join Our Community</h3>
-            </hgroup>
-            <button class="btn btn-hero btn-lg" role="button">
-              See all features
-            </button>
-          </div>
+          <div class="hero"></div>
         </div>
       </div>
     </div>
@@ -158,9 +137,26 @@ a {
 }
 #cursor {
   cursor: pointer;
+  color: #008ba3;
+}
+.row {
+  background-color: white;
+  margin-top: 80px;
+  width: 70%;
+  margin-left: 620px;
+  border-radius: 5px;
+  margin-top: 200px;
+}
+
+.col-md-5 {
+  background-color: white;
+  margin-bottom: 50px;
+  text-align: center;
+  margin-left: 160px;
+  color: black;
 }
 .noaccount {
-  color: #1985e2 !important;
+  color: #008ba3 !important;
   cursor: pointer;
 }
 .container {
@@ -169,7 +165,7 @@ a {
   width: 800px;
 }
 .col_g {
-  color: #887c7c;
+  color: #008ba3;
 }
 .form-control {
   border-top: none;
@@ -180,11 +176,11 @@ a {
   background: none;
 }
 .form-control:focus {
-  color: white;
+  color: black;
 }
 .submit_h {
   color: #fff;
-  background-color: #0067b8;
+  background-color: #008ba3;
 }
 .login_footer {
   position: fixed;
@@ -276,7 +272,7 @@ a {
   height: 100%;
   z-index: 2;
   background-color: #080d15;
-  opacity: 0.7;
+  opacity: 0.8;
 }
 /********************************/
 /*          Custom Buttons      */
@@ -305,7 +301,7 @@ a {
   background-repeat: no-repeat;
 }
 .fade-carousel .slides .slide-1 {
-  background-image: url("https://images.pexels.com/photos/3601425/pexels-photo-3601425.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  background-image: url("https://media-exp1.licdn.com/dms/image/C4D1BAQGRCL25mnKg7g/company-background_10000/0/1519798430700?e=2159024400&v=beta&t=yhScNxZXfaHO-eXQqzpIGWNRVeVJA77np3n587d7z4o");
 }
 .fade-carousel .slides .slide-2 {
   background-image: url("https://images.pexels.com/photos/2240763/pexels-photo-2240763.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");

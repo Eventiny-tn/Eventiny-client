@@ -356,7 +356,7 @@ a {
   background-repeat: no-repeat;
 }
 .fade-carousel .slides .slide-1 {
-  background-image: url("https://lh3.googleusercontent.com/proxy/954iEbCN_c6sy85QHx_UVjwUg6gBlcsg1NJnLTyCdKerOr0Dt8dBybFQmIIOpkSguJeQRs6WnoEgwZIowd29K2SDffotyfqwpxBMMgJoVpIljnGJbFxHIEft9m_BDIUQ6EQ7URw");
+  background-image: url("https://media-exp1.licdn.com/dms/image/C4D1BAQGRCL25mnKg7g/company-background_10000/0/1519798430700?e=2159024400&v=beta&t=yhScNxZXfaHO-eXQqzpIGWNRVeVJA77np3n587d7z4o");
 }
 .fade-carousel .slides .slide-2 {
   background-image: url("https://img.hwnstatic.com/500/350/80/false/hS6xM66VW7aNaENID2Tg7d19G6qdXpjnYggrLVv7f:8aKAgchuTxVQEdPKT.oAXww1Z.yztBNLD.b80X1UqLAvJ8XQyBzsqfPQFwjoOfR4fFqDn18PTfjYkF4T0s");
