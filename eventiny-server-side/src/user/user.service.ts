@@ -11,7 +11,7 @@ export class UserService {
     @InjectRepository(User) private userRepository: Repository<User>,
 
     private jwtService: JwtService,
-  ) { }
+  ) {}
   async signup(user: Userinfo): Promise<object | Error> {
     const username = await this.userRepository.findOne({
       username: user.username,
@@ -68,17 +68,6 @@ export class UserService {
     }
   }
 
-  async updateInfo(id, body): Promise<Error | string> {
-    console.log(body);
-
-    if (id && body) {
-      await this.userRepository.update(id, body);
-      return 'done';
-    } else {
-      return new NotFoundException('NOT FOUND');
-    }
-  }
-
   async verifyUser(token): Promise<Error | boolean | object> {
     try {
       const tokeN = await token.authorization.split(' ')[1];
@@ -88,6 +77,17 @@ export class UserService {
       });
       return user;
     } catch (err) {
+      return new NotFoundException('NOT FOUND');
+    }
+  }
+
+  async updateInfo(id, body): Promise<Error | string> {
+    console.log(body);
+
+    if (id && body) {
+      await this.userRepository.update(id, body);
+      return 'done';
+    } else {
       return new NotFoundException('NOT FOUND');
     }
   }
