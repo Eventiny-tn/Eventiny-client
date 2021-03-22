@@ -27,6 +27,7 @@
               <a class="nav-item nav-link" data-toggle="dropdown"> Events</a>
               <div class="dropdown-menu">
                 <a
+                  @click="getEventByCategory(category.id, false)"
                   v-for="category in dataCategories"
                   v-bind:key="category.id"
                   class="dropdown-item"
@@ -73,45 +74,55 @@
     </div>
     <div>
       <main>
-        <section id="gobottom" class="content">
-          <div class="container mt-40 mb-30">
-            <h3 class="text-center">Events</h3>
-            <div class="row mt-30">
-              <div
-                class="col-md-4 col-sm-6"
-                v-for="event in dataEvents"
-                v-bind:key="event.id"
-              >
-                <div class="box21">
-                  <img v-bind:src="event.caption" class="event-img" />
-                  <div class="box-content">
-                    <h4 class="title">{{ event.name }}</h4>
-                    <h6 class="title Location-date">
-                      <i class="fas event-icons fa-map-marker-alt"></i
-                      >{{ event.location }}
-                      <span
-                        ><i class="fas event-icons fa-calendar "></i>
-                        {{ event.dateStart }}</span
+        <div v-if="onDetails === false">
+          <section id="gobottom" class="content">
+            <div class="container mt-40 mb-30">
+              <h3 class="text-center">Events</h3>
+              <div class="row mt-30">
+                <div
+                  class="col-md-4 col-sm-6"
+                  v-for="event in dataEvents"
+                  v-bind:key="event.id"
+                >
+                  <div class="box21">
+                    <img v-bind:src="event.caption" class="event-img" />
+                    <div class="box-content">
+                      <h4 class="title">{{ event.name }}</h4>
+                      <h6 class="title Location-date">
+                        <i class="fas event-icons fa-map-marker-alt"></i
+                        >{{ event.location }}
+                        <span
+                          ><i class="fas event-icons fa-calendar "></i>
+                          {{ event.dateStart }}</span
+                        >
+                      </h6>
+                      <p class="description">
+                        {{ event.cover }}
+                      </p>
+                      <a class="read-more" @click="changeView(event, true)"
+                        >read more</a
                       >
-                    </h6>
-                    <p class="description">
-                      {{ event.cover }}
-                    </p>
-                    <a class="read-more">read more</a>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </div>
       </main>
+      <div v-if="onDetails == true">
+        <div>
+          <h1 class="my-heading">type here</h1>
+        </div>
+        <EventDetails :eventDetails="eventDetails" />
+      </div>
     </div>
   </header>
 </template>
 
 <script>
 import axios from "axios";
-
+import EventDetails from "./EventDetails.vue";
 export default {
   data() {
     return {
@@ -120,10 +131,20 @@ export default {
       userinfo: {},
       dataCategories: [],
       dataEvents: [],
+      onDetails: false,
+      eventDetails: [],
     };
+  },
+  components: {
+    EventDetails,
   },
 
   methods: {
+    changeView(details = {}, value) {
+      this.$data.onDetails = value;
+      this.$data.eventDetails = details;
+      // console.log("heeeeeeeeeeeeeeeeeeeeeeeeeey", details);
+    },
     logOut() {
       localStorage.removeItem("token");
       this.$router.push("/");
@@ -165,7 +186,7 @@ export default {
       axios
         .get("http://localhost:3000/event")
         .then(({ data }) => {
-          console.log("events ==============>", data);
+          console.log("events ============>", data);
           this.$data.dataEvents = data;
         })
         .catch((err) => console.log(err));
@@ -175,7 +196,16 @@ export default {
         this.$data.dataCategories = data;
       });
     },
-    getEventByCategory() {},
+    getEventByCategory(id, value) {
+      axios
+        .get("http://localhost:3000/event/category/" + id)
+        .then(({ data }) => {
+          console.log("ikdem====>", data);
+          this.$data.dataEvents = data;
+          this.$data.onDetails = value;
+        })
+        .catch((err) => console.log(err));
+    },
   },
   mounted() {},
   beforeMount() {
