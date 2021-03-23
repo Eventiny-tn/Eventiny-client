@@ -68,8 +68,6 @@ export class EventService {
           .then(() => {
             console.log('done');
           });
-        // save event
-
         return 'done';
       } catch (err) {
         return new NotFoundException('NOT FOUND');
