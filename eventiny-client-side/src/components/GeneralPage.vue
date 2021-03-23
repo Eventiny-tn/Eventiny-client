@@ -75,6 +75,15 @@
         </div>
       </div>
     </div>
+    <div class="banner" v-if="!formView" id="formPremium">
+      <div
+        v-if="!data.plannerDemand"
+        class=" banner header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
+      >
+        <UpgradeToPremium :userinfo="user" />
+      </div>
+      <!-- here you need to render the dashboard admin once its ready also wrapper it with else conditon -->
+    </div>
     <div>
       <main>
         <div v-if="onDetails === false">
@@ -119,9 +128,6 @@
         </div>
         <EventDetails :eventDetails="eventDetails" />
       </div>
-      <div v-if="!data.plannerDemand">
-        <UpgradeToPremium :userinfo="user" />
-      </div>
     </div>
   </header>
 </template>
@@ -130,6 +136,7 @@
 import axios from "axios";
 import EventDetails from "./EventDetails.vue";
 import UpgradeToPremium from "./UpgradeToPremium.vue";
+import PlannerDashboard from "./PlannerDashboard.vue";
 export default {
   data() {
     return {
@@ -146,6 +153,7 @@ export default {
   components: {
     EventDetails,
     UpgradeToPremium,
+    PlannerDashboard,
   },
 
   methods: {
@@ -155,7 +163,6 @@ export default {
     changeView(details = {}, value) {
       this.$data.onDetails = value;
       this.$data.eventDetails = details;
-      // console.log("heeeeeeeeeeeeeeeeeeeeeeeeeey", details);
     },
     logOut() {
       localStorage.removeItem("token");
@@ -198,7 +205,7 @@ export default {
       axios
         .get("http://localhost:3000/event")
         .then(({ data }) => {
-          console.log("events ============>", data);
+          console.log("events ==>", data);
           this.$data.dataEvents = data;
         })
         .catch((err) => console.log(err));
@@ -259,14 +266,15 @@ jQuery(function($) {
       dropdown.off("mouseenter mouseleave");
     }
   }
-
   $(window).on("resize", adjustNav);
-
   adjustNav();
 });
 </script>
 
 <style scoped>
+#formPremium {
+  margin: auto;
+}
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700,800");
 @import url("https://fonts.googleapis.com/css?family=Lobster");
 html {
@@ -359,7 +367,7 @@ p {
   text-align: center;
   z-index: 1;
   background-color: #999999;
-  font-family: "Kaushan Script", cursive;
+  /* font-family: "Kaushan Script", cursive; */
 }
 .banner h1 {
   font-weight: 800;

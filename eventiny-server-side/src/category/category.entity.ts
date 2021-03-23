@@ -14,6 +14,7 @@ export class Category {
   @ManyToMany((type) => Event, (event) => event.categories)
   event: Event[];
 }
+
 export interface CategoryType {
   name: string;
   image: string;

@@ -15,7 +15,7 @@
           <div class="thumbnail">
             <img
               class="img-responsive"
-              src="https://s3.amazonaws.com/ooomf-com-files/wdXqHcTwSTmLuKOGz92L_Landscape.jpg"
+              v-bind:src="eventDetails.images[0].image"
             />
           </div>
         </li>
@@ -23,7 +23,7 @@
           <div class="thumbnail">
             <img
               class="img-responsive"
-              src="https://s3.amazonaws.com/ooomf-com-files/tU3ptNgGSP6U2fE67Gvy_SYDNEY-162.jpg"
+              v-bind:src="eventDetails.images[1].image"
             />
           </div>
         </li>
@@ -31,24 +31,39 @@
           <div class="thumbnail">
             <img
               class="img-responsive"
-              src="https://s3.amazonaws.com/ooomf-com-files/mtNrf7oxS4uSxTzMBWfQ_DSC_0043.jpg"
+              v-bind:src="eventDetails.images[2].image"
             />
           </div>
         </li>
       </ol>
       <div class="carousel-inner">
         <div class="item slides active">
-          <div class="slide-1"></div>
+          <div
+            class="slide-1"
+            :style="{
+              backgroundImage: 'url(' + eventDetails.images[0].image + ')',
+            }"
+          ></div>
           <div class="container"></div>
         </div>
         <div class="item slides">
-          <div class="slide-2"></div>
+          <div
+            class="slide-2"
+            :style="{
+              backgroundImage: 'url(' + eventDetails.images[0].image + ')',
+            }"
+          ></div>
           <div class="container">
             <div class="carousel-caption"></div>
           </div>
         </div>
         <div class="item slides">
-          <div class="slide-3"></div>
+          <div
+            class="slide-3"
+            :style="{
+              backgroundImage: 'url(' + eventDetails.images[2].image + ')',
+            }"
+          ></div>
           <div class="container">
             <div class="carousel-caption"></div>
           </div>
@@ -96,26 +111,6 @@
               El área del inmueble es de 207.000 metros cuadrados, con un total
               de ocho pisos, y puede albergar a 150.000 personas.
             </p>
-            <p>
-              El techo posee 16 arcos que emulan los pétalos de una flor, y el
-              césped es natural. También cuenta con una piscina y saunas.
-            </p>
-            <p>
-              En él no solo se llevan a cabo partidos de fútbol y competencias
-              de atletismo (dispone de una pista de 400 metros), sino festivales
-              artísticos, así como eventos del Partido de los Trabajadores, que
-              gobierna el país desde 1948.
-            </p>
-            <p>
-              Dentro de las actividades que se realizan destaca el Festival
-              Arirang, que incluye espectáculos de circo, música, gimnasia y
-              danza.
-            </p>
-            <p>
-              Según la agencia EFE, este festival se celebra desde 2002 para
-              recordar el nacimiento del líder fundador de Corea del Norte, Kim
-              Il-sung.
-            </p>
             <p class="semi-title">Reclamation</p>
             <p>
               En 2014, el estadio fue remodelado y el año pasado reabrió sus
@@ -131,12 +126,14 @@
           <div class="col-xs-3 side">
             <img
               style="max-width: 100%"
-              src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8cGhvdG9ncmFwaHl8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&w=1000&q=80"
+              v-bind:src="eventDetails.cover"
               alt="Photograph"
             />
 
             <small>
-              <p style="margin-bottom:0px;"><b>Estadísticas</b></p>
+              <p style="margin-bottom:0px;">
+                <b>{{ eventDetails.user.username }}</b>
+              </p>
               <div class="statistics">
                 <p><span class="label label-default">Visitas 2550</span></p>
                 <p><span class="label label-default">Comentarios 15</span></p>
@@ -149,7 +146,7 @@
                 <b>Noticias importantes</b>
               </p>
               <ul class="list-group">
-                <li class="list-group-item">
+                <!-- <li class="list-group-item">
                   <big><b>1.</b></big> Cras justo odio
                 </li>
                 <li class="list-group-item">
@@ -161,9 +158,10 @@
                 <li class="list-group-item">
                   <big><b>4.</b></big> Porta ac consectetur ac
                 </li>
+                
                 <li class="list-group-item">
                   <big><b>5.</b></big> Vestibulum at eros
-                </li>
+                </li> -->
               </ul>
             </small>
           </div>
@@ -175,6 +173,9 @@
 <script>
 import axios from "axios";
 export default {
+  data() {
+    return {};
+  },
   props: {
     eventDetails: Object,
   },
@@ -235,15 +236,15 @@ export default {
 #thumbnail-preview-indicators .slides .slide-3 {
   height: 480px;
 }
-#thumbnail-preview-indicators .slides .slide-1 {
-  background-image: url(https://s3.amazonaws.com/ooomf-com-files/wdXqHcTwSTmLuKOGz92L_Landscape.jpg);
-}
-#thumbnail-preview-indicators .slides .slide-2 {
+/* #thumbnail-preview-indicators .slides .slide-1 {
+  /* background-image: url(https://s3.amazonaws.com/ooomf-com-files/tU3ptNgGSP6U2fE67Gvy_SYDNEY-162.jpg); }*/
+
+/* #thumbnail-preview-indicators .slides .slide-2 {
   background-image: url(https://s3.amazonaws.com/ooomf-com-files/tU3ptNgGSP6U2fE67Gvy_SYDNEY-162.jpg);
 }
 #thumbnail-preview-indicators .slides .slide-3 {
   background-image: url(https://s3.amazonaws.com/ooomf-com-files/mtNrf7oxS4uSxTzMBWfQ_DSC_0043.jpg);
-}
+} */
 #thumbnail-preview-indicators .carousel-inner .item .carousel-caption {
   top: 20%;
   bottom: inherit;

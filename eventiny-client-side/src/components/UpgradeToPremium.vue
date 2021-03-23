@@ -9,7 +9,7 @@
               How many events have you organized before?
             </h4>
             <p class="select">
-              <select name="cars" id="cars" v-model="firstQ">
+              <select name="cars" id="cars" v-model="firstQ" required>
                 <option value="1-5">1-5</option>
                 <option value="5-10">5-10</option>
                 <option value="10-50">10-50</option>
@@ -22,7 +22,13 @@
               How did you first hear about Eventiny?
             </h4>
             <p class="select">
-              <select class="budget" name="cars" id="cars" v-model="secondQ">
+              <select
+                class="budget"
+                name="cars"
+                id="cars"
+                v-model="secondQ"
+                required
+              >
                 <option value="friends">friends</option>
                 <option value="social media">social media</option>
                 <option value="events">events</option>
@@ -38,7 +44,13 @@
           <div>
             <h4>How often do you plan to host events?</h4>
             <p class="select">
-              <select class="budget" name="cars" id="cars" v-model="thirdQ">
+              <select
+                class="budget"
+                name="cars"
+                id="cars"
+                v-model="thirdQ"
+                required
+              >
                 <option value="weekly">weekly</option>
                 <option value="Monthly">Monthly</option>
                 <option value="From time to time">From time to time</option>
@@ -133,19 +145,34 @@ export default {
         });
     },
     submitForm() {
-      console.log("haalim", this.$data.data.id);
-      axios
-        .post("http://localhost:3000/plannerRequest", {
-          firstQ: this.firstQ,
-          secondQ: this.secondQ,
-          thirdQ: this.thirdQ,
-          message: this.messages,
-          userId: this.$data.data.id,
-        })
-        .then(({ data }) => {
-          console.log(data);
-        })
-        .catch((res) => console.log(err));
+      if (
+        this.firstQ &&
+        this.secondQ &&
+        this.thirdQ &&
+        this.messages &&
+        this.$data.data.id
+      ) {
+        console.log("haalim", this.$data.data.id);
+        axios
+          .post("http://localhost:3000/plannerRequest", {
+            firstQ: this.firstQ,
+            secondQ: this.secondQ,
+            thirdQ: this.thirdQ,
+            message: this.messages,
+            userId: this.$data.data.id,
+          })
+          .then(({ data }) => {
+            console.log(data);
+          })
+          .catch((res) => console.log(err));
+      } else {
+        swal({
+          title: "Please fill all the fields!",
+          icon: "warning",
+          button: "ok!",
+        });
+        return;
+      }
     },
   },
   created() {
