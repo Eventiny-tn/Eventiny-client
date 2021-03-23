@@ -20,6 +20,7 @@ export class UserController {
   signup(@Body() body: Userinfo): Promise<object | Error> {
     return this.userRepo.signup(body);
   }
+
   @Post('login')
   login(@Body() body: UserLog): Promise<object | string | Error> {
     return this.userRepo.login(body);
