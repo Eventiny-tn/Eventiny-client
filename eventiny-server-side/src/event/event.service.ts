@@ -118,6 +118,7 @@ export class EventService {
       .createQueryBuilder('event')
       .leftJoinAndSelect('event.categories', 'category')
       .where(`event_id = ${id.id}`)
+      .leftJoinAndSelect('event.images', 'image')
       .getMany();
     return events;
   }
