@@ -1,10 +1,14 @@
+import { Images } from '../images/images.entity';
 import { Category } from 'src/category/category.entity';
+import { User } from 'src/user/user.entity';
 import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
   ManyToMany,
   JoinTable,
+  ManyToOne,
+  OneToMany,
 } from 'typeorm';
 @Entity('event')
 export class Event {
@@ -26,8 +30,7 @@ export class Event {
   caption: string;
   @Column()
   cover: string;
-  @Column('simple-array')
-  images: string;
+
   @Column({ default: false })
   pending: boolean;
 
@@ -39,6 +42,11 @@ export class Event {
   })
   categories: Category[];
 
+  @ManyToOne(() => User, (user) => user.events)
+  user: User;
+
+  @OneToMany(() => Images, (image) => image.images)
+  images: Images[];
   constructor(
     name: string,
     time: string,
@@ -48,7 +56,6 @@ export class Event {
     price: number,
     caption: string,
     cover: string,
-    images: string,
   ) {
     this.name = name;
     this.time = time;
@@ -58,6 +65,5 @@ export class Event {
     this.price = price;
     this.caption = caption;
     this.cover = cover;
-    this.images = images;
   }
 }
