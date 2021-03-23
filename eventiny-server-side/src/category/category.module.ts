@@ -10,4 +10,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
   providers: [CategoryService],
   exports: [TypeOrmModule, CategoryService],
 })
+
+
+
+
+
+
 export class CategoryModule {}
