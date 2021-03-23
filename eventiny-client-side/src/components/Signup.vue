@@ -324,7 +324,7 @@ a {
   height: 100%;
   z-index: 2;
   background-color: #080d15;
-  opacity: 0.8;
+  opacity: 0.88;
   float: right !important;
 }
 
