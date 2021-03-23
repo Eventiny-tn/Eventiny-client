@@ -68,8 +68,6 @@ export class EventService {
           .then(() => {
             console.log('done');
           });
-        // save event
-
         return 'done';
       } catch (err) {
         return new NotFoundException('NOT FOUND');
@@ -118,6 +116,7 @@ export class EventService {
       .createQueryBuilder('event')
       .leftJoinAndSelect('event.categories', 'category')
       .where(`event_id = ${id.id}`)
+      .leftJoinAndSelect('event.images', 'image')
       .getMany();
     return events;
   }
