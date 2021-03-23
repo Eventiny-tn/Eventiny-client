@@ -1,5 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn, Unique } from 'typeorm';
-
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  Unique,
+  OneToMany,
+  ManyToOne,
+} from 'typeorm';
+import { Event } from '../event/event.entity';
 @Entity('user')
 @Unique(['username'])
 @Unique(['email'])
@@ -36,6 +43,9 @@ export class User {
   plannerDemand: boolean;
   @Column({ default: 0 })
   reportCounter: number;
+
+  @OneToMany(() => Event, (event) => event.user)
+  events: Event[];
 }
 
 export interface Userinfo {

@@ -3,6 +3,7 @@ import { Body, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, Connection, getManager } from 'typeorm';
 import { Category } from 'src/category/category.entity';
+import { Images } from 'src/images/images.entity';
 
 @Injectable()
 export class EventService {
@@ -11,6 +12,7 @@ export class EventService {
     private eventRepository: Repository<Event>,
     @InjectRepository(Category)
     private categoryRepository: Repository<Category>,
+
     private connection: Connection,
   ) {}
   async addEvent({
@@ -20,10 +22,11 @@ export class EventService {
     dateEnds,
     location,
     price,
-    images,
     caption,
+    images,
     cover,
     categories,
+    userId,
   }): Promise<Error | string> {
     if (name) {
       // await this.eventRepository.
@@ -34,12 +37,12 @@ export class EventService {
         dateEnds,
         location,
         price,
-        images,
         caption,
         cover,
       );
       try {
         event.categories = [];
+        event.user = userId;
         // find the id of the categories by name
         for (let i = 0; i < categories.length; i++) {
           var currentObj = await this.categoryRepository.find({
@@ -49,7 +52,24 @@ export class EventService {
             event.categories.push(currentObj[0]);
           }
         }
-        await this.connection.manager.save(event);
+
+        let myImages = [];
+        let arrayOfPromises = [];
+        images.forEach((element) => {
+          var img = new Images(element);
+          arrayOfPromises.push(this.connection.manager.save(img));
+          myImages.push(img);
+        });
+        Promise.all(arrayOfPromises)
+          .then(() => {
+            event.images = myImages;
+            return this.connection.manager.save(event);
+          })
+          .then(() => {
+            console.log('done');
+          });
+        // save event
+
         return 'done';
       } catch (err) {
         return new NotFoundException('NOT FOUND');
@@ -59,8 +79,12 @@ export class EventService {
 
   async getAllEvent(req): Promise<Error | object> {
     if (req) {
-      const data = await this.eventRepository.find();
-      return data;
+      const events = await this.connection
+        .getRepository(Event)
+        .createQueryBuilder('event')
+        .leftJoinAndSelect('event.images', 'image')
+        .getMany();
+      return events;
     } else {
       return new NotFoundException('NOT FOUND');
     }

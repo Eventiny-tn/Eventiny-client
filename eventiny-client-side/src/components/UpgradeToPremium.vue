@@ -3,35 +3,39 @@
     <div id="app">
       <form class="vue-form" @submit.prevent="submit">
         <fieldset>
-          <legend class="reservation-form-title">Reservation Form</legend>
+          <legend class="reservation-form-title">Upgrade To Premium</legend>
           <div>
-            <label class="label" for="name">Name</label>
-            <input type="text" name="name" id="name" v-model="formData.name" />
+            <h4 class="label" for="name">
+              What's your level of experience hosting events?
+            </h4>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              v-model="formData.firstQ"
+            />
           </div>
           <div>
-            <label class="label" for="phone">Phone Number</label>
+            <h4 class="label" for="phone">
+              How did you first hear about Eventiny?
+            </h4>
             <input
               type="text"
               name="phone"
               id="phone"
-              v-model="formData.phone"
+              v-model="formData.secondQ"
             />
           </div>
           <div>
-            <label class="label" for="email">Email</label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              :class="{ email, error: !formData.email.valid }"
-              v-model="formData.email.value"
-            />
+            <h4 class="label" for="email">
+              How many people help plan your events online?
+            </h4>
           </div>
-          <div v-show="!formData.email.valid" class="error-message">
+          <div v-show="!formData.thirdQ.valid" class="error-message">
             <p>{{ errorMessage }}</p>
           </div>
           <div>
-            <h4>Guests</h4>
+            <h4>How often do you plan to host events?</h4>
             <p class="select">
               <select class="budget" v-model="formData.guestNumber">
                 <option
@@ -47,59 +51,7 @@
           </div>
 
           <div>
-            <h4>Location</h4>
-
-            <ul class="vue-form-list">
-              <li>
-                <input
-                  type="radio"
-                  name="radio-1"
-                  id="radio-1"
-                  value="Dunhua"
-                  v-model="formData.location"
-                />
-                <label for="radio-1">Dunhua South Road, Taipei</label>
-              </li>
-              <li>
-                <input
-                  type="radio"
-                  name="radio-2"
-                  id="radio-2"
-                  value="Zhongxiao"
-                  v-model="formData.location"
-                />
-                <label for="radio-2">Zhongxiao East Road, Taipei</label>
-              </li>
-              <li>
-                <input
-                  type="radio"
-                  name="radio-3"
-                  id="radio-3"
-                  value="Civil"
-                  v-model="formData.location"
-                />
-                <label for="radio-3">Civil Rights East Road, Taipei</label>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4>Ｓomething You Need</h4>
-            <ul class="vue-form-list">
-              <li :v-for="(feature, index) in features">
-                <input
-                  type="checkbox"
-                  :value="feature"
-                  :id="'cb-feature-' + index"
-                  v-model="formData.needs"
-                />
-                <label :for="'cb-feature-' + index">{{ feature }}</label>
-              </li>
-              <li>
-                <input type="checkbox" id="checkbox-all" @click="checkAll" />
-                <label for="checkbox-all">Check All</label>
-              </li>
-            </ul>
+            <h4>How Would You Describe Yourself As An Event Planner</h4>
           </div>
           <div>
             <label class="label" for="textarea">Message</label>
@@ -116,18 +68,10 @@
             >
           </div>
           <div>
-            <input type="submit" value="Send Form" @click="submitForm" />
+            <input type="submit" value="Step One" @click="submitForm" />
           </div>
         </fieldset>
       </form>
-
-      <div class="debug">
-        <pre>
-    <p>Form Information</p>
-    <code>{{ $data.formData}}</code>
-    
-</pre>
-      </div>
     </div>
   </div>
 </template>
@@ -136,27 +80,23 @@ export default {
   data() {
     return {
       formData: {
-        name: "Sophie Wang",
-        phone: "0912123123",
-        email: {
-          value: "example@gmail.com",
+        firstQ: "",
+        secondQ: "",
+        thirdQ: {
+          value: "",
           valid: true,
         },
-        guestNumber: 1,
-        location: "Dunhua",
-        needs: [],
-        message: "hi...",
+        message: "",
       },
 
       guests: [
-        { value: 1, text: "1 adult" },
-        { value: 2, text: "2 adults" },
-        { value: 3, text: "3 adults" },
-        { value: 4, text: "4 adults" },
-        { value: 5, text: "5 adults" },
+        { value: 0, text: "Select One Of them please" },
+        { value: 1, text: "Game or Competition" },
+        { value: 2, text: "Tradeshow, Consumer Show, or Expo" },
+        { value: 3, text: "Conference" },
+        { value: 4, text: "Online" },
+        { value: 5, text: "Seminar or Talk" },
       ],
-      features: ["Birthday Cake", "Cupon", "Commemorative Photo"],
-
       errorMessage: "It is a valid email address.",
       message: {
         maxlength: 255,
@@ -168,8 +108,8 @@ export default {
     submitForm() {
       const name = this.formData.name;
       const email = this.formData.email.value;
-      var msg = "Hi, " + name + "! \n";
-      msg += "Booking information has been sent to " + email + ". \n";
+      let msg = "";
+      msg += "Your information has been sent to The Admin" + ". \n";
       msg += "Thank you ^_^";
       alert(msg);
     },
@@ -203,7 +143,44 @@ export default {
 
 <style scoped>
 /* @import url("https://fonts.googleapis.com/css?family=Source+Code+Pro:300,400"); */
+span.bg-main {
+  color: #008ba3;
+}
+#carroussel {
+  max-height: 20px;
+  min-height: 20px;
+}
+h3.my-heading {
+  font-family: "Kaushan Script", cursive;
+  color: #fff;
+  font-weight: bold;
+  font-size: 30px;
+  margin: 0;
+}
+body,
+html {
+  height: 100vh;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  overflow-x: hidden;
+}
 
+/*home*/
+.carousel {
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+.carousel .carousel-inner {
+  height: 100%;
+}
+.carousel .carousel-inner img {
+  display: block;
+  object-fit: cover;
+}
 *,
 *::after,
 *::before {
@@ -252,7 +229,9 @@ header h1 {
   display: flex;
   background-color: #008ba3;
 }
-
+.label {
+  font-size: 20px;
+}
 .vue-form {
   font-size: 16px;
   width: 900px;
@@ -477,12 +456,17 @@ header h1 {
   padding: 4px;
   color: #787878;
 }
-
+.logo {
+  margin-left: 30%;
+}
 .debug {
+  display: block;
+  justify-content: center;
+  align-content: center;
   border-radius: 4px;
   margin: 50px auto;
   width: 500px;
-  background-color: #000;
+  background-color: rgba(0, 0, 0, 0.8);
   padding: 30px;
   background: rgba(0, 0, 0, 0.8);
   box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.3);

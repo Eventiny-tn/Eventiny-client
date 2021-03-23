@@ -12,6 +12,7 @@ import { EventModule } from './event/event.module';
 import { PlannerRequestModule } from './planner-request/planner-request.module';
 import { JwtModule, JwtService } from '@nestjs/jwt';
 import { User } from './user/user.entity';
+import { ImagesModule } from './images/images.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { User } from './user/user.entity';
     CategoryModule,
     PlannerRequestModule,
     TypeOrmModule.forFeature([User]),
+    ImagesModule,
   ],
   controllers: [AppController],
   providers: [AppService, GoogleStrategy],
