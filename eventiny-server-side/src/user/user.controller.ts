@@ -1,3 +1,4 @@
+import { Req, UseGuards } from '@nestjs/common';
 import {
   Body,
   Controller,
@@ -7,6 +8,8 @@ import {
   Put,
   Param,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+import { get } from 'node:http';
 
 import { Userinfo, UserLog } from './user.entity';
 import { UserService } from './user.service';
@@ -38,5 +41,15 @@ export class UserController {
   @Get('verify')
   verifyUser(@Headers() token: string): Promise<Error | object | boolean> {
     return this.userRepo.verifyUser(token);
+  }
+  @Get()
+  @UseGuards(AuthGuard('google'))
+  async googleAuth(@Req() req) {
+    return this.userRepo.googleLogin(req);
+  }
+  @Get('auth/google/callback')
+  @UseGuards(AuthGuard('google'))
+  googleAuthRedirect(@Req() req) {
+    return this.userRepo.googleLogin(req);
   }
 }

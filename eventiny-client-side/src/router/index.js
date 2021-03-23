@@ -6,6 +6,7 @@ import Userprofile from "../components/Userprofile";
 import GeneralPage from "../components/GeneralPage";
 import EventDetails from "../components/EventDetails";
 import PlannerRequest from "../components/PlannerRequest";
+import PlannerDashboard from "../components/PlannerDashboard";
 
 const routes = [
   {
@@ -46,6 +47,11 @@ const routes = [
     path: "/PlannerRequest",
     name: "PlannerRequest",
     component: PlannerRequest,
+  },
+  {
+    path: "/PlannerDashboard",
+    name: "PlannerDashboard",
+    component: PlannerDashboard,
   },
 ];
 

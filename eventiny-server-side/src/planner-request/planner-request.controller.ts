@@ -3,6 +3,5 @@ import { PlannerRequestService } from './planner-request.service';
 
 @Controller('planner-request')
 export class PlannerRequestController {
-  // constructor(private readonly plannerRequestService: PlannerRequestService) {
-  // }
+  constructor(private readonly plannerRequestService: PlannerRequestService) {}
 }
