@@ -131,7 +131,7 @@
           <div class="col-xs-3 side">
             <img
               style="max-width: 100%"
-              src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8cGhvdG9ncmFwaHl8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&w=1000&q=80"
+              v-bind:src=eventDetails.caption
               alt="Photograph"
             />
 
