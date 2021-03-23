@@ -53,13 +53,16 @@
     <div
       class=" banner header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
       style=" background-image: url(https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260) ; background-position: center top; opacity:0.7;"
+      v-if="formView"
     >
       <div class="container">
         <h1 class="getReady">Get ready</h1>
         <p>
           Good times are coming, and you're invited to create your Event
         </p>
-        <a class="button button-primary">Start</a>
+        <a class="button button-primary" @click="switchToFormPremium()">
+          Start</a
+        >
         <div class="col-md-12 text-center mt-5">
           <div class="scroll-down">
             <a
@@ -116,8 +119,8 @@
         </div>
         <EventDetails :eventDetails="eventDetails" />
       </div>
-      <div>
-        <UpgradeToPremium />
+      <div v-if="!data.plannerDemand">
+        <UpgradeToPremium :userinfo="user" />
       </div>
     </div>
   </header>
@@ -137,6 +140,7 @@ export default {
       dataEvents: [],
       onDetails: false,
       eventDetails: [],
+      formView: true,
     };
   },
   components: {
@@ -145,6 +149,9 @@ export default {
   },
 
   methods: {
+    switchToFormPremium() {
+      this.formView = false;
+    },
     changeView(details = {}, value) {
       this.$data.onDetails = value;
       this.$data.eventDetails = details;

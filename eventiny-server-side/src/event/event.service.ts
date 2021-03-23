@@ -117,6 +117,7 @@ export class EventService {
       .leftJoinAndSelect('event.categories', 'category')
       .where(`event_id = ${id.id}`)
       .leftJoinAndSelect('event.images', 'image')
+      .leftJoinAndSelect('event.user', 'user')
       .getMany();
     return events;
   }
