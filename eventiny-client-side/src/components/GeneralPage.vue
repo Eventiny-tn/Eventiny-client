@@ -85,7 +85,7 @@
                   v-bind:key="event.id"
                 >
                   <div class="box21">
-                    <img v-bind:src="event.caption" class="event-img" />
+                    <img v-bind:src="event.cover" class="event-img" />
                     <div class="box-content">
                       <h4 class="title">{{ event.name }}</h4>
                       <h6 class="title Location-date">
@@ -97,7 +97,7 @@
                         >
                       </h6>
                       <p class="description">
-                        {{ event.cover }}
+                        {{ event.caption }}
                       </p>
                       <a class="read-more" @click="changeView(event, true)"
                         >read more</a
