@@ -81,6 +81,8 @@ export class EventService {
         .getRepository(Event)
         .createQueryBuilder('event')
         .leftJoinAndSelect('event.images', 'image')
+        .leftJoinAndSelect('event.user', 'user')
+
         .getMany();
       return events;
     } else {
@@ -115,8 +117,9 @@ export class EventService {
       .getRepository(Event)
       .createQueryBuilder('event')
       .leftJoinAndSelect('event.categories', 'category')
-      .where(`event_id = ${id.id}`)
       .leftJoinAndSelect('event.images', 'image')
+      .leftJoinAndSelect('event.user', 'user')
+      .where(`event_id = ${id.id}`)
       .getMany();
     return events;
   }

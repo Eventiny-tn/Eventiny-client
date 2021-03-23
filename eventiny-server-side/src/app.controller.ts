@@ -3,7 +3,6 @@ import { Req } from '@nestjs/common';
 import { Controller, Get } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { AppService } from './app.service';
-import { UserService } from './user/user.service';
 
 @Controller()
 export class AppController {

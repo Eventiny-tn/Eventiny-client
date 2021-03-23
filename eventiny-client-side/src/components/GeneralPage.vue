@@ -252,9 +252,7 @@ jQuery(function($) {
       dropdown.off("mouseenter mouseleave");
     }
   }
-
   $(window).on("resize", adjustNav);
-
   adjustNav();
 });
 </script>
