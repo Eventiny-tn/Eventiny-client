@@ -58,7 +58,7 @@
                   <li>24/7 Live Support</li>
                 </ul>
               </div>
-              <a href="" class="box-btn">Go for Free</a>
+              <a class="box-btn">Go for Free</a>
             </div>
           </div>
           <div class="col-xl-4">
@@ -109,7 +109,9 @@
 
 <script>
 export default {
-  methods: {},
+  methods: {
+    
+  },
 };
 </script>
 
@@ -747,6 +749,9 @@ a {
 }
 .single-price a {
   margin-top: 15px;
+}
+.box-btn {
+  cursor: pointer;
 }
 a.box-btn {
   background-color: #008ba3;
