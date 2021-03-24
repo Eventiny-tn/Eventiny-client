@@ -1,71 +1,348 @@
-<!doctype html>
-<html>
-
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Simple Transactional Email</title>
-    <style>
-        /* -------------------------------------
-          GLOBAL RESETS
-      ------------------------------------- */
-        /*All the styling goes here*/
+    <style type="text/css">body, html {
+      margin: 0px;
+      padding: 0px;
+      -webkit-font-smoothing: antialiased;
+      text-size-adjust: none;
+      width: 100% !important;
+    }
+      table td, table {
+      }
+      #outlook a {
+        padding: 0px;
+      }
+      .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {
+        line-height: 100%;
+      }
+      .ExternalClass {
+        width: 100%;
+      }
+      @media only screen and (max-width: 480px) {
+        table tr td table.edsocialfollowcontainer {
+          width: auto !important;
+        }
+        table, table tr td, table td {
+          width: 100% !important;
+        }
         img {
-            border: none;
-            -ms-interpolation-mode: bicubic;
-            max-width: 100%;
+          width: inherit;
         }
-        body {
-            background-color: #f6f6f6;
-            font-family: sans-serif;
-            -webkit-font-smoothing: antialiased;
-            font-size: 14px;
-            line-height: 1.4;
-            margin: 0;
-            padding: 0;
-            -ms-text-size-adjust: 100%;
-            -webkit-text-size-adjust: 100%;
+        .layer_2 {
+          max-width: 100% !important;
         }
-        table {
-            border-collapse: separate;
-            mso-table-lspace: 0pt;
-            mso-table-rspace: 0pt;
-            width: 100%;
+        .edsocialfollowcontainer table {
+          max-width: 25% !important;
         }
-        table td {
-            font-family: sans-serif;
-            font-size: 14px;
-            vertical-align: top;
+        .edsocialfollowcontainer table td {
+          padding: 10px !important;
         }
-        /* -------------------------------------
-          BODY & CONTAINER
-      ------------------------------------- */
-        .body {
-            background-color: #f6f6f6;
-            width: 100%;
-        }
-        /* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */
-        .container {
-            display: block;
-            margin: 0 auto !important;
-            /* makes it centered */
-            max-width: 580px;
-            padding: 10px;
-            width: 580px;
-        }
-        /* This should also be a block element, so that it will fill 100% of the .container */
-        .content {
-            box-sizing: border-box;
-            display: block;
-            margin: 0 auto;
-            max-width: 580px;
-            padding: 10px;
-        }
-        /* -------------------------------------
-          HEADER, FOOTER, MAIN
-      ------------------------------------- */
-        .main {
-            background: #ffffff;
-            border-radius: 3px;
-            width: 100%;
-        }
+      }
+    </style>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.css">
+  </head>
+  <body style="padding:0; margin: 0;background: #7c7c75" data-new-gr-c-s-loaded="14.1001.0">
+    <table style="height: 100%; width: 100%; background-color: #7c7c75;" align="center">
+      <tbody>
+        <tr>
+          <td valign="top" id="dbody" data-version="2.31" style="width: 100%; height: 100%; padding-top: 30px; padding-bottom: 30px; background-color: #7c7c75;">
+            <!--[if (gte mso 9)|(IE)]><table align="center" style="max-width:600px" width="600" cellpadding="0" cellspacing="0" border="0"><tr><td valign="top"><![endif]-->
+            <table class="layer_1" align="center" border="0" cellpadding="0" cellspacing="0" style="max-width: 600px; box-sizing: border-box; width: 100%; margin: 0px auto;">
+              <tbody>
+                <tr>
+                  <td class="drow" valign="top" align="center" style="background-color: #ffffff; box-sizing: border-box; font-size: 0px; text-align: center;">
+                    <!--[if (gte mso 9)|(IE)]><table width="100%" align="center" cellpadding="0" cellspacing="0" border="0"><tr><td valign="top"><![endif]-->
+                    <div class="layer_2" style="max-width: 600px; display: inline-block; vertical-align: top; width: 100%;">
+                      <table border="0" cellspacing="0" cellpadding="0" class="edcontent" style="border-collapse: collapse;width:100%">
+                        <tbody>
+                          <tr>
+                            <td valign="top" class="edimg" style="padding: 0px; box-sizing: border-box; text-align: center;">
+                              <img src="https://api.elasticemail.com/userfile/12301ee9-d04b-4adb-84db-0e43666eaa22/friargray_header4.png" alt="Image" width="600" style="border-width: 0px; border-style: none; max-width: 600px; width: 100%;">
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]-->
+                  </td>
+                </tr>
+                <tr>
+                  <td class="drow" valign="top" align="center" style="background-color: #ffffff; box-sizing: border-box; font-size: 0px; text-align: center;">
+                    <!--[if (gte mso 9)|(IE)]><table width="100%" align="center" cellpadding="0" cellspacing="0" border="0"><tr><td valign="top"><![endif]-->
+                    <div class="layer_2" style="max-width: 600px; display: inline-block; vertical-align: top; width: 100%;">
+                      <table border="0" cellspacing="0" cellpadding="0" class="edcontent" style="border-collapse: collapse;width:100%">
+                        <tbody>
+                          <tr>
+                            <td valign="top" class="emptycell" style="padding: 10px;">
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]-->
+                  </td>
+                </tr>
+                <tr>
+                  <td class="drow" valign="top" align="center" style="background-color: #ffffff; box-sizing: border-box; font-size: 0px; text-align: center;">
+                    <!--[if (gte mso 9)|(IE)]><table width="100%" align="center" cellpadding="0" cellspacing="0" border="0"><tr><td valign="top"><![endif]-->
+                    <div class="layer_2" style="max-width: 600px; display: inline-block; vertical-align: top; width: 100%;">
+                      <table border="0" cellspacing="0" class="edcontent" style="border-collapse: collapse;width:100%">
+                        <tbody>
+                          <tr>
+                            <td valign="top" class="edtext" style="padding: 20px; text-align: left; color: #5f5f5f; font-size: 14px; font-family: Helvetica, Arial, sans-serif; word-break: break-word; direction: ltr; box-sizing: border-box;">
+                              <p class="style1 text-center" style="text-align: center; margin: 0px; padding: 0px; color: #7c7c75; font-size: 28px; font-family: Helvetica, Arial, sans-serif;">Congras! You became an Event&nbsp;Planner.
+                              </p>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]-->
+                  </td>
+                </tr>
+                <tr>
+                  <td class="drow" valign="top" align="center" style="background-color: #ffffff; box-sizing: border-box; font-size: 0px; text-align: center;">
+                    <!--[if (gte mso 9)|(IE)]><table width="100%" align="center" cellpadding="0" cellspacing="0" border="0"><tr><td valign="top"><![endif]-->
+                    <div class="layer_2" style="max-width: 600px; display: inline-block; vertical-align: top; width: 100%;">
+                      <table border="0" cellspacing="0" cellpadding="0" class="edcontent" style="border-collapse: collapse;width:100%">
+                        <tbody>
+                          <tr>
+                            <td valign="top" class="emptycell" style="padding: 10px;">
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]-->
+                  </td>
+                </tr>
+                <tr>
+                  <td class="drow" valign="top" align="center" style="background-color: #ffffff; box-sizing: border-box; font-size: 0px; text-align: center;">
+                    <!--[if (gte mso 9)|(IE)]><table width="100%" align="center" cellpadding="0" cellspacing="0" border="0"><tr><td valign="top"><![endif]-->
+                    <div class="layer_2" style="max-width: 600px; display: inline-block; vertical-align: top; width: 100%;">
+                      <table border="0" cellspacing="0" cellpadding="0" class="edcontent" style="border-collapse: collapse;width:100%">
+                        <tbody>
+                          <tr>
+                            <td valign="top" class="breakline" style="padding: 0px;">
+                              <div style="border-style: solid none none; border-width: 1px 0px 0px; margin: 8px 100px; border-top-color: #7c7c75;">
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]-->
+                  </td>
+                </tr>
+                <tr>
+                  <td class="drow" valign="top" align="center" style="background-color: #ffffff; box-sizing: border-box; font-size: 0px; text-align: center;">
+                    <!--[if (gte mso 9)|(IE)]><table width="100%" align="center" cellpadding="0" cellspacing="0" border="0"><tr><td valign="top"><![endif]-->
+                    <div class="layer_2" style="max-width: 600px; display: inline-block; vertical-align: top; width: 100%;">
+                      <table border="0" cellspacing="0" class="edcontent" style="border-collapse: collapse;width:100%">
+                        <tbody>
+                          <tr>
+                            <td valign="top" class="edtext" style="padding: 20px; text-align: left; color: #5f5f5f; font-size: 14px; font-family: Helvetica, Arial, sans-serif; word-break: break-word; direction: ltr; box-sizing: border-box;">
+                              <p class="text-center" style="text-align: center; margin: 0px; padding: 0px;">&nbsp;
+                                <strong>With Love By Eventiny Tn
+                                </strong>
+                              </p>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]-->
+                  </td>
+                </tr>
+                <tr>
+                  <td class="drow" valign="top" align="center" style="background-color: #ffffff; box-sizing: border-box; font-size: 0px; text-align: center;">
+                    <!--[if (gte mso 9)|(IE)]><table width="100%" align="center" cellpadding="0" cellspacing="0" border="0"><tr><td valign="top"><![endif]-->
+                    <div class="layer_2" style="max-width: 600px; display: inline-block; vertical-align: top; width: 100%;">
+                      <table border="0" cellspacing="0" cellpadding="0" class="edcontent" style="border-collapse: collapse;width:100%">
+                        <tbody>
+                          <tr>
+                            <td valign="top" class="breakline" style="padding: 0px;">
+                              <div style="border-style: solid none none; border-width: 1px 0px 0px; margin: 8px 100px; border-top-color: #7c7c75;">
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]-->
+                  </td>
+                </tr>
+                <tr>
+                  <td class="drow" valign="top" align="center" style="background-color: #ffffff; box-sizing: border-box; font-size: 0px; text-align: center;">
+                    <!--[if (gte mso 9)|(IE)]><table width="100%" align="center" cellpadding="0" cellspacing="0" border="0"><tr><td valign="top"><![endif]-->
+                    <div class="layer_2" style="max-width: 600px; display: inline-block; vertical-align: top; width: 100%;">
+                      <table border="0" cellspacing="0" class="edcontent" style="border-collapse: collapse;width:100%">
+                        <tbody>
+                          <tr>
+                            <td valign="top" class="edtext" style="padding: 20px; text-align: left; color: #5f5f5f; font-size: 14px; font-family: Helvetica, Arial, sans-serif; word-break: break-word; direction: ltr; box-sizing: border-box;">
+                              <p class="text-center" style="text-align: center; margin: 0px; padding: 0px;">Enjoy the free trial, with a lot of features.
+                              </p>
+                              <p class="text-center" style="text-align: center; margin: 0px; padding: 0px;">You will pay only starting by the next month.
+                              </p>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]-->
+                  </td>
+                </tr>
+                <tr>
+                  <td class="drow" valign="top" align="center" style="background-color: #ffffff; box-sizing: border-box; font-size: 0px; text-align: center;">
+                    <!--[if (gte mso 9)|(IE)]><table width="100%" align="center" cellpadding="0" cellspacing="0" border="0"><tr><td valign="top"><![endif]-->
+                    <div class="layer_2" style="max-width: 600px; display: inline-block; vertical-align: top; width: 100%;">
+                      <table border="0" cellspacing="0" cellpadding="0" class="edcontent" style="border-collapse: collapse;width:100%">
+                        <tbody>
+                          <tr>
+                            <td valign="top" class="breakline" style="padding: 0px;">
+                              <div style="border-style: solid none none; border-width: 1px 0px 0px; margin: 8px 100px; border-top-color: #7c7c75;">
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]-->
+                  </td>
+                </tr>
+                <tr>
+                  <td class="drow" valign="top" align="center" style="background-color: #ffffff; box-sizing: border-box; font-size: 0px; text-align: center;">
+                    <!--[if (gte mso 9)|(IE)]><table width="100%" align="center" cellpadding="0" cellspacing="0" border="0"><tr><td valign="top"><![endif]-->
+                    <div class="layer_2" style="max-width: 600px; display: inline-block; vertical-align: top; width: 100%;">
+                      <table border="0" cellspacing="0" class="edcontent" style="border-collapse: collapse;width:100%">
+                        <tbody>
+                          <tr>
+                            <td valign="top" class="edtext" style="padding: 20px; text-align: left; color: #5f5f5f; font-size: 14px; font-family: Helvetica, Arial, sans-serif; word-break: break-word; direction: ltr; box-sizing: border-box;">
+                              <p class="style1 text-right" style="text-align: right; margin: 0px; padding: 0px; color: #7c7c75; font-size: 28px; font-family: Helvetica, Arial, sans-serif;">Total price: $0&nbsp; &nbsp; &nbsp; &nbsp;
+                              </p>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]-->
+                  </td>
+                </tr>
+                <tr>
+                  <td class="drow" valign="top" align="center" style="background-color: #ffffff; box-sizing: border-box; font-size: 0px; text-align: center;">
+                    <!--[if (gte mso 9)|(IE)]><table width="100%" align="center" cellpadding="0" cellspacing="0" border="0"><tr><td valign="top"><![endif]-->
+                    <div class="layer_2" style="max-width: 600px; display: inline-block; vertical-align: top; width: 100%;">
+                      <table border="0" cellspacing="0" class="edcontent" style="border-collapse: collapse;width:100%">
+                        <tbody>
+                          <tr>
+                            <td valign="top" class="edtext" style="padding: 20px; text-align: left; color: #5f5f5f; font-size: 14px; font-family: Helvetica, Arial, sans-serif; word-break: break-word; direction: ltr; box-sizing: border-box;">
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]-->
+                  </td>
+                </tr>
+                <tr>
+                  <td class="drow" valign="top" align="center" style="background-color: #ffffff; box-sizing: border-box; font-size: 0px; text-align: center;">
+                    <!--[if (gte mso 9)|(IE)]><table width="100%" align="center" cellpadding="0" cellspacing="0" border="0"><tr><td valign="top"><![endif]-->
+                    <div class="layer_2" style="max-width: 600px; display: inline-block; vertical-align: top; width: 100%;">
+                      <table border="0" cellspacing="0" cellpadding="0" class="edcontent" style="border-collapse: collapse;width:100%">
+                        <tbody>
+                          <tr>
+                            <td valign="top" class="emptycell" style="padding: 10px;">
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]-->
+                  </td>
+                </tr>
+                <tr>
+                  <td class="drow" valign="top" align="center" style="background-color: #7c7c75; box-sizing: border-box; font-size: 0px; text-align: center;">
+                    <!--[if (gte mso 9)|(IE)]><table width="100%" align="center" cellpadding="0" cellspacing="0" border="0"><tr><td valign="top"><![endif]-->
+                    <!--[if (gte mso 9)|(IE)]></td><td valign="top"><![endif]-->
+                    <div class="layer_2" style="max-width: 600px; display: inline-block; vertical-align: top; width: 100%;">
+                      <table border="0" cellspacing="0" class="edcontent" style="border-collapse: collapse;width:100%">
+                        <tbody>
+                          <tr>
+                            <td valign="top" class="edsocialfollow" style="padding: 20px;">
+                              <table align="center" style="margin:0 auto" class="edsocialfollowcontainer" cellpadding="0" border="0" cellspacing="0">
+                                <tbody>
+                                  <tr>
+                                    <td>
+                                      <!--[if mso]><table align="center" border="0" cellspacing="0" cellpadding="0"><tr><td align="center" valign="top"><![endif]-->
+                                      <table align="left" border="0" cellpadding="0" cellspacing="0" data-service="facebook">
+                                        <tbody>
+                                          <tr>
+                                            <td align="center" valign="middle" style="padding:10px;">
+                                              <a href="https://www.facebook.com" target="_blank" style="color: #0c8398; font-size: 14px; font-family: Helvetica, Arial, sans-serif; text-decoration: none;"><img src="https://api.elasticemail.com/userfile/a18de9fc-4724-42f2-b203-4992ceddc1de/ro_out_li_32_facebook.png" style="display:block;max-width:32px;width:32px;border:none" alt="Facebook"></a></td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                      <!--[if mso]></td><td align="center" valign="top"><![endif]-->
+                                      <!--[if mso]></td><td align="center" valign="top"><![endif]-->
+                                      <!--[if mso]></td><td align="center" valign="top"><![endif]-->
+                                      <table align="left" border="0" cellpadding="0" cellspacing="0" data-service="twitter">
+                                        <tbody>
+                                          <tr>
+                                            <td align="center" valign="middle" style="padding:10px;">
+                                              <a href="https://www.twitter.com/" target="_blank" style="color: #0c8398; font-size: 14px; font-family: Helvetica, Arial, sans-serif; text-decoration: none;"><img src="https://api.elasticemail.com/userfile/a18de9fc-4724-42f2-b203-4992ceddc1de/ro_out_li_32_twitter.png" style="display:block;max-width:32px;width:32px;border:none" alt="Twitter"></a></td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                      <!--[if mso]></td><td align="center" valign="top"><![endif]-->
+                                      <!--[if mso]></td><td align="center" valign="top"><![endif]-->
+                                      <!--[if mso]></td><td align="center" valign="top"><![endif]-->
+                                      <table align="left" border="0" cellpadding="0" cellspacing="0" data-service="googleplus">
+                                        <tbody>
+                                          <tr>
+                                            <td align="center" valign="middle" style="padding:10px;width:32px">
+                                              <a href="https://plus.google.com" target="_blank" style="color: #0c8398; font-size: 14px; font-family: Helvetica, Arial, sans-serif; text-decoration: none;"><img src="https://api.elasticemail.com/userfile/a18de9fc-4724-42f2-b203-4992ceddc1de/ro_out_li_32_googleplus.png" style="display:block;max-width:32px;width:32px;border:none" alt="Google+"></a></td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                      <!--[if mso]></td></tr></table><![endif]-->
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]-->
+                  </td>
+                </tr>
+                <tr>
+                  <td class="drow" valign="top" align="center" style="background-color: #ffffff; box-sizing: border-box; font-size: 0px; text-align: center;">
+                    <!--[if (gte mso 9)|(IE)]><table width="100%" align="center" cellpadding="0" cellspacing="0" border="0"><tr><td valign="top"><![endif]-->
+                    <div class="layer_2" style="max-width: 600px; display: inline-block; vertical-align: top; width: 100%;">
+                      <table border="0" cellspacing="0" class="edcontent" style="border-collapse: collapse;width:100%">
+                        <tbody>
+                          <tr>
+                            <td valign="top" class="edtext" style="padding: 20px; text-align: left; color: #5f5f5f; font-size: 14px; font-family: Helvetica, Arial, sans-serif; word-break: break-word; direction: ltr; box-sizing: border-box;">
+                              <p style="text-align: center; font-size: 10px; margin: 0px; padding: 0px;">
+                                <span style="color: #ffffff;">
+                                  <span style="color: #333333;">If you no longer wish to receive mail from us, you can</span> 
+                                  <a href="{unsubscribe}" style="background-color: initial; font-size: 10px; color: #0c8398; font-family: Helvetica, Arial, sans-serif; text-decoration: none;">Unsubscribe</a> 
+                                  <br>{accountaddress}</span>
+                              </p>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]-->
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]-->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>

@@ -58,7 +58,7 @@
                   <li>24/7 Live Support</li>
                 </ul>
               </div>
-              <a class="box-btn" @click="sendEmail()">Go for Free</a>
+              <a class="box-btn" @click="onSubmitPlannerForm()">Go for Free</a>
             </div>
           </div>
           <div class="col-xl-4">
@@ -108,9 +108,55 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
+  data() {
+    return {
+      data: [],
+    };
+  },
   methods: {
-
+    getUserInfo() {
+      const token = localStorage.getItem("token");
+      const headers = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      if (token == null) {
+        this.$router.push("/");
+        return;
+      }
+      axios
+        .get("http://localhost:3000/verify", headers)
+        .then(({ data }) => {
+          console.log("==>", data);
+          if (data.username !== undefined) {
+            this.$data.data = data;
+            if (data.plannerDemand == true) {
+              this.$router.push("/GeneralPage");
+            }
+            return;
+          } else {
+            localStorage.removeItem("token");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          localStorage.removeItem("token");
+        });
+    },
+    onSubmitPlannerForm() {
+      axios
+        .patch("http://localhost:3000/plannerDemand/" + this.data.id, {})
+        .then(({ data }) => {
+          swal("Purshase has been done!", "success");
+          this.$router.push("/GeneralPage");
+        });
+    },
+  },
+  created() {
+    this.getUserInfo();
   },
 };
 </script>
