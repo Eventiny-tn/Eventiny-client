@@ -55,7 +55,6 @@ export class EventService {
             event.categories.push(currentObj[0]);
           }
         }
-
         let myImages = [];
         let arrayOfPromises = [];
         images.forEach((element) => {
@@ -85,7 +84,6 @@ export class EventService {
         .createQueryBuilder('event')
         .leftJoinAndSelect('event.images', 'image')
         .leftJoinAndSelect('event.user', 'user')
-
         .getMany();
       return events;
     } else {

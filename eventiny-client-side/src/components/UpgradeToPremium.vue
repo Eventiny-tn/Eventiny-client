@@ -6,46 +6,55 @@
           <legend class="reservation-form-title">Upgrade To Premium</legend>
           <div>
             <h4 class="label" for="name">
-              What's your level of experience hosting events?
+              How many events have you organized before?
             </h4>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              v-model="formData.firstQ"
-            />
+            <p class="select">
+              <select name="cars" id="cars" v-model="firstQ" required>
+                <option value="1-5">1-5</option>
+                <option value="5-10">5-10</option>
+                <option value="10-50">10-50</option>
+                <option value="more than 50">more than 50</option>
+              </select>
+            </p>
           </div>
           <div>
             <h4 class="label" for="phone">
               How did you first hear about Eventiny?
             </h4>
-            <input
-              type="text"
-              name="phone"
-              id="phone"
-              v-model="formData.secondQ"
-            />
+            <p class="select">
+              <select
+                class="budget"
+                name="cars"
+                id="cars"
+                v-model="secondQ"
+                required
+              >
+                <option value="friends">friends</option>
+                <option value="social media">social media</option>
+                <option value="events">events</option>
+                <option value="Others">Others</option>
+              </select>
+            </p>
           </div>
           <div>
             <h4 class="label" for="email">
               How many people help plan your events online?
             </h4>
           </div>
-          <div v-show="!formData.thirdQ.valid" class="error-message">
-            <p>{{ errorMessage }}</p>
-          </div>
           <div>
             <h4>How often do you plan to host events?</h4>
             <p class="select">
-              <select class="budget" v-model="formData.guestNumber">
-                <option
-                  v-for="option in guests"
-                  :key="option.value"
-                  :value="option.value"
-                  class="form-option"
-                >
-                  {{ option.text }}
-                </option>
+              <select
+                class="budget"
+                name="cars"
+                id="cars"
+                v-model="thirdQ"
+                required
+              >
+                <option value="weekly">weekly</option>
+                <option value="Monthly">Monthly</option>
+                <option value="From time to time">From time to time</option>
+                <option value="Year">Year</option>
               </select>
             </p>
           </div>
@@ -54,21 +63,17 @@
             <h4>How Would You Describe Yourself As An Event Planner</h4>
           </div>
           <div>
-            <label class="label" for="textarea">Message</label>
             <textarea
               class="message"
               name="textarea"
               id="textarea"
-              required=""
-              v-model="formData.message"
+              required
+              v-model="messages"
               :maxlength="message.maxlength"
             ></textarea>
-            <span class="counter"
-              >{{ formData.message.length }} / {{ message.maxlength }}</span
-            >
           </div>
           <div>
-            <input type="submit" value="Step One" @click="submitForm" />
+            <input type="submit" value="Next" @click="submitForm()" />
           </div>
         </fieldset>
       </form>
@@ -76,18 +81,20 @@
   </div>
 </template>
 <script>
+import axios from "axios";
 export default {
+  props: {
+    user: {
+      type: Object,
+    },
+  },
   data() {
     return {
-      formData: {
-        firstQ: "",
-        secondQ: "",
-        thirdQ: {
-          value: "",
-          valid: true,
-        },
-        message: "",
-      },
+      data: [],
+      firstQ: "",
+      secondQ: "",
+      thirdQ: "",
+      messages: "",
 
       guests: [
         { value: 0, text: "Select One Of them please" },
@@ -97,7 +104,6 @@ export default {
         { value: 4, text: "Online" },
         { value: 5, text: "Seminar or Talk" },
       ],
-      errorMessage: "It is a valid email address.",
       message: {
         maxlength: 255,
       },
@@ -105,38 +111,73 @@ export default {
     };
   },
   methods: {
+    eventPlannerFormForCheking() {
+      const token = localStorage.getItem("token");
+      const header = {
+        Authorisation: `Bearer ${token}`,
+      };
+    },
+    getinfos() {
+      const token = localStorage.getItem("token");
+      const header = {
+        Authorisation: `Bearer ${token}`,
+      };
+      if (token == null) {
+        this.$router.push("/");
+        return;
+      }
+      console.log("header generalpage ===>", header);
+      axios
+        .get("http://localhost:3000/profile", { headers: header })
+        .then(({ data }) => {
+          if (data) {
+            this.$data.data = data;
+            return;
+          } else {
+            localStorage.removeItem("token");
+            this.$router.push("/");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          localStorage.removeItem("token");
+          this.$router.push("/");
+        });
+    },
     submitForm() {
-      const name = this.formData.name;
-      const email = this.formData.email.value;
-      let msg = "";
-      msg += "Your information has been sent to The Admin" + ". \n";
-      msg += "Thank you ^_^";
-      alert(msg);
-    },
-    // submit form handler
-    submit: function() {
-      this.submitted = true;
-    },
-    // validate by type and value
-    validate: function(type, value) {
-      if (type === "email") {
-        this.formData.email.valid = this.isEmail(value) ? true : false;
+      if (
+        this.firstQ &&
+        this.secondQ &&
+        this.thirdQ &&
+        this.messages &&
+        this.$data.data.id
+      ) {
+        console.log("haalim", this.$data.data.id);
+        axios
+          .post("http://localhost:3000/plannerRequest", {
+            firstQ: this.firstQ,
+            secondQ: this.secondQ,
+            thirdQ: this.thirdQ,
+            message: this.messages,
+            userId: this.$data.data.id,
+          })
+          .then(({ data }) => {
+            console.log(data);
+            this.$router.push("plannerRequest");
+          })
+          .catch((res) => console.log(err));
+      } else {
+        swal({
+          title: "Please fill all the fields!",
+          icon: "warning",
+          button: "ok!",
+        });
+        return;
       }
     },
-    // check for valid email adress
-    isEmail: function(value) {
-      return emailRegExp.test(value);
-    },
-    // check or uncheck all
-    checkAll: function(event) {
-      this.formData.needs = event.target.checked ? this.features : [];
-    },
   },
-  watch: {
-    // watching nested property
-    "formData.email.value": function(value) {
-      this.validate("email", value);
-    },
+  created() {
+    this.getinfos();
   },
 };
 </script>

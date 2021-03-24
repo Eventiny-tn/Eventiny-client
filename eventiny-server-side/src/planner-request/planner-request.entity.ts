@@ -5,24 +5,21 @@ export class PlannerRequest {
   @PrimaryGeneratedColumn()
   id: number;
   @Column()
-  nameoncard: string;
+  firstQ: string;
   @Column()
-  creditcardnumber: number;
+  secondQ: string;
   @Column()
-  expmonth: string;
+  thirdQ: string;
   @Column()
-  expyear: number;
+  message: string;
   @Column()
-  cvc: number;
-  @Column()
-  interest: string;
+  userId: number;
 }
 
 export interface PlannerRequestinfo {
-  nameoncard: string;
-  creditcardnumber: number;
-  expmonth: string;
-  expyear: number;
-  cvc: number;
-  interest: string;
+  firstQ: string;
+  secondQ: string;
+  thirdQ: string;
+  message: string;
+  userId: number;
 }
