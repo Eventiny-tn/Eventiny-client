@@ -1,3 +1,4 @@
+import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
 import { GoogleStrategy } from 'src/auth/google-strategy';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -9,6 +10,8 @@ import { EventModule } from './event/event.module';
 import { PlannerRequestModule } from './planner-request/planner-request.module';
 import { User } from './user/user.entity';
 import { ImagesModule } from './images/images.module';
+import { MailerModule } from '@nestjs-modules/mailer';
+import { PugAdapter } from '@nestjs-modules/mailer/dist/adapters/pug.adapter';
 
 @Module({
   imports: [
@@ -19,6 +22,27 @@ import { ImagesModule } from './images/images.module';
     PlannerRequestModule,
     TypeOrmModule.forFeature([User]),
     ImagesModule,
+    MailerModule.forRoot({
+      transport: {
+        host: 'smtp.elasticemail.com',
+        port: 2525,
+        secure: false, // true for 465, false for other ports
+        auth: {
+          user: 'eventiny.tn@gmail.com', // generated ethereal user
+          pass: '76371B4C0BD895A1A2ED983F69A9699D6CE6', // generated ethereal password
+        },
+      },
+      defaults: {
+        from: '"nest-modules" <eventiny.tn@gmail.com>', // outgoing email ID
+      },
+      template: {
+        dir: process.cwd() + '/template/',
+        adapter: new HandlebarsAdapter(), // or new PugAdapter()
+        options: {
+          strict: true,
+        },
+      },
+    }),
   ],
   controllers: [AppController],
   providers: [AppService, GoogleStrategy],

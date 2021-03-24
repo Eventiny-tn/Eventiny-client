@@ -58,7 +58,7 @@
                   <li>24/7 Live Support</li>
                 </ul>
               </div>
-              <a href="" class="box-btn">Go for Free</a>
+              <a class="box-btn" @click="sendEmail()">Go for Free</a>
             </div>
           </div>
           <div class="col-xl-4">
@@ -109,7 +109,19 @@
 
 <script>
 export default {
-  methods: {},
+  methods: {
+    //   sendEmail() {
+    //     Email.send({
+    //       Host: "smtp.elasticemail.com",
+    //       Username: "eventiny.tn@gmail.com",
+    //       Password: "A14D0E9619E0908A280FAFD954CED82E56F5",
+    //       To: "fakhri19971998@gmail.com",
+    //       From: "eventiny.tn@gmail.com",
+    //       Subject: "Event Planner",
+    //       Body: ``,
+    //     }).then((message) => console.log("==>>>>", message));
+    //   },
+  },
 };
 </script>
 
