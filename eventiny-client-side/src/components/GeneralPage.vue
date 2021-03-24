@@ -76,12 +76,13 @@
       </div>
     </div>
     <div class="banner" v-if="!formView" id="formPremium">
-      <div
+      <!-- <div
         v-if="!data.plannerDemand"
         class=" banner header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
       >
         <UpgradeToPremium :userinfo="user" />
-      </div>
+      </div> -->
+      <PlannerDasshboard />
       <!-- here you need to render the dashboard admin once its ready also wrapper it with else conditon -->
     </div>
     <div>
