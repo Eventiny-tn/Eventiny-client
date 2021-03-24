@@ -104,4 +104,26 @@ export class UserService {
       return data;
     }
   }
+
+  async getplanner(req): Promise<object | Error> {
+    console.log(req);
+    const info = await this.userRepository.find({});
+    console.log(info);
+    if (info) {
+      return info;
+    } else {
+      return new NotFoundException('NOT FOUND');
+    }
+  }
+
+  async updatetoPlanner(id, body): Promise<Error | string> {
+    console.log(body);
+
+    if (id && body) {
+      await this.userRepository.update(id, body);
+      return 'done';
+    } else {
+      return new NotFoundException('NOT FOUND');
+    }
+  }
 }

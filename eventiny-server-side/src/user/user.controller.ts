@@ -52,4 +52,17 @@ export class UserController {
   googleAuthRedirect(@Req() req) {
     return this.userRepo.googleLogin(req);
   }
+
+  @Put('updateplanner/:id')
+  updatetoPlanner(
+    @Param() id: number,
+    @Body() body: object,
+  ): Promise<Error | string> {
+    return this.userRepo.updatetoPlanner(id, body);
+  }
+
+  @Get('getplanner')
+  getplanner(@Req() req): Promise<Error | object> {
+    return this.userRepo.getplanner(req);
+  }
 }

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- <nav class="navbar navbar-expand-md navbar-dark">
+    <nav class="navbar navbar-expand-md navbar-dark">
       <div class="containernav">
         <a class="navbar-brand" @click="langingPage()">
           <h3 class="my-heading">Eventiny<span class="bg-main">TN</span></h3>
@@ -25,11 +25,16 @@
           </ul>
         </div>
       </div>
-    </nav> -->
+    </nav>
     <form class="ui form">
-      <h4 class="ui dividing header">Shipping Information</h4>
+      <h1>Basic Info</h1>
+      <p>
+        Name your event and explain to potential attendees why they absolutely
+        need to come. <br />
+        Add info highlighting its uniqueness.
+      </p>
       <div class="field">
-        <label>Name</label>
+        <label>Event name</label>
         <div class="two fields">
           <div class="field">
             <input
@@ -48,7 +53,7 @@
         </div>
       </div>
       <div class="field">
-        <label>Billing Address</label>
+        <label>Organisator</label>
         <div class="fields">
           <div class="twelve wide field">
             <input
@@ -269,6 +274,9 @@ body {
 #search_input {
   font-size: 18px;
   width: 50%;
+}
+.form {
+  margin-top: 100px;
 }
 .col-lg-12 {
   margin-bottom: 350px;

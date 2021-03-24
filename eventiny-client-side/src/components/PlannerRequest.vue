@@ -109,7 +109,9 @@
 
 <script>
 export default {
-  methods: {},
+  methods: {
+
+  },
 };
 </script>
 
@@ -747,6 +749,9 @@ a {
 }
 .single-price a {
   margin-top: 15px;
+}
+.box-btn {
+  cursor: pointer;
 }
 a.box-btn {
   background-color: #008ba3;

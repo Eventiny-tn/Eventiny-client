@@ -378,7 +378,7 @@ import axios from "axios";
 import swal from "sweetalert";
 
 export default {
-  data() {
+  data() { 
     return {
       data: [],
       username: "",
