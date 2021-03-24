@@ -201,10 +201,6 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <p>
-            Google Maps JavaScript API with Places Library Autocomplete Address
-            Field
-          </p>
           <div class="form-group">
             <label>Location:</label>
             <input
@@ -214,6 +210,7 @@
               placeholder="Type address..."
             />
           </div>
+
           <div id="map"></div>
         </div>
       </div>
@@ -233,12 +230,34 @@ $(document).ready(function() {
     }
   );
 });
+
+// function initMap() {
+//   var map = new google.maps.Map(document.getElementById("map"), {
+//     center: {
+//       lat: 36.806388,
+//       lng: 10.181667,
+//     },
+//     zoom: 8,
+//   });
+
+//   var marker = new google.maps.Marker({
+//     position: {
+//       lat: 36.806388,
+//       lng: 10.181667,
+//     },
+//     map: map,
+//   });
+// }
+export default {
+  name: "PlannerDashboard",
+};
 </script>
 
 <style scoped>
 #map {
-  max-height: 100%;
-  min-height: 100%;
+  height: 100%;
+  width: 50%;
+  margin-bottom: 150px;
 }
 html,
 body {
@@ -249,6 +268,10 @@ body {
 }
 #search_input {
   font-size: 18px;
+  width: 50%;
+}
+.col-lg-12 {
+  margin-bottom: 350px;
 }
 .form-group {
   margin-bottom: 10px;
@@ -270,6 +293,7 @@ body {
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
+
 .form-group input:focus {
   color: #495057;
   background-color: #fff;

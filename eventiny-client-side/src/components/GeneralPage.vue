@@ -76,14 +76,14 @@
       </div>
     </div>
     <div class="banner" v-if="!formView" id="formPremium">
-      <!-- <div
+      <div
         v-if="!data.plannerDemand"
         class=" banner header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
       >
         <UpgradeToPremium :userinfo="user" />
-      </div> -->
-      <PlannerDasshboard />
+      </div>
       <!-- here you need to render the dashboard admin once its ready also wrapper it with else conditon -->
+      <!-- <PlannerDashboard /> -->
     </div>
     <div>
       <main>
@@ -137,7 +137,7 @@
 import axios from "axios";
 import EventDetails from "./EventDetails.vue";
 import UpgradeToPremium from "./UpgradeToPremium.vue";
-import PlannerDashboard from "./PlannerDashboard.vue";
+import PlannerDashboard from "./PlannerDashboard";
 export default {
   data() {
     return {

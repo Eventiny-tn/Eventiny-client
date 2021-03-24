@@ -163,6 +163,7 @@ export default {
           })
           .then(({ data }) => {
             console.log(data);
+            this.$router.push("plannerRequest");
           })
           .catch((res) => console.log(err));
       } else {
