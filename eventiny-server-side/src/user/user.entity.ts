@@ -4,7 +4,8 @@ import {
   PrimaryGeneratedColumn,
   Unique,
   OneToMany,
-  ManyToOne,
+  ManyToMany,
+  JoinTable,
 } from 'typeorm';
 import { Event } from '../event/event.entity';
 @Entity('user')
@@ -46,6 +47,14 @@ export class User {
 
   @OneToMany(() => Event, (event) => event.user)
   events: Event[];
+
+  @ManyToMany(() => Event, { cascade: true })
+  @JoinTable({
+    name: 'participater',
+    joinColumn: { name: 'user_id', referencedColumnName: 'id' },
+    inverseJoinColumn: { name: 'event_id', referencedColumnName: 'id' },
+  })
+  participaters: Event[];
 }
 
 export interface Userinfo {
@@ -69,4 +78,9 @@ export interface Userinfo {
 export interface UserLog {
   email: string;
   password: string;
+}
+
+export interface UserRelations {
+  email: string;
+  username: string;
 }

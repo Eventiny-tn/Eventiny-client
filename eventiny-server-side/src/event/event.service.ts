@@ -25,6 +25,7 @@ export class EventService {
     caption,
     images,
     cover,
+    ticket,
     categories,
     userId,
   }): Promise<Error | string> {
@@ -39,6 +40,8 @@ export class EventService {
         price,
         caption,
         cover,
+        ticket
+
       );
       try {
         event.categories = [];

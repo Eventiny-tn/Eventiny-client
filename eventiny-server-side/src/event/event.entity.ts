@@ -24,13 +24,15 @@ export class Event {
   dateEnds: string;
   @Column()
   location: string;
-  @Column()
-  price: number;
+  @Column({default:'Free'})
+  price: string;
   @Column()
   caption: string;
   @Column()
   cover: string;
-
+  @Column()
+  ticket: number;
+  
   @Column({ default: false })
   pending: boolean;
 
@@ -41,6 +43,8 @@ export class Event {
     inverseJoinColumn: { name: 'event_id', referencedColumnName: 'id' },
   })
   categories: Category[];
+  @ManyToMany((type) => User, (user) => user.participaters)
+  participater: User[];
 
   @ManyToOne(() => User, (user) => user.events)
   user: User;
@@ -53,9 +57,10 @@ export class Event {
     dateStart: string,
     dateEnds: string,
     location: string,
-    price: number,
+    price: string,
     caption: string,
     cover: string,
+    ticket: number
   ) {
     this.name = name;
     this.time = time;
@@ -65,5 +70,6 @@ export class Event {
     this.price = price;
     this.caption = caption;
     this.cover = cover;
+    this.ticket = ticket;
   }
 }

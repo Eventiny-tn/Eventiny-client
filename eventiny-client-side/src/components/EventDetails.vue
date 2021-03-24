@@ -205,7 +205,6 @@ export default {
         })
         .catch((err) => {
           console.log(err);
-          // localStorage.removeItem("token");
         });
     },
   },
@@ -236,15 +235,7 @@ export default {
 #thumbnail-preview-indicators .slides .slide-3 {
   height: 480px;
 }
-/* #thumbnail-preview-indicators .slides .slide-1 {
-  /* background-image: url(https://s3.amazonaws.com/ooomf-com-files/tU3ptNgGSP6U2fE67Gvy_SYDNEY-162.jpg); }*/
 
-/* #thumbnail-preview-indicators .slides .slide-2 {
-  background-image: url(https://s3.amazonaws.com/ooomf-com-files/tU3ptNgGSP6U2fE67Gvy_SYDNEY-162.jpg);
-}
-#thumbnail-preview-indicators .slides .slide-3 {
-  background-image: url(https://s3.amazonaws.com/ooomf-com-files/mtNrf7oxS4uSxTzMBWfQ_DSC_0043.jpg);
-} */
 #thumbnail-preview-indicators .carousel-inner .item .carousel-caption {
   top: 20%;
   bottom: inherit;
