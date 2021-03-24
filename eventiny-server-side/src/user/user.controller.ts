@@ -9,7 +9,6 @@ import {
   Param,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { get } from 'node:http';
 
 import { Userinfo, UserLog } from './user.entity';
 import { UserService } from './user.service';

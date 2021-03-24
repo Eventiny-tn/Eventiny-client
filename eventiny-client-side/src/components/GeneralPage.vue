@@ -53,13 +53,16 @@
     <div
       class=" banner header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
       style=" background-image: url(https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260) ; background-position: center top; opacity:0.7;"
+      v-if="formView"
     >
       <div class="container">
         <h1 class="getReady">Get ready</h1>
         <p>
           Good times are coming, and you're invited to create your Event
         </p>
-        <a class="button button-primary">Start</a>
+        <a class="button button-primary" @click="switchToFormPremium()">
+          Start</a
+        >
         <div class="col-md-12 text-center mt-5">
           <div class="scroll-down">
             <a
@@ -71,6 +74,16 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="banner" v-if="!formView" id="formPremium">
+      <div
+        v-if="!data.plannerDemand"
+        class=" banner header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
+      >
+        <UpgradeToPremium :userinfo="user" />
+      </div>
+      <!-- here you need to render the dashboard admin once its ready also wrapper it with else conditon -->
+      <!-- <PlannerDashboard /> -->
     </div>
     <div>
       <main>
@@ -116,9 +129,6 @@
         </div>
         <EventDetails :eventDetails="eventDetails" />
       </div>
-      <div>
-        <UpgradeToPremium />
-      </div>
     </div>
   </header>
 </template>
@@ -127,6 +137,7 @@
 import axios from "axios";
 import EventDetails from "./EventDetails.vue";
 import UpgradeToPremium from "./UpgradeToPremium.vue";
+import PlannerDashboard from "./PlannerDashboard";
 export default {
   data() {
     return {
@@ -137,18 +148,22 @@ export default {
       dataEvents: [],
       onDetails: false,
       eventDetails: [],
+      formView: true,
     };
   },
   components: {
     EventDetails,
     UpgradeToPremium,
+    PlannerDashboard,
   },
 
   methods: {
+    switchToFormPremium() {
+      this.formView = false;
+    },
     changeView(details = {}, value) {
       this.$data.onDetails = value;
       this.$data.eventDetails = details;
-      // console.log("heeeeeeeeeeeeeeeeeeeeeeeeeey", details);
     },
     logOut() {
       localStorage.removeItem("token");
@@ -191,7 +206,7 @@ export default {
       axios
         .get("http://localhost:3000/event")
         .then(({ data }) => {
-          console.log("events ============>", data);
+          console.log("events ==>", data);
           this.$data.dataEvents = data;
         })
         .catch((err) => console.log(err));
@@ -258,6 +273,9 @@ jQuery(function($) {
 </script>
 
 <style scoped>
+#formPremium {
+  margin: auto;
+}
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700,800");
 @import url("https://fonts.googleapis.com/css?family=Lobster");
 html {
@@ -350,7 +368,7 @@ p {
   text-align: center;
   z-index: 1;
   background-color: #999999;
-  font-family: "Kaushan Script", cursive;
+  /* font-family: "Kaushan Script", cursive; */
 }
 .banner h1 {
   font-weight: 800;

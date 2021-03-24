@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-md navbar-dark">
+    <!-- <nav class="navbar navbar-expand-md navbar-dark">
       <div class="containernav">
         <a class="navbar-brand" @click="langingPage()">
           <h3 class="my-heading">Eventiny<span class="bg-main">TN</span></h3>
@@ -25,7 +25,7 @@
           </ul>
         </div>
       </div>
-    </nav>
+    </nav> -->
     <form class="ui form">
       <h4 class="ui dividing header">Shipping Information</h4>
       <div class="field">
@@ -220,6 +220,7 @@
 
 <script>
 var searchInput = "search_input";
+
 $(document).ready(function() {
   var autocomplete;
   autocomplete = new google.maps.places.Autocomplete(
@@ -247,6 +248,9 @@ $(document).ready(function() {
 //     map: map,
 //   });
 // }
+export default {
+  name: "PlannerDashboard",
+};
 </script>
 
 <style scoped>
@@ -307,7 +311,7 @@ html {
   cursor: pointer;
 }
 body {
-  font-family: "Kaushan Script", cursive;
+  /* font-family: "Kaushan Script", cursive;   */
   font-size: 1.6rem;
   font-weight: 400;
 }

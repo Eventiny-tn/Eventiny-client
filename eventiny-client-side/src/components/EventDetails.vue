@@ -50,7 +50,7 @@
           <div
             class="slide-2"
             :style="{
-              backgroundImage: 'url(' + eventDetails.images[0].image + ')',
+              backgroundImage: 'url(' + eventDetails.images[1].image + ')',
             }"
           ></div>
           <div class="container">
@@ -61,7 +61,7 @@
           <div
             class="slide-3"
             :style="{
-              backgroundImage: 'url(' + eventDetails.images[2].image + ')',
+              backgroundImage: 'url(' + eventDetails.images[1].image + ')',
             }"
           ></div>
           <div class="container">
