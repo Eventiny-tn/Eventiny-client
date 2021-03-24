@@ -12,7 +12,7 @@ import { User } from './user/user.entity';
 import { ImagesModule } from './images/images.module';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { PugAdapter } from '@nestjs-modules/mailer/dist/adapters/pug.adapter';
-
+import { ConfigModule } from '@nestjs/config';
 @Module({
   imports: [
     TypeOrmModule.forRoot(),
@@ -22,14 +22,15 @@ import { PugAdapter } from '@nestjs-modules/mailer/dist/adapters/pug.adapter';
     PlannerRequestModule,
     TypeOrmModule.forFeature([User]),
     ImagesModule,
+    ConfigModule.forRoot(),
     MailerModule.forRoot({
       transport: {
         host: 'smtp.elasticemail.com',
         port: 2525,
         secure: false, // true for 465, false for other ports
         auth: {
-          user: 'eventiny.tn@gmail.com', // generated ethereal user
-          pass: '76371B4C0BD895A1A2ED983F69A9699D6CE6', // generated ethereal password
+          user: process.env.MAIL_USERNAME, // generated ethereal user
+          pass: process.env.MAIL_PASS, // generated ethereal password
         },
       },
       defaults: {

@@ -109,19 +109,7 @@
 
 <script>
 export default {
-  methods: {
-    //   sendEmail() {
-    //     Email.send({
-    //       Host: "smtp.elasticemail.com",
-    //       Username: "eventiny.tn@gmail.com",
-    //       Password: "A14D0E9619E0908A280FAFD954CED82E56F5",
-    //       To: "fakhri19971998@gmail.com",
-    //       From: "eventiny.tn@gmail.com",
-    //       Subject: "Event Planner",
-    //       Body: ``,
-    //     }).then((message) => console.log("==>>>>", message));
-    //   },
-  },
+  methods: {},
 };
 </script>
 
