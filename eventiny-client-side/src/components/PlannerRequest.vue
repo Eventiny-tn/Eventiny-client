@@ -58,7 +58,7 @@
                   <li>24/7 Live Support</li>
                 </ul>
               </div>
-              <a class="box-btn">Go for Free</a>
+              <a class="box-btn" @click="sendEmail()">Go for Free</a>
             </div>
           </div>
           <div class="col-xl-4">
@@ -110,7 +110,7 @@
 <script>
 export default {
   methods: {
-    
+
   },
 };
 </script>
