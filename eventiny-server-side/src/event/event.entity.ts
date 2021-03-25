@@ -36,6 +36,8 @@ export class Event {
   @Column()
   cover: string;
   @Column()
+  eventDate: string;
+  @Column()
   ticket: number;
 
   @Column({ default: false })
