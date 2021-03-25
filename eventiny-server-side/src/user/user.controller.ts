@@ -52,7 +52,13 @@ export class UserController {
   googleAuthRedirect(@Req() req) {
     return this.userRepo.googleLogin(req);
   }
-
+  @Post('ticket/:user_id/:event_id')
+  buyTicket(
+    @Param('user_id') user_id: number,
+    @Param('event_id') event_id: number,
+  ): Promise<Error | string | any> {
+    return this.userRepo.buyTicket(user_id, event_id);
+  }
   @Put('updateplanner/:id')
   updatetoPlanner(
     @Param() id: number,

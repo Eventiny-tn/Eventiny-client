@@ -7,6 +7,7 @@ import { UserController } from './user.controller';
 import { User } from './user.entity';
 import { UserService } from './user.service';
 import { GoogleStrategy } from 'src/auth/google-strategy';
+import { EventModule } from 'src/event/event.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { GoogleStrategy } from 'src/auth/google-strategy';
       secret: jwtConstants.secret,
       signOptions: { expiresIn: '25h' },
     }),
+    EventModule,
   ],
   controllers: [UserController],
   providers: [UserService, GoogleStrategy, AppService],

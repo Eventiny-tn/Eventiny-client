@@ -61,7 +61,7 @@
           <div
             class="slide-3"
             :style="{
-              backgroundImage: 'url(' + eventDetails.images[1].image + ')',
+              backgroundImage: 'url(' + eventDetails.images[2].image + ')',
             }"
           ></div>
           <div class="container">
@@ -85,11 +85,12 @@
       ></a>
     </div>
 
-    <div class="container details-event">
+    <div class="container detail-event">
       <div class="row">
         <!-- HEADER -->
 
         <!-- INFO -->
+
         <div class="row">
           <div class="col-xs-12">
             <h4 style="line-height: 25px;">
@@ -131,22 +132,43 @@
             />
 
             <small>
-              <p style="margin-bottom:0px;">
+              <p style="margin-bottom:0px;" class="detail-title">
                 <b>{{ eventDetails.user.username }}</b>
               </p>
               <div class="statistics">
-                <p><span class="label label-default">Visitas 2550</span></p>
-                <p><span class="label label-default">Comentarios 15</span></p>
                 <p>
-                  <span class="label label-default">Compartido 50 veces</span>
+                  <span class="label label-default detail-event">{{
+                    eventDetails.ticket
+                  }}</span>
                 </p>
-                <p><span class="label label-default">Me gusta 20</span></p>
+                <p>
+                  <span class="label label-default detail-event"
+                    >Comentarios 15</span
+                  >
+                </p>
+                <p>
+                  <span class="label label-default detail-event"
+                    >Compartido 50 veces</span
+                  >
+                </p>
+                <p>
+                  <span class="label label-default detail-event"
+                    >Me gusta 20</span
+                  >
+                </p>
+                <button
+                  type="button"
+                  class="btn btn-success"
+                  @click="clickadd(eventDetails.id, userinfo.id)"
+                >
+                  Get it from here
+                </button>
               </div>
               <p style="margin-bottom:0px;margin-top:25px;">
-                <b>Noticias importantes</b>
+                <b>Location</b>
               </p>
               <ul class="list-group">
-                <!-- <li class="list-group-item">
+                <li class="list-group-item">
                   <big><b>1.</b></big> Cras justo odio
                 </li>
                 <li class="list-group-item">
@@ -158,10 +180,10 @@
                 <li class="list-group-item">
                   <big><b>4.</b></big> Porta ac consectetur ac
                 </li>
-                
+
                 <li class="list-group-item">
                   <big><b>5.</b></big> Vestibulum at eros
-                </li> -->
+                </li>
               </ul>
             </small>
           </div>
@@ -175,7 +197,7 @@ import axios from "axios";
 export default {
   data() {
     return {
-      userinfo: {},
+      userinfo: "",
     };
   },
   props: {
@@ -189,34 +211,43 @@ export default {
           console.log("comment", data, this.eventDetails.id);
         });
     },
-    getUserInfo() {
-      const token = localStorage.getItem("token");
-      const headers = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
-      if (token == null) {
-        this.$router.push("/");
-        return;
-      }
+    clickadd(id1, id2) {
       axios
-        .get("http://localhost:3000/verify", headers)
-        .then(({ data }) => {
-          console.log("fakhri==>", data);
-          if (data.username !== undefined) {
-            this.$data.isLogged = true;
-            this.$data.userinfo = data;
-            return;
-          } else {
-            localStorage.removeItem("token");
-          }
-        })
+        .post(`http://localhost:3000/ticket/${id1}/${id2}`)
+        .then(console.log("done"))
         .catch((err) => {
           console.log(err);
-          // localStorage.removeItem("token");
         });
     },
+  },
+  getUserInfo() {
+    const token = localStorage.getItem("token");
+    const headers = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    if (token == null) {
+      this.$router.push("/");
+      return;
+    }
+    axios
+      .get("http://localhost:3000/verify", headers)
+      .then(({ data }) => {
+        console.log("fakhri==>", data);
+        console.log("==>", data);
+
+        if (data.username !== undefined) {
+          this.$data.isLogged = true;
+          this.$data.userinfo = data;
+          return;
+        } else {
+          localStorage.removeItem("token");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
   mounted() {},
   created() {
@@ -226,14 +257,20 @@ export default {
 };
 </script>
 <style scoped>
-.details-event {
+.detail-event {
   margin-top: 3%;
 }
-#thumbnail-preview-indicators {
+.detail-event {
+  font-size: 15px;
+}
+.detail-title {
+  font-size: 30px;
+}
+#thumbnail-preview-indicato detail-eventrs {
   position: relative;
   overflow: hidden;
 }
-#thumbnail-preview-indicators .slides .slide-1,
+#thumbnail-p detail-eventreview-indicators .slides .slide-1,
 #thumbnail-preview-indicators .slides .slide-2,
 #thumbnail-preview-indicators .slides .slide-3 {
   background-size: cover;
@@ -247,15 +284,7 @@ export default {
 #thumbnail-preview-indicators .slides .slide-3 {
   height: 480px;
 }
-/* #thumbnail-preview-indicators .slides .slide-1 {
-  /* background-image: url(https://s3.amazonaws.com/ooomf-com-files/tU3ptNgGSP6U2fE67Gvy_SYDNEY-162.jpg); }*/
 
-/* #thumbnail-preview-indicators .slides .slide-2 {
-  background-image: url(https://s3.amazonaws.com/ooomf-com-files/tU3ptNgGSP6U2fE67Gvy_SYDNEY-162.jpg);
-}
-#thumbnail-preview-indicators .slides .slide-3 {
-  background-image: url(https://s3.amazonaws.com/ooomf-com-files/mtNrf7oxS4uSxTzMBWfQ_DSC_0043.jpg);
-} */
 #thumbnail-preview-indicators .carousel-inner .item .carousel-caption {
   top: 20%;
   bottom: inherit;
@@ -335,7 +364,7 @@ body {
 }
 .semi-title {
   font-weight: bold;
-  margin-top: 30px;
+  margin-top: 40px;
 }
 .title {
   position: absolute;

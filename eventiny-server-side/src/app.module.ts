@@ -11,7 +11,6 @@ import { PlannerRequestModule } from './planner-request/planner-request.module';
 import { User } from './user/user.entity';
 import { ImagesModule } from './images/images.module';
 import { MailerModule } from '@nestjs-modules/mailer';
-import { PugAdapter } from '@nestjs-modules/mailer/dist/adapters/pug.adapter';
 import { ConfigModule } from '@nestjs/config';
 import { CommentsModule } from './comments/comments.module';
 @Module({
