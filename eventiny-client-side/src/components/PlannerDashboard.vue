@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="addevent">
     <nav class="navbar navbar-expand-md navbar-dark">
       <div class="containernav">
         <a class="navbar-brand" @click="langingPage()">
@@ -40,221 +40,196 @@
             <input
               type="text"
               name="shipping[first-name]"
-              placeholder="First Name"
-            />
-          </div>
-          <div class="field">
-            <input
-              type="text"
-              name="shipping[last-name]"
-              placeholder="Last Name"
+              placeholder="Event   Name"
             />
           </div>
         </div>
       </div>
       <div class="field">
-        <label>Organisator</label>
+        <label>Caption</label>
         <div class="fields">
           <div class="twelve wide field">
-            <input
-              type="text"
-              name="shipping[address]"
-              placeholder="Street Address"
-            />
+            <input type="text" name="caption" placeholder="Event planner" />
           </div>
-          <div class="four wide field">
-            <input type="text" name="shipping[address-2]" placeholder="Apt #" />
+        </div>
+      </div>
+      <div class="field">
+        <label>Price</label>
+        <div class="fields">
+          <div class="twelve wide field">
+            <input type="text" placeholder="Price" />
           </div>
         </div>
       </div>
       <div class="two fields"></div>
-      <h4 class="ui dividing header">Billing Information</h4>
+
       <div class="field">
-        <label>Card Type</label>
-        <div class="ui selection dropdown">
-          <input type="hidden" name="card[type]" />
-          <div class="default text">Type</div>
-          <i class="dropdown icon"></i>
-          <div class="menu">
-            <div class="item" data-value="visa">
-              <i class="visa icon"></i>
-              Visa
-            </div>
-            <div class="item" data-value="amex">
-              <i class="amex icon"></i>
-              American Express
-            </div>
-            <div class="item" data-value="discover">
-              <i class="discover icon"></i>
-              Discover
+        <label>Event Category</label>
+        <div class="ui compact menu">
+          <div class="ui simple dropdown item">
+            Dropdown
+            <i class="dropdown icon"></i>
+            <div class="menu">
+              <div class="item">Choice 1</div>
+              <div class="item">Choice 2</div>
+              <div class="item">Choice 3</div>
             </div>
           </div>
         </div>
       </div>
-      <div class="fields">
-        <div class="seven wide field">
-          <label>Card Number</label>
-          <input
-            type="text"
-            name="card[number]"
-            maxlength="16"
-            placeholder="Card #"
-          />
+      <form>
+        <div>
+          <label for="bday">Event date :</label>
+          <input type="date" id="bday" name="bday" />
         </div>
-        <div class="three wide field">
-          <label>CVC</label>
-          <input type="text" name="card[cvc]" maxlength="3" placeholder="CVC" />
-        </div>
-        <div class="six wide field">
-          <label>Expiration</label>
-          <div class="two fields">
-            <div class="field">
-              <select
-                class="ui fluid search dropdown"
-                name="card[expire-month]"
-              >
-                <option value="">Month</option>
-                <option value="1">January</option>
-                <option value="2">February</option>
-                <option value="3">March</option>
-                <option value="4">April</option>
-                <option value="5">May</option>
-                <option value="6">June</option>
-                <option value="7">July</option>
-                <option value="8">August</option>
-                <option value="9">September</option>
-                <option value="10">October</option>
-                <option value="11">November</option>
-                <option value="12">December</option>
-              </select>
-            </div>
-            <div class="field">
+      </form>
+      <label for="appt">Start time:</label>
+
+      <input
+        type="time"
+        id="appt"
+        name="appt"
+        min="09:00"
+        max="18:00"
+        required
+      />
+
+      <small>24h/24h</small>
+
+      <label for="appt">End time:</label>
+
+      <input
+        type="time"
+        id="appt"
+        name="appt"
+        min="09:00"
+        max="18:00"
+        required
+      />
+
+      <small>24h/24h</small>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="form-group">
+              <label>Location:</label>
               <input
+                id="searchInput"
+                class="controls"
                 type="text"
-                name="card[expire-year]"
-                maxlength="4"
-                placeholder="Year"
+                placeholder="Enter a location"
               />
             </div>
+
+            <div id="map"></div>
           </div>
         </div>
       </div>
-      <h4 class="ui dividing header">Receipt</h4>
-      <div class="field">
-        <label>Send Receipt To:</label>
-        <div class="ui fluid multiple search selection dropdown">
-          <input type="hidden" name="receipt" />
-          <i class="dropdown icon"></i>
-          <div class="default text">Saved Contacts</div>
-          <div class="menu">
-            <div class="item" data-value="jenny" data-text="Jenny">
-              <img
-                class="ui mini avatar image"
-                src="/images/avatar/small/jenny.jpg"
-              />
-              Jenny Hess
-            </div>
-            <div class="item" data-value="elliot" data-text="Elliot">
-              <img
-                class="ui mini avatar image"
-                src="/images/avatar/small/elliot.jpg"
-              />
-              Elliot Fu
-            </div>
-            <div class="item" data-value="stevie" data-text="Stevie">
-              <img
-                class="ui mini avatar image"
-                src="/images/avatar/small/stevie.jpg"
-              />
-              Stevie Feliciano
-            </div>
-            <div class="item" data-value="christian" data-text="Christian">
-              <img
-                class="ui mini avatar image"
-                src="/images/avatar/small/christian.jpg"
-              />
-              Christian
-            </div>
-            <div class="item" data-value="matt" data-text="Matt">
-              <img
-                class="ui mini avatar image"
-                src="/images/avatar/small/matt.jpg"
-              />
-              Matt
-            </div>
-            <div class="item" data-value="justen" data-text="Justen">
-              <img
-                class="ui mini avatar image"
-                src="/images/avatar/small/justen.jpg"
-              />
-              Justen Kitsune
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="ui segment">
-        <div class="field">
-          <div class="ui toggle checkbox">
-            <input type="checkbox" name="gift" tabindex="0" class="hidden" />
-            <label>Do not include a receipt in the package</label>
-          </div>
-        </div>
-      </div>
-      <div class="ui button" tabindex="0">Submit Order</div>
     </form>
-
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="form-group">
-            <label>Location:</label>
-            <input
-              type="text"
-              class="form-control"
-              id="search_input"
-              placeholder="Type address..."
-            />
-          </div>
-
-          <div id="map"></div>
-        </div>
-      </div>
-    </div>
+    <div class="ui button" tabindex="0">Submit Order</div>
   </div>
 </template>
 
 <script>
-var searchInput = "search_input";
+import $Scriptjs from "scriptjs";
 
-$(document).ready(function() {
-  var autocomplete;
-  autocomplete = new google.maps.places.Autocomplete(
-    document.getElementById(searchInput),
-    {
-      types: ["geocode"],
-    }
-  );
-});
-
-// function initMap() {
-//   var map = new google.maps.Map(document.getElementById("map"), {
-//     center: {
-//       lat: 36.806388,
-//       lng: 10.181667,
-//     },
-//     zoom: 8,
-//   });
-
-//   var marker = new google.maps.Marker({
-//     position: {
-//       lat: 36.806388,
-//       lng: 10.181667,
-//     },
-//     map: map,
-//   });
-// }
 export default {
-  name: "PlannerDashboard",
+  methods: {
+    // getPlace() {
+    //   var searchInput = "search_input";
+    //   $(document).ready(function() {
+    //     var autocomplete;
+    //     autocomplete = new google.maps.places.Autocomplete(
+    //       document.getElementById(searchInput),
+    //       {
+    //         types: ["geocode"],
+    //       }
+    //     );
+    //   });
+    // },
+
+    initMap() {
+      var map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 36.806389, lng: 10.181667 },
+        zoom: 8,
+      });
+      var input = document.getElementById("searchInput");
+      map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+      var autocomplete = new google.maps.places.Autocomplete(input);
+      autocomplete.bindTo("bounds", map);
+
+      var infowindow = new google.maps.InfoWindow();
+      var marker = new google.maps.Marker({
+        map: map,
+        anchorPoint: new google.maps.Point(0, -29),
+      });
+
+      autocomplete.addListener("place_changed", function() {
+        infowindow.close();
+        marker.setVisible(false);
+        var place = autocomplete.getPlace();
+        if (!place.geometry) {
+          window.alert("Autocomplete's returned place contains no geometry");
+          return;
+        }
+
+        // If the place has a geometry, then present it on a map.
+        if (place.geometry.viewport) {
+          map.fitBounds(place.geometry.viewport);
+        } else {
+          map.setCenter(place.geometry.location);
+          map.setZoom(17);
+        }
+        console.log(place.geometry.viewport);
+
+        marker.setIcon({
+          url: place.icon,
+          size: new google.maps.Size(71, 71),
+          origin: new google.maps.Point(0, 0),
+          anchor: new google.maps.Point(17, 34),
+          scaledSize: new google.maps.Size(35, 35),
+        });
+
+        marker.setPosition(place.geometry.location);
+        marker.setVisible(true);
+
+        infowindow.setContent(
+          "<div><strong>" + place.name + "</strong><br>" + address
+        );
+        infowindow.open(map, marker);
+
+        // Location details
+        // for (var i = 0; i < place.address_components.length; i++) {
+        //   if (place.address_components[i].types[0] == "postal_code") {
+        //     document.getElementById("postal_code").innerHTML =
+        //       place.address_components[i].long_name;
+        //   }
+        //   if (place.address_components[i].types[0] == "country") {
+        //     document.getElementById("country").innerHTML =
+        //       place.address_components[i].long_name;
+        //   }
+        // }
+        // document.getElementById("location").innerHTML = place.formatted_address;
+        // document.getElementById(
+        //   "lat"
+        // ).innerHTML = place.geometry.location.lat();
+        // document.getElementById(
+        //   "lon"
+        // ).innerHTML = place.geometry.location.lng();
+      });
+    },
+  },
+  mounted() {
+    $Scriptjs(
+      "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyDapTrWdHVdzoF7ttygRmfv0XqIDkonBqg&callback=initMap",
+      () => {
+        this.initMap();
+        // this.getPlace();
+      }
+    );
+  },
 };
 </script>
 
@@ -278,12 +253,20 @@ body {
 .form {
   margin-top: 100px;
 }
+.addevent {
+  text-align: center;
+}
 .col-lg-12 {
   margin-bottom: 350px;
 }
 .form-group {
   margin-bottom: 10px;
   margin-top: 50px;
+  text-align: center !important ;
+}
+.container {
+  text-align: center;
+  margin-left: 650px;
 }
 .form-group label {
   font-size: 18px;

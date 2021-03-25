@@ -30,6 +30,8 @@ export class Event {
   caption: string;
   @Column()
   cover: string;
+  @Column()
+  eventDate: string;
 
   @Column({ default: false })
   pending: boolean;
