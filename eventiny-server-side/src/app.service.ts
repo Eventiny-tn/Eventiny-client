@@ -41,7 +41,11 @@ export class AppService {
         from: 'eventiny.tn@gmail.com', // Senders email address
         subject: 'Event Planner Deman ✔', // Subject line
         text: 'welcome', // plaintext body
-        html: 'index', // HTML body content
+        template: 'index', // HTML body content
+        context: {
+          // Data to be sent to template engine.
+          username: 'Eventiny TN',
+        },
       })
       .then((success) => {
         console.log(success);

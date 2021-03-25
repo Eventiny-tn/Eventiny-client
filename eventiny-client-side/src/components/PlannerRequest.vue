@@ -133,9 +133,9 @@ export default {
           console.log("==>", data);
           if (data.username !== undefined) {
             this.$data.data = data;
-            if (data.plannerDemand == true) {
-              this.$router.push("/GeneralPage");
-            }
+            // if (data.plannerDemand == true) {
+            //   this.$router.push("/GeneralPage");
+            // }
             return;
           } else {
             localStorage.removeItem("token");
