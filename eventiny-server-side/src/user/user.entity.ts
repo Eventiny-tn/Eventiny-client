@@ -1,3 +1,4 @@
+// import { Participant } from 'src/participant/participant.entity';
 import {
   Entity,
   Column,
@@ -47,14 +48,10 @@ export class User {
 
   @OneToMany(() => Event, (event) => event.user)
   events: Event[];
-
-  @ManyToMany(() => Event, { cascade: true })
-  @JoinTable({
-    name: 'participater',
-    joinColumn: { name: 'user_id', referencedColumnName: 'id' },
-    inverseJoinColumn: { name: 'event_id', referencedColumnName: 'id' },
-  })
-  participaters: Event[];
+  // @OneToMany(() => Participant, (participant) => participant.users)
+  // participant: Participant[];
+  @ManyToMany((type) => Event, (event) => event.participants)
+  event: Event[];
 }
 
 export interface Userinfo {

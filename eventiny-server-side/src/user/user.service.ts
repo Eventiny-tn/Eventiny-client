@@ -1,16 +1,19 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Connection, getConnection, Repository } from 'typeorm';
 import { User, Userinfo, UserLog } from './user.entity';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
-
+import { Event } from '../event/event.entity';
 @Injectable()
 export class UserService {
   constructor(
-    @InjectRepository(User) private userRepository: Repository<User>,
-
     private jwtService: JwtService,
+    @InjectRepository(User)
+    private userRepository: Repository<User>,
+    @InjectRepository(Event)
+    private eventRepository: Repository<Event>,
+    private connection: Connection,
   ) {}
   async signup(user: Userinfo): Promise<object | Error> {
     const username = await this.userRepository.findOne({
@@ -102,6 +105,18 @@ export class UserService {
         userimg: req.user.userimg,
       });
       return data;
+    }
+  }
+  async buyTicket(user_id, event_id): Promise<Error | any> {
+    try {
+      return await getConnection()
+        .createQueryBuilder()
+        .insert()
+        .into('participant')
+        .values([{ event_id, user_id }])
+        .execute();
+    } catch (error) {
+      console.log(error);
     }
   }
 }

@@ -9,6 +9,7 @@ import { EventModule } from './event/event.module';
 import { PlannerRequestModule } from './planner-request/planner-request.module';
 import { User } from './user/user.entity';
 import { ImagesModule } from './images/images.module';
+// import { ParticipantModule } from './participant/participant.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { ImagesModule } from './images/images.module';
     PlannerRequestModule,
     TypeOrmModule.forFeature([User]),
     ImagesModule,
+    // ParticipantModule,
   ],
   controllers: [AppController],
   providers: [AppService, GoogleStrategy],

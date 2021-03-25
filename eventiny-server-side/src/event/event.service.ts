@@ -41,7 +41,6 @@ export class EventService {
         caption,
         cover,
         ticket
-
       );
       try {
         event.categories = [];
