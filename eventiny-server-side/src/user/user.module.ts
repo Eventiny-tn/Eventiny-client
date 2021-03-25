@@ -1,3 +1,4 @@
+import { AppService } from './../app.service';
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from './constants';
@@ -15,9 +16,8 @@ import { GoogleStrategy } from 'src/auth/google-strategy';
       signOptions: { expiresIn: '25h' },
     }),
   ],
-
   controllers: [UserController],
-  providers: [UserService, GoogleStrategy],
+  providers: [UserService, GoogleStrategy, AppService],
   exports: [UserService, JwtModule, TypeOrmModule.forFeature([User])],
 })
 export class UserModule {}

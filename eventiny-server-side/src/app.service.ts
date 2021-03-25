@@ -34,14 +34,18 @@ export class AppService {
       };
     }
   }
-  public email(): void {
+  public email(user): void {
     this.mailerService
       .sendMail({
-        to: 'fakhri19971998@gmail.com', // List of receivers email address
+        to: user, // List of receivers email address
         from: 'eventiny.tn@gmail.com', // Senders email address
-        subject: 'Testing Nest MailerModule ✔', // Subject line
+        subject: 'Event Planner Deman ✔', // Subject line
         text: 'welcome', // plaintext body
-        html: '<b>welcome</b>', // HTML body content
+        template: 'index', // HTML body content
+        context: {
+          // Data to be sent to template engine.
+          username: 'Eventiny TN',
+        },
       })
       .then((success) => {
         console.log(success);

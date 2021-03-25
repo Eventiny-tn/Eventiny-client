@@ -26,7 +26,7 @@ import { ConfigModule } from '@nestjs/config';
     MailerModule.forRoot({
       transport: {
         host: 'smtp.elasticemail.com',
-        port: 2525,
+        port: process.env.MAIL_PORT,
         secure: false, // true for 465, false for other ports
         auth: {
           user: process.env.MAIL_USERNAME, // generated ethereal user
@@ -47,5 +47,6 @@ import { ConfigModule } from '@nestjs/config';
   ],
   controllers: [AppController],
   providers: [AppService, GoogleStrategy],
+  exports: [AppService],
 })
 export class AppModule {}

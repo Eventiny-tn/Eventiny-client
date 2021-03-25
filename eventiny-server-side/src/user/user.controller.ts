@@ -1,4 +1,4 @@
-import { Req, UseGuards } from '@nestjs/common';
+import { Patch, Req, UseGuards } from '@nestjs/common';
 import {
   Body,
   Controller,
@@ -64,5 +64,9 @@ export class UserController {
   @Get('getplanner')
   getplanner(@Req() req): Promise<Error | object> {
     return this.userRepo.getplanner(req);
+  }
+  @Patch('plannerDemand/:id')
+  upgradePlannerDemande(@Param() id): Promise<Error | string> {
+    return this.userRepo.upgradePlannerDemande(id);
   }
 }

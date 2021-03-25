@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { User, Userinfo, UserLog } from './user.entity';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
+import { AppService } from 'src/app.service';
 
 @Injectable()
 export class UserService {
@@ -11,6 +12,7 @@ export class UserService {
     @InjectRepository(User) private userRepository: Repository<User>,
 
     private jwtService: JwtService,
+    private email: AppService,
   ) {}
   async signup(user: Userinfo): Promise<object | Error> {
     const username = await this.userRepository.findOne({
@@ -122,6 +124,16 @@ export class UserService {
     if (id && body) {
       await this.userRepository.update(id, body);
       return 'done';
+    } else {
+      return new NotFoundException('NOT FOUND');
+    }
+  }
+  async upgradePlannerDemande(id): Promise<Error | string> {
+    if (id) {
+      await this.userRepository.update(id.id, { plannerDemand: true });
+      const { email } = await this.userRepository.findOne(id);
+      await this.email.email(email);
+      return 'upgraded';
     } else {
       return new NotFoundException('NOT FOUND');
     }

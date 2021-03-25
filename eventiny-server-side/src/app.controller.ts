@@ -20,7 +20,7 @@ export class AppController {
     return this.appService.googleLogin(req, res);
   }
   @Get('email')
-  email(): any {
-    return this.appService.email();
+  email(user): any {
+    return this.appService.email(user);
   }
 }
