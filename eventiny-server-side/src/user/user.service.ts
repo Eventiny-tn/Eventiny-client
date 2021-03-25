@@ -1,17 +1,20 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Connection, getConnection, Repository } from 'typeorm';
 import { User, Userinfo, UserLog } from './user.entity';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { AppService } from 'src/app.service';
-
+import { Event } from '../event/event.entity';
 @Injectable()
 export class UserService {
   constructor(
-    @InjectRepository(User) private userRepository: Repository<User>,
-
     private jwtService: JwtService,
+    @InjectRepository(User)
+    private userRepository: Repository<User>,
+    @InjectRepository(Event)
+    private eventRepository: Repository<Event>,
+    private connection: Connection,
     private email: AppService,
   ) {}
   async signup(user: Userinfo): Promise<object | Error> {
@@ -106,7 +109,18 @@ export class UserService {
       return data;
     }
   }
-
+  async buyTicket(user_id, event_id): Promise<Error | any> {
+    try {
+      return await getConnection()
+        .createQueryBuilder()
+        .insert()
+        .into('participant')
+        .values([{ event_id, user_id }])
+        .execute();
+    } catch (error) {
+      console.log(error);
+    }
+  }
   async getplanner(req): Promise<object | Error> {
     console.log(req);
     const info = await this.userRepository.find({});

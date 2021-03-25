@@ -10,6 +10,7 @@ import {
   ManyToOne,
   OneToMany,
 } from 'typeorm';
+// import { Participant } from 'src/participant/participant.entity';
 @Entity('event')
 export class Event {
   @PrimaryGeneratedColumn()
@@ -24,14 +25,16 @@ export class Event {
   dateEnds: string;
   @Column()
   location: string;
-  @Column()
-  price: number;
+  @Column({ default: 'Free' })
+  price: string;
   @Column()
   caption: string;
   @Column()
   cover: string;
   @Column()
   eventDate: string;
+  @Column()
+  ticket: number;
 
   @Column({ default: false })
   pending: boolean;
@@ -47,17 +50,28 @@ export class Event {
   @ManyToOne(() => User, (user) => user.events)
   user: User;
 
+  @ManyToMany(() => User, (user) => user.event, { cascade: true })
+  @JoinTable({
+    name: 'participant',
+    joinColumn: { name: 'user_id', referencedColumnName: 'id' },
+    inverseJoinColumn: { name: 'event_id', referencedColumnName: 'id' },
+  })
+  participants: User[];
+
   @OneToMany(() => Images, (image) => image.images)
   images: Images[];
+  // @OneToMany(() => Participant, (participant) => participant.events)
+  // participants: Participant[];
   constructor(
     name: string,
     time: string,
     dateStart: string,
     dateEnds: string,
     location: string,
-    price: number,
+    price: string,
     caption: string,
     cover: string,
+    ticket: number,
   ) {
     this.name = name;
     this.time = time;
@@ -67,5 +81,6 @@ export class Event {
     this.price = price;
     this.caption = caption;
     this.cover = cover;
+    this.ticket = ticket;
   }
 }
