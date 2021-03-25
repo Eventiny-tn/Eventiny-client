@@ -174,12 +174,21 @@
 import axios from "axios";
 export default {
   data() {
-    return {};
+    return {
+      userinfo: {},
+    };
   },
   props: {
     eventDetails: Object,
   },
   methods: {
+    getEventComment() {
+      axios
+        .get("http://localhost:3000/comments/" + this.eventDetails.id)
+        .then(({ data }) => {
+          console.log("comment", data, this.eventDetails.id);
+        });
+    },
     getUserInfo() {
       const token = localStorage.getItem("token");
       const headers = {
@@ -194,7 +203,7 @@ export default {
       axios
         .get("http://localhost:3000/verify", headers)
         .then(({ data }) => {
-          console.log("==>", data);
+          console.log("fakhri==>", data);
           if (data.username !== undefined) {
             this.$data.isLogged = true;
             this.$data.userinfo = data;
@@ -209,8 +218,10 @@ export default {
         });
     },
   },
+  mounted() {},
   created() {
     this.getUserInfo();
+    this.getEventComment();
   },
 };
 </script>
