@@ -1,10 +1,12 @@
+// import { Participant } from 'src/participant/participant.entity';
 import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
   Unique,
   OneToMany,
-  ManyToOne,
+  ManyToMany,
+  JoinTable,
 } from 'typeorm';
 import { Event } from '../event/event.entity';
 @Entity('user')
@@ -46,6 +48,10 @@ export class User {
 
   @OneToMany(() => Event, (event) => event.user)
   events: Event[];
+  // @OneToMany(() => Participant, (participant) => participant.users)
+  // participant: Participant[];
+  @ManyToMany((type) => Event, (event) => event.participants)
+  event: Event[];
 }
 
 export interface Userinfo {
@@ -69,4 +75,9 @@ export interface Userinfo {
 export interface UserLog {
   email: string;
   password: string;
+}
+
+export interface UserRelations {
+  email: string;
+  username: string;
 }

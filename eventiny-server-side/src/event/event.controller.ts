@@ -1,4 +1,3 @@
-import { Connection } from 'typeorm';
 import { EventService } from './event.service';
 import {
   Body,

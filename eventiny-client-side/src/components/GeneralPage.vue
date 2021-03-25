@@ -77,7 +77,7 @@
     </div>
     <div class="banner" v-if="!formView" id="formPremium">
       <div
-        v-if="data.plannerDemand"
+        v-if="!data.plannerDemand"
         class=" banner header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
       >
         <UpgradeToPremium :userinfo="user" />
