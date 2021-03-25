@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="eventDetailContainer">
     <div
       id="thumbnail-preview-indicators"
       class="carousel slide"
@@ -122,6 +122,13 @@
               renovaciones están nuevos vestuarios, equipo de fisioterapia,
               salas de juntas y un centro de medios.
             </p>
+            <!-- Event Comment must be here -->
+            <div>
+              <EventComment />
+            </div>
+            <br />
+            <br />
+            <br />
           </div>
           <!-- Sidebar // advertising -->
           <div class="col-xs-3 side">
@@ -194,62 +201,57 @@
 </template>
 <script>
 import axios from "axios";
+import EventComment from "./EventComment.vue";
 export default {
+  components: {
+    EventComment,
+  },
   data() {
     return {
       userinfo: "",
+      comments: [],
     };
   },
   props: {
     eventDetails: Object,
   },
   methods: {
-    getEventComment() {},
-
-    clickadd(id1, id2) {
+    getEventComment() {
+      console.log("helllooooo", this.eventDetails.id);
       axios
-        .post(`http://localhost:3000/ticket/${id1}/${id2}`)
-        .then(console.log("done"))
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-    getUserInfo() {
-      const token = localStorage.getItem("token");
-      const headers = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
-      if (token == null) {
-        this.$router.push("/");
-        return;
-      }
-
-      axios
-        .get("http://localhost:3000/comments/" + this.eventDetails.id)
+        .get("http://localhost:3000/comments/" + 1)
         .then(({ data }) => {
-          console.log("comment", data, this.eventDetails.id);
-        });
+          console.log("comments==>>", data);
+        })
+        .catch((err) => console.log(err));
     },
+
     clickadd(id1, id2) {
       axios
         .post(`http://localhost:3000/ticket/${id1}/${id2}`)
-        .then(() => {
-          console.log("==>", data);
-
-          if (data.username !== undefined) {
-            this.$data.isLogged = true;
-            this.$data.userinfo = data;
-            return;
-          } else {
-            localStorage.removeItem("token");
-          }
-        })
+        .then(({ data }) => console.log("done"))
         .catch((err) => {
           console.log(err);
         });
     },
+    // clickadd(id1, id2) {
+    //   axios
+    //     .post(`http://localhost:3000/ticket/${id1}/${id2}`)
+    //     .then(() => {
+    //       console.log("==>", data);
+
+    //       if (data.username !== undefined) {
+    //         this.$data.isLogged = true;
+    //         this.$data.userinfo = data;
+    //         return;
+    //       } else {
+    //         localStorage.removeItem("token");
+    //       }
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //     });
+    // },
     getUserInfo() {
       const token = localStorage.getItem("token");
       const headers = {
@@ -265,7 +267,6 @@ export default {
         .get("http://localhost:3000/verify", headers)
         .then(({ data }) => {
           console.log("fakhri==>", data);
-          console.log("==>", data);
 
           if (data.username !== undefined) {
             this.$data.isLogged = true;
@@ -279,8 +280,7 @@ export default {
           console.log(err);
         });
     },
-
-    created() {
+    mounted() {
       this.getUserInfo();
       this.getEventComment();
     },
@@ -288,6 +288,11 @@ export default {
 };
 </script>
 <style scoped>
+.eventDetailContainer {
+  display: block;
+  justify-content: center;
+  align-content: center;
+}
 .detail-event {
   margin-top: 3%;
 }

@@ -131,9 +131,10 @@
       </main>
       <div v-if="onDetails == true">
         <div>
-          <h1 class="my-heading">type here</h1>
+          <!-- <h1 class="my-heading">type here</h1> -->
+          <br />
         </div>
-        <EventDetails :eventDetails="eventDetails" />
+        <EventDetails v-bind:eventDetails="eventDetails" />
       </div>
     </div>
   </header>
