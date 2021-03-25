@@ -1,7 +1,8 @@
 # compiled output
 /dist
 /node_modules
-.google.strategy.ts
+.google.strategy.ts*
+.env*
 # Logs
 logs
 *.log

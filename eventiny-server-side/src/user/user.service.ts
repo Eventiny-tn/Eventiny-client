@@ -4,6 +4,7 @@ import { Connection, getConnection, Repository } from 'typeorm';
 import { User, Userinfo, UserLog } from './user.entity';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
+import { AppService } from 'src/app.service';
 import { Event } from '../event/event.entity';
 @Injectable()
 export class UserService {
@@ -14,6 +15,7 @@ export class UserService {
     @InjectRepository(Event)
     private eventRepository: Repository<Event>,
     private connection: Connection,
+    private email: AppService,
   ) {}
   async signup(user: Userinfo): Promise<object | Error> {
     const username = await this.userRepository.findOne({
@@ -117,6 +119,37 @@ export class UserService {
         .execute();
     } catch (error) {
       console.log(error);
+    }
+  }
+  async getplanner(req): Promise<object | Error> {
+    console.log(req);
+    const info = await this.userRepository.find({});
+    console.log(info);
+    if (info) {
+      return info;
+    } else {
+      return new NotFoundException('NOT FOUND');
+    }
+  }
+
+  async updatetoPlanner(id, body): Promise<Error | string> {
+    console.log(body);
+
+    if (id && body) {
+      await this.userRepository.update(id, body);
+      return 'done';
+    } else {
+      return new NotFoundException('NOT FOUND');
+    }
+  }
+  async upgradePlannerDemande(id): Promise<Error | string> {
+    if (id) {
+      await this.userRepository.update(id.id, { plannerDemand: true });
+      const { email } = await this.userRepository.findOne(id);
+      await this.email.email(email);
+      return 'upgraded';
+    } else {
+      return new NotFoundException('NOT FOUND');
     }
   }
 }

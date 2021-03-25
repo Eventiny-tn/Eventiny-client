@@ -1,3 +1,4 @@
+import { MailerService } from '@nestjs-modules/mailer';
 import { Injectable, Res } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -9,6 +10,7 @@ export class AppService {
   constructor(
     @InjectRepository(User) private userRepository: Repository<User>,
     private jwtService: JwtService,
+    private readonly mailerService: MailerService,
   ) {}
   async googleLogin(req, res): Promise<any> {
     if (!req.user) {
@@ -31,5 +33,25 @@ export class AppService {
         user: req.user,
       };
     }
+  }
+  public email(user): void {
+    this.mailerService
+      .sendMail({
+        to: user, // List of receivers email address
+        from: 'eventiny.tn@gmail.com', // Senders email address
+        subject: 'Event Planner Deman ✔', // Subject line
+        text: 'welcome', // plaintext body
+        template: 'index', // HTML body content
+        context: {
+          // Data to be sent to template engine.
+          username: 'Eventiny TN',
+        },
+      })
+      .then((success) => {
+        console.log(success);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 }

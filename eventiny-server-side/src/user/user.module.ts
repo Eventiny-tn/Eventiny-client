@@ -1,3 +1,4 @@
+import { AppService } from './../app.service';
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from './constants';
@@ -17,9 +18,8 @@ import { EventModule } from 'src/event/event.module';
     }),
     EventModule,
   ],
-
   controllers: [UserController],
-  providers: [UserService, GoogleStrategy],
+  providers: [UserService, GoogleStrategy, AppService],
   exports: [UserService, JwtModule, TypeOrmModule.forFeature([User])],
 })
 export class UserModule {}

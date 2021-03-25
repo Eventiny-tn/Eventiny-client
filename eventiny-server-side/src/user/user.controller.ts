@@ -1,4 +1,4 @@
-import { Req, UseGuards } from '@nestjs/common';
+import { Patch, Req, UseGuards } from '@nestjs/common';
 import {
   Body,
   Controller,
@@ -58,5 +58,21 @@ export class UserController {
     @Param('event_id') event_id: number,
   ): Promise<Error | string | any> {
     return this.userRepo.buyTicket(user_id, event_id);
+  }
+  @Put('updateplanner/:id')
+  updatetoPlanner(
+    @Param() id: number,
+    @Body() body: object,
+  ): Promise<Error | string> {
+    return this.userRepo.updatetoPlanner(id, body);
+  }
+
+  @Get('getplanner')
+  getplanner(@Req() req): Promise<Error | object> {
+    return this.userRepo.getplanner(req);
+  }
+  @Patch('plannerDemand/:id')
+  upgradePlannerDemande(@Param() id): Promise<Error | string> {
+    return this.userRepo.upgradePlannerDemande(id);
   }
 }
