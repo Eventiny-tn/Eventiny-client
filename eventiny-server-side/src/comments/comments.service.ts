@@ -15,9 +15,7 @@ export class CommentsService {
     const comments = new Comment(body.comment);
     comments.commentator = ids.user_id;
     comments.event = ids.event_id;
-
     console.log(comments);
-
     await this.connection.manager.save(comments);
     return 'progress';
   }
