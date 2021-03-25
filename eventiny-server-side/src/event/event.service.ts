@@ -1,3 +1,4 @@
+import { Comment } from './../comments/comment.entity';
 import { Event } from './event.entity';
 import { Body, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -121,6 +122,7 @@ export class EventService {
       .leftJoinAndSelect('event.user', 'user')
       .where(`event_id = ${id.id}`)
       .getMany();
+
     return events;
   }
 }

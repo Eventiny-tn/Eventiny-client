@@ -23,6 +23,12 @@
               <a class="nav-item nav-link active" href="/GeneralPage">Home</a>
             </li>
 
+            <li v-if="data.plannerDemand">
+              <a class="nav-item nav-link active" href="/PlannerDashboard"
+                >Add event</a
+              >
+            </li>
+
             <li class="dropdown">
               <a class="nav-item nav-link" data-toggle="dropdown"> Events</a>
               <div class="dropdown-menu">

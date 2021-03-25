@@ -204,6 +204,8 @@ export default {
     eventDetails: Object,
   },
   methods: {
+    getEventComment() {},
+
     clickadd(id1, id2) {
       axios
         .post(`http://localhost:3000/ticket/${id1}/${id2}`)
@@ -223,9 +225,17 @@ export default {
         this.$router.push("/");
         return;
       }
+
       axios
-        .get("http://localhost:3000/verify", headers)
+        .get("http://localhost:3000/comments/" + this.eventDetails.id)
         .then(({ data }) => {
+          console.log("comment", data, this.eventDetails.id);
+        });
+    },
+    clickadd(id1, id2) {
+      axios
+        .post(`http://localhost:3000/ticket/${id1}/${id2}`)
+        .then(() => {
           console.log("==>", data);
 
           if (data.username !== undefined) {
@@ -240,9 +250,40 @@ export default {
           console.log(err);
         });
     },
-  },
-  created() {
-    this.getUserInfo();
+    getUserInfo() {
+      const token = localStorage.getItem("token");
+      const headers = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      if (token == null) {
+        this.$router.push("/");
+        return;
+      }
+      axios
+        .get("http://localhost:3000/verify", headers)
+        .then(({ data }) => {
+          console.log("fakhri==>", data);
+          console.log("==>", data);
+
+          if (data.username !== undefined) {
+            this.$data.isLogged = true;
+            this.$data.userinfo = data;
+            return;
+          } else {
+            localStorage.removeItem("token");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+
+    created() {
+      this.getUserInfo();
+      this.getEventComment();
+    },
   },
 };
 </script>
