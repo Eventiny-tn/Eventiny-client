@@ -19,6 +19,9 @@ export class Comment {
 
   @ManyToOne(() => Event, (event) => event.comments)
   event: Event;
+  constructor(comment: string) {
+    this.comment = comment;
+  }
 }
 export interface Comment {
   comment: string;
