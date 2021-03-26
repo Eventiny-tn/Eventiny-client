@@ -218,6 +218,7 @@ export default {
       }, 2000);
     },
 
+
     initMap() {
       var map = new google.maps.Map(document.getElementById("map"), {
         center: {
@@ -234,6 +235,7 @@ export default {
         map: map,
       });
     },
+
 
     clickadd(id1) {
       axios
@@ -276,6 +278,7 @@ export default {
   created() {
     this.getUserInfo();
     this.getEventComment();
+
   },
   mounted() {
     console.log(this.eventDetails);
@@ -286,6 +289,7 @@ export default {
         // this.getPlace();
       }
     );
+
   },
 };
 </script>
