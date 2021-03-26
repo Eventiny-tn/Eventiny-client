@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { User } from 'src/user/user.entity';
 import { Connection, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -12,6 +12,8 @@ export class ParticipantService {
     private userRepository: Repository<User>,
     @InjectRepository(Event)
     private eventRepository: Repository<Event>,
+    // @InjectRepository(Participant)
+    // private participantRepository: Repository<Participant>,
     private connection: Connection,
   ) {}
   async buyTicket(user_id, event_id, body): Promise<Error | Object> {
@@ -28,5 +30,20 @@ export class ParticipantService {
     } catch (error) {
       return new error();
     }
+  }
+  async getParticipant(event_id): Promise<Error | Object> {
+    console.log('eeeeeeeeeeeeeeeeeeeeeeeeeeeeee=>', event_id);
+
+    const participant = await this.connection
+      .getRepository(Participant)
+      .find({ relations: ['event', 'user'] });
+
+    const eventParticipent = [];
+    participant.map(async (el) => {
+      if (el.event.id === event_id) {
+        await eventParticipent.push(el);
+      }
+    });
+    return eventParticipent;
   }
 }
