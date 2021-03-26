@@ -11,8 +11,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
   imports: [TypeOrmModule.forFeature([Event]), CategoryModule, ImagesModule],
   providers: [EventService],
   controllers: [EventController],
-  exports: [TypeOrmModule],
+  exports: [TypeOrmModule, EventService],
 })
-
-
 export class EventModule {}

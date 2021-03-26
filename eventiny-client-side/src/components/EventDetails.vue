@@ -127,7 +127,11 @@
               <!-- Comments Container-->
               <!-- :v-for="comment in comments"
               <Comment :comment="comment"/>  -->
-              <EventComment :comments="comments" />
+              <EventComment
+                :comments="comments"
+                :userinfo="userinfo"
+                :eventDetails="eventDetails"
+              />
             </div>
             <br />
             <br />
@@ -147,9 +151,9 @@
               </p>
               <div class="statistics">
                 <p>
-                  <span class="label label-default detail-event">{{
-                    eventDetails.ticket
-                  }}</span>
+                  <span class="label label-default detail-event">
+                    Tickets :{{ eventDetails.ticket }}</span
+                  >
                 </p>
                 <p>
                   <span class="label label-default detail-event"
@@ -213,6 +217,12 @@ export default {
     eventDetails: Object,
   },
   methods: {
+    getParticipent() {
+      axios
+        .get(`http://localhost:3000/participant/${this.eventDetails.id}`)
+        .then((data) => console.log(data))
+        .catch((err) => console.log(err));
+    },
     getEventComment() {
       setInterval(() => {
         console.log("helllooooo", this.eventDetails.id);
@@ -227,7 +237,6 @@ export default {
     },
 
     clickadd() {
-      console.log(this.$data.tickets, "iddddddddddddd", this.eventDetails.id);
       axios
         .post(
           `http://localhost:3000/ticket/${this.userinfo.id}/${this.eventDetails.id}`,
@@ -288,6 +297,7 @@ export default {
   created() {
     this.getUserInfo();
     this.getEventComment();
+    this.getParticipent();
   },
   mounted() {
     console.log(this.eventDetails);

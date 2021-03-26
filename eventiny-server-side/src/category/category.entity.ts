@@ -1,6 +1,13 @@
 import { Event } from './../event/event.entity';
-import { Entity, Column, PrimaryGeneratedColumn, ManyToMany } from 'typeorm';
+import {
+  Unique,
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToMany,
+} from 'typeorm';
 @Entity('category')
+@Unique(['name'])
 export class Category {
   @PrimaryGeneratedColumn()
   id: number;
