@@ -29,7 +29,6 @@ export class EventService {
     lat,
     lng,
     cover,
-    time,
     categories,
     userId,
   }): Promise<Error | string> {
@@ -47,7 +46,6 @@ export class EventService {
         lat,
         lng,
         cover,
-        time,
       );
       try {
         event.categories = [];

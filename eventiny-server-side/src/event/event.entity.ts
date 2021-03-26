@@ -42,7 +42,6 @@ export class Event {
   cover: string;
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   time: string;
-
   @Column({ default: false })
   pending: boolean;
 
@@ -84,7 +83,6 @@ export class Event {
     lat: string,
     lng: string,
     cover: string,
-    time: string,
   ) {
     this.name = name;
     this.caption = caption;
@@ -97,6 +95,5 @@ export class Event {
     this.lat = lat;
     this.lng = lng;
     this.cover = cover;
-    this.time = time;
   }
 }

@@ -1067,7 +1067,7 @@ header.masthead .overlay {
   width: 100%;
   top: 0;
   left: 0;
-  opacity: 0.7;
+  opacity: 0.8;
   padding: 0;
 }
 
