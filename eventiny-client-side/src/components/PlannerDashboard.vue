@@ -35,12 +35,13 @@
       </p>
       <div class="field">
         <label>Event name</label>
-        <div class="two fields">
-          <div class="field">
+        <div class="two field">
+          <div class="fields">
             <input
               type="text"
               name="shipping[first-name]"
-              placeholder="Event   Name"
+              placeholder="Event Name"
+              v-model="event.name"
             />
           </div>
         </div>
@@ -49,7 +50,12 @@
         <label>Caption</label>
         <div class="fields">
           <div class="twelve wide field">
-            <input type="text" name="caption" placeholder="Event planner" />
+            <input
+              type="text"
+              name="caption"
+              placeholder="Event planner"
+              v-model="event.caption"
+            />
           </div>
         </div>
       </div>
@@ -57,7 +63,7 @@
         <label>Price</label>
         <div class="fields">
           <div class="twelve wide field">
-            <input type="text" placeholder="Price" />
+            <input type="text" placeholder="Price" v-model="event.price" />
           </div>
         </div>
       </div>
@@ -65,7 +71,11 @@
         <label>Max tickets</label>
         <div class="fields">
           <div class="twelve wide field">
-            <input type="number" placeholder="Max tickets" />
+            <input
+              type="number"
+              placeholder="Max tickets"
+              v-model="event.ticket"
+            />
           </div>
         </div>
       </div>
@@ -84,7 +94,7 @@
       <form>
         <div>
           <label for="bday">Event date :</label>
-          <input type="date" id="bday" name="bday" />
+          <input v-model="event.eventDate" type="date" id="bday" name="bday" />
         </div>
       </form>
       <label for="appt">Start time:</label>
@@ -96,6 +106,7 @@
         min="09:00"
         max="18:00"
         required
+        v-model="event.dateStart"
       />
 
       <small>24h/24h</small>
@@ -109,6 +120,7 @@
         min="09:00"
         max="18:00"
         required
+        v-model="event.dateEnds"
       />
 
       <small>24h/24h</small>
@@ -123,6 +135,7 @@
                 class="controls"
                 type="text"
                 placeholder="Enter a location"
+                v-model="event.location"
               />
             </div>
             <div id="map"></div>
@@ -135,7 +148,7 @@
         <input type="submit" value="Upload Image" name="submit" />
       </form>
     </form>
-    <div class="ui button" tabindex="0">Submit Order</div>
+    <div @click="addEvent()" class="ui button" tabindex="0">Submit Order</div>
   </div>
 </template>
 
@@ -147,6 +160,22 @@ export default {
   data() {
     return {
       dataCategories: [],
+      event: {
+        name: "",
+        caption: "",
+        price: "",
+        ticket: 0,
+        eventDate: "",
+        dateStart: "",
+        dateEnds: "",
+        location: "",
+        images: [],
+        lat: "",
+        lng: "",
+        cover: "",
+        categories: [],
+        userId: 0,
+      },
     };
   },
 
@@ -163,6 +192,15 @@ export default {
     //     );
     //   });
     // },
+    addEvent(event) {
+      axios.post("http://localhost:3000/event", event).then(({ data }) => {
+        console.log(data);
+
+        swal("Thank you for adding your event", "Thank you", "success");
+        return;
+      });
+    },
+
     getCategories() {
       axios.get("http://localhost:3000/category").then(({ data }) => {
         console.log(data);
@@ -195,13 +233,14 @@ export default {
           return;
         }
 
-        // If the place has a geometry, then present it on a map.
+        // mark place:
         if (place.geometry.viewport) {
           map.fitBounds(place.geometry.viewport);
         } else {
           map.setCenter(place.geometry.location);
           map.setZoom(13);
         }
+        //adding coordonate:
         console.log(place.geometry.viewport.La.g);
         console.log(place.geometry.viewport.Ra.g);
 
@@ -231,6 +270,7 @@ export default {
               "",
           ].join(" ");
         }
+        //adding address:
         console.log(address);
 
         infowindow.setContent("<div><strong>" + place.name + "</strong><br>");
@@ -286,6 +326,10 @@ body {
   font-size: 18px;
   width: 300px;
   margin-top: 14px;
+}
+.fields {
+  margin-left: 590px !important;
+  width: 900px;
 }
 .title-basic {
   color: #008ba3;
