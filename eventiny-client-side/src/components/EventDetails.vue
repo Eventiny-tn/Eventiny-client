@@ -232,9 +232,9 @@ export default {
       }, 2000);
     },
 
-    clickadd(id1, id2) {
+    clickadd(id1) {
       axios
-        .post(`http://localhost:3000/ticket/${id1}/${id2}`)
+        .post(`http://localhost:3000/ticket/${id1}/${this.userinfo.id}`)
         .then(({ data }) => console.log("done"))
         .catch((err) => {
           console.log(err);

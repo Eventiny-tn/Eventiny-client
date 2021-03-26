@@ -292,7 +292,9 @@ html {
   cursor: pointer;
 }
 body {
-  font-family: "Kaushan Script", cursive;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
   font-size: 1.6rem;
   font-weight: 400;
 }
@@ -393,7 +395,9 @@ p {
   z-index: 99999;
 }
 .navbar .navbar-brand {
-  font-family: "Kaushan Script", cursive;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
   font-size: 2.5rem;
   cursor: pointer;
 }
@@ -445,7 +449,9 @@ p {
 
 .navbar-dark .navbar-nav .nav-link {
   position: relative;
-  font-family: "Kaushan Script", cursive;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
   color: #fff;
   font-size: 1.1rem;
   font-weight: 700;
@@ -464,7 +470,9 @@ p {
 .navbar .dropdown-menu .dropdown-item {
   position: relative;
   padding: 10px 20px;
-  font-family: "Kaushan Script", cursive;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
   color: #fff;
   font-size: 1.4rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
