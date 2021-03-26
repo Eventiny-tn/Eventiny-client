@@ -12,6 +12,7 @@ import {
 } from 'typeorm';
 
 import { Comment } from '../comments/comment.entity';
+import { Participant } from 'src/participant/participant.entity';
 
 // import { Participant } from 'src/participant/participant.entity';
 @Entity('event')
@@ -56,21 +57,13 @@ export class Event {
   @ManyToOne(() => User, (user) => user.events)
   user: User;
 
-  @ManyToMany(() => User, (user) => user.event, { cascade: true })
-  @JoinTable({
-    name: 'participant',
-    joinColumn: { name: 'event_id', referencedColumnName: 'id' },
-    inverseJoinColumn: { name: 'user_id', referencedColumnName: 'id' },
-  })
-  participants: User[];
-
   @OneToMany(() => Comment, (comment) => comment.event)
   comments: Comment[];
 
   @OneToMany(() => Images, (image) => image.images)
   images: Images[];
-  // @OneToMany(() => Participant, (participant) => participant.events)
-  // participants: Participant[];
+  @OneToMany(() => Participant, (participant) => participant.event)
+  participants: Participant[];
   constructor(
     name: string,
     caption: string,
