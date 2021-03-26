@@ -26,30 +26,36 @@
         </div>
       </div>
     </nav>
-    <section class="pricing-area pt-100 pb-100" id="pricing">
-      <div class="container">
-        <div class="row">
-          <div class="col-xl-8 mx-auto text-center">
-            <div class="section-title">
-              <h4>cheap rate</h4>
-              <h2>our prices</h2>
-              <p>
-                Welcome to EventinyTN community, Be your own hero! Became an
-                event planner, organise and sponsorise events!
-              </p>
-            </div>
+    <br />
+    <br />
+    <br />
+    <section class="section-tours">
+      <br />
+      <div class=" text-center  u-margin-bottom-medium">
+        <div class="col-xl-8 mx-auto text-center">
+          <div class="section-title">
+            <h4>cheap rate</h4>
+            <h2>our prices</h2>
+            <p>
+              Welcome to EventinyTN community, Be your own hero! Became an event
+              planner, organise and sponsorise events!
+            </p>
           </div>
         </div>
-        <div class="row">
-          <div class="col-xl-4">
-            <div class="single-price">
-              <div class="price-title">
-                <h4>free</h4>
-              </div>
-              <div class="price-tag">
-                <h2>$0 <span> 1 month</span></h2>
-              </div>
-              <div class="price-item">
+        <br />
+        <br />
+      </div>
+      <div class="row">
+        <div class="col-1-of-3">
+          <div class="card">
+            <div class="card__side card__side--front">
+              <div class="card__picture card__picture--1"></div>
+              <h4 class="card__heading">
+                <span class="card__heading-span card__heading-span--1"
+                  >Free Trial</span
+                >
+              </h4>
+              <div class="card__details">
                 <ul>
                   <li>Limited posts</li>
                   <li>Free for the first 50 users</li>
@@ -58,18 +64,33 @@
                   <li>24/7 Live Support</li>
                 </ul>
               </div>
-              <a class="box-btn" @click="onSubmitPlannerForm()">Go for Free</a>
+            </div>
+            <div class="card__side card__side--back card__side--back-1">
+              <div class="card__cta">
+                <div class="card__price-box">
+                  <p class="card__price-only">Only</p>
+                  <p class="card__price-value">$0</p>
+                </div>
+                <a
+                  href="#0"
+                  class="btn btn--white"
+                  @click="onSubmitPlannerForm()"
+                  >Purshase Now</a
+                >
+              </div>
             </div>
           </div>
-          <div class="col-xl-4">
-            <div class="single-price">
-              <div class="price-title">
-                <h4>professional</h4>
-              </div>
-              <div class="price-tag center">
-                <h2>$12 <span> 3 month</span></h2>
-              </div>
-              <div class="price-item">
+        </div>
+        <div class="col-1-of-3">
+          <div class="card">
+            <div class="card__side card__side--front">
+              <div class="card__picture card__picture--2"></div>
+              <h4 class="card__heading">
+                <span class="card__heading-span card__heading-span--2"
+                  >Pack Platinium</span
+                >
+              </h4>
+              <div class="card__details">
                 <ul>
                   <li>Limited posts</li>
                   <li>Mrketing solutions</li>
@@ -78,18 +99,29 @@
                   <li>24/7 Live Support</li>
                 </ul>
               </div>
-              <a href="" class="box-btn">purchase now</a>
+            </div>
+            <div class="card__side card__side--back card__side--back-2">
+              <div class="card__cta">
+                <div class="card__price-box">
+                  <p class="card__price-only">3 Months</p>
+                  <p class="card__price-value">$120</p>
+                </div>
+                <a href="#0" class="btn btn--white">Purshase Now</a>
+              </div>
             </div>
           </div>
-          <div class="col-xl-4">
-            <div class="single-price">
-              <div class="price-title">
-                <h4>business</h4>
-              </div>
-              <div class="price-tag">
-                <h2>$35 <span>year</span></h2>
-              </div>
-              <div class="price-item">
+        </div>
+
+        <div class="col-1-of-3">
+          <div class="card">
+            <div class="card__side card__side--front">
+              <div class="card__picture card__picture--3"></div>
+              <h4 class="card__heading">
+                <span class="card__heading-span card__heading-span--3"
+                  >Pack Diamond</span
+                >
+              </h4>
+              <div class="card__details">
                 <ul>
                   <li>Unlimited posts</li>
                   <li>Mrketing solutions</li>
@@ -98,11 +130,21 @@
                   <li>24/7 Live Support</li>
                 </ul>
               </div>
-              <a href="" class="box-btn">purchase now</a>
+            </div>
+            <div class="card__side card__side--back card__side--back-3">
+              <div class="card__cta">
+                <div class="card__price-box">
+                  <p class="card__price-only">Year</p>
+                  <p class="card__price-value">$295</p>
+                </div>
+                <a href="#0" class="btn btn--white">Purshase Now</a>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <br />
+      <br />
     </section>
   </div>
 </template>
@@ -325,7 +367,9 @@ p {
 
 .navbar-dark .navbar-nav .nav-link {
   position: relative;
-  font-family: "Kaushan Script", cursive;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
   color: #fff;
   font-size: 1.1rem;
   font-weight: 700;
@@ -568,249 +612,245 @@ span.bg-main {
   -ms-transition-delay: 0.2s;
   transition-delay: 0.2s;
 }
-/* .box21 img {
-  width: 100%;
-  height: auto;
-} */
-.box21 .box-content {
-  margin-top: 3%;
-  width: 100%;
-  height: 100%;
+
+/**** deeeeeeeeeeeleetee */
+html {
+  font-size: 62.5%;
+}
+
+body {
+  box-sizing: border-box;
+  background: #222;
+}
+
+.row {
+  max-width: 114rem;
+  margin: 0 auto;
+}
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.row [class^="col-"] {
+  float: left;
+}
+.row [class^="col-"]:not(:last-child) {
+  margin-right: 6rem;
+}
+.row:not(:last-child) {
+  margin-bottom: 6rem;
+}
+.row .col-1-of-2 {
+  width: calc((100% - 6rem) / 2);
+}
+.row .col-1-of-3 {
+  width: calc((100% - 2 * 6rem) / 3);
+}
+.row .col-1-of-4 {
+  width: calc((100% - 3 * 6rem) / 4);
+}
+.row .col-2-of-4 {
+  width: calc(2 * ((100% - 3 * 6rem) / 4) + 6rem);
+}
+.row .col-3-of-4 {
+  width: calc(3 * ((100% - 3 * 6rem) / 4) + 2 * 6rem);
+}
+
+.section-tours {
+  background-color: #f7f7f7;
+}
+
+.card {
+  perspective: 150rem;
+  -moz-perspective: 150rem;
+  position: relative;
+  height: 52rem;
+}
+.card__side {
+  height: 52rem;
+  transition: all 0.8s ease;
   position: absolute;
   top: 0;
   left: 0;
-  background: 0 0;
-  color: #fff;
-  padding-top: 25px;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  -o-transform: scale(0);
-  transform: scale(0);
-  -ms-transition: all 0.3s linear 0s;
-  -o-transition: all 0.3s linear 0s;
-  -webkit-transition: all 0.3s linear 0s;
-  -moz-transition: all 0.3s linear 0s;
-  transition: all 0.3s linear 0s;
-  z-index: 1;
+  width: 100%;
+  backface-visibility: hidden;
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
 }
-.box21:hover .box-content {
-  -webkit-transform: scale(1);
-  -moz-transform: scale(1);
-  -ms-transform: scale(1);
-  -o-transform: scale(1);
-  transform: scale(1);
-  -moz-transition-delay: 0.4s;
-  -webkit-transition-delay: 0.4s;
-  -o-transition-delay: 0.4s;
-  -ms-transition-delay: 0.4s;
-  transition-delay: 0.4s;
+.card__side--front {
+  background-color: #fff;
 }
-.box21 .title {
-  font-size: 21px;
-  font-weight: 700;
+.card__side--back {
+  transform: rotateY(180deg);
+}
+.card__side--back-1 {
+  background-image: linear-gradient(to right bottom, #ffb900, #ff7730);
+}
+.card__side--back-2 {
+  background-image: linear-gradient(to right bottom, #000428, #004e92);
+}
+.card__side--back-3 {
+  background-image: linear-gradient(to right bottom, #2998ff, #5643fa);
+}
+.card:hover .card__side--front {
+  transform: rotateY(-180deg);
+}
+.card:hover .card__side--back {
+  transform: rotateY(0);
+}
+.card__picture {
+  background-size: cover;
+  height: 23rem;
+  background-blend-mode: screen;
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+}
+.card__picture--1 {
+  background-image: linear-gradient(to right bottom, #ffb900, #ff7730),
+    url(https://picsum.photos/300/250?random=5);
+}
+.card__picture--2 {
+  background-image: linear-gradient(to right bottom, #000428, #004e92),
+    url(https://picsum.photos/300/250?random=6);
+}
+.card__picture--3 {
+  background-image: linear-gradient(to right bottom, #2998ff, #5643fa),
+    url(https://picsum.photos/300/250?random=7);
+}
+.card__heading {
+  font-size: 2.8rem;
   text-transform: uppercase;
-  border-bottom: 1px solid #fff;
-  padding-bottom: 20px;
-  margin-top: 20px;
-}
-.box21 .description {
-  font-size: 14px;
-  font-style: italic;
-  padding: 0 10px;
-  margin: 15px 0;
-}
-.box21 .read-more {
-  display: block;
-  width: 120px;
-  background: #178993;
-  border-radius: 5px;
-  font-size: 14px;
   color: #fff;
-  text-transform: capitalize;
-  padding: 10px 0;
+  font-weight: 300;
+  position: absolute;
+  top: 12rem;
+  right: 2rem;
+  text-align: right;
+  width: 74%;
+}
+.card__heading-span {
+  padding: 0.5rem 1.5rem;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+.card__heading-span--1 {
+  background-image: linear-gradient(
+    to right bottom,
+    rgba(255, 185, 0, 0.85),
+    rgba(255, 119, 48, 0.85)
+  );
+}
+.card__heading-span--2 {
+  background-image: linear-gradient(
+    to right bottom,
+    rgba(0, 4, 40, 0.85),
+    rgba(0, 78, 146, 0.85)
+  );
+}
+.card__heading-span--3 {
+  background-image: linear-gradient(
+    to right bottom,
+    rgba(41, 152, 255, 0.85),
+    rgba(86, 67, 250, 0.85)
+  );
+}
+.card__details {
+  padding: 3rem;
+}
+.card__details ul {
+  list-style: none;
+  width: 80%;
   margin: 0 auto;
 }
-.event-img {
-  width: 100%;
-  height: 20em;
-  object-fit: cover;
+.card__details ul li {
+  text-align: center;
+  font-size: 1.5rem;
+  padding: 1rem;
 }
-.col-sm-6 {
-  margin-top: 2%;
+.card__details ul li:not(:last-child) {
+  border-bottom: 1px solid #eee;
 }
-.Location-date {
-  font-size: 1em !important ;
-  font-weight: 700 !important;
-  color: #fff;
-}
-.event-icons {
-  color: #178993;
-  font-size: 1.5em !important;
-  margin-right: 3%;
-  margin-left: 3%;
-}
-
-@media only screen and (max-width: 990px) {
-  .box21 {
-    margin-bottom: 30px;
-  }
-}
-@media only screen and (max-width: 479px) {
-  .box21 .box-content {
-    padding-top: 0;
-  }
-}
-@media only screen and (max-width: 359px) {
-  .box21 .title {
-    padding-bottom: 10px;
-  }
-}
-
-/* last */
-.scroll-down {
+.card__cta {
   position: absolute;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  top: 45px;
 }
-.floating-arrow {
-  -webkit-animation: floating-arrow 1.6s infinite ease-in-out 0s;
-  -o-animation: floating-arrow 1.6s infinite ease-in-out 0s;
-  animation: floating-arrow 1.6s infinite ease-in-out 0s;
-}
-a.btn.btn-default.btn-scroll {
-  border: 2px solid #fff;
+.card__price-box {
   color: #fff;
-  border-radius: 100%;
+  text-align: center;
+  margin-bottom: 8rem;
 }
-.getReady {
-  color: #008ba3;
+.card__price-only {
+  font-size: 1.4rem;
+  text-transform: uppercase;
+}
+.card__price-value {
+  font-size: 6rem;
+  font-weight: 100;
 }
 
-.pb-100 {
-  padding-bottom: 100px;
+.btn--animated {
+  animation: fadeInUp 0.5s ease-out;
+  animation-fill-mode: backwards;
 }
-.pt-100 {
-  padding-top: 100px;
-}
-a {
-  text-decoration: none;
-}
-.section-title h4 {
-  font-size: 14px;
-  font-weight: 500;
-  color: #777;
-}
-.section-title h2 {
-  font-size: 32px;
-  text-transform: capitalize;
-  margin: 15px 0;
+
+.btn:link,
+.btn:visited {
+  text-transform: uppercase;
+  padding: 1.5rem 4rem;
   display: inline-block;
+  transition: all 0.2s;
+  color: initial;
   position: relative;
-  font-weight: 700;
-  padding-bottom: 15px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+  font-size: 1.6rem;
 }
-.section-title p {
-  font-weight: 300;
-  font-size: 14px;
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
 }
-.black-bg .section-title h2,
-.black-bg .section-title h4,
-.black-bg .section-title p {
-  color: #fff;
+
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
 }
-.section-title h2:before {
-  position: absolute;
+
+.btn::after {
   content: "";
-  width: 150px;
-  height: 1px;
-  background-color: #777;
-  bottom: 0;
-  left: 50%;
-  margin-left: -75px;
-}
-.section-title h2:after {
-  position: absolute;
-  content: "";
-  width: 80px;
-  height: 3px;
-  background-color: #008ba3;
-  border: darkblue;
-  bottom: -1px;
-  left: 50%;
-  margin-left: -40px;
-}
-.section-title {
-  margin-bottom: 70px;
-}
-.single-price {
-  text-align: center;
-  padding: 30px;
-  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
-}
-.price-title h4 {
-  font-size: 24px;
-  text-transform: uppercase;
-  font-weight: 600;
-}
-.price-tag {
-  margin: 30px 0;
-}
-.price-tag {
-  margin: 30px 0;
-  background-color: #fafafa;
-  color: #000;
-  padding: 10px 0;
-}
-.center.price-tag {
-  background-color: #008ba3;
-  color: #fff;
-}
-.price-tag h2 {
-  font-size: 45px;
-  font-weight: 600;
-  font-family: poppins;
-}
-.price-tag h2 span {
-  font-weight: 300;
-  font-size: 16px;
-  font-style: italic;
-}
-.price-item ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.price-item ul li {
-  font-size: 14px;
-  padding: 5px 0;
-  border-bottom: 1px dashed #eee;
-  margin: 5px 0;
-}
-.price-item ul li:last-child {
-  border-bottom: 0;
-}
-.single-price a {
-  margin-top: 15px;
-}
-.box-btn {
-  cursor: pointer;
-}
-a.box-btn {
-  background-color: #008ba3;
-  padding: 5px 20px;
   display: inline-block;
-  color: #fff;
-  text-transform: capitalize;
-  border-radius: 3px;
-  font-size: 15px;
-  transition: 0.3s;
+  height: 100%;
+  width: 100%;
+  border-radius: 10rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  transition: all 0.2s;
 }
-a.box-btn:hover,
-a.border-btn:hover {
-  background-color: #008ba3;
+
+.btn::after {
+  background: #fff;
+}
+
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+.btn--white {
+  background-color: #fff;
+  border-radius: 10rem;
+}
+
+.btn--blue {
+  background-color: #004e92;
+  border-radius: 10rem;
+  color: #fff !important;
+}
+
+.text-center {
+  text-align: center;
 }
 </style>

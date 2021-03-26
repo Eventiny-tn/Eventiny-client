@@ -1,4 +1,3 @@
-import { Event } from 'src/event/event.entity';
 import { Connection, Repository } from 'typeorm';
 import { Injectable } from '@nestjs/common';
 import { Comment } from './comment.entity';
@@ -15,14 +14,19 @@ export class CommentsService {
     const comments = new Comment(body.comment);
     comments.commentator = ids.user_id;
     comments.event = ids.event_id;
-    console.log(comments);
     await this.connection.manager.save(comments);
     return 'progress';
   }
-  async getAllEventComment(id: object): Promise<Error | object> {
+  async getAllEventComment(id: number): Promise<Error | object> {
     const comments = await this.commentRepository.find({
       relations: ['event', 'commentator'],
     });
-    return comments;
+    let allRelatedComment = [];
+    await comments.map((element) => {
+      if (element.event.id == id) {
+        allRelatedComment.push(element);
+      }
+    });
+    return allRelatedComment;
   }
 }

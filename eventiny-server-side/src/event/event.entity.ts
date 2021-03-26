@@ -60,8 +60,8 @@ export class Event {
   @ManyToMany(() => User, (user) => user.event, { cascade: true })
   @JoinTable({
     name: 'participant',
-    joinColumn: { name: 'user_id', referencedColumnName: 'id' },
-    inverseJoinColumn: { name: 'event_id', referencedColumnName: 'id' },
+    joinColumn: { name: 'event_id', referencedColumnName: 'id' },
+    inverseJoinColumn: { name: 'user_id', referencedColumnName: 'id' },
   })
   participants: User[];
 
