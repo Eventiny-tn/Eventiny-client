@@ -13,7 +13,6 @@ import {
 
 import { Comment } from '../comments/comment.entity';
 
-
 // import { Participant } from 'src/participant/participant.entity';
 @Entity('event')
 export class Event {
@@ -21,24 +20,28 @@ export class Event {
   id: number;
   @Column({ length: 25 })
   name: string;
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  time: string;
+  @Column()
+  caption: string;
+  @Column({ default: 'Free' })
+  price: string;
+  @Column()
+  ticket: number;
+  @Column()
+  eventDate: string;
   @Column({ default: false })
   dateStart: string;
   @Column({ default: false })
   dateEnds: string;
   @Column()
   location: string;
-  @Column({ default: 'Free' })
-  price: string;
-  @Column()
-  caption: string;
+  @Column({ default: null })
+  lat: string;
+  @Column({ default: null })
+  lng: string;
   @Column()
   cover: string;
-  @Column()
-  eventDate: string;
-  @Column()
-  ticket: number;
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  time: string;
 
   @Column({ default: false })
   pending: boolean;
@@ -54,16 +57,13 @@ export class Event {
   @ManyToOne(() => User, (user) => user.events)
   user: User;
 
-
-  @ManyToMany(() => User,(user)=>user.event , { cascade: true })
-
+  @ManyToMany(() => User, (user) => user.event, { cascade: true })
   @JoinTable({
     name: 'participant',
     joinColumn: { name: 'user_id', referencedColumnName: 'id' },
     inverseJoinColumn: { name: 'event_id', referencedColumnName: 'id' },
   })
   participants: User[];
-
 
   @OneToMany(() => Comment, (comment) => comment.event)
   comments: Comment[];
@@ -74,23 +74,29 @@ export class Event {
   // participants: Participant[];
   constructor(
     name: string,
-    time: string,
+    caption: string,
+    price: string,
+    ticket: number,
+    eventDate: string,
     dateStart: string,
     dateEnds: string,
     location: string,
-    price: string,
-    caption: string,
+    lat: string,
+    lng: string,
     cover: string,
-    ticket: number,
+    time: string,
   ) {
     this.name = name;
-    this.time = time;
+    this.caption = caption;
+    this.price = price;
+    this.ticket = ticket;
+    this.eventDate = eventDate;
     this.dateStart = dateStart;
     this.dateEnds = dateEnds;
     this.location = location;
-    this.price = price;
-    this.caption = caption;
+    this.lat = lat;
+    this.lng = lng;
     this.cover = cover;
-    this.ticket = ticket;
+    this.time = time;
   }
 }
