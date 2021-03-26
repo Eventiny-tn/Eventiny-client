@@ -169,7 +169,7 @@
                 <button
                   type="button"
                   class="btn btn-success"
-                  @click="clickadd(eventDetails.id, userinfo.id)"
+                  @click="clickadd(eventDetails.id)"
                 >
                   Get it from here
                 </button>
@@ -240,24 +240,7 @@ export default {
           console.log(err);
         });
     },
-    // clickadd(id1, id2) {
-    //   axios
-    //     .post(`http://localhost:3000/ticket/${id1}/${id2}`)
-    //     .then(() => {
-    //       console.log("==>", data);
 
-    //       if (data.username !== undefined) {
-    //         this.$data.isLogged = true;
-    //         this.$data.userinfo = data;
-    //         return;
-    //       } else {
-    //         localStorage.removeItem("token");
-    //       }
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //     });
-    // },
     getUserInfo() {
       const token = localStorage.getItem("token");
       const headers = {
