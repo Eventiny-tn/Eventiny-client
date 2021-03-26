@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="eventDetailContainer">
     <div
       id="thumbnail-preview-indicators"
       class="carousel slide"
@@ -122,6 +122,16 @@
               renovaciones están nuevos vestuarios, equipo de fisioterapia,
               salas de juntas y un centro de medios.
             </p>
+            <!-- Event Comment must be here -->
+            <div>
+              <!-- Comments Container-->
+              <!-- :v-for="comment in comments"
+              <Comment :comment="comment"/>  -->
+              <EventComment :comments="comments" />
+            </div>
+            <br />
+            <br />
+            <br />
           </div>
           <!-- Sidebar // advertising -->
           <div class="col-xs-3 side">
@@ -194,24 +204,38 @@
 </template>
 <script>
 import axios from "axios";
+import EventComment from "./EventComment.vue";
 export default {
+  components: {
+    EventComment,
+  },
   data() {
     return {
       userinfo: "",
+      comments: [],
     };
   },
   props: {
     eventDetails: Object,
   },
   methods: {
-    getEventComment() {},
+    getEventComment() {
+      setInterval(() => {
+        console.log("helllooooo", this.eventDetails.id);
+        axios
+          .get("http://localhost:3000/comments/" + this.eventDetails.id)
+          .then(({ data }) => {
+            this.$data.comments = data;
+            console.log("comments==>>", this.comments);
+          })
+          .catch((err) => console.log(err));
+      }, 2000);
+    },
 
     clickadd(id1) {
-      console.log("iiiiiiddddddddddd1 event", id1, this.userinfo.id);
-
       axios
-        .post(`http://localhost:3000/ticket/${this.userinfo.id}/${id1}`)
-        .then(console.log("done"))
+        .post(`http://localhost:3000/ticket/${id1}/${this.userinfo.id}`)
+        .then(({ data }) => console.log("done"))
         .catch((err) => {
           console.log(err);
         });
@@ -232,7 +256,6 @@ export default {
         .get("http://localhost:3000/verify", headers)
         .then(({ data }) => {
           console.log("fakhri==>", data);
-          console.log("==>", data);
 
           if (data.username !== undefined) {
             this.$data.isLogged = true;
@@ -254,6 +277,11 @@ export default {
 };
 </script>
 <style scoped>
+.eventDetailContainer {
+  display: block;
+  justify-content: center;
+  align-content: center;
+}
 .detail-event {
   margin-top: 3%;
 }

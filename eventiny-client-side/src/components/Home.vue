@@ -92,8 +92,25 @@
         </div>
       </div>
     </nav>
+
     <header class="masthead text-white ">
-      <div class="overlay"></div>
+      <div class="overlay">
+        <section>
+          <div class="overlay-wcs"></div>
+          <video
+            playsinline="playsinline"
+            autoplay="autoplay"
+            muted="muted"
+            loop="loop"
+          >
+            <source src="../assets/background.mp4" type="video/mp4" />
+          </video>
+          <!-- <div class="container h-100">
+            <div class="d-flex h-100 text-center align-items-center"></div>
+          </div> -->
+        </section>
+      </div>
+
       <div class="container slider-top-text">
         <div class="row">
           <div class="col-md-12 text-center">
@@ -950,6 +967,44 @@ export default {
 };
 </script>
 <style scoped>
+section {
+  position: relative;
+  height: 75vh;
+  min-height: 25rem;
+  width: 100%;
+  overflow: hidden;
+}
+
+section video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: 0;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+section .container {
+  position: relative;
+  z-index: 2;
+}
+
+section .overlay-wcs {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0.5;
+  z-index: 1;
+}
+
 body {
   font-family: "Open Sans", sans-serif !important;
   background: #fff;
@@ -994,31 +1049,32 @@ body {
 header.masthead {
   position: relative;
   height: 100vh;
-  background-color: #343a40;
-  background: url("https://images.pexels.com/photos/1267350/pexels-photo-1267350.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
-    no-repeat center center;
+  background-color: white;
+  /* background: url("https://images.pexels.com/photos/1267350/pexels-photo-1267350.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
+    no-repeat center center; */
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  padding-top: 8rem;
-  padding-bottom: 8rem;
+  /* padding-top: 8rem;
+  padding-bottom: 8rem; */
 }
 
 header.masthead .overlay {
   position: absolute;
-  background-color: #212529;
+  background-color: white;
   height: 100%;
   width: 100%;
   top: 0;
   left: 0;
-  opacity: 0.3;
+  opacity: 0.7;
+  padding: 0;
 }
 
 @media (min-width: 768px) {
   header.masthead {
-    padding-top: 12rem;
-    padding-bottom: 12rem;
+    padding-top: 0;
+    padding-bottom: 0;
   }
   header.masthead h3 {
     font-size: 4rem;

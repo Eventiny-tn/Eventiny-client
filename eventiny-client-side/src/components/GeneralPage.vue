@@ -56,31 +56,46 @@
         </div>
       </div>
     </nav>
-    <div
-      class=" banner header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
-      style=" background-image: url(https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260) ; background-position: center top; opacity:0.7;"
-      v-if="formView"
-    >
-      <div class="container">
-        <h1 class="getReady">Get ready</h1>
-        <p>
-          Good times are coming, and you're invited to create your Event
-        </p>
-        <a class="button button-primary" @click="switchToFormPremium()">
-          Start</a
-        >
-        <div class="col-md-12 text-center mt-5">
-          <div class="scroll-down">
-            <a
-              class="btn btn-default btn-scroll floating-arrow"
-              href="#gobottom"
-              id="bottom"
-              ><i class="fa fa-angle-down"></i
-            ></a>
+    <section>
+      <div class="overlay-wcs"></div>
+      <video
+        playsinline="playsinline"
+        autoplay="autoplay"
+        muted="muted"
+        loop="loop"
+      >
+        <source src="../assets/feed-video.mp4" type="video/mp4" />
+      </video>
+      <div class="container h-100">
+        <div class="d-flex h-100 text-center align-items-center">
+          <div
+            class=" banner header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
+            v-if="formView"
+          >
+            <div class="container">
+              <h1 class="getReady">Get ready</h1>
+              <p>
+                Good times are coming, and you're invited to create your Event
+              </p>
+              <a class="button button-primary" @click="switchToFormPremium()">
+                Start</a
+              >
+              <div class="col-md-12 text-center mt-5">
+                <div class="scroll-down">
+                  <a
+                    class="btn btn-default btn-scroll floating-arrow"
+                    href="#gobottom"
+                    id="bottom"
+                    ><i class="fa fa-angle-down"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
+
     <div class="banner" v-if="!formView" id="formPremium">
       <div
         v-if="!data.plannerDemand"
@@ -89,6 +104,7 @@
         <UpgradeToPremium :userinfo="user" />
       </div>
       <!-- here you need to render the dashboard admin once its ready also wrapper it with else conditon -->
+
       <!-- <PlannerDashboard /> -->
     </div>
     <div>
@@ -131,7 +147,8 @@
       </main>
       <div v-if="onDetails == true">
         <div>
-          <h1 class="my-heading">type here</h1>
+          <!-- <h1 class="my-heading">type here</h1> -->
+          <br />
         </div>
         <EventDetails :eventDetails="eventDetails" />
       </div>
@@ -279,6 +296,49 @@ jQuery(function($) {
 </script>
 
 <style scoped>
+/**
+    background-color: #eaeaea;
+ */
+section {
+  position: relative;
+  background-color: black;
+  height: 75vh;
+  min-height: 25rem;
+  width: 100%;
+  overflow: hidden;
+}
+
+section video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: 0;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+section .container {
+  position: relative;
+  z-index: 2;
+}
+
+section .overlay-wcs {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 1;
+}
+
 #formPremium {
   margin: auto;
 }
@@ -291,7 +351,9 @@ html {
   cursor: pointer;
 }
 body {
-  font-family: "Kaushan Script", cursive;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
   font-size: 1.6rem;
   font-weight: 400;
 }
@@ -373,7 +435,7 @@ p {
   color: #fff;
   text-align: center;
   z-index: 1;
-  background-color: #999999;
+  background-color: none;
   /* font-family: "Kaushan Script", cursive; */
 }
 .banner h1 {
@@ -392,7 +454,9 @@ p {
   z-index: 99999;
 }
 .navbar .navbar-brand {
-  font-family: "Kaushan Script", cursive;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
   font-size: 2.5rem;
   cursor: pointer;
 }
@@ -444,7 +508,9 @@ p {
 
 .navbar-dark .navbar-nav .nav-link {
   position: relative;
-  font-family: "Kaushan Script", cursive;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
   color: #fff;
   font-size: 1.1rem;
   font-weight: 700;
@@ -463,7 +529,9 @@ p {
 .navbar .dropdown-menu .dropdown-item {
   position: relative;
   padding: 10px 20px;
-  font-family: "Kaushan Script", cursive;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
   color: #fff;
   font-size: 1.4rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
