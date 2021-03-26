@@ -1,5 +1,5 @@
 import { AppService } from './../app.service';
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from './constants';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -8,6 +8,7 @@ import { User } from './user.entity';
 import { UserService } from './user.service';
 import { GoogleStrategy } from 'src/auth/google-strategy';
 import { EventModule } from 'src/event/event.module';
+import { ParticipantModule } from 'src/participant/participant.module';
 
 @Module({
   imports: [
@@ -17,6 +18,8 @@ import { EventModule } from 'src/event/event.module';
       signOptions: { expiresIn: '25h' },
     }),
     EventModule,
+    // ParticipantModule,
+    UserModule,
   ],
   controllers: [UserController],
   providers: [UserService, GoogleStrategy, AppService],

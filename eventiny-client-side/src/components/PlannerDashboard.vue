@@ -1,4 +1,4 @@
-<template>
+<template :v-if="dataCategories">
   <div class="addevent">
     <nav class="navbar navbar-expand-md navbar-dark">
       <div class="containernav">
@@ -27,7 +27,7 @@
       </div>
     </nav>
     <form class="ui form">
-      <h1>Basic Info</h1>
+      <h1 class="title-basic">Basic Info</h1>
       <p>
         Name your event and explain to potential attendees why they absolutely
         need to come. <br />
@@ -61,21 +61,25 @@
           </div>
         </div>
       </div>
+      <div class="field">
+        <label>Max tickets</label>
+        <div class="fields">
+          <div class="twelve wide field">
+            <input type="number" placeholder="Max tickets" />
+          </div>
+        </div>
+      </div>
       <div class="two fields"></div>
 
       <div class="field">
         <label>Event Category</label>
-        <div class="ui compact menu">
-          <div class="ui simple dropdown item">
-            Dropdown
-            <i class="dropdown icon"></i>
-            <div class="menu">
-              <div class="item">Choice 1</div>
-              <div class="item">Choice 2</div>
-              <div class="item">Choice 3</div>
-            </div>
-          </div>
-        </div>
+
+        <fieldset v-for="category in dataCategories" v-bind:key="category.id">
+          <input type="checkbox" name="action" id="track" value="track" /><label
+            for="track"
+            >{{ category.name }}</label
+          ><br />
+        </fieldset>
       </div>
       <form>
         <div>
@@ -115,17 +119,21 @@
             <div class="form-group">
               <label>Location:</label>
               <input
-                id="searchInput"
+                id="searchinput"
                 class="controls"
                 type="text"
                 placeholder="Enter a location"
               />
             </div>
-
             <div id="map"></div>
           </div>
         </div>
       </div>
+      <form action="upload.php" method="post" enctype="multipart/form-data">
+        Select image to upload:
+        <input type="file" name="fileToUpload" id="fileToUpload" />
+        <input type="submit" value="Upload Image" name="submit" />
+      </form>
     </form>
     <div class="ui button" tabindex="0">Submit Order</div>
   </div>
@@ -133,8 +141,15 @@
 
 <script>
 import $Scriptjs from "scriptjs";
+import axios from "axios";
 
 export default {
+  data() {
+    return {
+      dataCategories: [],
+    };
+  },
+
   methods: {
     // getPlace() {
     //   var searchInput = "search_input";
@@ -148,15 +163,20 @@ export default {
     //     );
     //   });
     // },
+    getCategories() {
+      axios.get("http://localhost:3000/category").then(({ data }) => {
+        console.log(data);
+        this.$data.dataCategories = data;
+      });
+      console.log(this.dataCategories);
+    },
 
     initMap() {
       var map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 36.806389, lng: 10.181667 },
+        center: { lat: 36.806389, lng: 11.181667 },
         zoom: 8,
       });
-      var input = document.getElementById("searchInput");
-      map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
+      var input = document.getElementById("searchinput");
       var autocomplete = new google.maps.places.Autocomplete(input);
       autocomplete.bindTo("bounds", map);
 
@@ -180,9 +200,10 @@ export default {
           map.fitBounds(place.geometry.viewport);
         } else {
           map.setCenter(place.geometry.location);
-          map.setZoom(17);
+          map.setZoom(13);
         }
-        console.log(place.geometry.viewport);
+        console.log(place.geometry.viewport.La.g);
+        console.log(place.geometry.viewport.Ra.g);
 
         marker.setIcon({
           url: place.icon,
@@ -195,38 +216,53 @@ export default {
         marker.setPosition(place.geometry.location);
         marker.setVisible(true);
 
-        infowindow.setContent(
-          "<div><strong>" + place.name + "</strong><br>" + address
-        );
+        //getting place full name
+        var address = "";
+        if (place.address_components) {
+          address = [
+            (place.address_components[0] &&
+              place.address_components[0].short_name) ||
+              "",
+            (place.address_components[1] &&
+              place.address_components[1].short_name) ||
+              "",
+            (place.address_components[2] &&
+              place.address_components[2].short_name) ||
+              "",
+          ].join(" ");
+        }
+        console.log(address);
+
+        infowindow.setContent("<div><strong>" + place.name + "</strong><br>");
         infowindow.open(map, marker);
 
-        // Location details
-        // for (var i = 0; i < place.address_components.length; i++) {
-        //   if (place.address_components[i].types[0] == "postal_code") {
-        //     document.getElementById("postal_code").innerHTML =
-        //       place.address_components[i].long_name;
-        //   }
-        //   if (place.address_components[i].types[0] == "country") {
-        //     document.getElementById("country").innerHTML =
-        //       place.address_components[i].long_name;
-        //   }
-        // }
-        // document.getElementById("location").innerHTML = place.formatted_address;
-        // document.getElementById(
-        //   "lat"
-        // ).innerHTML = place.geometry.location.lat();
-        // document.getElementById(
-        //   "lon"
-        // ).innerHTML = place.geometry.location.lng();
+        //Location details
+        for (var i = 0; i < place.address_components.length; i++) {
+          if (place.address_components[i].types[0] == "postal_code") {
+            document.getElementById("postal_code").innerHTML =
+              place.address_components[i].long_name;
+          }
+          if (place.address_components[i].types[0] == "country") {
+            document.getElementById("country").innerHTML =
+              place.address_components[i].long_name;
+          }
+        }
+        document.getElementById("location").innerHTML = place.formatted_address;
+        document.getElementById(
+          "lat"
+        ).innerHTML = place.geometry.location.lat();
+        document.getElementById(
+          "lon"
+        ).innerHTML = place.geometry.location.lng();
       });
     },
   },
   mounted() {
+    this.getCategories();
     $Scriptjs(
       "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyDapTrWdHVdzoF7ttygRmfv0XqIDkonBqg&callback=initMap",
       () => {
         this.initMap();
-        // this.getPlace();
       }
     );
   },
@@ -246,9 +282,13 @@ body {
   padding: 0;
   width: 80%;
 }
-#search_input {
+#searchinput {
   font-size: 18px;
-  width: 50%;
+  width: 300px;
+  margin-top: 14px;
+}
+.title-basic {
+  color: #008ba3;
 }
 .form {
   margin-top: 100px;
@@ -262,7 +302,7 @@ body {
 .form-group {
   margin-bottom: 10px;
   margin-top: 50px;
-  text-align: center !important ;
+  margin-left: -100px;
 }
 .container {
   text-align: center;
@@ -271,6 +311,7 @@ body {
 .form-group label {
   font-size: 18px;
   font-weight: 600;
+  margin-left: 20px;
 }
 .form-group input {
   width: 100%;
@@ -314,6 +355,9 @@ p {
   margin-bottom: 0.5em;
   font-size: 1.6rem;
   line-height: 1.6;
+}
+.controls {
+  margin-right: 500px;
 }
 .button {
   display: inline-block;

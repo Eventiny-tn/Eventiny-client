@@ -11,6 +11,7 @@ import {
   JoinTable,
 } from 'typeorm';
 import { Event } from '../event/event.entity';
+import { Participant } from 'src/participant/participant.entity';
 @Entity('user')
 @Unique(['username'])
 @Unique(['email'])
@@ -58,10 +59,8 @@ export class User {
   @OneToMany(() => Comment, (comment) => comment.commentator)
   comments: Comment[];
 
-  // @OneToMany(() => Participant, (participant) => participant.users)
-  // participant: Participant[];
-  @ManyToMany((type) => Event, (event) => event.participants)
-  event: Event[];
+  @OneToMany(() => Participant, (participant) => participant.user)
+  participants: Participant[];
 }
 
 export interface Userinfo {

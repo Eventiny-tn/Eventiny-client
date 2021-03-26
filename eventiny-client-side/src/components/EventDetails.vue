@@ -166,34 +166,26 @@
                     >Me gusta 20</span
                   >
                 </p>
+                <input
+                  type="number"
+                  name="tentacles"
+                  min="1"
+                  v-bind:max="eventDetails.ticket"
+                  v-model="tickets"
+                />
                 <button
                   type="button"
                   class="btn btn-success"
-                  @click="clickadd(eventDetails.id)"
+                  @click="clickadd()"
                 >
-                  Get it from here
+                  Reserve
                 </button>
               </div>
               <p style="margin-bottom:0px;margin-top:25px;">
                 <b>Location</b>
               </p>
               <ul class="list-group">
-                <li class="list-group-item">
-                  <big><b>1.</b></big> Cras justo odio
-                </li>
-                <li class="list-group-item">
-                  <big><b>2.</b></big> Dapibus ac facilisis in
-                </li>
-                <li class="list-group-item">
-                  <big><b>3.</b></big> Morbi leo risus
-                </li>
-                <li class="list-group-item">
-                  <big><b>4.</b></big> Porta ac consectetur ac
-                </li>
-
-                <li class="list-group-item">
-                  <big><b>5.</b></big> Vestibulum at eros
-                </li>
+                <li id="map"></li>
               </ul>
             </small>
           </div>
@@ -204,6 +196,7 @@
 </template>
 <script>
 import axios from "axios";
+import $Scriptjs from "scriptjs";
 import EventComment from "./EventComment.vue";
 export default {
   components: {
@@ -212,6 +205,7 @@ export default {
   data() {
     return {
       userinfo: "",
+      tickets: 1,
       comments: [],
     };
   },
@@ -232,13 +226,34 @@ export default {
       }, 2000);
     },
 
-    clickadd(id1) {
+    clickadd() {
+      console.log(this.$data.tickets, "iddddddddddddd", this.eventDetails.id);
       axios
-        .post(`http://localhost:3000/ticket/${id1}/${this.userinfo.id}`)
-        .then(({ data }) => console.log("done"))
+        .post(
+          `http://localhost:3000/ticket/${this.userinfo.id}/${this.eventDetails.id}`,
+          { quantity: this.$data.tickets }
+        )
+        .then(console.log("done"))
         .catch((err) => {
           console.log(err);
         });
+    },
+
+    initMap() {
+      var map = new google.maps.Map(document.getElementById("map"), {
+        center: {
+          lat: 36.86249448797207,
+          lng: 10.33179298996273,
+        },
+        zoom: 13,
+      });
+      var marker = new google.maps.Marker({
+        position: {
+          lat: 36.86249448797207,
+          lng: 10.33179298996273,
+        },
+        map: map,
+      });
     },
 
     getUserInfo() {
@@ -274,6 +289,16 @@ export default {
     this.getUserInfo();
     this.getEventComment();
   },
+  mounted() {
+    console.log(this.eventDetails);
+    $Scriptjs(
+      "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyDapTrWdHVdzoF7ttygRmfv0XqIDkonBqg&callback=initMap",
+      () => {
+        this.initMap();
+        // this.getPlace();
+      }
+    );
+  },
 };
 </script>
 <style scoped>
@@ -290,6 +315,10 @@ export default {
 }
 .detail-title {
   font-size: 30px;
+}
+#map {
+  height: 150px;
+  width: 100%;
 }
 #thumbnail-preview-indicato detail-eventrs {
   position: relative;
