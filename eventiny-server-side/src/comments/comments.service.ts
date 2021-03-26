@@ -2,7 +2,8 @@ import { Connection, Repository } from 'typeorm';
 import { Injectable } from '@nestjs/common';
 import { Comment } from './comment.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-
+// import moment from 'moment';
+import * as moment from 'moment';
 @Injectable()
 export class CommentsService {
   constructor(
@@ -24,6 +25,7 @@ export class CommentsService {
     let allRelatedComment = [];
     await comments.map((element) => {
       if (element.event.id == id) {
+        element.time = moment(element.time).fromNow();
         allRelatedComment.push(element);
       }
     });

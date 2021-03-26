@@ -7,8 +7,6 @@ import {
   PrimaryGeneratedColumn,
   Unique,
   OneToMany,
-  ManyToMany,
-  JoinTable,
 } from 'typeorm';
 import { Event } from '../event/event.entity';
 import { Participant } from 'src/participant/participant.entity';
