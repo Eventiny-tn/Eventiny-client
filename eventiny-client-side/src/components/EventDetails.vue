@@ -166,12 +166,19 @@
                     >Me gusta 20</span
                   >
                 </p>
+                <input
+                  type="number"
+                  name="tentacles"
+                  min="1"
+                  v-bind:max="eventDetails.ticket"
+                  v-model="tickets"
+                />
                 <button
                   type="button"
                   class="btn btn-success"
-                  @click="clickadd(eventDetails.id)"
+                  @click="clickadd()"
                 >
-                  Get it from here
+                  Reserve
                 </button>
               </div>
               <p style="margin-bottom:0px;margin-top:25px;">
@@ -198,6 +205,7 @@ export default {
   data() {
     return {
       userinfo: "",
+      tickets: 1,
       comments: [],
     };
   },
@@ -218,6 +226,18 @@ export default {
       }, 2000);
     },
 
+    clickadd() {
+      console.log(this.$data.tickets, "iddddddddddddd", this.eventDetails.id);
+      axios
+        .post(
+          `http://localhost:3000/ticket/${this.userinfo.id}/${this.eventDetails.id}`,
+          { quantity: this.$data.tickets }
+        )
+        .then(console.log("done"))
+        .catch((err) => {
+          console.log(err);
+        });
+    },
 
     initMap() {
       var map = new google.maps.Map(document.getElementById("map"), {
@@ -234,16 +254,6 @@ export default {
         },
         map: map,
       });
-    },
-
-
-    clickadd(id1) {
-      axios
-        .post(`http://localhost:3000/ticket/${id1}/${this.userinfo.id}`)
-        .then(({ data }) => console.log("done"))
-        .catch((err) => {
-          console.log(err);
-        });
     },
 
     getUserInfo() {
@@ -278,7 +288,6 @@ export default {
   created() {
     this.getUserInfo();
     this.getEventComment();
-
   },
   mounted() {
     console.log(this.eventDetails);
@@ -289,7 +298,6 @@ export default {
         // this.getPlace();
       }
     );
-
   },
 };
 </script>
