@@ -34,6 +34,11 @@
             </li>
           </ul>
         </div>
+        <div class="ui inverted red segment" v-else-if="comments.length == 0">
+          <p>
+            There is no comments in this sections
+          </p>
+        </div>
         <div class="ui active centered inline loader" v-else></div>
       </div>
     </div>
