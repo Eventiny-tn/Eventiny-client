@@ -159,7 +159,7 @@
                 <button
                   type="button"
                   class="btn btn-success"
-                  @click="clickadd(eventDetails.id, userinfo.id)"
+                  @click="clickadd(eventDetails.id)"
                 >
                   Get it from here
                 </button>
@@ -206,50 +206,17 @@ export default {
   methods: {
     getEventComment() {},
 
-    clickadd(id1, id2) {
+    clickadd(id1) {
+      console.log("iiiiiiddddddddddd1 event", id1, this.userinfo.id);
+
       axios
-        .post(`http://localhost:3000/ticket/${id1}/${id2}`)
+        .post(`http://localhost:3000/ticket/${this.userinfo.id}/${id1}`)
         .then(console.log("done"))
         .catch((err) => {
           console.log(err);
         });
     },
-    getUserInfo() {
-      const token = localStorage.getItem("token");
-      const headers = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
-      if (token == null) {
-        this.$router.push("/");
-        return;
-      }
 
-      axios
-        .get("http://localhost:3000/comments/" + this.eventDetails.id)
-        .then(({ data }) => {
-          console.log("comment", data, this.eventDetails.id);
-        });
-    },
-    clickadd(id1, id2) {
-      axios
-        .post(`http://localhost:3000/ticket/${id1}/${id2}`)
-        .then(() => {
-          console.log("==>", data);
-
-          if (data.username !== undefined) {
-            this.$data.isLogged = true;
-            this.$data.userinfo = data;
-            return;
-          } else {
-            localStorage.removeItem("token");
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
     getUserInfo() {
       const token = localStorage.getItem("token");
       const headers = {
@@ -279,11 +246,10 @@ export default {
           console.log(err);
         });
     },
-
-    created() {
-      this.getUserInfo();
-      this.getEventComment();
-    },
+  },
+  created() {
+    this.getUserInfo();
+    this.getEventComment();
   },
 };
 </script>
