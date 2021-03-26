@@ -178,22 +178,7 @@
                 <b>Location</b>
               </p>
               <ul class="list-group">
-                <li class="list-group-item">
-                  <big><b>1.</b></big> Cras justo odio
-                </li>
-                <li class="list-group-item">
-                  <big><b>2.</b></big> Dapibus ac facilisis in
-                </li>
-                <li class="list-group-item">
-                  <big><b>3.</b></big> Morbi leo risus
-                </li>
-                <li class="list-group-item">
-                  <big><b>4.</b></big> Porta ac consectetur ac
-                </li>
-
-                <li class="list-group-item">
-                  <big><b>5.</b></big> Vestibulum at eros
-                </li>
+                <li id="map"></li>
               </ul>
             </small>
           </div>
@@ -204,6 +189,7 @@
 </template>
 <script>
 import axios from "axios";
+import $Scriptjs from "scriptjs";
 import EventComment from "./EventComment.vue";
 export default {
   components: {
@@ -231,6 +217,25 @@ export default {
           .catch((err) => console.log(err));
       }, 2000);
     },
+
+
+    initMap() {
+      var map = new google.maps.Map(document.getElementById("map"), {
+        center: {
+          lat: 36.86249448797207,
+          lng: 10.33179298996273,
+        },
+        zoom: 13,
+      });
+      var marker = new google.maps.Marker({
+        position: {
+          lat: 36.86249448797207,
+          lng: 10.33179298996273,
+        },
+        map: map,
+      });
+    },
+
 
     clickadd(id1) {
       axios
@@ -273,6 +278,18 @@ export default {
   created() {
     this.getUserInfo();
     this.getEventComment();
+
+  },
+  mounted() {
+    console.log(this.eventDetails);
+    $Scriptjs(
+      "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyDapTrWdHVdzoF7ttygRmfv0XqIDkonBqg&callback=initMap",
+      () => {
+        this.initMap();
+        // this.getPlace();
+      }
+    );
+
   },
 };
 </script>
@@ -290,6 +307,10 @@ export default {
 }
 .detail-title {
   font-size: 30px;
+}
+#map {
+  height: 150px;
+  width: 100%;
 }
 #thumbnail-preview-indicato detail-eventrs {
   position: relative;

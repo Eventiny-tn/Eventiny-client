@@ -18,15 +18,18 @@ export class EventService {
   ) {}
   async addEvent({
     name,
-    time,
+    caption,
+    price,
+    ticket,
+    eventDate,
     dateStart,
     dateEnds,
     location,
-    price,
-    caption,
     images,
+    lat,
+    lng,
     cover,
-    ticket,
+    time,
     categories,
     userId,
   }): Promise<Error | string> {
@@ -34,14 +37,17 @@ export class EventService {
       // await this.eventRepository.
       let event = new Event(
         name,
-        time,
+        caption,
+        price,
+        ticket,
+        eventDate,
         dateStart,
         dateEnds,
         location,
-        price,
-        caption,
+        lat,
+        lng,
         cover,
-        ticket
+        time,
       );
       try {
         event.categories = [];
