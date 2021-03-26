@@ -124,7 +124,10 @@
             </p>
             <!-- Event Comment must be here -->
             <div>
-              <EventComment />
+              <!-- Comments Container-->
+              <!-- :v-for="comment in comments"
+              <Comment :comment="comment"/>  -->
+              <EventComment :comments="comments" />
             </div>
             <br />
             <br />
@@ -217,13 +220,16 @@ export default {
   },
   methods: {
     getEventComment() {
-      console.log("helllooooo", this.eventDetails.id);
-      axios
-        .get("http://localhost:3000/comments/" + 1)
-        .then(({ data }) => {
-          console.log("comments==>>", data);
-        })
-        .catch((err) => console.log(err));
+      setInterval(() => {
+        console.log("helllooooo", this.eventDetails.id);
+        axios
+          .get("http://localhost:3000/comments/" + this.eventDetails.id)
+          .then(({ data }) => {
+            this.$data.comments = data;
+            console.log("comments==>>", this.comments);
+          })
+          .catch((err) => console.log(err));
+      }, 2000);
     },
 
     clickadd(id1, id2) {
@@ -280,10 +286,10 @@ export default {
           console.log(err);
         });
     },
-    mounted() {
-      this.getUserInfo();
-      this.getEventComment();
-    },
+  },
+  created() {
+    this.getUserInfo();
+    this.getEventComment();
   },
 };
 </script>

@@ -134,7 +134,7 @@
           <!-- <h1 class="my-heading">type here</h1> -->
           <br />
         </div>
-        <EventDetails v-bind:eventDetails="eventDetails" />
+        <EventDetails :eventDetails="eventDetails" />
       </div>
     </div>
   </header>

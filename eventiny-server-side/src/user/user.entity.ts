@@ -1,6 +1,4 @@
-
 import { Comment } from './../comments/comment.entity';
-
 
 // import { Participant } from 'src/participant/participant.entity';
 import {
@@ -41,7 +39,9 @@ export class User {
   country: string;
   @Column({ default: null })
   postalcode: string;
-  @Column({ default: null })
+  @Column({
+    default: null,
+  })
   userimg: string;
   @Column({ default: false })
   isBanned: boolean;
@@ -60,7 +60,6 @@ export class User {
   // participant: Participant[];
   @ManyToMany((type) => Event, (event) => event.participants)
   event: Event[];
-
 }
 
 export interface Userinfo {

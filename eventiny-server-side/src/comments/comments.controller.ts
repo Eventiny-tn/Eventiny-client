@@ -12,7 +12,7 @@ export class CommentsController {
     return this.commentsService.addComment(ids, body);
   }
   @Get(':event_id')
-  getAllEventComment(@Param() id: object): Promise<Error | object> {
+  getAllEventComment(@Param('event_id') id: number): Promise<Error | object> {
     return this.commentsService.getAllEventComment(id);
   }
 }

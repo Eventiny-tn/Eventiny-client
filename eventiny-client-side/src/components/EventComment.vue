@@ -3,134 +3,52 @@
     <div class="container">
       <div class="row">
         <!-- Contenedor Principal -->
-        <div class="comments-container">
+        <div class="comments-container" v-if="comments.length > 0">
           <h1>
             Comments
           </h1>
-
           <ul id="comments-list" class="comments-list">
-            <li>
+            <li v-for="(comment, i) in comments" :key="i">
               <div class="comment-main-level">
                 <!-- Avatar -->
                 <div class="comment-avatar">
-                  <img
-                    src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg"
-                    alt=""
-                  />
+                  <img src="comment.commentator.userimg" />
                 </div>
                 <!-- Contenedor del Comentario -->
                 <div class="comment-box">
                   <div class="comment-head">
                     <h6 class="comment-name by-author">
-                      <a href="http://creaticode.com/blog">Agustin Ortiz</a>
+                      <a>{{ comment.commentator.username }}</a>
                     </h6>
-                    <span>hace 20 minutos</span>
+                    <span
+                      >this should be the time of publishing that comment</span
+                    >
                     <i class="fa fa-reply"></i>
                     <i class="fa fa-heart"></i>
                   </div>
                   <div class="comment-content">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Velit omnis animi et iure laudantium vitae, praesentium
-                    optio, sapiente distinctio illo?
-                  </div>
-                </div>
-              </div>
-              <!-- Respuestas de los comentarios -->
-              <ul class="comments-list reply-list">
-                <li>
-                  <!-- Avatar -->
-                  <div class="comment-avatar">
-                    <img
-                      src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg"
-                      alt=""
-                    />
-                  </div>
-                  <!-- Contenedor del Comentario -->
-                  <div class="comment-box">
-                    <div class="comment-head">
-                      <h6 class="comment-name">
-                        <a href="http://creaticode.com/blog">Lorena Rojero</a>
-                      </h6>
-                      <span>hace 10 minutos</span>
-                      <i class="fa fa-reply"></i>
-                      <i class="fa fa-heart"></i>
-                    </div>
-                    <div class="comment-content">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      Velit omnis animi et iure laudantium vitae, praesentium
-                      optio, sapiente distinctio illo?
-                    </div>
-                  </div>
-                </li>
-
-                <li>
-                  <!-- Avatar -->
-                  <div class="comment-avatar">
-                    <img
-                      src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg"
-                      alt=""
-                    />
-                  </div>
-                  <!-- Contenedor del Comentario -->
-                  <div class="comment-box">
-                    <div class="comment-head">
-                      <h6 class="comment-name by-author">
-                        <a href="http://creaticode.com/blog">Agustin Ortiz</a>
-                      </h6>
-                      <span>hace 10 minutos</span>
-                      <i class="fa fa-reply"></i>
-                      <i class="fa fa-heart"></i>
-                    </div>
-                    <div class="comment-content">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      Velit omnis animi et iure laudantium vitae, praesentium
-                      optio, sapiente distinctio illo?
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </li>
-
-            <li>
-              <div class="comment-main-level">
-                <!-- Avatar -->
-                <div class="comment-avatar">
-                  <img
-                    src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg"
-                    alt=""
-                  />
-                </div>
-                <!-- Contenedor del Comentario -->
-                <div class="comment-box">
-                  <div class="comment-head">
-                    <h6 class="comment-name">
-                      <a href="http://creaticode.com/blog">Lorena Rojero</a>
-                    </h6>
-                    <span>hace 10 minutos</span>
-                    <i class="fa fa-reply"></i>
-                    <i class="fa fa-heart"></i>
-                  </div>
-                  <div class="comment-content">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Velit omnis animi et iure laudantium vitae, praesentium
-                    optio, sapiente distinctio illo?
+                    {{ comment.comment }}
                   </div>
                 </div>
               </div>
             </li>
           </ul>
         </div>
+        <div class="ui active centered inline loader" v-else></div>
       </div>
     </div>
   </div>
 </template>
 <script>
 export default {
-  //   props: {
-  //     comments: {
-  //       type: Object,
-  //     },
-  //   },
+  props: {
+    comments: {
+      type: Array,
+    },
+  },
+  mounted() {
+    console.log("achref", this.comments);
+  },
 };
 </script>
 <style scoped>
