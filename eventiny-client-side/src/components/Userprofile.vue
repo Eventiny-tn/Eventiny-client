@@ -658,7 +658,6 @@ html {
 }
 
 li.nav-item a:hover {
-  background: #008ba3;
   color: #ffffff !important;
 }
 h3.my-heading {

@@ -103,7 +103,7 @@
             muted="muted"
             loop="loop"
           >
-            <source src="../assets/background.mp4" type="video/mp4" />
+            <source src="../assets/promo.mp4" type="video/mp4" />
           </video>
           <!-- <div class="container h-100">
             <div class="d-flex h-100 text-center align-items-center"></div>
@@ -806,6 +806,7 @@
         </div>
       </div>
     </section>
+    <br /><br />
 
     <footer class="footer bg-dark">
       <div class="container">

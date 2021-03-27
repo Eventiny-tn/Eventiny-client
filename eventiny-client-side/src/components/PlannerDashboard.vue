@@ -94,9 +94,13 @@
         <label>Event Category</label>
 
         <fieldset v-for="category in dataCategories" v-bind:key="category.id">
-          <input type="checkbox" name="action" id="track" value="track" /><label
-            for="track"
-            >{{ category.name }}</label
+          <input
+            type="checkbox"
+            name="event.categorie"
+            id="track"
+            v-model="event.categories"
+            v-bind:value="category.name"
+          /><label for="track">{{ category.name }}</label
           ><br />
         </fieldset>
       </div>
@@ -157,9 +161,9 @@
         </div>
       </div>
       <form action="upload.php" method="post" enctype="multipart/form-data">
-        Select image to upload:
+        Select cover image to upload:
         <input type="file" name="fileToUpload" id="fileToUpload" />
-        <input type="submit" value="Upload Image" name="submit" />
+        <input type="submit" value="Upload Cover" name="submit" />
       </form>
     </form>
     <div @click="addEvent()" class="ui button" tabindex="0">Submit Order</div>
@@ -207,12 +211,20 @@ export default {
     //   });
     // },
     addEvent(event) {
-      axios.post("http://localhost:3000/event", event).then(({ data }) => {
-        console.log(data);
-
-        swal("Thank you for adding your event", "Thank you", "success");
-        return;
-      });
+      console.log(this.event);
+      axios
+        .post("http://localhost:3000/event", event)
+        .then(({ data }) => {
+          if (data) {
+            console.log(data);
+            swal("Thank you for adding your event", "Thank you", "success");
+            return;
+          }
+        })
+        .catch((err) => {
+          swal("Something wrong", "Something wrong", "error");
+          console.log(err);
+        });
     },
 
     getCategories() {
@@ -238,7 +250,7 @@ export default {
         anchorPoint: new google.maps.Point(0, -29),
       });
 
-      autocomplete.addListener("place_changed", function() {
+      autocomplete.addListener("place_changed", () => {
         infowindow.close();
         marker.setVisible(false);
         var place = autocomplete.getPlace();
@@ -255,8 +267,8 @@ export default {
           map.setZoom(13);
         }
         //adding coordonate:
-        console.log(place.geometry.viewport.La.g);
-        console.log(place.geometry.viewport.Ra.g);
+        this.$data.event.lng = place.geometry.viewport.La.g;
+        this.$data.event.lat = place.geometry.viewport.Ra.g;
 
         marker.setIcon({
           url: place.icon,
@@ -285,7 +297,9 @@ export default {
           ].join(" ");
         }
         //adding address:
-        console.log(address);
+
+        this.$data.event.location = address;
+        console.log(this.event.location);
 
         infowindow.setContent("<div><strong>" + place.name + "</strong><br>");
         infowindow.open(map, marker);
