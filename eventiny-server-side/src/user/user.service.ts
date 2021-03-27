@@ -41,9 +41,7 @@ export class UserService {
 
   async login(body: UserLog): Promise<object | Error | string> {
     const logger = await this.userRepository.findOne({ email: body.email });
-    // if (logger.isBanned) {
-    //   return { user: 'banned' };
-    // }
+
     if (logger) {
       const islogged = bcrypt.compareSync(body.password, logger.password);
       if (islogged) {

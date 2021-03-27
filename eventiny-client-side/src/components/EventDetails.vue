@@ -200,6 +200,17 @@ export default {
     // },
   },
   methods: {
+
+
+    getParticipent() {
+      axios
+        .get(`http://localhost:3000/participant/${this.eventDetails.id}`)
+        .then((data) => {
+          console.log(this.eventDetails);
+        })
+        .catch((err) => console.log(err));
+    },
+
     getEventComment() {
       setInterval(() => {
         axios
