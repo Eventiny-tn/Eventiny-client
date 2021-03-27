@@ -44,14 +44,12 @@ export class ParticipantService {
         return { message: 'done' };
       } else {
         console.log('Updating reservation ...');
-        let newQuantity = (await participants.quantity) + body.quantity;
+        let newQuantity =
+          (await (participants.quantity * 1)) + body.quantity * 1;
         await this.connection
           .getRepository(Participant)
           .createQueryBuilder('participant') // first argument is an alias. Alias is what you are selecting - photos. You must specify it.
-          .leftJoinAndSelect('participant.event', 'event')
-          .where(`participant.event =${event_id}`)
-          .leftJoinAndSelect('participant.user', 'user')
-          .where(`participant.user =${user_id}`)
+          .where(`id = ${participants.id} `)
           .update(Participant)
           .set({ quantity: newQuantity })
           .execute();
