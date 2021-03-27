@@ -44,14 +44,12 @@
                     placeholder="Write your comment here"
                     v-model="newComment"
                   ></textarea>
-                  <div>
-                    <button
-                      class="btn  comment-btn"
-                      @click.prevent="postComment()"
-                    >
-                      Post
-                    </button>
-                  </div>
+                  <button
+                    class="btn  comment-btn"
+                    @click.prevent="postComment()"
+                  >
+                    Post
+                  </button>
                 </form>
               </div>
             </div>
@@ -126,6 +124,10 @@ export default {
 };
 </script>
 <style scoped>
+.col-12 {
+  margin: 0;
+  background-color: #eeeeee;
+}
 .comments-section {
   background: #fff;
   width: 100%;
@@ -151,7 +153,7 @@ export default {
   border: 1px solid #f2f2f2;
 }
 .comment-btn {
-  float: right;
+  float: left;
   background: #4caf50;
   margin: 5px 0;
   padding: 6px 15px;

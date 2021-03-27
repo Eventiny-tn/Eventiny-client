@@ -98,7 +98,7 @@ export default {
       //   window.open(route, "http://localhost:3000")
       // );
       // window.open(routeData.href, "http://localhost:3000");
-      window.open("http://localhost:3000")
+      window.open("http://localhost:3000");
     },
     onSubmitLogin(login) {
       if (login.email == "" || login.password == "") {
@@ -117,6 +117,13 @@ export default {
               swal(
                 "sorry no user with these informations",
                 "wrong informations",
+                "error"
+              );
+              return;
+            } else if (data.user == "banned") {
+              swal(
+                "Sorry, You have been banned for braking Terms of Use",
+                "wrong",
                 "error"
               );
               return;
