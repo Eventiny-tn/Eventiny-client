@@ -68,45 +68,47 @@
       </video>
       <div class="container h-100">
         <div class="d-flex h-100 text-center align-items-center">
-          <div
-            class=" banner header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
-            v-if="formView"
-          >
-            <div class="container">
-              <h1 class="getReady">Get ready</h1>
-              <p>
-                Good times are coming, and you're invited to create your Event
-              </p>
-              <a class="button button-primary" @click="switchToFormPremium()">
-                Start</a
-              >
-              <div class="col-md-12 text-center mt-5">
-                <div class="scroll-down">
-                  <a
-                    class="btn btn-default btn-scroll floating-arrow"
-                    href="#gobottom"
-                    id="bottom"
-                    ><i class="fa fa-angle-down"></i
-                  ></a>
+          <div v-if="userinfo.plannerDemand">
+            <div
+              class=" banner header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
+              v-if="formView"
+            >
+              <div class="container">
+                <h1 class="getReady">Get ready</h1>
+                <p>
+                  Good times are coming, and you're invited to create your Event
+                </p>
+                <a class="button button-primary" @click="switchToFormPremium()">
+                  Start</a
+                >
+                <div class="col-md-12 text-center mt-5">
+                  <div class="scroll-down">
+                    <a
+                      class="btn btn-default btn-scroll floating-arrow"
+                      href="#gobottom"
+                      id="bottom"
+                      ><i class="fa fa-angle-down"></i
+                    ></a>
+                  </div>
                 </div>
               </div>
             </div>
+          </div>
+          <div class="banner" v-if="!formView" id="formPremium">
+            <div
+              v-if="!data.plannerDemand"
+              class=" banner header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
+            >
+              <UpgradeToPremium :userinfo="user" />
+            </div>
+            <!-- here you need to render the dashboard admin once its ready also wrapper it with else conditon -->
+
+            <!-- <PlannerDashboard /> -->
           </div>
         </div>
       </div>
     </section>
 
-    <div class="banner" v-if="!formView" id="formPremium">
-      <div
-        v-if="!data.plannerDemand"
-        class=" banner header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
-      >
-        <UpgradeToPremium :userinfo="user" />
-      </div>
-      <!-- here you need to render the dashboard admin once its ready also wrapper it with else conditon -->
-
-      <!-- <PlannerDashboard /> -->
-    </div>
     <div>
       <main>
         <div v-if="onDetails === false">

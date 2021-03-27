@@ -127,7 +127,11 @@
               <!-- Comments Container-->
               <!-- :v-for="comment in comments"
               <Comment :comment="comment"/>  -->
-              <EventComment :comments="comments" />
+              <EventComment
+                :comments="comments"
+                :userinfo="userinfo"
+                :eventDetails="eventDetails"
+              />
             </div>
             <br />
             <br />

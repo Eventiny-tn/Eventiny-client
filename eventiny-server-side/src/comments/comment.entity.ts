@@ -13,8 +13,8 @@ export class Comment {
   id: number;
   @Column('varchar', { length: 255 })
   comment: string;
-  // @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  // time: string;
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  time: string;
   @ManyToOne(() => User, (user) => user.comments)
   commentator: User;
 
