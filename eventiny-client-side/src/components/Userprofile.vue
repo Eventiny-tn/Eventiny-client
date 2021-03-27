@@ -23,7 +23,6 @@
             <li class="nav-item dropdown">
               <a
                 class="nav-link pr-0"
-                href="#"
                 role="button"
                 data-toggle="dropdown"
                 aria-haspopup="true"
@@ -32,8 +31,9 @@
                 <div class="media align-items-center">
                   <span class="avatar avatar-sm rounded-circle">
                     <img
+                      v-if="data"
                       alt="Image placeholder"
-                      src="https://i.pinimg.com/736x/6d/35/d8/6d35d834fe1b42b4d85c91e4ddea52ff.jpg"
+                      :src="data.userimg"
                     />
                   </span>
 
@@ -113,16 +113,12 @@
               <div class="row justify-content-center">
                 <div class="col-lg-3 order-lg-2">
                   <div class="card-profile-image">
-                    <a href="#">
+                    <a>
                       <img
-                        src="https://i.pinimg.com/736x/6d/35/d8/6d35d834fe1b42b4d85c91e4ddea52ff.jpg"
+                        v-if="data"
+                        :src="data.userimg"
                         class="rounded-circle"
                       />
-                      <!-- <input
-                        type="file"
-                        id="myfile"
-                        name="myfile"
-                      /><br /><br /> -->
                     </a>
                   </div>
                   <GeneralPage
@@ -142,20 +138,54 @@
                     ></div>
                   </div>
                 </div>
+
                 <div class="text-center" v-if="data">
                   <h3>
                     {{ data.firstname }} {{ data.lastname
                     }}<span class="font-weight-light"></span>
                   </h3>
+
                   <div class="h5 font-weight-300">
                     <i class="ni location_pin mr-2"></i>{{ data.city }},
                     {{ data.country }}
                   </div>
+
                   <hr class="my-4" />
                   <p>
                     Welcome to EventinyTN community, Be your own hero! Join,
                     organise and sponsorise events!
                   </p>
+
+                  <div class="Neon Neon-theme-dragdropbox">
+                    <input
+                      style="z-index: 999; opacity: 0; width: 320px; height: 200px; position: absolute; right: 0px; left: 0px; margin-right: auto; margin-left: auto;"
+                      id="filer_input2 file"
+                      v-on:change="handleFileUpload()"
+                      required
+                      :v-model="image"
+                      type="file"
+                      ref="file"
+                    />
+                    <div class="Neon-input-dragDrop">
+                      <div class="Neon-input-inner">
+                        <div class="Neon-input-icon">
+                          <i class="fa fa-file-image-o"></i>
+                        </div>
+                        <div class="Neon-input-text">
+                          <h3>Upload Profile picture</h3>
+                          <span style="display:inline-block; margin: 15px 0"
+                            >or</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <button
+                      class="Neon-input-choose-btn blue"
+                      @click="uploadPictureToDataBase()"
+                    >
+                      Upload Picture
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -393,10 +423,41 @@ export default {
       country: "",
       userimg: "",
       postalcode: "",
+      image: "",
     };
   },
   props: {},
   methods: {
+    handleFileUpload() {
+      this.file = this.$refs.file.files[0];
+      console.log(this.file);
+      // Change the src attribute of the image to path
+      if (this.file) {
+        const image = new FormData();
+        image.append("file", this.file);
+        image.append("upload_preset", "lwsk5njh");
+        axios
+          .post("https://api.cloudinary.com/v1_1/daakldabl/image/upload", image)
+          .then(({ data }) => {
+            console.log("imageId", data.url);
+            this.$data.imageUrl = data.url;
+            console.log("===>", this.$data.imageUrl);
+          })
+          .catch((err) => console.log(err));
+      }
+    },
+    uploadPictureToDataBase() {
+      if (this.$data.imageUrl) {
+        axios
+          .patch("http://localhost:3000/upload/" + this.data.id, {
+            image: this.$data.imageUrl,
+          })
+          .then(({ data }) => {
+            this.getinfos();
+          });
+      }
+      console.log("clicked");
+    },
     gohome() {
       this.$router.push("/GeneralPage");
     },
@@ -442,6 +503,7 @@ export default {
       axios
         .get("http://localhost:3000/profile", { headers: header })
         .then(({ data }) => {
+          console.log("userinfo", data);
           this.$data.data = data;
           this.$data.username = data.username;
           this.$data.firstname = data.firstname;
@@ -478,6 +540,70 @@ export default {
 </script>
 
 <style scoped>
+.Neon {
+  font-family: sans-serif;
+  font-size: 14px;
+  color: #494949;
+  position: relative;
+}
+.Neon * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.Neon-input-dragDrop {
+  display: block;
+  width: 343px;
+  margin: 0 auto 25px auto;
+  padding: 25px;
+  color: #8d9499;
+  color: #97a1a8;
+  background: #fff;
+  border: 2px dashed #c8cbce;
+  text-align: center;
+  -webkit-transition: box-shadow 0.3s, border-color 0.3s;
+  -moz-transition: box-shadow 0.3s, border-color 0.3s;
+  transition: box-shadow 0.3s, border-color 0.3s;
+}
+.Neon-input-dragDrop .Neon-input-icon {
+  font-size: 48px;
+  margin-top: -10px;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.Neon-input-text h3 {
+  margin: 0;
+  font-size: 18px;
+}
+.Neon-input-text span {
+  font-size: 12px;
+}
+.Neon-input-choose-btn.blue {
+  color: #008bff;
+  border: 1px solid #008bff;
+}
+.Neon-input-choose-btn {
+  display: inline-block;
+  padding: 8px 14px;
+  outline: none;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: bold;
+  color: #8d9496;
+  border-radius: 3px;
+  border: 1px solid #c6c6c6;
+  vertical-align: middle;
+  background-color: #fff;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.05);
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
 :root {
   --blue: #495057;
   --indigo: #495057;

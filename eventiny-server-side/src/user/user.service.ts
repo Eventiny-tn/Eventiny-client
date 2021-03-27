@@ -152,4 +152,13 @@ export class UserService {
       return new NotFoundException('NOT FOUND');
     }
   }
+  async uploadPic(id, body): Promise<Error | string> {
+    console.log('user id ', id, 'body', body);
+
+    const userimg = body.image;
+    await this.userRepository.query(
+      `UPDATE user SET userimg = '${userimg}' where id = ${id.id}; `,
+    );
+    return 'uploaded';
+  }
 }

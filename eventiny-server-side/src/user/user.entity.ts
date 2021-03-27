@@ -39,9 +39,7 @@ export class User {
   @Column({ default: null })
   postalcode: string;
   @Column('varchar', {
-    length: 2000,
-    default:
-      'eventiny-server-side/src/assets/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg',
+    length: 4000,
   })
   userimg: string;
   @Column({ default: false })
