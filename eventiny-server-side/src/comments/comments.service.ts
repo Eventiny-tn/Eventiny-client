@@ -23,9 +23,9 @@ export class CommentsService {
       relations: ['event', 'commentator'],
     });
     let allRelatedComment = [];
-    await comments.map((element) => {
+    await comments.map(async (element) => {
       if (element.event.id == id) {
-        element.time = moment(element.time).fromNow();
+        element.time = await moment(element.time).fromNow();
         allRelatedComment.push(element);
       }
     });
