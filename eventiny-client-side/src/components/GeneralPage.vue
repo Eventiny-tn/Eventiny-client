@@ -303,7 +303,7 @@ jQuery(function($) {
  */
 section {
   position: relative;
-  background-color: black;
+  background-color: white;
   height: 75vh;
   min-height: 25rem;
   width: 100%;
@@ -418,7 +418,7 @@ p {
   left: 0;
   right: 0;
   top: 0;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(247, 240, 240, 0);
 }
 .header-area {
   position: relative;
@@ -818,6 +818,7 @@ span.bg-main {
   text-transform: capitalize;
   padding: 10px 0;
   margin: 0 auto;
+  cursor: pointer;
 }
 .event-img {
   width: 100%;

@@ -118,11 +118,11 @@
                         src="https://i.pinimg.com/736x/6d/35/d8/6d35d834fe1b42b4d85c91e4ddea52ff.jpg"
                         class="rounded-circle"
                       />
-                      <input
+                      <!-- <input
                         type="file"
                         id="myfile"
                         name="myfile"
-                      /><br /><br />
+                      /><br /><br /> -->
                     </a>
                   </div>
                   <GeneralPage
@@ -378,7 +378,7 @@ import axios from "axios";
 import swal from "sweetalert";
 
 export default {
-  data() { 
+  data() {
     return {
       data: [],
       username: "",
@@ -532,7 +532,6 @@ html {
 }
 
 li.nav-item a:hover {
-  background: #008ba3;
   color: #ffffff !important;
 }
 h3.my-heading {
