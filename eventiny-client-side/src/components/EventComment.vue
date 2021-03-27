@@ -12,7 +12,7 @@
               <div class="comment-main-level">
                 <!-- Avatar -->
                 <div class="comment-avatar">
-                  <img v-bind:src="comment.commentator.userimg" />
+                  <img :src="comment.commentator.userimg" />
                 </div>
                 <!-- Contenedor del Comentario -->
                 <div class="comment-box">

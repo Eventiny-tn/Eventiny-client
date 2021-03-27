@@ -75,4 +75,11 @@ export class UserController {
   upgradePlannerDemande(@Param() id): Promise<Error | string> {
     return this.userRepo.upgradePlannerDemande(id);
   }
+  @Patch('upload/:id')
+  uploadPic(
+    @Param() id: object,
+    @Body() body: object,
+  ): Promise<Error | string> {
+    return this.userRepo.uploadPic(id, body);
+  }
 }
