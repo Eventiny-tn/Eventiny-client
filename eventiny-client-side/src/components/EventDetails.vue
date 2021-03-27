@@ -94,34 +94,22 @@
         <div class="row">
           <div class="col-xs-12">
             <h4 style="line-height: 25px;">
-              {{ eventDetails.name }}
+              {{ eventDetails.name.toUpperCase() }}
             </h4>
           </div>
         </div>
         <div class="row row-eq-height" style="padding-right:15px">
           <div class="col-xs-9 text">
             <p>
-              {{ eventDetails.caption }}
+              {{ eventDetails.caption.toUpperCase() }}
             </p>
             <p>
               Su edificación empezó en el año 1980. Nueve años después,
               concretamente el 1 de mayo de 1989, se abrió al público.
             </p>
-            <p class="semi-title">Title</p>
-            <p>
-              El área del inmueble es de 207.000 metros cuadrados, con un total
-              de ocho pisos, y puede albergar a 150.000 personas.
-            </p>
-            <p class="semi-title">Reclamation</p>
-            <p>
-              En 2014, el estadio fue remodelado y el año pasado reabrió sus
-              puertas.
-            </p>
-            <p>
-              De acuerdo con el diario inglés The Guardian, entre las
-              renovaciones están nuevos vestuarios, equipo de fisioterapia,
-              salas de juntas y un centro de medios.
-            </p>
+            <h2 class="semi-title">Title</h2>
+            <p>{{ eventDetails.description }}</p>
+
             <!-- Event Comment must be here -->
             <div>
               <!-- Comments Container-->
@@ -316,6 +304,7 @@ export default {
   display: block;
   justify-content: center;
   align-content: center;
+  background-color: #eeeeee;
 }
 .detail-event {
   margin-top: 3%;
