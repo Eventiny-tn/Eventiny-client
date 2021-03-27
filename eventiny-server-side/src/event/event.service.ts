@@ -31,6 +31,7 @@ export class EventService {
     cover,
     categories,
     userId,
+    description,
   }): Promise<Error | string> {
     if (name) {
       // await this.eventRepository.
@@ -46,6 +47,7 @@ export class EventService {
         lat,
         lng,
         cover,
+        description,
       );
       try {
         event.categories = [];
