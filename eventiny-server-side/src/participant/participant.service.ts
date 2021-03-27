@@ -20,21 +20,39 @@ export class ParticipantService {
     console.log('=>', user_id, event_id, body);
 
     try {
-      if (body) {
+      const participants = await this.connection
+        .getRepository(Participant)
+        .createQueryBuilder('participant') // first argument is an alias. Alias is what you are selecting - photos. You must specify it.
+        .leftJoinAndSelect('participant.event', 'event')
+        .where(`participant.event =${event_id}`)
+        .leftJoinAndSelect('participant.user', 'user')
+        .where(`participant.user =${user_id}`)
+        .getOne();
+
+      if (!participants) {
         let participant = await new Participant(body.quantity);
         participant.user = user_id;
         participant.event = event_id;
         await this.connection.manager.save(participant);
         return { message: 'done' };
+      } else {
+        let newQuantity = participants[0].quantity + body.quantity;
+        await this.connection
+          .getRepository(Participant)
+          .createQueryBuilder('participant') // first argument is an alias. Alias is what you are selecting - photos. You must specify it.
+          .leftJoinAndSelect('participant.event', 'event')
+          .where(`participant.event =${event_id}`)
+          .leftJoinAndSelect('participant.user', 'user')
+          .where(`participant.user =${user_id}`)
+          .update(Participant)
+          .set({ quantity: newQuantity })
+          .execute();
       }
     } catch (error) {
       return new error();
     }
   }
   async getParticipant(event_id, user_id): Promise<Error | Object> {
-    console.log('eeeeeeeeeeeeeeeeee222222222222222', user_id);
-    console.log('eeeeeeeeeeeeeeeeeeeeeeeeeeeeee=>', event_id);
-
     const participant = await this.connection
       .getRepository(Participant)
       .createQueryBuilder('participant') // first argument is an alias. Alias is what you are selecting - photos. You must specify it.
@@ -42,7 +60,7 @@ export class ParticipantService {
       .where(`participant.event =${event_id}`)
       .leftJoinAndSelect('participant.user', 'user')
       .where(`participant.user =${user_id}`)
-      .getOne();
+      .getMany();
     return participant;
   }
 }
