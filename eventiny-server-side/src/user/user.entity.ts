@@ -40,6 +40,7 @@ export class User {
   postalcode: string;
   @Column('varchar', {
     length: 4000,
+    default: null,
   })
   userimg: string;
   @Column({ default: false })
