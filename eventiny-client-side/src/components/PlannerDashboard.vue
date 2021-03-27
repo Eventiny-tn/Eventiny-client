@@ -42,6 +42,8 @@
               name="shipping[first-name]"
               placeholder="Event Name"
               v-model="event.name"
+              class="c-inputs"
+              id="eventname"
             />
           </div>
         </div>
@@ -55,6 +57,7 @@
               name="caption"
               placeholder="Event planner"
               v-model="event.caption"
+              class="c-inputs"
             />
           </div>
         </div>
@@ -63,7 +66,12 @@
         <label>Price</label>
         <div class="fields">
           <div class="twelve wide field">
-            <input type="text" placeholder="Price" v-model="event.price" />
+            <input
+              type="text"
+              placeholder="Price"
+              v-model="event.price"
+              class="c-inputs"
+            />
           </div>
         </div>
       </div>
@@ -75,6 +83,7 @@
               type="number"
               placeholder="Max tickets"
               v-model="event.ticket"
+              class="c-inputs"
             />
           </div>
         </div>
@@ -94,7 +103,13 @@
       <form>
         <div>
           <label for="bday">Event date :</label>
-          <input v-model="event.eventDate" type="date" id="bday" name="bday" />
+          <input
+            v-model="event.eventDate"
+            type="date"
+            id="bday"
+            name="bday"
+            class="c-inputs"
+          />
         </div>
       </form>
       <label for="appt">Start time:</label>
@@ -107,9 +122,8 @@
         max="18:00"
         required
         v-model="event.dateStart"
+        class="c-inputs"
       />
-
-      <small>24h/24h</small>
 
       <label for="appt">End time:</label>
 
@@ -121,6 +135,7 @@
         max="18:00"
         required
         v-model="event.dateEnds"
+        class="c-inputs"
       />
 
       <small>24h/24h</small>
@@ -129,10 +144,9 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="form-group">
-              <label>Location:</label>
+              <label id="locationlabel">Location:</label>
               <input
                 id="searchinput"
-                class="controls"
                 type="text"
                 placeholder="Enter a location"
                 v-model="event.location"
@@ -324,12 +338,22 @@ body {
 }
 #searchinput {
   font-size: 18px;
-  width: 300px;
+  width: 555px;
   margin-top: 14px;
+  margin-right: 900px !important;
+}
+#eventname {
+  width: 670px !important;
+}
+#locationlabel {
+  margin-right: 560px;
 }
 .fields {
-  margin-left: 590px !important;
+  margin-left: 620px !important;
   width: 900px;
+}
+.c-inputs {
+  width: 100% !important;
 }
 .title-basic {
   color: #008ba3;
@@ -346,10 +370,8 @@ body {
 .form-group {
   margin-bottom: 10px;
   margin-top: 50px;
-  margin-left: -100px;
 }
 .container {
-  text-align: center;
   margin-left: 650px;
 }
 .form-group label {
