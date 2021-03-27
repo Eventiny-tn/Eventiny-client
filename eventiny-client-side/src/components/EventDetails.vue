@@ -142,24 +142,14 @@
                 </p>
                 <p>
                   <span class="label label-default detail-event"
-                    >Comentarios 15</span
-                  >
-                </p>
-                <p>
-                  <span class="label label-default detail-event"
-                    >Compartido 50 veces</span
-                  >
-                </p>
-                <p>
-                  <span class="label label-default detail-event"
-                    >Me gusta 20</span
+                    >You puchase {{ ticketsBuy.quantity }} / 10 tickets</span
                   >
                 </p>
                 <input
                   type="number"
                   name="tentacles"
                   min="1"
-                  v-bind:max="eventDetails.ticket"
+                  v-bind:max="10 - ticketsBuy.quantity"
                   v-model="tickets"
                 />
                 <button
@@ -193,15 +183,25 @@ export default {
   },
   data() {
     return {
-      userinfo: "",
+      ticketsBuy: {
+        quantity: 0,
+      },
       tickets: 1,
       comments: [],
+      userinfo: {},
     };
   },
   props: {
-    eventDetails: Object,
+    eventDetails: {
+      type: Object,
+    },
+    // userinfo: {
+    //   type: Object,
+    // },
   },
   methods: {
+
+
     getParticipent() {
       axios
         .get(`http://localhost:3000/participant/${this.eventDetails.id}`)
@@ -210,9 +210,9 @@ export default {
         })
         .catch((err) => console.log(err));
     },
+
     getEventComment() {
       setInterval(() => {
-        console.log("helllooooo", this.eventDetails.id);
         axios
           .get("http://localhost:3000/comments/" + this.eventDetails.id)
           .then(({ data }) => {
@@ -266,11 +266,10 @@ export default {
       axios
         .get("http://localhost:3000/verify", headers)
         .then(({ data }) => {
-          console.log("fakhri==>", data);
-
-          if (data.username !== undefined) {
+          if (data !== undefined) {
             this.$data.isLogged = true;
             this.$data.userinfo = data;
+            this.getParticipant();
             return;
           } else {
             localStorage.removeItem("token");
@@ -280,14 +279,30 @@ export default {
           console.log(err);
         });
     },
+    getParticipant() {
+      axios
+        .get(
+          `http://localhost:3000/participant/${this.userinfo.id}/${this.eventDetails.id}`
+        )
+        .then(({ data }) => {
+          console.log("-------------------------------------------->", data);
+          if (data[0].quantity !== undefined) {
+            console.log("paaaaaaaaaaaarticepent", data);
+            this.$data.ticketsBuy = data[0];
+          } else {
+            console.log("daaaaaaaaaaaaaaaaatttttttttaaaaaaaaaaaaa");
+          }
+        })
+        .catch((err) => console.log(err));
+    },
   },
   created() {
     this.getUserInfo();
     this.getEventComment();
-    this.getParticipent();
   },
+  beforeMount() {},
   mounted() {
-    console.log(this.eventDetails);
+    console.log("user: ", this.userinfo);
     $Scriptjs(
       "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyDapTrWdHVdzoF7ttygRmfv0XqIDkonBqg&callback=initMap",
       () => {
