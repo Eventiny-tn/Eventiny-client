@@ -178,6 +178,7 @@ export default {
   data() {
     return {
       dataCategories: [],
+      data: [],
       event: {
         name: "",
         caption: "",
@@ -198,6 +199,36 @@ export default {
   },
 
   methods: {
+    getinfos() {
+      const token = localStorage.getItem("token");
+      const header = {
+        Authorisation: `Bearer ${token}`,
+      };
+      if (token == null) {
+        this.$router.push("/");
+        return;
+      }
+      axios
+        .get("http://localhost:3000/profile", { headers: header })
+        .then(({ data }) => {
+          console.log("userinfo", data);
+          this.$data.data = data;
+          this.$data.event.userId = data.id;
+          console.log("data userId", data);
+          if (data) {
+            this.$data.data = data;
+            return;
+          } else {
+            localStorage.removeItem("token");
+            this.$router.push("/");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          localStorage.removeItem("token");
+          this.$router.push("/");
+        });
+    },
     // getPlace() {
     //   var searchInput = "search_input";
     //   $(document).ready(function() {
@@ -326,6 +357,7 @@ export default {
     },
   },
   mounted() {
+    this.getinfos();
     this.getCategories();
     $Scriptjs(
       "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyDapTrWdHVdzoF7ttygRmfv0XqIDkonBqg&callback=initMap",
