@@ -103,10 +103,7 @@
             <p>
               {{ eventDetails.caption.toUpperCase() }}
             </p>
-            <p>
-              Su edificación empezó en el año 1980. Nueve años después,
-              concretamente el 1 de mayo de 1989, se abrió al público.
-            </p>
+
             <h2 class="semi-title">Title</h2>
             <p>{{ eventDetails.description }}</p>
 
@@ -208,7 +205,9 @@ export default {
     getParticipent() {
       axios
         .get(`http://localhost:3000/participant/${this.eventDetails.id}`)
-        .then((data) => console.log(data))
+        .then((data) => {
+          console.log(this.eventDetails);
+        })
         .catch((err) => console.log(err));
     },
     getEventComment() {

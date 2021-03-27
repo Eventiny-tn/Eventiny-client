@@ -41,6 +41,8 @@ export class Event {
   lng: string;
   @Column()
   cover: string;
+  @Column('varchar', { length: 6000 })
+  description: string;
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   time: string;
   @Column({ default: false })
@@ -76,6 +78,7 @@ export class Event {
     lat: string,
     lng: string,
     cover: string,
+    description: string,
   ) {
     this.name = name;
     this.caption = caption;
@@ -88,5 +91,6 @@ export class Event {
     this.lat = lat;
     this.lng = lng;
     this.cover = cover;
+    this.description = description;
   }
 }
