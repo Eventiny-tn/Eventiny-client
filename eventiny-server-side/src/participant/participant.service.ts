@@ -31,19 +31,18 @@ export class ParticipantService {
       return new error();
     }
   }
-  async getParticipant(event_id): Promise<Error | Object> {
+  async getParticipant(event_id, user_id): Promise<Error | Object> {
+    console.log('eeeeeeeeeeeeeeeeee222222222222222', user_id);
     console.log('eeeeeeeeeeeeeeeeeeeeeeeeeeeeee=>', event_id);
 
     const participant = await this.connection
       .getRepository(Participant)
-      .find({ relations: ['event', 'user'] });
-
-    const eventParticipent = [];
-    participant.map(async (el) => {
-      if (el.event.id === event_id) {
-        await eventParticipent.push(el);
-      }
-    });
-    return eventParticipent;
+      .createQueryBuilder('participant') // first argument is an alias. Alias is what you are selecting - photos. You must specify it.
+      .leftJoinAndSelect('participant.event', 'event')
+      .where(`participant.event =${event_id}`)
+      .leftJoinAndSelect('participant.user', 'user')
+      .where(`participant.user =${user_id}`)
+      .getOne();
+    return participant;
   }
 }

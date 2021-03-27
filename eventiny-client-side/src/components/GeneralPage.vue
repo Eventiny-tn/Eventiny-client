@@ -150,7 +150,7 @@
           <!-- <h1 class="my-heading">type here</h1> -->
           <br />
         </div>
-        <EventDetails :eventDetails="eventDetails" />
+        <EventDetails :eventDetails="eventDetails" :userinfo ="userinfo" />
       </div>
     </div>
   </header>

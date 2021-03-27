@@ -204,21 +204,21 @@ export default {
   },
   data() {
     return {
-      userinfo: "",
+      ticketsBuy: 0,
       tickets: 1,
       comments: [],
+      userinfo: {},
     };
   },
   props: {
-    eventDetails: Object,
+    eventDetails: {
+      type: Object,
+    },
+    // userinfo: {
+    //   type: Object,
+    // },
   },
   methods: {
-    getParticipent() {
-      axios
-        .get(`http://localhost:3000/participant/${this.eventDetails.id}`)
-        .then((data) => console.log(data))
-        .catch((err) => console.log(err));
-    },
     getEventComment() {
       setInterval(() => {
         console.log("helllooooo", this.eventDetails.id);
@@ -276,8 +276,7 @@ export default {
         .get("http://localhost:3000/verify", headers)
         .then(({ data }) => {
           console.log("fakhri==>", data);
-
-          if (data.username !== undefined) {
+          if (data !== undefined) {
             this.$data.isLogged = true;
             this.$data.userinfo = data;
             return;
@@ -289,14 +288,27 @@ export default {
           console.log(err);
         });
     },
+    getParticipent() {
+      console.log("wooooooooooooooooooooooooooooooooh", this.userinfo.id);
+      axios
+        .get(
+          `http://localhost:3000/participant/${this.userinfo.id}/${this.eventDetails.id}`
+        )
+        .then(({ data }) => {
+          this.$data.ticketsBuy = data;
+          console.log("TICKET:", data);
+        })
+        .catch((err) => console.log(err));
+    },
   },
   created() {
     this.getUserInfo();
     this.getEventComment();
     this.getParticipent();
   },
+  beforeMount() {},
   mounted() {
-    console.log(this.eventDetails);
+    console.log("user: ", this.userinfo);
     $Scriptjs(
       "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyDapTrWdHVdzoF7ttygRmfv0XqIDkonBqg&callback=initMap",
       () => {
