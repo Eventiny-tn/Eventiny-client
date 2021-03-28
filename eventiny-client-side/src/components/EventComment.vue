@@ -2,42 +2,28 @@
   <div>
     <div class="container">
       <div class="row">
-        <!-- Contenedor Principal -->
-        <div class="comments-container" v-if="comments.length > 0">
-          <h1>
-            Comments
-          </h1>
-          <ul id="comments-list" class="comments-list">
-            <li v-for="(comment, i) in comments" :key="i">
-              <div class="comment-main-level">
-                <!-- Avatar -->
-                <div class="comment-avatar">
-                  <img :src="comment.commentator.userimg" />
-                </div>
-                <!-- Contenedor del Comentario -->
-                <div class="comment-box">
-                  <div class="comment-head">
-                    <h6 class="comment-name by-author">
-                      <a>{{ comment.commentator.username }}</a>
-                    </h6>
-                    <span>{{ comment.time }}</span>
-                    <i class="fa fa-reply"></i>
-                    <i class="fa fa-heart"></i>
-                    <br />
-                    <div class="comment-content">
-                      {{ comment.comment }}
-                    </div>
-                  </div>
-                  <br />
+        <div class="ui list" v-if="comments.length > 0">
+          <div class="item" v-for="(comment, i) in comments" :key="i">
+            <div class="ui message">
+              <img class="ui avatar image" :src="comment.commentator.userimg" />
+              <div class="content">
+                <a class="header">{{ comment.commentator.username }}</a>
+                {{ comment.comment }}
+                <div class="header"></div>
+                <div class="description">
+                  <a class="ui tiny red basic label"> {{ comment.time }}</a>
                 </div>
               </div>
-            </li>
-          </ul>
-          <div class="col-md-6 comments-section">
+            </div>
+          </div>
+        </div>
+        <!-- Contenedor Principal -->
+        <div class="ui message" v-if="comments.length > 0">
+          <div>
             <!--====COMMENT AREA START====-->
-            <div class="row">
-              <div class="col-12">
-                <form class="comment-form">
+            <div>
+              <div>
+                <form>
                   <textarea
                     class="comment-area"
                     name="user_comment"
@@ -55,13 +41,13 @@
             </div>
           </div>
         </div>
-        <div v-else-if="comments.length == 0">
+        <div v-else-if="comments.length == 0" class="ui message">
           <div class="ui active centered inline loader" v-if="spinner"></div>
           <!--- Post Form Begins -->
-          <div class="col-md-6 comments-section">
+          <div>
             <!--====COMMENT AREA START====-->
-            <div class="row">
-              <div class="col-12">
+            <div>
+              <div>
                 <textarea
                   class="comment-area"
                   name="user_comment"
@@ -433,10 +419,15 @@ body {
   -webkit-border-radius: 4px 4px 0 0;
   -moz-border-radius: 4px 4px 0 0;
   border-radius: 4px 4px 0 0;
+  min-width: 400px;
+  max-width: 400px;
 }
 
 .comment-box .comment-head i {
   float: right;
+  min-width: 100px;
+  max-width: 100px;
+
   margin-left: 14px;
   position: relative;
   top: 2px;
