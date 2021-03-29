@@ -21,7 +21,14 @@
           <div id="main-nav" class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
               <li>
-                <a class="nav-item nav-link active" href="/GeneralPage">Home</a>
+                <a class="nav-item nav-link active" @click="goToEventList()"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a class="nav-item nav-link active" @click="goToEvenHistory()"
+                  >Event History</a
+                >
               </li>
 
               <li v-if="data.plannerDemand">
@@ -110,7 +117,7 @@
           </div>
         </div>
       </section>
-      <div>
+      <div v-if="view === 'event-list'">
         <main>
           <div v-if="onDetails === false">
             <section id="gobottom" class="content">
@@ -172,14 +179,29 @@
           <EventDetails :eventDetails="eventDetails" :userinfo="userinfo" />
         </div>
       </div>
-    </header>
-    <div class="ui modal">
-      <div class="header">Header</div>
-      <div class="scrolling content">
-        <p>Very long content goes here</p>
+      <div v-if="view === 'event-history'">
+        <div class="cards-contianer">
+          <div
+            class="event-history-card"
+            v-for="event in filterSearch"
+            v-bind:key="event.id"
+          >
+            <img
+              :src="event.cover"
+              alt="Avatar"
+              style="width:100%"
+              class="image-event"
+            />
+            <div class="event-history-container">
+              <h4>
+                <b>{{ event.name }}</b>
+              </h4>
+              <p>{{ event.caption }}</p>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <button @click="openModal()">open</button>
+    </header>
   </div>
 </template>
 
@@ -200,6 +222,7 @@ export default {
       eventDetails: [],
       formView: true,
       query: "",
+      view: "event-list",
     };
   },
   components: {
@@ -209,6 +232,12 @@ export default {
   },
 
   methods: {
+    goToEventList() {
+      this.$data.view = "event-list";
+    },
+    goToEvenHistory() {
+      this.$data.view = "event-history";
+    },
     openModal() {
       $(".ui.longer.modal").modal("show");
     },
@@ -290,7 +319,7 @@ export default {
   computed: {
     filterSearch: function() {
       return this.dataEvents.filter((event) => {
-        return event.name.toUpperCase().match(this.query.toUpperCase());
+        return event.name.toUpperCase().includes(this.query.toUpperCase());
       });
     },
   },
@@ -334,6 +363,28 @@ jQuery(function($) {
 </script>
 
 <style scoped>
+.cards-contianer {
+  justify-content: center;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-flow: row wrap;
+  margin: 5%;
+  margin-top: 15%;
+}
+.event-history-card {
+  transition: 0.4s;
+  width: 40%;
+  margin: 2%;
+  float: left;
+}
+
+.event-history-card:hover {
+  box-shadow: 0 25px 20px 10px rgba(0, 0, 0, 0.2);
+}
+
+.event-history-container {
+  padding: 2px 16px;
+}
 .search {
   width: 900px;
   margin: 5%;
