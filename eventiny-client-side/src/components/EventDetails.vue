@@ -102,7 +102,7 @@
               </div>
             </div>
             <div class="ui three column grid">
-              <section class="column">
+              <section class="column col-md-6">
                 <!-- google map must be here -->
                 <img
                   class=" img-fluid "
