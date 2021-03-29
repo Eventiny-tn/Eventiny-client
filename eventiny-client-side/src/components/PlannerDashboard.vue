@@ -243,7 +243,6 @@ export default {
     handleMultipleUpload() {
       console.log("iii", this.$refs.files.files);
       if (this.$refs.files.files) {
-      
         this.$refs.files.files.forEach(async (element) => {
           try {
             var f = await element;
