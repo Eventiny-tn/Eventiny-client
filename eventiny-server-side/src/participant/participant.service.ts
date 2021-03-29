@@ -29,9 +29,9 @@ export class ParticipantService {
         .getRepository(Participant)
         .createQueryBuilder('participant') // first argument is an alias. Alias is what you are selecting - photos. You must specify it.
         .leftJoinAndSelect('participant.event', 'event')
-        .where(`participant.event =${event_id}`)
         .leftJoinAndSelect('participant.user', 'user')
-        .where(`participant.user =${user_id}`)
+        .where(`participant.event =${event_id}`)
+        .andWhere(`participant.user =${user_id}`)
         .getOne();
       console.log('participant ============================', participants);
 
@@ -64,9 +64,9 @@ export class ParticipantService {
       .getRepository(Participant)
       .createQueryBuilder('participant') // first argument is an alias. Alias is what you are selecting - photos. You must specify it.
       .leftJoinAndSelect('participant.event', 'event')
-      .where(`participant.event =${event_id}`)
       .leftJoinAndSelect('participant.user', 'user')
-      .where(`participant.user =${user_id}`)
+      .where(`participant.event =${event_id}`)
+      .andWhere(`participant.user =${user_id}`)
       .getMany();
     return participant;
   }

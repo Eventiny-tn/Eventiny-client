@@ -148,7 +148,7 @@
                 <input
                   type="number"
                   name="tentacles"
-                  min="1"
+                  min="0"
                   v-bind:max="10 - ticketsBuy.quantity"
                   v-model="tickets"
                 />
@@ -186,7 +186,7 @@ export default {
       ticketsBuy: {
         quantity: 0,
       },
-      tickets: 1,
+      tickets: 0,
       comments: [],
       userinfo: {},
     };
