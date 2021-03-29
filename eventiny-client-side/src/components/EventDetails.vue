@@ -253,8 +253,8 @@
                       </div>
                       <p>Tickets :{{ eventDetails.ticket }}</p>
                       <p>You puchase {{ ticketsBuy.quantity }} / 10 tickets</p>
-                      <div class="button-buy-tickets">
-                        <div class="ui input focus" id="input-ticket1">
+                      <div class="ui three column grid button-buy-tickets">
+                        <div class="ui input focus column">
                           <input
                             type="number"
                             name="tentacles"
@@ -263,7 +263,7 @@
                             v-model="tickets"
                           />
                         </div>
-                        <div id="input-ticket2">
+                        <div>
                           <button
                             class="round-black-btn"
                             @click="clickadd()"
@@ -286,6 +286,16 @@
                   </div>
                 </div>
               </section>
+            </div>
+            <h2 class="about-event">About this Event</h2>
+            <div class="ui visible message">
+              <p
+                class="description"
+                v-for="(paragh, i) in eventDetails.description.split('.')"
+                :key="i"
+              >
+                {{ paragh }}
+              </p>
             </div>
           </div>
 
@@ -389,7 +399,6 @@ export default {
           .get("http://localhost:3000/comments/" + this.eventDetails.id)
           .then(({ data }) => {
             this.$data.comments = data;
-            console.log("comments==>>", this.comments);
           })
           .catch((err) => console.log(err));
       }, 2000);
@@ -461,10 +470,7 @@ export default {
         .then(({ data }) => {
           console.log("-------------------------------------------->", data);
           if (data[0].quantity !== undefined) {
-            console.log("paaaaaaaaaaaarticepent", data);
             this.$data.ticketsBuy = data[0];
-          } else {
-            console.log("daaaaaaaaaaaaaaaaatttttttttaaaaaaaaaaaaa");
           }
         })
         .catch((err) => console.log(err));
@@ -488,15 +494,32 @@ export default {
 };
 </script>
 <style scoped>
+.about-event {
+  border-color: #39364f;
+  color: #39364f;
+  display: inline-block;
+  font-size: 14.9333px;
+  gap: normal;
+  letter-spacing: 0.5px;
+  line-height: 20px;
+  padding: 0px 15px;
+}
+.description {
+  border-color: #6f7287;
+  color: #6f7287;
+  font-family: Neue Plak;
+  gap: normal;
+  letter-spacing: 0.5px;
+  line-height: 24px;
+  text-align: left;
+}
 .button-buy-tickets {
   display: flex;
 }
 #input-ticket1 {
-  position: relative;
   float: left;
 }
 #input-ticket2 {
-  position: relative;
   float: right;
 }
 .eventDetailContainer {
