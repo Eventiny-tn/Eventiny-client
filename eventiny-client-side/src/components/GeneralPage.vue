@@ -68,7 +68,7 @@
       </video>
       <div class="container h-100">
         <div class="d-flex h-100 text-center align-items-center">
-          <div v-if="userinfo.plannerDemand">
+          <div v-if="!userinfo.plannerDemand">
             <div
               class=" banner header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
               v-if="formView"
