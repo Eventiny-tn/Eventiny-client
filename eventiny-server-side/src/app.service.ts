@@ -22,15 +22,17 @@ export class AppService {
       });
       const data = await this.userRepository.save({
         firstname: req.user.firstname,
+        username: req.user.firstname,
         lastname: req.user.lastname,
         email: req.user.email,
         userimg: req.user.userimg,
       });
+
       console.log({ token: access_token, data: data });
 
       return {
-        message: 'User information from google',
         user: req.user,
+        token: access_token,
       };
     }
   }

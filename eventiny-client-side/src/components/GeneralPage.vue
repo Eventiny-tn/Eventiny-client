@@ -1,161 +1,186 @@
 <template :v-if="dataCategories">
-  <header class="header-area overlay">
-    <nav class="navbar navbar-expand-md navbar-dark">
-      <div class="container">
-        <a class="navbar-brand" @click="langingPage()">
-          <h3 class="my-heading">Eventiny<span class="bg-main">TN</span></h3>
-        </a>
+  <div>
+    <header class="header-area overlay">
+      <nav class="navbar navbar-expand-md navbar-dark">
+        <div class="container">
+          <a class="navbar-brand" @click="langingPage()">
+            <h3 class="my-heading">Eventiny<span class="bg-main">TN</span></h3>
+          </a>
 
-        <button
-          type="button"
-          class="navbar-toggler collapsed"
-          data-toggle="collapse"
-          data-target="#main-nav"
-        >
-          <span class="menu-icon-bar"></span>
-          <span class="menu-icon-bar"></span>
-          <span class="menu-icon-bar"></span>
-        </button>
+          <button
+            type="button"
+            class="navbar-toggler collapsed"
+            data-toggle="collapse"
+            data-target="#main-nav"
+          >
+            <span class="menu-icon-bar"></span>
+            <span class="menu-icon-bar"></span>
+            <span class="menu-icon-bar"></span>
+          </button>
 
-        <div id="main-nav" class="collapse navbar-collapse">
-          <ul class="navbar-nav ml-auto">
-            <li>
-              <a class="nav-item nav-link active" href="/GeneralPage">Home</a>
-            </li>
+          <div id="main-nav" class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+              <li>
+                <a class="nav-item nav-link active" href="/GeneralPage">Home</a>
+              </li>
 
-            <li v-if="data.plannerDemand">
-              <a class="nav-item nav-link active" href="/PlannerDashboard"
-                >Add event</a
-              >
-            </li>
-
-            <li class="dropdown">
-              <a class="nav-item nav-link" data-toggle="dropdown"> Events</a>
-              <div class="dropdown-menu">
-                <a
-                  @click="getEventByCategory(category.id, false)"
-                  v-for="category in dataCategories"
-                  v-bind:key="category.id"
-                  class="dropdown-item"
-                  >{{ category.name }}
-                </a>
-              </div>
-            </li>
-            <li class="dropdown">
-              <a class="nav-item nav-link" data-toggle="dropdown">Profile</a>
-              <div class="dropdown-menu">
-                <a @click="goprofile()" class="dropdown-item">
-                  <i class="far fa-user"></i>Profile: {{ data.username }}</a
+              <li v-if="data.plannerDemand">
+                <a class="nav-item nav-link active" href="/PlannerDashboard"
+                  >Add event</a
                 >
-                <a class="dropdown-item" @click="logOut()">
-                  <i class="fas fa-sign-out-alt"></i> Logout</a
-                >
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <section>
-      <div class="overlay-wcs"></div>
-      <video
-        playsinline="playsinline"
-        autoplay="autoplay"
-        muted="muted"
-        loop="loop"
-      >
-        <source src="../assets/feed-video.mp4" type="video/mp4" />
-      </video>
-      <div class="container h-100">
-        <div class="d-flex h-100 text-center align-items-center">
-          <div v-if="!userinfo.plannerDemand">
-            <div
-              class=" banner header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
-              v-if="formView"
-            >
-              <div class="container">
-                <h1 class="getReady">Get ready</h1>
-                <p>
-                  Good times are coming, and you're invited to create your Event
-                </p>
-                <a class="button button-primary" @click="switchToFormPremium()">
-                  Start</a
-                >
-                <div class="col-md-12 text-center mt-5">
-                  <div class="scroll-down">
-                    <a
-                      class="btn btn-default btn-scroll floating-arrow"
-                      href="#gobottom"
-                      id="bottom"
-                      ><i class="fa fa-angle-down"></i
-                    ></a>
-                  </div>
+              </li>
+
+              <li class="dropdown">
+                <a class="nav-item nav-link" data-toggle="dropdown"> Events</a>
+                <div class="dropdown-menu">
+                  <a
+                    @click="getEventByCategory(category.id, false)"
+                    v-for="category in dataCategories"
+                    v-bind:key="category.id"
+                    class="dropdown-item"
+                    >{{ category.name }}
+                  </a>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div class="banner" v-if="!formView" id="formPremium">
-            <div
-              v-if="!data.plannerDemand"
-              class=" banner header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
-            >
-              <UpgradeToPremium :userinfo="user" />
-            </div>
-            <!-- here you need to render the dashboard admin once its ready also wrapper it with else conditon -->
-
-            <!-- <PlannerDashboard /> -->
+              </li>
+              <li class="dropdown">
+                <a class="nav-item nav-link" data-toggle="dropdown">Profile</a>
+                <div class="dropdown-menu">
+                  <a @click="goprofile()" class="dropdown-item">
+                    <i class="far fa-user"></i>Profile: {{ data.username }}</a
+                  >
+                  <a class="dropdown-item" @click="logOut()">
+                    <i class="fas fa-sign-out-alt"></i> Logout</a
+                  >
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
-      </div>
-    </section>
-
-    <div>
-      <main>
-        <div v-if="onDetails === false">
-          <section id="gobottom" class="content">
-            <div class="container mt-40 mb-30">
-              <h3 class="text-center">Events</h3>
-              <div class="row mt-30">
-                <div
-                  class="col-md-4 col-sm-6"
-                  v-for="event in dataEvents"
-                  v-bind:key="event.id"
-                >
-                  <div class="box21">
-                    <img v-bind:src="event.cover" class="event-img" />
-                    <div class="box-content">
-                      <h4 class="title">{{ event.name }}</h4>
-                      <h6 class="title Location-date">
-                        <i class="fas event-icons fa-map-marker-alt"></i
-                        >{{ event.location }}
-                        <span
-                          ><i class="fas event-icons fa-calendar "></i>
-                          {{ event.dateStart }}</span
-                        >
-                      </h6>
-                      <p class="description">
-                        {{ event.caption }}
-                      </p>
-                      <a class="read-more" @click="changeView(event, true)"
-                        >read more</a
-                      >
+      </nav>
+      <section>
+        <div class="overlay-wcs"></div>
+        <video
+          playsinline="playsinline"
+          autoplay="autoplay"
+          muted="muted"
+          loop="loop"
+        >
+          <source src="../assets/feed-video.mp4" type="video/mp4" />
+        </video>
+        <div class="container h-100">
+          <div class="d-flex h-100 text-center align-items-center">
+            <div v-if="!userinfo.plannerDemand">
+              <div
+                class=" banner header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
+                v-if="formView"
+              >
+                <div class="container">
+                  <h1 class="getReady">Get ready</h1>
+                  <p>
+                    Good times are coming, and you're invited to create your
+                    Event
+                  </p>
+                  <a
+                    class="button button-primary"
+                    @click="switchToFormPremium()"
+                  >
+                    Start</a
+                  >
+                  <div class="col-md-12 text-center mt-5">
+                    <div class="scroll-down">
+                      <a
+                        class="btn btn-default btn-scroll floating-arrow"
+                        href="#gobottom"
+                        id="bottom"
+                        ><i class="fa fa-angle-down"></i
+                      ></a>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </section>
+            <div class="banner" v-if="!formView" id="formPremium">
+              <div
+                v-if="!data.plannerDemand"
+                class=" banner header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
+              >
+                <UpgradeToPremium :userinfo="user" />
+              </div>
+            </div>
+          </div>
         </div>
-      </main>
-      <div v-if="onDetails == true">
-        <div>
-          <!-- <h1 class="my-heading">type here</h1> -->
-          <br />
+      </section>
+      <div>
+        <main>
+          <div v-if="onDetails === false">
+            <section id="gobottom" class="content">
+              <div class="container mt-40 mb-30">
+                <div class="container">
+                  <div class="ui icon input search">
+                    <input
+                      type="text"
+                      placeholder="Search for event..."
+                      v-model="query"
+                    />
+                    <i class="search icon"></i>
+                  </div>
+                  <div class="grid">
+                    <div class="row fix-row">
+                      <div class="ui link cards">
+                        <div
+                          class="card"
+                          v-for="event in filterSearch"
+                          v-bind:key="event.id"
+                          @click.prevent="changeView(event, true)"
+                        >
+                          <div class="image">
+                            <img v-bind:src="event.cover" class="image-event" />
+                          </div>
+                          <div class="content">
+                            <div class="header">{{ event.name }}</div>
+                            <div class="meta">
+                              {{
+                                event.caption.slice(
+                                  0,
+                                  event.caption.indexOf(".")
+                                )
+                              }}
+                            </div>
+                            <div class="description">
+                              {{ event.dateStart }} -- {{ event.dateEnds }}
+                            </div>
+                          </div>
+                          <div class="extra content">
+                            <span class="right floated">
+                              <i class="heart icon"></i>
+                            </span>
+                            <span>
+                              <i class="map marker icon"></i>
+                              {{ event.location }}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </main>
+        <div v-if="onDetails == true">
+          <EventDetails :eventDetails="eventDetails" :userinfo="userinfo" />
         </div>
-        <EventDetails :eventDetails="eventDetails" />
+      </div>
+    </header>
+    <div class="ui modal">
+      <div class="header">Header</div>
+      <div class="scrolling content">
+        <p>Very long content goes here</p>
       </div>
     </div>
-  </header>
+    <button @click="openModal()">open</button>
+  </div>
 </template>
 
 <script>
@@ -174,6 +199,7 @@ export default {
       onDetails: false,
       eventDetails: [],
       formView: true,
+      query: "",
     };
   },
   components: {
@@ -183,6 +209,9 @@ export default {
   },
 
   methods: {
+    openModal() {
+      $(".ui.longer.modal").modal("show");
+    },
     switchToFormPremium() {
       this.formView = false;
     },
@@ -246,7 +275,7 @@ export default {
         .get("http://localhost:3000/event/category/" + id)
         .then(({ data }) => {
           console.log("ikdem====>", data);
-          this.$data.dataEvents = data;
+          this.$data.dataEvents = data.slice(0, data.length);
           this.$data.onDetails = value;
         })
         .catch((err) => console.log(err));
@@ -257,6 +286,13 @@ export default {
     this.getinfos();
     this.getCategories();
     this.getevents();
+  },
+  computed: {
+    filterSearch: function() {
+      return this.dataEvents.filter((event) => {
+        return event.name.toUpperCase().match(this.query.toUpperCase());
+      });
+    },
   },
 };
 
@@ -298,6 +334,12 @@ jQuery(function($) {
 </script>
 
 <style scoped>
+.search {
+  width: 900px;
+  margin: 5%;
+  display: fixed;
+  justify-self: unset;
+}
 /**
     background-color: #eaeaea;
  */
@@ -358,6 +400,7 @@ body {
     "Segoe UI Symbol";
   font-size: 1.6rem;
   font-weight: 400;
+  background-color: #e4e4e4;
 }
 h1 {
   margin-bottom: 0.5em;
@@ -396,7 +439,8 @@ p {
   left: 0;
   right: 0;
   top: 0;
-  background-color: #008ba3;
+  background-size: cover;
+
   border-radius: 4px;
   opacity: 0;
   -webkit-transform: scaleX(0.8);
@@ -419,15 +463,16 @@ p {
   right: 0;
   top: 0;
   background-color: rgba(247, 240, 240, 0);
+  margin-bottom: 0px;
 }
 .header-area {
   position: relative;
   height: 100vh;
-  background: #5bc0de;
   background-attachment: fixed;
   background-position: center center;
   background-repeat: no-repear;
   background-size: cover;
+  background-color: #e4e4e4;
 }
 .banner {
   display: flex;
@@ -573,7 +618,9 @@ p {
   background-color: #008ba3;
 }
 .content {
-  padding: 120px 0;
+  background-color: #e4e4e4;
+  height: 100%;
+  width: 100%;
 }
 @media screen and (max-width: 768px) {
   .navbar-brand {
@@ -875,5 +922,200 @@ a.btn.btn-default.btn-scroll {
 }
 .getReady {
   color: #008ba3;
+}
+
+/* */
+
+.grid figure {
+  position: relative;
+  float: left;
+  overflow: hidden;
+  background: #3085a3;
+  text-align: center;
+  cursor: pointer;
+}
+
+.grid figure img {
+  position: relative;
+  display: block;
+  min-height: 100%;
+  max-width: 100%;
+  opacity: 0.8;
+  margin: auto;
+}
+
+.grid figure figcaption {
+  padding: 2em;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 1.25em;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.grid figure figcaption::before,
+.grid figure figcaption::after {
+  pointer-events: none;
+}
+
+.grid figure figcaption,
+.grid figure figcaption > a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.grid figure figcaption > a {
+  z-index: 1000;
+  text-indent: 200%;
+  white-space: nowrap;
+  font-size: 0;
+  opacity: 0;
+}
+
+.grid figure h2 {
+  word-spacing: -0.15em;
+  font-weight: 300;
+}
+
+.grid figure h2 span {
+  font-weight: 800;
+}
+
+.grid figure h2,
+.grid figure p {
+  margin: 0;
+}
+
+.grid figure p {
+  letter-spacing: 1px;
+  font-size: 68.5%;
+}
+
+figure.effect-ravi {
+  background: #303fa9;
+  margin: 0;
+}
+
+.grid [class^="col"] {
+  padding: 2px;
+}
+
+figure.effect-ravi h2 {
+  font-size: 158.75%;
+}
+
+figure.effect-ravi h2,
+figure.effect-ravi p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+  transform: translate3d(-50%, -50%, 0);
+  -webkit-transform-origin: 50%;
+  transform-origin: 50%;
+}
+
+figure.effect-ravi figcaption::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120px;
+  height: 120px;
+  border: 2px solid #fff;
+  content: "";
+  opacity: 0;
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+  -webkit-transform: translate3d(-50%, -50%, 0) rotate3d(0, 0, 1, -45deg)
+    scale3d(0, 0, 1);
+  transform: translate3d(-50%, -50%, 0) rotate3d(0, 0, 1, -45deg)
+    scale3d(0, 0, 1);
+  -webkit-transform-origin: 50%;
+  transform-origin: 50%;
+}
+
+figure.effect-ravi p {
+  width: 100px;
+  text-transform: none;
+  font-size: 121%;
+  line-height: 2;
+}
+
+figure.effect-ravi p a {
+  color: #fff;
+}
+
+figure.effect-ravi p a:hover,
+figure.effect-ravi p a:focus {
+  opacity: 0.6;
+}
+
+figure.effect-ravi p a i {
+  opacity: 0;
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+}
+
+figure.effect-ravi p a:first-child i {
+  -webkit-transform: translate3d(-60px, -60px, 0);
+  transform: translate3d(-60px, -60px, 0);
+}
+
+figure.effect-ravi p a:nth-child(2) i {
+  -webkit-transform: translate3d(60px, -60px, 0);
+  transform: translate3d(60px, -60px, 0);
+}
+
+figure.effect-ravi p a:nth-child(3) i {
+  -webkit-transform: translate3d(-60px, 60px, 0);
+  transform: translate3d(-60px, 60px, 0);
+}
+
+figure.effect-ravi p a:nth-child(4) i {
+  -webkit-transform: translate3d(60px, 60px, 0);
+  transform: translate3d(60px, 60px, 0);
+}
+
+figure.effect-ravi:hover figcaption::before {
+  opacity: 1;
+  -webkit-transform: translate3d(-50%, -50%, 0) rotate3d(0, 0, 1, -45deg)
+    scale3d(1, 1, 1);
+  transform: translate3d(-50%, -50%, 0) rotate3d(0, 0, 1, -45deg)
+    scale3d(1, 1, 1);
+}
+
+figure.effect-ravi:hover h2 {
+  opacity: 0;
+  -webkit-transform: translate3d(-50%, -50%, 0) scale3d(0.8, 0.8, 1);
+  transform: translate3d(-50%, -50%, 0) scale3d(0.8, 0.8, 1);
+}
+
+figure.effect-ravi:hover p i:empty {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  /* just because it's stronger than nth-child */
+  opacity: 1;
+}
+h2 {
+  color: black;
+  font-weight: bold;
+  background-color: silver;
+}
+.caption {
+  color: black;
+  background-color: #333;
+  font-weight: bold;
+}
+.cards {
+  margin: 5% !important;
+}
+.image-event {
+  max-height: 220px !important ;
+  min-height: 220px !important ;
 }
 </style>

@@ -12,8 +12,11 @@ export class ParticipantController {
   ): Promise<Error | object> {
     return this.participantService.buyTicket(user_id, event_id, body);
   }
-  @Get('participant/:event_id')
-  getParticipant(@Param('event_id') event_id: number): Promise<Error | object> {
-    return this.participantService.getParticipant(event_id);
+  @Get('participant/:user_id/:event_id')
+  getParticipant(
+    @Param('event_id') event_id: number,
+    @Param('user_id') user_id: number,
+  ): Promise<Error | object> {
+    return this.participantService.getParticipant(event_id, user_id);
   }
 }
