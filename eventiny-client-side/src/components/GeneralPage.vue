@@ -26,7 +26,9 @@
                 >
               </li>
               <li>
-                <a class="nav-item nav-link active" @click="goToEvenHistory()"
+                <a
+                  class="nav-item nav-link active"
+                  @click="changeView(null, '2')"
                   >Event History</a
                 >
               </li>
@@ -117,9 +119,10 @@
           </div>
         </div>
       </section>
-      <div v-if="view === 'event-list'">
+      <div>
         <main>
-          <div v-if="onDetails === false">
+          <!-- v-if="onDetails === false" -->
+          <div v-if="view === '0'">
             <section id="gobottom" class="content">
               <div class="container mt-40 mb-30">
                 <div class="container">
@@ -138,7 +141,7 @@
                           class="card"
                           v-for="event in filterSearch"
                           v-bind:key="event.id"
-                          @click.prevent="changeView(event, true)"
+                          @click.prevent="changeView(event, '1')"
                         >
                           <div class="image">
                             <img v-bind:src="event.cover" class="image-event" />
@@ -175,11 +178,12 @@
             </section>
           </div>
         </main>
-        <div v-if="onDetails == true">
+        <!-- v-if="onDetails == true" -->
+        <div v-if="view === '1'">
           <EventDetails :eventDetails="eventDetails" :userinfo="userinfo" />
         </div>
       </div>
-      <div v-if="view === 'event-history'">
+      <div v-if="view === '2'">
         <div class="cards-contianer">
           <div
             class="event-history-card"
@@ -222,7 +226,7 @@ export default {
       eventDetails: [],
       formView: true,
       query: "",
-      view: "event-list",
+      view: "0",
     };
   },
   components: {
@@ -233,10 +237,14 @@ export default {
 
   methods: {
     goToEventList() {
-      this.$data.view = "event-list";
+      this.getevents();
+      this.$data.view = "0";
     },
     goToEvenHistory() {
-      this.$data.view = "event-history";
+      axios.get("http://localhost:3000/event/eventhistory").then(({ data }) => {
+        this.$data.dataEvents = data.slice(0, data.length);
+        this.$data.view = "2";
+      });
     },
     openModal() {
       $(".ui.longer.modal").modal("show");
@@ -247,6 +255,7 @@ export default {
     changeView(details = {}, value) {
       this.$data.onDetails = value;
       this.$data.eventDetails = details;
+      this.$data.view = value;
     },
     logOut() {
       localStorage.removeItem("token");
@@ -364,6 +373,7 @@ jQuery(function($) {
 
 <style scoped>
 .cards-contianer {
+  cursor: pointer;
   justify-content: center;
   display: flex;
   flex-wrap: nowrap;

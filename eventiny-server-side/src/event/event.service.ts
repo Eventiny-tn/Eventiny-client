@@ -132,4 +132,16 @@ export class EventService {
 
     return events;
   }
+
+  async getEventHistory(req): Promise<Error | object> {
+    try {
+      const time = new Date();
+      const events = await this.eventRepository.query(
+        `select * from event where dateEnds <= ${+time}`,
+      );
+      return events;
+    } catch (err) {
+      return new NotFoundException('NOT FOUND');
+    }
+  }
 }
