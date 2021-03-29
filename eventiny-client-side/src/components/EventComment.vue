@@ -20,17 +20,53 @@
                 </div>
               </div>
               <div
-                class="ui buttons"
-                v-if="comment.commentator.username === userinfo.username"
+                class="ui right labeled left icon input"
+                id="update-comment"
+                v-if="
+                  update &&
+                    comment.commentator.username === userinfo.username &&
+                    comment.id == currentCommentId
+                "
+              >
+                <i class="comments icon"></i>
+                <input
+                  type="text"
+                  placeholder="update comment..."
+                  v-model="updatedComment"
+                />
+                <a
+                  class="ui teal label"
+                  @click="
+                    onSubmitUpdate(
+                      comment.id,
+                      comment.commentator.id,
+                      comment.event.id
+                    )
+                  "
+                >
+                  Update now
+                </a>
+              </div>
+              <div
+                class="ui tiny buttons"
+                v-if="
+                  comment.commentator.username === userinfo.username && !update
+                "
+                :id="comment.id"
               >
                 <button
-                  class="ui  negative button"
+                  class="ui tiny negative button"
                   @click.prevent="deleteComment(comment.id)"
                 >
                   Delete
                 </button>
                 <div class="or"></div>
-                <button class="ui  positive button">Save</button>
+                <button
+                  class="ui tiny positive button"
+                  @click="beforeUpdate(comment.id)"
+                >
+                  update
+                </button>
               </div>
             </div>
           </div>
@@ -91,6 +127,9 @@ export default {
     return {
       newComment: "",
       spinner: true,
+      update: false,
+      updatedComment: "",
+      currentCommentId: null,
     };
   },
   props: {
@@ -108,10 +147,37 @@ export default {
     },
   },
   methods: {
+    onSubmitUpdate(commentId, userId, eventId) {
+      this.$data.update = false;
+      axios
+        .put(
+          "http://localhost:3000/comments/" +
+            commentId +
+            "/" +
+            userId +
+            "/" +
+            eventId,
+          { comment: this.updatedComment }
+        )
+        .then(({ data }) => {
+          console.log(data);
+          // this.$data.update = true;
+          this.getEventComment();
+        })
+        .catch((err) => console.log(err));
+    },
+
+    beforeUpdate(currentCommentId) {
+      this.$data.update = true;
+      this.$data.currentCommentId = currentCommentId;
+    },
     deleteComment(id) {
-      axios.delete("http://localhost:3000/comments/" + id).then(({ data }) => {
-        this.getEventComment();
-      });
+      axios
+        .delete("http://localhost:3000/comments/" + id)
+        .then(({ data }) => {
+          this.getEventComment();
+        })
+        .catch((err) => console.log(err));
     },
     stopSpinner() {
       setTimeout(() => {
@@ -136,9 +202,18 @@ export default {
 };
 </script>
 <style scoped>
+#update-comment {
+  position: relative;
+  float: right;
+  margin-top: -7% !important;
+}
 .message {
   display: block !important;
   margin: auto !important;
+}
+.button {
+  font-size: 10px !important;
+  height: 30px;
 }
 .buttons {
   position: relative !important;

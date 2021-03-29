@@ -1,5 +1,5 @@
 import { Connection, Repository } from 'typeorm';
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Comment } from './comment.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 // import moment from 'moment';
@@ -31,12 +31,27 @@ export class CommentsService {
     });
     return allRelatedComment;
   }
+
   async deleteComment(id: object): Promise<Error | string> {
     try {
       console.log('delete', id);
 
       await this.commentRepository.delete(id);
       return 'done';
+    } catch (error) {
+      return new Error(error);
+    }
+  }
+  async updateComment(ids, body): Promise<Error | string> {
+    try {
+      console.log('ids ==>', ids, 'bodiiiii', body);
+      if (body.comment == '') {
+        return new NotFoundException('YOU SHOULD NOT INSERT EMPTY SET');
+      }
+      await this.commentRepository.query(
+        `UPDATE comments SET comment='${body.comment}' where id=${ids.commentId};`,
+      );
+      return 'on progress';
     } catch (error) {
       return new Error(error);
     }
