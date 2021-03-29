@@ -184,9 +184,11 @@
               name="input2[]"
               type="file"
               class="file"
+              ref="file"
               multiple
               data-show-upload="true"
               data-show-caption="true"
+              v-on:change="handleMultipleUpload()"
             />
           </span>
         </div>
@@ -236,6 +238,24 @@ export default {
   },
 
   methods: {
+    handleMultipleUpload() {
+      this.file = this.$refs.file.files[1];
+      console.log(this.file);
+      // Change the src attribute of the image to path
+      if (this.file) {
+        const image = new FormData();
+        image.append("file", this.file);
+        image.append("upload_preset", "lwsk5njh");
+        axios
+          .post("https://api.cloudinary.com/v1_1/daakldabl/image/upload", image)
+          .then(({ data }) => {
+            console.log("imageId", data.url);
+            this.$data.imageUrl = data.url;
+            console.log("===>", this.$data.imageUrl);
+          })
+          .catch((err) => console.log(err));
+      }
+    },
     uploadPictureToDataBase() {
       if (this.$data.imageUrl) {
         console.log("this", this.$data.imageUrl);

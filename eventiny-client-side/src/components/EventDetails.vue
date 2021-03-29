@@ -473,6 +473,9 @@ export default {
   line-height: 20px;
   padding: 0px 15px;
 }
+.img-fluid {
+  cursor: pointer;
+}
 .description {
   border-color: #6f7287;
   color: #6f7287;
@@ -587,8 +590,8 @@ body {
   justify-content: center;
 }
 .text {
-  /*-webkit-column-count: 2; 
-    -moz-column-count: 2; 
+  /*-webkit-column-count: 2;
+    -moz-column-count: 2;
     column-count: 2; */
   margin-top: 15px;
 }
