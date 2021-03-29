@@ -104,11 +104,12 @@
             <div class="ui three column grid">
               <section class="column col-md-6">
                 <!-- google map must be here -->
-                <img
-                  class=" img-fluid "
-                  id="googleMap"
-                  :src="eventDetails.cover"
-                />
+                <h3 class="loc-title">
+                  Location :
+                  <h5>{{ eventDetails.location }}</h5>
+                </h3>
+
+                <div class=" img-fluid " id="map"></div>
               </section>
               <div class="column col-md-6">
                 <section class="row ">
@@ -128,8 +129,8 @@
                     <div class="product-count">
                       <label for="size">Quantity</label>
                       <div class="ui message">
-                        <div class="header">
-                          {{ eventDetails.user.username }}
+                        <div id="e-organiser" class="header">
+                          Event organiser: {{ eventDetails.user.username }}
                         </div>
                         <p>Tickets :{{ eventDetails.ticket }}</p>
                         <p>
@@ -166,7 +167,6 @@
                         </div>
                       </div>
                     </div>
-                    <div id="map"></div>
                   </div>
                 </section>
               </div>
@@ -379,9 +379,6 @@ export default {
 };
 </script>
 <style scoped>
-#googleMap {
-  height: 420px;
-}
 .mb-4 {
   display: inline-flex;
   justify-content: flex-start;
@@ -408,6 +405,9 @@ export default {
   line-height: 24px;
   text-align: left;
 }
+#e-organiser {
+  color: #008ba3;
+}
 .button-buy-tickets {
   display: flex;
 }
@@ -426,6 +426,7 @@ export default {
 .detail-event {
   margin-top: 3%;
 }
+
 .detail-event {
   font-size: 15px;
 }
@@ -433,8 +434,8 @@ export default {
   font-size: 30px;
 }
 #map {
-  height: 150px;
-  width: 100%;
+  height: 337px;
+  width: 95%;
   display: flex;
 }
 #thumbnail-preview-indicato detail-eventrs {
@@ -517,6 +518,9 @@ body {
     -moz-column-count: 2;
     column-count: 2; */
   margin-top: 15px;
+}
+.loc-title {
+  margin-top: 10px;
 }
 .statistics > p {
   margin-bottom: 2px;
@@ -936,8 +940,9 @@ section {
   display: flex;
   padding: 25px;
 }
-/* .col-md-6 {
-  display: block;
-  position: relative;
-} */
+.col-md-6 {
+  /* display: block;
+  position: relative; */
+  margin-top: 120px !important  ;
+}
 </style>
