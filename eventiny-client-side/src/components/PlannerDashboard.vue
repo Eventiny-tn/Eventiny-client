@@ -160,12 +160,47 @@
           </div>
         </div>
       </div>
-      <form action="upload.php" method="post" enctype="multipart/form-data">
+      <form enctype="multipart/form-data">
         Select cover image to upload:
-        <input type="file" name="fileToUpload" id="fileToUpload" />
+        <input
+          type="file"
+          name="fileToUpload"
+          id="fileToUpload"
+          ref="file"
+          v-on:change="handleFileUpload()"
+          required
+          :v-model="image"
+        />
         <input type="submit" value="Upload Cover" name="submit" />
       </form>
+      <div class="form-group">
+        <label class="col-sm-3 control-label">
+          Attachment(s) (Attach multiple files.)
+        </label>
+        <div class="col-sm-9">
+          <span class="btn btn-default btn-file">
+            <input
+              id="input-2"
+              name="input2[]"
+              type="file"
+              class="file"
+              multiple
+              data-show-upload="true"
+              data-show-caption="true"
+            />
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label id="description">Description:</label>
+        <input
+          type="text"
+          placeholder="Enter a description"
+          v-model="event.description"
+        />
+      </div>
     </form>
+
     <div @click="addEvent()" class="ui button" tabindex="0">Submit Order</div>
   </div>
 </template>
@@ -178,6 +213,7 @@ export default {
   data() {
     return {
       dataCategories: [],
+      data: [],
       event: {
         name: "",
         caption: "",
@@ -191,13 +227,75 @@ export default {
         lat: "",
         lng: "",
         cover: "",
+        description: "",
         categories: [],
         userId: 0,
       },
+      image: "",
     };
   },
 
   methods: {
+    uploadPictureToDataBase() {
+      if (this.$data.imageUrl) {
+        console.log("this", this.$data.imageUrl);
+        this.event.cover = this.$data.imageUrl;
+        this.event.images.push(
+          this.$data.imageUrl,
+          this.$data.imageUrl,
+          this.$data.imageUrl
+        );
+      }
+      console.log("clicked");
+    },
+    handleFileUpload() {
+      this.file = this.$refs.file.files[0];
+      console.log(this.file);
+      // Change the src attribute of the image to path
+      if (this.file) {
+        const image = new FormData();
+        image.append("file", this.file);
+        image.append("upload_preset", "lwsk5njh");
+        axios
+          .post("https://api.cloudinary.com/v1_1/daakldabl/image/upload", image)
+          .then(({ data }) => {
+            console.log("imageId", data.url);
+            this.$data.imageUrl = data.url;
+            console.log("===>", this.$data.imageUrl);
+          })
+          .catch((err) => console.log(err));
+      }
+    },
+    getinfos() {
+      const token = localStorage.getItem("token");
+      const header = {
+        Authorisation: `Bearer ${token}`,
+      };
+      if (token == null) {
+        this.$router.push("/");
+        return;
+      }
+      axios
+        .get("http://localhost:3000/profile", { headers: header })
+        .then(({ data }) => {
+          console.log("userinfo", data);
+          this.$data.data = data;
+          this.$data.event.userId = data.id;
+          console.log("data userId", data);
+          if (data) {
+            this.$data.data = data;
+            return;
+          } else {
+            localStorage.removeItem("token");
+            this.$router.push("/");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          localStorage.removeItem("token");
+          this.$router.push("/");
+        });
+    },
     // getPlace() {
     //   var searchInput = "search_input";
     //   $(document).ready(function() {
@@ -211,12 +309,13 @@ export default {
     //   });
     // },
     addEvent(event) {
-      console.log(this.event);
+      this.uploadPictureToDataBase();
+      console.log("event===>", this.event);
       axios
-        .post("http://localhost:3000/event", event)
-        .then(({ data }) => {
-          if (data) {
-            console.log(data);
+        .post("http://localhost:3000/event", this.event)
+        .then((res) => {
+          if (res) {
+            console.log(res);
             swal("Thank you for adding your event", "Thank you", "success");
             return;
           }
@@ -326,6 +425,7 @@ export default {
     },
   },
   mounted() {
+    this.getinfos();
     this.getCategories();
     $Scriptjs(
       "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyDapTrWdHVdzoF7ttygRmfv0XqIDkonBqg&callback=initMap",

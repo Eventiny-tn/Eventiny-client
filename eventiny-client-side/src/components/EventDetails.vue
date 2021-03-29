@@ -285,6 +285,7 @@
                     </div>
                   </div>
                 </div>
+                <div id="map"></div>
               </section>
             </div>
           </div>
@@ -410,15 +411,15 @@ export default {
     initMap() {
       var map = new google.maps.Map(document.getElementById("map"), {
         center: {
-          lat: 36.86249448797207,
-          lng: 10.33179298996273,
+          lat: parseFloat(this.eventDetails.lat),
+          lng: parseFloat(this.eventDetails.lng),
         },
         zoom: 13,
       });
       var marker = new google.maps.Marker({
         position: {
-          lat: 36.86249448797207,
-          lng: 10.33179298996273,
+          lat: parseFloat(this.eventDetails.lat),
+          lng: parseFloat(this.eventDetails.lng),
         },
         map: map,
       });
@@ -474,6 +475,7 @@ export default {
   },
   beforeMount() {},
   mounted() {
+    console.log("detailsevent", this.eventDetails);
     console.log("user: ", this.userinfo);
     $Scriptjs(
       "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyDapTrWdHVdzoF7ttygRmfv0XqIDkonBqg&callback=initMap",
