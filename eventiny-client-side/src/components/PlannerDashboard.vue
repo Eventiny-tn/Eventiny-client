@@ -184,9 +184,12 @@
               name="input2[]"
               type="file"
               class="file"
+              ref="files"
               multiple
               data-show-upload="true"
               data-show-caption="true"
+              v-on:change="handleMultipleUpload()"
+              :v-model="multipleimages"
             />
           </span>
         </div>
@@ -232,10 +235,39 @@ export default {
         userId: 0,
       },
       image: "",
+      multipleimages: "",
     };
   },
 
   methods: {
+    handleMultipleUpload() {
+      console.log("iii", this.$refs.files.files);
+      if (this.$refs.files.files) {
+        this.$refs.files.files.forEach(async (element) => {
+          try {
+            var f = await element;
+            console.log(f);
+            // Change the src attribute of the image to path
+            if (f) {
+              let images = new FormData();
+              images.append("files", f);
+              images.append("upload_preset", "lwsk5njh");
+              const dat = await axios.post(
+                "https://api.cloudinary.com/v1_1/daakldabl/image/upload",
+                images
+              );
+              console.log(dat.url);
+            }
+          } catch (error) {
+            console.log(error);
+          }
+          // .then(({ data }) => {
+          //   console.log("imageId", data.url);
+          // })
+          // .catch((err) => console.log(err));
+        });
+      }
+    },
     uploadPictureToDataBase() {
       if (this.$data.imageUrl) {
         console.log("this", this.$data.imageUrl);
