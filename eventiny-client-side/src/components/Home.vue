@@ -1249,7 +1249,37 @@ hr.my-border {
   height: 124px;
   object-fit: cover;
 }
-
+a:hover {
+  text-decoration: none;
+}
+.section-padding {
+  padding: 60px 0;
+}
+.bottom {
+  background-color: #0a1c2e;
+}
+.bottom .copyright {
+  color: #e5e5e5;
+  font-weight: 600;
+}
+.copyright a {
+  color: #f2ff49;
+  margin-left: 3px;
+  padding-right: 3px;
+}
+.bottom p {
+  margin-bottom: 0;
+  line-height: 50px;
+  font-size: 16px;
+  font-weight: 400;
+}
+.copyright p span {
+  color: #d1caca;
+}
+.bottom .copyright p,
+.bottom .copyright a:hover {
+  color: #6c6d83;
+}
 .mybg-events {
   background: url("https://images.pexels.com/photos/277092/pexels-photo-277092.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
     no-repeat center center fixed;
