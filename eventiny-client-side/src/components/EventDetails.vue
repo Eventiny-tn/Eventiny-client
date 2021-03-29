@@ -104,11 +104,12 @@
             <div class="ui three column grid">
               <section class="column col-md-6">
                 <!-- google map must be here -->
-                <img
-                  class=" img-fluid "
-                  id="googleMap"
-                  :src="eventDetails.cover"
-                />
+                <h3 class="loc-title">
+                  Location :
+                  <h5>{{ eventDetails.location }}</h5>
+                </h3>
+
+                <div class=" img-fluid " id="map"></div>
               </section>
               <div class="column col-md-6">
                 <section class="row ">
@@ -128,8 +129,8 @@
                     <div class="product-count">
                       <label for="size">Quantity</label>
                       <div class="ui message">
-                        <div class="header">
-                          {{ eventDetails.user.username }}
+                        <div id="e-organiser" class="header">
+                          Event organiser: {{ eventDetails.user.username }}
                         </div>
                         <p>Tickets :{{ eventDetails.ticket }}</p>
                         <p>
@@ -305,15 +306,15 @@ export default {
     initMap() {
       var map = new google.maps.Map(document.getElementById("map"), {
         center: {
-          lat: 36.86249448797207,
-          lng: 10.33179298996273,
+          lat: parseFloat(this.eventDetails.lat),
+          lng: parseFloat(this.eventDetails.lng),
         },
         zoom: 13,
       });
       var marker = new google.maps.Marker({
         position: {
-          lat: 36.86249448797207,
-          lng: 10.33179298996273,
+          lat: parseFloat(this.eventDetails.lat),
+          lng: parseFloat(this.eventDetails.lng),
         },
         map: map,
       });
@@ -366,6 +367,7 @@ export default {
   },
   beforeMount() {},
   mounted() {
+    console.log("detailsevent", this.eventDetails);
     console.log("user: ", this.userinfo);
     $Scriptjs(
       "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyDapTrWdHVdzoF7ttygRmfv0XqIDkonBqg&callback=initMap",
@@ -378,9 +380,6 @@ export default {
 };
 </script>
 <style scoped>
-#googleMap {
-  height: 420px;
-}
 .mb-4 {
   display: inline-flex;
   justify-content: flex-start;
@@ -395,6 +394,9 @@ export default {
   line-height: 20px;
   padding: 0px 15px;
 }
+.img-fluid {
+  cursor: pointer;
+}
 .description {
   border-color: #6f7287;
   color: #6f7287;
@@ -403,6 +405,9 @@ export default {
   letter-spacing: 0.5px;
   line-height: 24px;
   text-align: left;
+}
+#e-organiser {
+  color: #008ba3;
 }
 .button-buy-tickets {
   display: flex;
@@ -422,6 +427,7 @@ export default {
 .detail-event {
   margin-top: 3%;
 }
+
 .detail-event {
   font-size: 15px;
 }
@@ -429,8 +435,9 @@ export default {
   font-size: 30px;
 }
 #map {
-  height: 150px;
-  width: 100%;
+  height: 337px;
+  width: 95%;
+  display: flex;
 }
 #thumbnail-preview-indicato detail-eventrs {
   position: relative;
@@ -508,10 +515,13 @@ body {
   justify-content: center;
 }
 .text {
-  /*-webkit-column-count: 2; 
-    -moz-column-count: 2; 
+  /*-webkit-column-count: 2;
+    -moz-column-count: 2;
     column-count: 2; */
   margin-top: 15px;
+}
+.loc-title {
+  margin-top: 10px;
 }
 .statistics > p {
   margin-bottom: 2px;
@@ -931,8 +941,9 @@ section {
   display: flex;
   padding: 25px;
 }
-/* .col-md-6 {
-  display: block;
-  position: relative;
-} */
+.col-md-6 {
+  /* display: block;
+  position: relative; */
+  margin-top: 120px !important  ;
+}
 </style>
