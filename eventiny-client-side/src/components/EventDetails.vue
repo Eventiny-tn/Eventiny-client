@@ -283,9 +283,9 @@
                         Sorry you cannot buy more tickets
                       </div>
                     </div>
+                    <div id="map"></div>
                   </div>
                 </div>
-                <div id="map"></div>
               </section>
             </div>
           </div>
@@ -517,6 +517,7 @@ export default {
 #map {
   height: 150px;
   width: 100%;
+  display: flex;
 }
 #thumbnail-preview-indicato detail-eventrs {
   position: relative;
