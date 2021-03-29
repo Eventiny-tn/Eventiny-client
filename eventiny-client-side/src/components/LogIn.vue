@@ -37,7 +37,7 @@
                   </button>
                 </div>
                 <!-- <br /><br />  -->
-                <div @click="googleLogin()">
+                <div @click.prevent="googleLogin()">
                   <button class="ui google plus button">
                     <i class="google icon"></i>
                     Google
@@ -93,12 +93,19 @@ export default {
   },
   methods: {
     googleLogin() {
-      // let route = this.$router.resolve(
-      //   { path: "/googleAuth" },
-      //   window.open(route, "http://localhost:3000")
-      // );
-      // window.open(routeData.href, "http://localhost:3000");
-      window.open("http://localhost:3000");
+      window.open(
+        "http://localhost:3000",
+        "_blank",
+        `scrollbars=no,resizable=no,status=no,location=http://localhost:8080,toolbar=no,menubar=no,width=600,height=600,left=100,top=100`
+      );
+      axios
+        .get("http://localhost:3000/auth/google/callback")
+        .then(({ data }) => {
+          console.log(data);
+        })
+        .catch((err) => {
+          err;
+        });
     },
     onSubmitLogin(login) {
       if (login.email == "" || login.password == "") {
