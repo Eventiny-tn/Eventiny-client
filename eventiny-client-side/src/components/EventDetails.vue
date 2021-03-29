@@ -253,24 +253,28 @@
                       </div>
                       <p>Tickets :{{ eventDetails.ticket }}</p>
                       <p>You puchase {{ ticketsBuy.quantity }} / 10 tickets</p>
-                      <div class="ui input focus">
-                        <input
-                          type="number"
-                          name="tentacles"
-                          min="1"
-                          v-bind:max="10 - ticketsBuy.quantity"
-                          v-model="tickets"
-                        />
+                      <div class="button-buy-tickets">
+                        <div class="ui input focus" id="input-ticket1">
+                          <input
+                            type="number"
+                            name="tentacles"
+                            min="1"
+                            v-bind:max="10 - ticketsBuy.quantity"
+                            v-model="tickets"
+                          />
+                        </div>
+                        <div id="input-ticket2">
+                          <button
+                            class="round-black-btn"
+                            @click="clickadd()"
+                            v-if="ticketsBuy.quantity < 10"
+                          >
+                            Buy Ticket
+                          </button>
+                        </div>
                       </div>
                     </div>
                     <div class="statistics"></div>
-                    <button
-                      class="round-black-btn"
-                      @click="clickadd()"
-                      v-if="ticketsBuy.quantity < 10"
-                    >
-                      Buy Ticket
-                    </button>
                     <div
                       class="ui negative message"
                       v-if="ticketsBuy.quantity > 9"
@@ -482,6 +486,17 @@ export default {
 };
 </script>
 <style scoped>
+.button-buy-tickets {
+  display: flex;
+}
+#input-ticket1 {
+  position: relative;
+  float: left;
+}
+#input-ticket2 {
+  position: relative;
+  float: right;
+}
 .eventDetailContainer {
   display: block;
   justify-content: center;
