@@ -265,7 +265,7 @@
                         </div>
                         <div id="input-ticket2">
                           <button
-                            class="round-black-btn"
+                            class="round-black-btn button-buy-t"
                             @click="clickadd()"
                             v-if="ticketsBuy.quantity < 10"
                           >
@@ -277,7 +277,7 @@
                     <div class="statistics"></div>
                     <div
                       class="ui negative message"
-                      v-if="ticketsBuy.quantity > 9"
+                      v-if="ticketsBuy.quantity >= 9"
                     >
                       <div class="header">
                         Sorry you cannot buy more tickets
@@ -389,7 +389,6 @@ export default {
           .get("http://localhost:3000/comments/" + this.eventDetails.id)
           .then(({ data }) => {
             this.$data.comments = data;
-            console.log("comments==>>", this.comments);
           })
           .catch((err) => console.log(err));
       }, 2000);
@@ -457,12 +456,9 @@ export default {
           `http://localhost:3000/participant/${this.userinfo.id}/${this.eventDetails.id}`
         )
         .then(({ data }) => {
-          console.log("-------------------------------------------->", data);
           if (data[0].quantity !== undefined) {
-            console.log("paaaaaaaaaaaarticepent", data);
             this.$data.ticketsBuy = data[0];
           } else {
-            console.log("daaaaaaaaaaaaaaaaatttttttttaaaaaaaaaaaaa");
           }
         })
         .catch((err) => console.log(err));
@@ -488,14 +484,6 @@ export default {
 <style scoped>
 .button-buy-tickets {
   display: flex;
-}
-#input-ticket1 {
-  position: relative;
-  float: left;
-}
-#input-ticket2 {
-  position: relative;
-  float: right;
 }
 .eventDetailContainer {
   display: block;
@@ -592,8 +580,8 @@ body {
   justify-content: center;
 }
 .text {
-  /*-webkit-column-count: 2; 
-    -moz-column-count: 2; 
+  /*-webkit-column-count: 2;
+    -moz-column-count: 2;
     column-count: 2; */
   margin-top: 15px;
 }
