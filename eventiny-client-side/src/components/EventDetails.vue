@@ -401,7 +401,9 @@ export default {
           `http://localhost:3000/ticket/${this.userinfo.id}/${this.eventDetails.id}`,
           { quantity: this.$data.tickets }
         )
-        .then(console.log("done"))
+        .then(({ data }) => {
+          this.getParticipant();
+        })
         .catch((err) => {
           console.log(err);
         });

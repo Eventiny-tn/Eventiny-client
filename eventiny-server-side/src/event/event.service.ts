@@ -90,6 +90,7 @@ export class EventService {
         .createQueryBuilder('event')
         .leftJoinAndSelect('event.images', 'image')
         .leftJoinAndSelect('event.user', 'user')
+        // .where(`pending = ${true}`)
         .getMany();
       return events;
     } else {
