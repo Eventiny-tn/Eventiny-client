@@ -1,97 +1,5 @@
 <template>
   <div class="eventDetailContainer">
-    <!-- <div class="container detail-event">
-      <div class="row">
-        <div class="row">
-          <div class="col-xs-12">
-            <h2 style="line-height: 25px;">
-              {{ eventDetails.name.toUpperCase() }}
-            </h2>
-            <div class="ui visible message">
-              <p>{{ eventDetails.caption.toUpperCase() }}</p>
-            </div>
-          </div>
-        </div>
-        <div class="row row-eq-height" style="padding-right:15px">
-          <div class="col-xs-9 text">
-            <h2 class="semi-title">Description</h2>
-            <div
-              v-if="eventDetails.description !== ''"
-              class="ui visible message"
-            >
-              <p>
-                {{ eventDetails.description }}
-              </p>
-            </div>
-            <div
-              class="ui warning message"
-              v-if="eventDetails.description == ''"
-            >
-              <div class="header">
-                Sorry there is no description for this event yet!
-              </div>
-              Try to contact the event planner for more information.
-            </div>
-
-            <div>
-              <EventComment
-                :comments="comments"
-                :userinfo="userinfo"
-                :eventDetails="eventDetails"
-              />
-            </div>
-            <br />
-            <br />
-            <br />
-          </div>
-          <div class="col-xs-3 side">
-            <img
-              style="max-width: 100%"
-              v-bind:src="eventDetails.cover"
-              alt="Photograph"
-            />
-
-            <small>
-              <p style="margin-bottom:0px;" class="detail-title">
-                <b>{{ eventDetails.user.username }}</b>
-              </p>
-              <div class="statistics">
-                <p>
-                  <span class="label label-default detail-event">
-                    Tickets :{{ eventDetails.ticket }}</span
-                  >
-                </p>
-                <p>
-                  <span class="label label-default detail-event"
-                    >You puchase {{ ticketsBuy.quantity }} / 10 tickets</span
-                  >
-                </p>
-                <input
-                  type="number"
-                  name="tentacles"
-                  min="0"
-                  v-bind:max="10 - ticketsBuy.quantity"
-                  v-model="tickets"
-                />
-                <button
-                  type="button"
-                  class="btn btn-success"
-                  @click="clickadd()"
-                >
-                  Reserve
-                </button>
-              </div>
-              <p style="margin-bottom:0px;margin-top:25px;">
-                <b>Location</b>
-              </p>
-              <ul class="list-group">
-                <li id="map"></li>
-              </ul>
-            </small>
-          </div>
-        </div>
-      </div>
-    </div> -->
     <div>
       <div class="pd-wrap">
         <div class="container">
@@ -191,68 +99,76 @@
                   </div>
                 </div>
                 <!--end code-->
-                <div class="row mb-4"></div>
               </div>
             </div>
-            <div class="col-md-6">
-              <section class="row">
-                <div class="product-dtl">
-                  <div class="product-info">
-                    <div class="product-name">
-                      {{ eventDetails.name.toUpperCase() }}
-                    </div>
-                    <div class="product-price-discount">
-                      <span>${{ eventDetails.price }}</span>
-                    </div>
-                  </div>
-                  <div class="ui visible message">
-                    <p>{{ eventDetails.caption.toUpperCase() }}</p>
-                  </div>
-                  <div class="row">
-                    <!-- google map must be here -->
-                  </div>
-
-                  <div class="product-count">
-                    <label for="size">Quantity</label>
-                    <div class="ui message">
-                      <div class="header">
-                        {{ eventDetails.user.username }}
-                      </div>
-                      <p>Tickets :{{ eventDetails.ticket }}</p>
-                      <p>You puchase {{ ticketsBuy.quantity }} / 10 tickets</p>
-                      <div class="ui three column grid button-buy-tickets">
-                        <div class="ui input focus column">
-                          <input
-                            type="number"
-                            name="tentacles"
-                            min="1"
-                            v-bind:max="10 - ticketsBuy.quantity"
-                            v-model="tickets"
-                          />
-                        </div>
-                        <div>
-                          <button
-                            class="round-black-btn"
-                            @click="clickadd()"
-                            v-if="ticketsBuy.quantity < 10"
-                          >
-                            Buy Ticket
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="statistics"></div>
-                    <div
-                      class="ui negative message"
-                      v-if="ticketsBuy.quantity > 9"
-                    >
-                      <div class="header">
-                        Sorry you cannot buy more tickets
-                      </div>
-                    </div>
-                  </div>
-                </div>
+            <div class="ui three column grid">
+              <section class="column">
+                <!-- google map must be here -->
+                <img
+                  class=" img-fluid "
+                  id="googleMap"
+                  :src="eventDetails.cover"
+                />
               </section>
+              <div class="column col-md-6">
+                <section class="row ">
+                  <div class="product-dtl">
+                    <div class="product-info">
+                      <div class="product-name">
+                        {{ eventDetails.name.toUpperCase() }}
+                      </div>
+                      <div class="product-price-discount">
+                        <span>${{ eventDetails.price }}</span>
+                      </div>
+                    </div>
+                    <div class="ui visible message">
+                      <p>{{ eventDetails.caption.toUpperCase() }}</p>
+                    </div>
+
+                    <div class="product-count">
+                      <label for="size">Quantity</label>
+                      <div class="ui message">
+                        <div class="header">
+                          {{ eventDetails.user.username }}
+                        </div>
+                        <p>Tickets :{{ eventDetails.ticket }}</p>
+                        <p>
+                          You puchase {{ ticketsBuy.quantity }} / 10 tickets
+                        </p>
+                        <div class="ui three column grid button-buy-tickets">
+                          <div class="ui input focus column">
+                            <input
+                              type="number"
+                              name="tentacles"
+                              min="1"
+                              v-bind:max="10 - ticketsBuy.quantity"
+                              v-model="tickets"
+                            />
+                          </div>
+                          <div>
+                            <button
+                              class="round-black-btn"
+                              @click="clickadd()"
+                              v-if="ticketsBuy.quantity < 10"
+                            >
+                              Buy Ticket
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="statistics"></div>
+                      <div
+                        class="ui negative message"
+                        v-if="ticketsBuy.quantity > 9"
+                      >
+                        <div class="header">
+                          Sorry you cannot buy more tickets
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
             </div>
             <h2 class="about-event">About this Event</h2>
             <div class="ui visible message">
@@ -461,6 +377,13 @@ export default {
 };
 </script>
 <style scoped>
+#googleMap {
+  height: 420px;
+}
+.mb-4 {
+  display: inline-flex;
+  justify-content: flex-start;
+}
 .about-event {
   border-color: #39364f;
   color: #39364f;
