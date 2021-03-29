@@ -106,14 +106,10 @@
               >
                 <UpgradeToPremium :userinfo="user" />
               </div>
-              <!-- here you need to render the dashboard admin once its ready also wrapper it with else conditon -->
-
-              <!-- <PlannerDashboard /> -->
             </div>
           </div>
         </div>
       </section>
-      <div></div>
       <div>
         <main>
           <div v-if="onDetails === false">
@@ -129,23 +125,41 @@
                     <i class="search icon"></i>
                   </div>
                   <div class="grid">
-                    <div class="row">
-                      <div
-                        class="col-md-4"
-                        v-for="event in filterSearch"
-                        v-bind:key="event.id"
-                      >
-                        <figure
-                          class="effect-ravi"
-                          @click="changeView(event, true)"
+                    <div class="row fix-row">
+                      <div class="ui link cards">
+                        <div
+                          class="card"
+                          v-for="event in filterSearch"
+                          v-bind:key="event.id"
+                          @click.prevent="changeView(event, true)"
                         >
-                          <img v-bind:src="event.cover" />
-                          <figcaption>
-                            <p>
-                              <a><i class="fa fa-search"></i></a>
-                            </p>
-                          </figcaption>
-                        </figure>
+                          <div class="image">
+                            <img v-bind:src="event.cover" class="image-event" />
+                          </div>
+                          <div class="content">
+                            <div class="header">{{ event.name }}</div>
+                            <div class="meta">
+                              {{
+                                event.caption.slice(
+                                  0,
+                                  event.caption.indexOf(".")
+                                )
+                              }}
+                            </div>
+                            <div class="description">
+                              {{ event.dateStart }} -- {{ event.dateEnds }}
+                            </div>
+                          </div>
+                          <div class="extra content">
+                            <span class="right floated">
+                              <i class="heart icon"></i>
+                            </span>
+                            <span>
+                              <i class="map marker icon"></i>
+                              {{ event.location }}
+                            </span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -157,43 +171,15 @@
         <div v-if="onDetails == true">
           <EventDetails :eventDetails="eventDetails" :userinfo="userinfo" />
         </div>
-        <!-- <div class="container-gallery"> -->
-        <!-- </div> -->
       </div>
-      <!-- <section id="gobottom" class="content">
-        <div class="container mt-40 mb-30">
-          <h3 class="text-center">Events</h3>
-          <div class="row mt-30">
-            <div
-              class="col-md-4 col-sm-6"
-              v-for="event in dataEvents"
-              v-bind:key="event.id"
-            >
-              <div class="box21">
-                <img v-bind:src="event.cover" class="event-img" />
-                <div class="box-content">
-                  <h4 class="title">{{ event.name }}</h4>
-                  <h6 class="title Location-date">
-                    <i class="fas event-icons fa-map-marker-alt"></i
-                    >{{ event.location }}
-                    <span
-                      ><i class="fas event-icons fa-calendar "></i>
-                      {{ event.dateStart }}</span
-                    >
-                  </h6>
-                  <p class="description">
-                    {{ event.caption }}
-                  </p>
-                  <a class="read-more" @click="changeView(event, true)"
-                    >read more</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section> -->
     </header>
+    <div class="ui modal">
+      <div class="header">Header</div>
+      <div class="scrolling content">
+        <p>Very long content goes here</p>
+      </div>
+    </div>
+    <button @click="openModal()">open</button>
   </div>
 </template>
 
@@ -223,6 +209,9 @@ export default {
   },
 
   methods: {
+    openModal() {
+      $(".ui.longer.modal").modal("show");
+    },
     switchToFormPremium() {
       this.formView = false;
     },
@@ -301,7 +290,7 @@ export default {
   computed: {
     filterSearch: function() {
       return this.dataEvents.filter((event) => {
-        return event.name.match(this.query);
+        return event.name.toUpperCase().match(this.query.toUpperCase());
       });
     },
   },
@@ -630,6 +619,8 @@ p {
 }
 .content {
   background-color: #e4e4e4;
+  height: 100%;
+  width: 100%;
 }
 @media screen and (max-width: 768px) {
   .navbar-brand {
@@ -950,7 +941,7 @@ a.btn.btn-default.btn-scroll {
   min-height: 100%;
   max-width: 100%;
   opacity: 0.8;
-  margin: 0;
+  margin: auto;
 }
 
 .grid figure figcaption {
@@ -1119,5 +1110,12 @@ h2 {
   color: black;
   background-color: #333;
   font-weight: bold;
+}
+.cards {
+  margin: 5% !important;
+}
+.image-event {
+  max-height: 220px !important ;
+  min-height: 220px !important ;
 }
 </style>

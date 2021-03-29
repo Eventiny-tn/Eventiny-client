@@ -157,6 +157,7 @@
                       >
                         <div class="row">
                           <!--news box-->
+
                           <div
                             class="col-6 pb-1 pt-0 pr-1"
                             v-for="(event, i) in eventDetails.images"
@@ -266,13 +267,13 @@
                     <button
                       class="round-black-btn"
                       @click="clickadd()"
-                      v-if="ticketsBuy.quantity"
+                      v-if="ticketsBuy.quantity < 10"
                     >
                       Buy Ticket
                     </button>
                     <div
                       class="ui negative message"
-                      v-if="10 - ticketsBuy.quantity === 0"
+                      v-if="ticketsBuy.quantity > 9"
                     >
                       <div class="header">
                         Sorry you cannot buy more tickets
