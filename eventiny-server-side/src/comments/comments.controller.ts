@@ -1,4 +1,13 @@
-import { Controller, Param, Post, Body, Get } from '@nestjs/common';
+import {
+  Controller,
+  Param,
+  Post,
+  Body,
+  Get,
+  Delete,
+  Patch,
+  Put,
+} from '@nestjs/common';
 import { CommentsService } from './comments.service';
 
 @Controller('comments')
@@ -14,5 +23,16 @@ export class CommentsController {
   @Get(':event_id')
   getAllEventComment(@Param('event_id') id: number): Promise<Error | object> {
     return this.commentsService.getAllEventComment(id);
+  }
+  @Delete(':id')
+  deleteComment(@Param() id: object): Promise<Error | string> {
+    return this.commentsService.deleteComment(id);
+  }
+  @Put('/:commentId/:userId/:eventId')
+  updateComment(
+    @Body() body: object,
+    @Param() ids: object,
+  ): Promise<Error | string> {
+    return this.commentsService.updateComment(ids, body);
   }
 }
