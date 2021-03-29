@@ -5,14 +5,32 @@
         <div class="ui list" v-if="comments.length > 0">
           <div class="item" v-for="(comment, i) in comments" :key="i">
             <div class="ui message">
-              <img class="ui avatar image" :src="comment.commentator.userimg" />
               <div class="content">
+                <img
+                  class="ui avatar image"
+                  :src="comment.commentator.userimg"
+                />
                 <a class="header">{{ comment.commentator.username }}</a>
                 {{ comment.comment }}
+
                 <div class="header"></div>
+
                 <div class="description">
                   <a class="ui tiny red basic label"> {{ comment.time }}</a>
                 </div>
+              </div>
+              <div
+                class="ui buttons"
+                v-if="comment.commentator.username === userinfo.username"
+              >
+                <button
+                  class="ui  negative button"
+                  @click.prevent="deleteComment(comment.id)"
+                >
+                  Delete
+                </button>
+                <div class="or"></div>
+                <button class="ui  positive button">Save</button>
               </div>
             </div>
           </div>
@@ -85,8 +103,16 @@ export default {
     eventDetails: {
       type: Object,
     },
+    getEventComment: {
+      type: Function,
+    },
   },
   methods: {
+    deleteComment(id) {
+      axios.delete("http://localhost:3000/comments/" + id).then(({ data }) => {
+        this.getEventComment();
+      });
+    },
     stopSpinner() {
       setTimeout(() => {
         this.spinner = false;
@@ -110,6 +136,15 @@ export default {
 };
 </script>
 <style scoped>
+.message {
+  display: block !important;
+  margin: auto !important;
+}
+.buttons {
+  position: relative !important;
+  float: right !important;
+  margin-top: -6% !important;
+}
 .col-12 {
   margin: 0;
   background-color: #eeeeee;

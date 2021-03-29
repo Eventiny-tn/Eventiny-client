@@ -171,9 +171,9 @@
               </div>
             </div>
             <h2 class="about-event">About this Event</h2>
-            <div class="ui visible message">
+            <div class="ui visible message ">
               <p
-                class="description"
+                class="description "
                 v-for="(paragh, i) in eventDetails.description.split('.')"
                 :key="i"
               >
@@ -221,6 +221,7 @@
                     :comments="comments"
                     :userinfo="userinfo"
                     :eventDetails="eventDetails"
+                    :getEventComment="getEventComment"
                   />
                 </div>
               </div>

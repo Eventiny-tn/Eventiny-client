@@ -31,4 +31,14 @@ export class CommentsService {
     });
     return allRelatedComment;
   }
+  async deleteComment(id: object): Promise<Error | string> {
+    try {
+      console.log('delete', id);
+
+      await this.commentRepository.delete(id);
+      return 'done';
+    } catch (error) {
+      return new Error(error);
+    }
+  }
 }
