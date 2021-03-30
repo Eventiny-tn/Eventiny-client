@@ -235,6 +235,7 @@ export default {
       },
       image: "",
       images: "",
+      contains: [],
     };
   },
 
@@ -248,41 +249,44 @@ export default {
       console.log("clicked");
     },
     handleMultipleUpload() {
-      this.file = this.$refs.file.files[0];
-      console.log(this.file);
-      // Change the src attribute of the image to path
-      if (this.file) {
-        const images = new FormData();
-        images.append("file", this.file);
-        images.append("upload_preset", "lwsk5njh");
-        axios
-          .post(
-            "https://api.cloudinary.com/v1_1/daakldabl/image/upload",
-            images
-          )
-          .then(({ data }) => {
-            console.log("imageId", data.url);
-            this.$data.imagesUrl = data.url;
-            console.log("===>", this.$data.imagesUrl);
-          })
-          .catch((err) => console.log(err));
+      for (var i = 0; i < this.$refs.file.files.length; i++) {
+        this.file = this.$refs.file.files[i];
+        console.log(this.file);
+        // Change the src attribute of the image to path
+        if (this.file) {
+          const images = new FormData();
+          images.append("file", this.file);
+          images.append("upload_preset", "lwsk5njh");
+          axios
+            .post(
+              "https://api.cloudinary.com/v1_1/daakldabl/image/upload",
+              images
+            )
+            .then(({ data }) => {
+              console.log("imageId", data.url);
+              this.$data.imagesUrl = data.url;
+              console.log("===>", this.$data.imagesUrl);
+              this.contains.push(this.$data.imagesUrl);
+            })
+            .catch((err) => console.log(err));
+        }
       }
     },
     uploadPictureToDataBase() {
       if (this.$data.imageUrl) {
         console.log("this", this.$data.imageUrl);
         this.event.cover = this.$data.imageUrl;
-        this.event.images = this.container;
+        this.event.images = this.contains;
       }
       console.log("clicked");
     },
     handleFileUpload() {
-      this.file = this.$refs.files.files[0];
-      console.log(this.file);
+      this.files = this.$refs.files.files[0];
+      console.log(this.files);
       // Change the src attribute of the image to path
-      if (this.file) {
+      if (this.files) {
         const image = new FormData();
-        image.append("files", this.file);
+        image.append("file", this.files);
         image.append("upload_preset", "lwsk5njh");
         axios
           .post("https://api.cloudinary.com/v1_1/daakldabl/image/upload", image)
