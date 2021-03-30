@@ -66,7 +66,10 @@ export class UserController {
   ): Promise<Error | string> {
     return this.userRepo.updatetoPlanner(id, body);
   }
-
+  @Get('eventPlanners')
+  getEventPlanner(@Body() req): Promise<Error | object> {
+    return this.userRepo.getEventPlanner(req);
+  }
   @Get('getplanner')
   getplanner(@Req() req): Promise<Error | object> {
     return this.userRepo.getplanner(req);
@@ -75,7 +78,7 @@ export class UserController {
   upgradePlannerDemande(@Param() id): Promise<Error | string> {
     return this.userRepo.upgradePlannerDemande(id);
   }
-  @Patch('upload/:id')
+  @Put('upload/:id')
   uploadPic(
     @Param() id: object,
     @Body() body: object,

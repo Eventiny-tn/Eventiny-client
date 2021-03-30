@@ -154,6 +154,7 @@
           <div class="col-md-8">
             <div class="inner-section wow fadeInUp">
               <h3>
+                {{ latestEvent.user?.firstname }}:
                 <span class="bg-main"> {{ latestEvent.name }}</span>
               </h3>
               <br />
@@ -254,12 +255,14 @@
         <div class="row">
           <div class="col-md-8 mx-auto wow fadeInUp">
             <h3 class="text-center font-weight-bold">
-              JOIN EVENTINY<span class="bg-main">Tn</span> GROUPS
+              JOIN EVENTINY<span class="bg-main">Tn</span> EVENT PLANNERS
             </h3>
             <p class=" text-center">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s.
+              At EVENTINY<span class="bg-main">Tn</span>, we have a wide variety
+              of event planners from across the globe planning super special
+              events from musical festival and private parties to surfing and
+              camping events. Take a look at our event planners available this
+              period, and check out the events they have been organizing!
             </p>
           </div>
         </div>
@@ -267,17 +270,20 @@
           <div
             class="col-sm-6 col-md-4 col-lg-3 mt-4 wow bounceInUp"
             data-wow-duration="1.4s"
+            v-for="(planner, i) in eventPlanner"
+            :key="i"
           >
             <div class="card">
-              <img
-                class="card-img-top"
-                src="https://images.pexels.com/photos/258732/pexels-photo-258732.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
-              />
+              <img class="card-img-top" :src="planner.userimg" />
               <div class="card-block">
-                <h4 class="card-title text-center">CATHERINA GAIL</h4>
+                <h4 class="card-title text-center">
+                  <strong>
+                    <span class="bg-main">{{ planner.firstname }}</span></strong
+                  >
+                </h4>
 
                 <div class="card-text text-center">
-                  <div class="social-icons">
+                  <!-- <div class="social-icons">
                     <a href="#" class="btn btn-circle my-social-btn fb"
                       ><i class="fa fa-facebook"></i
                     ></a>
@@ -287,109 +293,7 @@
                     <a href="#" class="btn btn-circle my-social-btn google"
                       ><i class="fa fa-google"></i
                     ></a>
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer text-center">
-                <small
-                  >Lorem Ipsum is simply dummy text of the printing and
-                  typesetting</small
-                >
-              </div>
-            </div>
-          </div>
-          <div
-            class="col-sm-6 col-md-4 col-lg-3 mt-4 wow bounceInUp"
-            data-wow-duration="1.4s"
-          >
-            <div class="card">
-              <img
-                class="card-img-top"
-                src="https://images.pexels.com/photos/210922/pexels-photo-210922.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
-              />
-              <div class="card-block">
-                <h4 class="card-title text-center">HARVEY RUBE</h4>
-
-                <div class="card-text text-center">
-                  <div class="social-icons">
-                    <a href="#" class="btn btn-circle my-social-btn fb"
-                      ><i class="fa fa-facebook"></i
-                    ></a>
-                    <a href="#" class="btn btn-circle my-social-btn twitter"
-                      ><i class="fa fa-twitter"></i
-                    ></a>
-                    <a href="#" class="btn btn-circle my-social-btn google"
-                      ><i class="fa fa-google"></i
-                    ></a>
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer text-center">
-                <small
-                  >Lorem Ipsum is simply dummy text of the printing and
-                  typesetting</small
-                >
-              </div>
-            </div>
-          </div>
-          <div
-            class="col-sm-6 col-md-4 col-lg-3 mt-4 wow bounceInUp"
-            data-wow-duration="1.4s"
-          >
-            <div class="card">
-              <img
-                class="card-img-top"
-                src="https://images.pexels.com/photos/756242/pexels-photo-756242.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
-              />
-              <div class="card-block">
-                <h4 class="card-title text-center">JANET PRIS</h4>
-
-                <div class="card-text text-center">
-                  <div class="social-icons">
-                    <a href="#" class="btn btn-circle my-social-btn fb"
-                      ><i class="fa fa-facebook"></i
-                    ></a>
-                    <a href="#" class="btn btn-circle my-social-btn twitter"
-                      ><i class="fa fa-twitter"></i
-                    ></a>
-                    <a href="#" class="btn btn-circle my-social-btn google"
-                      ><i class="fa fa-google"></i
-                    ></a>
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer text-center">
-                <small
-                  >Lorem Ipsum is simply dummy text of the printing and
-                  typesetting</small
-                >
-              </div>
-            </div>
-          </div>
-          <div
-            class="col-sm-6 col-md-4 col-lg-3 mt-4 wow bounceInUp"
-            data-wow-duration="1.4s"
-          >
-            <div class="card">
-              <img
-                class="card-img-top"
-                src="https://images.pexels.com/photos/167445/pexels-photo-167445.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
-              />
-              <div class="card-block">
-                <h4 class="card-title text-center">KEVIN WARD</h4>
-
-                <div class="card-text text-center">
-                  <div class="social-icons">
-                    <a href="#" class="btn btn-circle my-social-btn fb"
-                      ><i class="fa fa-facebook"></i
-                    ></a>
-                    <a href="#" class="btn btn-circle my-social-btn twitter"
-                      ><i class="fa fa-twitter"></i
-                    ></a>
-                    <a href="#" class="btn btn-circle my-social-btn google"
-                      ><i class="fa fa-google"></i
-                    ></a>
-                  </div>
+                  </div> -->
                 </div>
               </div>
               <div class="card-footer text-center">
@@ -831,12 +735,14 @@ export default {
   data() {
     return {
       latestEvent: {},
+      eventPlanner: {},
       userinfo: "",
       isLogged: false,
     };
   },
   created() {
     this.getTheLastestEvent();
+    this.getEventPlanner();
   },
   beforeMount() {
     this.getUserInfo();
@@ -846,6 +752,11 @@ export default {
   },
 
   methods: {
+    getEventPlanner() {
+      axios.get("http://localhost:3000/eventPlanners").then(({ data }) => {
+        this.eventPlanner = data.slice(0, 4);
+      });
+    },
     getTheLastestEvent() {
       axios
         .get("http://localhost:3000/event/latestEvent")
@@ -1261,7 +1172,7 @@ a:hover {
   color: #6c6d83;
 }
 .mybg-events {
-  background: url("https://images.pexels.com/photos/277092/pexels-photo-277092.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
+  background: url("../assets/images/photo-1507608869274-d3177c8bb4c7.jpeg")
     no-repeat center center fixed;
   background-size: cover;
 }
@@ -1346,7 +1257,7 @@ section#group {
 .card-img-top {
   display: block;
   width: 100%;
-  height: auto;
+  height: 220px;
 }
 
 .card-title {

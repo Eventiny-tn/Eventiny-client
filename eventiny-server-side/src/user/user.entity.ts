@@ -49,7 +49,6 @@ export class User {
   plannerDemand: boolean;
   @Column({ default: 0 })
   reportCounter: number;
-
   @OneToMany(() => Event, (event) => event.user)
   events: Event[];
 

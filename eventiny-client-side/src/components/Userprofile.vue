@@ -117,7 +117,7 @@
                       <img
                         v-if="data"
                         :src="data.userimg"
-                        class="rounded-circle"
+                        class="ui small circular image"
                       />
                     </a>
                   </div>
@@ -449,7 +449,7 @@ export default {
     uploadPictureToDataBase() {
       if (this.$data.imageUrl) {
         axios
-          .patch("http://localhost:3000/upload/" + this.data.id, {
+          .put("http://localhost:3000/upload/" + this.data.id, {
             image: this.$data.imageUrl,
           })
           .then(({ data }) => {
