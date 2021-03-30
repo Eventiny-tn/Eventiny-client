@@ -195,6 +195,7 @@
               alt="Avatar"
               style="width:100%"
               class="image-event"
+              @click="changeView(event, '1')"
             />
             <div class="event-history-container">
               <h4>
@@ -253,7 +254,7 @@ export default {
       this.formView = false;
     },
     changeView(details = {}, value) {
-      this.$data.onDetails = value;
+      // this.$data.onDetails = value;
       this.$data.eventDetails = details;
       this.$data.view = value;
     },
@@ -386,6 +387,7 @@ jQuery(function($) {
   width: 40%;
   margin: 2%;
   float: left;
+  width: 400px;
 }
 
 .event-history-card:hover {
@@ -1178,5 +1180,7 @@ h2 {
 .image-event {
   max-height: 220px !important ;
   min-height: 220px !important ;
+  /* min-width: 120px !important ;
+  max-width: 120px !important ; */
 }
 </style>
