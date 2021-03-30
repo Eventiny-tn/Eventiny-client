@@ -139,7 +139,9 @@ export class EventService {
       const events = await this.eventRepository.query(
         `select * from event where dateEnds <= ${+time}`,
       );
-      return events;
+      return events.sort((a, b) => {
+        +b.time - +a.time;
+      });
     } catch (err) {
       return new NotFoundException('NOT FOUND');
     }
