@@ -93,8 +93,7 @@
                   <a
                     class="button button-primary"
                     type="button"
-                    data-toggle="modal"
-                    data-target="#myModal"
+                    @click="start()"
                   >
                     Start</a
                   >
@@ -210,28 +209,6 @@
         </div>
       </div>
     </header>
-    <div>
-      <!-- Modal -->
-      <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-          <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-body">
-              <UpgradeToPremium />
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-defaultt"
-                data-dismiss="modal"
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -272,7 +249,9 @@ export default {
         this.$data.view = "2";
       });
     },
-
+    start() {
+      this.$router.push("/plannerDemand");
+    },
     switchToFormPremium() {
       this.formView = false;
     },
