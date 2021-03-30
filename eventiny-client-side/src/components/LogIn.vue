@@ -98,14 +98,6 @@ export default {
         "_blank",
         `scrollbars=no,resizable=no,status=no,location=http://localhost:8080,toolbar=no,menubar=no,width=600,height=600,left=100,top=100`
       );
-      axios
-        .get("http://localhost:3000/auth/google/callback")
-        .then(({ data }) => {
-          console.log(data);
-        })
-        .catch((err) => {
-          err;
-        });
     },
     onSubmitLogin(login) {
       if (login.email == "" || login.password == "") {
