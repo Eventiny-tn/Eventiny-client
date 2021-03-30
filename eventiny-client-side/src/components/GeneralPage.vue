@@ -66,6 +66,7 @@
           </div>
         </div>
       </nav>
+
       <section>
         <div class="overlay-wcs"></div>
         <video
@@ -91,7 +92,9 @@
                   </p>
                   <a
                     class="button button-primary"
-                    @click="switchToFormPremium()"
+                    type="button"
+                    data-toggle="modal"
+                    data-target="#myModal"
                   >
                     Start</a
                   >
@@ -207,6 +210,28 @@
         </div>
       </div>
     </header>
+    <div>
+      <!-- Modal -->
+      <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-body">
+              <UpgradeToPremium />
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-defaultt"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -247,9 +272,7 @@ export default {
         this.$data.view = "2";
       });
     },
-    openModal() {
-      $(".ui.longer.modal").modal("show");
-    },
+
     switchToFormPremium() {
       this.formView = false;
     },
@@ -373,6 +396,26 @@ jQuery(function($) {
 </script>
 
 <style scoped>
+.btn-defaultt {
+  background-color: teal;
+}
+.btn-defaultt:hover {
+  background-color: red;
+}
+.modal {
+  margin-left: -10%;
+  height: 900px;
+}
+.modal-content {
+  margin-top: 10%;
+  display: block;
+  width: 800px;
+  border: none;
+  background-color: transparent;
+}
+.modal-body {
+  width: 800px;
+}
 .cards-contianer {
   cursor: pointer;
   justify-content: center;

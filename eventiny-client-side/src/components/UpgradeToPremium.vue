@@ -5,7 +5,7 @@
         <fieldset>
           <legend class="reservation-form-title">Upgrade To Premium</legend>
           <div>
-            <h4 class="label" for="name">
+            <h4>
               How many events have you organized before?
             </h4>
             <p class="select">
@@ -18,7 +18,7 @@
             </p>
           </div>
           <div>
-            <h4 class="label" for="phone">
+            <h4>
               How did you first hear about Eventiny?
             </h4>
             <p class="select">
@@ -36,11 +36,7 @@
               </select>
             </p>
           </div>
-          <div>
-            <h4 class="label" for="email">
-              How many people help plan your events online?
-            </h4>
-          </div>
+
           <div>
             <h4>How often do you plan to host events?</h4>
             <p class="select">
@@ -73,7 +69,12 @@
             ></textarea>
           </div>
           <div>
-            <input type="submit" value="Next" @click="submitForm()" />
+            <input
+              type="submit"
+              value="Next"
+              @click="submitForm()"
+              data-dismiss="modal"
+            />
           </div>
         </fieldset>
       </form>
@@ -269,6 +270,8 @@ header h1 {
 #app {
   display: flex;
   background-color: #008ba3;
+  /* max-height: 400px;
+  min-height: 300px; */
 }
 .label {
   font-size: 20px;
