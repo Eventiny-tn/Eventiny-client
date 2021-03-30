@@ -15,7 +15,6 @@ import { ConfigModule } from '@nestjs/config';
 import { CommentsModule } from './comments/comments.module';
 import { ParticipantService } from './participant/participant.service';
 import { ParticipantController } from './participant/participant.controller';
-import { ParticipantModule } from './participant/participant.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot(),
