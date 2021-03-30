@@ -1,13 +1,5 @@
-import { Patch, Req, UseGuards } from '@nestjs/common';
-import {
-  Body,
-  Controller,
-  Get,
-  Post,
-  Headers,
-  Put,
-  Param,
-} from '@nestjs/common';
+import { Patch, Req, UseGuards, Param } from '@nestjs/common';
+import { Body, Controller, Get, Post, Headers, Put } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
 import { Userinfo, UserLog } from './user.entity';
@@ -84,5 +76,9 @@ export class UserController {
     @Body() body: object,
   ): Promise<Error | string> {
     return this.userRepo.uploadPic(id, body);
+  }
+  @Put('password/:id')
+  updateUserPassword(@Body() body, @Param() id): Promise<Error | string> {
+    return this.userRepo.updateUserPassword(id, body);
   }
 }

@@ -1,4 +1,3 @@
-import { PlannerRequest } from './../planner-request/planner-request.entity';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Connection, getConnection, Repository } from 'typeorm';
@@ -173,6 +172,29 @@ export class UserService {
       return eventPlanners;
     } catch (err) {
       return new NotFoundException('NOT FOUND');
+    }
+  }
+
+  async updateUserPassword(id, body): Promise<Error | string> {
+    try {
+      console.log(id, body);
+      const user = await this.userRepository.findOne({ id: id.id });
+      const check = bcrypt.compareSync(body.currentPass, user.password);
+      console.log('==<>', check);
+
+      if (check) {
+        const saltRounds = 10;
+        const salt = bcrypt.genSaltSync(saltRounds);
+        const hash = bcrypt.hashSync(body.password, salt);
+        await this.userRepository.query(
+          `update user set password='${hash}' where id=${id.id};`,
+        );
+        return 'ok';
+      } else {
+        return new NotFoundException('WRONG PASSWORD');
+      }
+    } catch (err) {
+      return new NotFoundException('WRONG PASSWORD');
     }
   }
 }
