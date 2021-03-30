@@ -70,6 +70,7 @@
               </div>
             </div>
           </div>
+          
         </div>
         <!-- Contenedor Principal -->
         <div class="ui message" v-if="comments.length > 0">

@@ -132,6 +132,25 @@
                         <div id="e-organiser" class="header">
                           Event organiser: {{ eventDetails.user.username }}
                         </div>
+
+                        <div id="input-ticket2">
+                          <button
+                            class="round-black-btn button-buy-t"
+                            @click="clickadd()"
+                            v-if="ticketsBuy.quantity < 10"
+                          >
+                            Buy Ticket
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="statistics"></div>
+                    <div
+                      class="ui negative message"
+                      v-if="ticketsBuy.quantity >= 9"
+                    >
+                      <div class="header">
+                        Sorry you cannot buy more tickets
                         <p>Tickets :{{ eventDetails.ticket }}</p>
                         <p>
                           You puchase {{ ticketsBuy.quantity }} / 10 tickets
@@ -245,6 +264,7 @@
 import axios from "axios";
 import $Scriptjs from "scriptjs";
 import EventComment from "./EventComment.vue";
+import moment from "moment";
 export default {
   components: {
     EventComment,
@@ -297,6 +317,25 @@ export default {
         )
         .then(({ data }) => {
           this.getParticipant();
+          const ticketData = {
+            data: {
+              userEmail: this.userinfo.email,
+              userName: this.userinfo.username,
+              eventName: this.eventDetails.name,
+              eventLocation: this.eventDetails.location,
+              eventDate: this.eventDetails.eventDate,
+              purchaseTime: `${moment().format("MMM Do YY")}`,
+              from: this.eventDetails.dateEnds,
+              to: this.eventDetails.dateStart,
+              place: this.$data.tickets,
+            },
+          };
+          axios
+            .post(`http://localhost:3000/send/ticket`, ticketData)
+            .then(({ data }) => {
+              console.log("done");
+            })
+            .catch((err) => console.log(err));
         })
         .catch((err) => {
           console.log(err);
@@ -353,9 +392,9 @@ export default {
           `http://localhost:3000/participant/${this.userinfo.id}/${this.eventDetails.id}`
         )
         .then(({ data }) => {
-          console.log("-------------------------------------------->", data);
           if (data[0].quantity !== undefined) {
             this.$data.ticketsBuy = data[0];
+          } else {
           }
         })
         .catch((err) => console.log(err));
@@ -411,12 +450,6 @@ export default {
 }
 .button-buy-tickets {
   display: flex;
-}
-#input-ticket1 {
-  float: left;
-}
-#input-ticket2 {
-  float: right;
 }
 .eventDetailContainer {
   display: block;

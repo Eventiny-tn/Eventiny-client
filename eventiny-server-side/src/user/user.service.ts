@@ -1,3 +1,4 @@
+import { PlannerRequest } from './../planner-request/planner-request.entity';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Connection, getConnection, Repository } from 'typeorm';
@@ -44,6 +45,7 @@ export class UserService {
     // if (logger.isBanned == true) {
     //   return { user: 'banned' };
     // }
+
     if (logger) {
       const islogged = bcrypt.compareSync(body.password, logger.password);
       if (islogged) {
@@ -162,5 +164,15 @@ export class UserService {
       `UPDATE user SET userimg = '${userimg}' where id = ${id.id}; `,
     );
     return 'uploaded';
+  }
+  async getEventPlanner(req): Promise<Error | object> {
+    try {
+      const eventPlanners = await this.userRepository.find({
+        plannerDemand: true,
+      });
+      return eventPlanners;
+    } catch (err) {
+      return new NotFoundException('NOT FOUND');
+    }
   }
 }
