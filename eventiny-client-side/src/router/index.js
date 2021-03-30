@@ -7,7 +7,7 @@ import GeneralPage from "../components/GeneralPage";
 import EventDetails from "../components/EventDetails";
 import PlannerRequest from "../components/PlannerRequest";
 import PlannerDashboard from "../components/PlannerDashboard";
-
+import UpgradeToPremium from "../components/UpgradeToPremium";
 const routes = [
   {
     path: "/",
@@ -47,6 +47,11 @@ const routes = [
     path: "/PlannerRequest",
     name: "PlannerRequest",
     component: PlannerRequest,
+  },
+  {
+    path: "/plannerDemand",
+    name: "plannerDemand",
+    component: UpgradeToPremium,
   },
   {
     path: "/PlannerDashboard",

@@ -66,6 +66,7 @@
           </div>
         </div>
       </nav>
+
       <section>
         <div class="overlay-wcs"></div>
         <video
@@ -91,7 +92,8 @@
                   </p>
                   <a
                     class="button button-primary"
-                    @click="switchToFormPremium()"
+                    type="button"
+                    @click="start()"
                   >
                     Start</a
                   >
@@ -247,8 +249,8 @@ export default {
         this.$data.view = "2";
       });
     },
-    openModal() {
-      $(".ui.longer.modal").modal("show");
+    start() {
+      this.$router.push("/plannerDemand");
     },
     switchToFormPremium() {
       this.formView = false;
@@ -373,6 +375,26 @@ jQuery(function($) {
 </script>
 
 <style scoped>
+.btn-defaultt {
+  background-color: teal;
+}
+.btn-defaultt:hover {
+  background-color: red;
+}
+.modal {
+  margin-left: -10%;
+  height: 900px;
+}
+.modal-content {
+  margin-top: 10%;
+  display: block;
+  width: 800px;
+  border: none;
+  background-color: transparent;
+}
+.modal-body {
+  width: 800px;
+}
 .cards-contianer {
   cursor: pointer;
   justify-content: center;
