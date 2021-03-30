@@ -44,6 +44,7 @@ export class UserService {
     // if (logger.isBanned == true) {
     //   return { user: 'banned' };
     // }
+
     if (logger) {
       const islogged = bcrypt.compareSync(body.password, logger.password);
       if (islogged) {
