@@ -166,7 +166,7 @@
           type="file"
           name="fileToUpload"
           id="fileToUpload"
-          ref="file"
+          ref="files"
           v-on:change="handleFileUpload()"
           required
           :v-model="image"
@@ -277,12 +277,12 @@ export default {
       console.log("clicked");
     },
     handleFileUpload() {
-      this.file = this.$refs.file.files[0];
+      this.file = this.$refs.files.files[0];
       console.log(this.file);
       // Change the src attribute of the image to path
       if (this.file) {
         const image = new FormData();
-        image.append("file", this.file);
+        image.append("files", this.file);
         image.append("upload_preset", "lwsk5njh");
         axios
           .post("https://api.cloudinary.com/v1_1/daakldabl/image/upload", image)
