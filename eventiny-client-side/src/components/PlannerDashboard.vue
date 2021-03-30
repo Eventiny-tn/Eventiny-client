@@ -173,27 +173,21 @@
         />
         <input type="submit" value="Upload Cover" name="submit" />
       </form>
-      <div class="form-group">
-        <label class="col-sm-3 control-label">
-          Attachment(s) (Attach multiple files.)
-        </label>
-        <div class="col-sm-9">
-          <span class="btn btn-default btn-file">
-            <input
-              id="input-2"
-              name="input2[]"
-              type="file"
-              class="file"
-              ref="files"
-              multiple
-              data-show-upload="true"
-              data-show-caption="true"
-              v-on:change="handleMultipleUpload()"
-              :v-model="multipleimages"
-            />
-          </span>
-        </div>
-      </div>
+
+      <form enctype="multipart/form-data">
+        Select cover image to upload:
+        <input
+          type="file"
+          name="fileToUpload"
+          id="fileToUpload"
+          ref="file"
+          v-on:change="handleMultipleUpload()"
+          required
+          :v-model="images"
+        />
+        <input type="submit" value="Upload Cover" name="submit" />
+      </form>
+
       <div class="form-group">
         <label id="description">Description:</label>
         <input
@@ -235,48 +229,39 @@ export default {
         userId: 0,
       },
       image: "",
-      multipleimages: "",
+      images: "",
+      container: [],
     };
   },
 
   methods: {
     handleMultipleUpload() {
-      console.log("iii", this.$refs.files.files);
-      if (this.$refs.files.files) {
-        this.$refs.files.files.forEach(async (element) => {
-          try {
-            var f = await element;
-            console.log(f);
-            // Change the src attribute of the image to path
-            if (f) {
-              let images = new FormData();
-              images.append("files", f);
-              images.append("upload_preset", "lwsk5njh");
-              const dat = await axios.post(
-                "https://api.cloudinary.com/v1_1/daakldabl/image/upload",
-                images
-              );
-              console.log(dat.url);
-            }
-          } catch (error) {
-            console.log(error);
-          }
-          // .then(({ data }) => {
-          //   console.log("imageId", data.url);
-          // })
-          // .catch((err) => console.log(err));
-        });
+      this.file = this.$refs.file.files[0];
+      console.log(this.file);
+      // Change the src attribute of the image to path
+      if (this.file) {
+        const images = new FormData();
+        images.append("file", this.file);
+        images.append("upload_preset", "lwsk5njh");
+        axios
+          .post(
+            "https://api.cloudinary.com/v1_1/daakldabl/image/upload",
+            images
+          )
+          .then(({ data }) => {
+            console.log("imageId", data.url);
+            this.$data.imagesUrl = data.url;
+            console.log("===>", this.$data.imagesUrl);
+            this.container.push(this.$data.imagesUrl);
+          })
+          .catch((err) => console.log(err));
       }
     },
     uploadPictureToDataBase() {
       if (this.$data.imageUrl) {
         console.log("this", this.$data.imageUrl);
         this.event.cover = this.$data.imageUrl;
-        this.event.images.push(
-          this.$data.imageUrl,
-          this.$data.imageUrl,
-          this.$data.imageUrl
-        );
+        this.event.images = this.container;
       }
       console.log("clicked");
     },
