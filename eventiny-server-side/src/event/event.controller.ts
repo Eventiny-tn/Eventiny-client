@@ -21,6 +21,15 @@ export class EventController {
   getAllEvent(@Req() req): Promise<Error | object> {
     return this.eventService.getAllEvent(req);
   }
+  @Get('category/:id')
+  filterEventByCategory(@Param() category: object): Promise<Error | object> {
+    return this.eventService.filterEventByCategory(category);
+  }
+  @Get('eventhistory')
+  getEventHistory(@Req() req): Promise<Error | object> {
+    return this.eventService.getEventHistory(req);
+  }
+
   @Put(':id')
   updateByid(
     @Param() id: number,
@@ -31,9 +40,5 @@ export class EventController {
   @Delete(':id')
   deleteOneById(@Param() id: number): Promise<Error | string> {
     return this.eventService.deleteOneById(id);
-  }
-  @Get('category/:id')
-  filterEventByCategory(@Param() category: object): Promise<Error | object> {
-    return this.eventService.filterEventByCategory(category);
   }
 }

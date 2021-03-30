@@ -21,7 +21,16 @@
           <div id="main-nav" class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
               <li>
-                <a class="nav-item nav-link active" href="/GeneralPage">Home</a>
+                <a class="nav-item nav-link active" @click="goToEventList()"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a
+                  class="nav-item nav-link active"
+                  @click="changeView(null, '2')"
+                  >Event History</a
+                >
               </li>
 
               <li v-if="data.plannerDemand">
@@ -112,7 +121,8 @@
       </section>
       <div>
         <main>
-          <div v-if="onDetails === false">
+          <!-- v-if="onDetails === false" -->
+          <div v-if="view === '0'">
             <section id="gobottom" class="content">
               <div class="container mt-40 mb-30">
                 <div class="container">
@@ -131,7 +141,7 @@
                           class="card"
                           v-for="event in filterSearch"
                           v-bind:key="event.id"
-                          @click.prevent="changeView(event, true)"
+                          @click.prevent="changeView(event, '1')"
                         >
                           <div class="image">
                             <img v-bind:src="event.cover" class="image-event" />
@@ -168,18 +178,35 @@
             </section>
           </div>
         </main>
-        <div v-if="onDetails == true">
+        <!-- v-if="onDetails == true" -->
+        <div v-if="view === '1'">
           <EventDetails :eventDetails="eventDetails" :userinfo="userinfo" />
         </div>
       </div>
-    </header>
-    <div class="ui modal">
-      <div class="header">Header</div>
-      <div class="scrolling content">
-        <p>Very long content goes here</p>
+      <div v-if="view === '2'">
+        <div class="cards-contianer">
+          <div
+            class="event-history-card"
+            v-for="event in filterSearch"
+            v-bind:key="event.id"
+          >
+            <img
+              :src="event.cover"
+              alt="Avatar"
+              style="width:100%"
+              class="image-event"
+              @click="changeView(event, '1')"
+            />
+            <div class="event-history-container">
+              <h4>
+                <b>{{ event.name }}</b>
+              </h4>
+              <p>{{ event.caption }}</p>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <button @click="openModal()">open</button>
+    </header>
   </div>
 </template>
 
@@ -200,6 +227,7 @@ export default {
       eventDetails: [],
       formView: true,
       query: "",
+      view: "0",
     };
   },
   components: {
@@ -209,6 +237,16 @@ export default {
   },
 
   methods: {
+    goToEventList() {
+      this.getevents();
+      this.$data.view = "0";
+    },
+    goToEvenHistory() {
+      axios.get("http://localhost:3000/event/eventhistory").then(({ data }) => {
+        this.$data.dataEvents = data.slice(0, data.length);
+        this.$data.view = "2";
+      });
+    },
     openModal() {
       $(".ui.longer.modal").modal("show");
     },
@@ -216,8 +254,9 @@ export default {
       this.formView = false;
     },
     changeView(details = {}, value) {
-      this.$data.onDetails = value;
+      // this.$data.onDetails = value;
       this.$data.eventDetails = details;
+      this.$data.view = value;
     },
     logOut() {
       localStorage.removeItem("token");
@@ -290,7 +329,7 @@ export default {
   computed: {
     filterSearch: function() {
       return this.dataEvents.filter((event) => {
-        return event.name.toUpperCase().match(this.query.toUpperCase());
+        return event.name.toUpperCase().includes(this.query.toUpperCase());
       });
     },
   },
@@ -334,6 +373,30 @@ jQuery(function($) {
 </script>
 
 <style scoped>
+.cards-contianer {
+  cursor: pointer;
+  justify-content: center;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-flow: row wrap;
+  margin: 5%;
+  margin-top: 15%;
+}
+.event-history-card {
+  transition: 0.4s;
+  width: 40%;
+  margin: 2%;
+  float: left;
+  width: 400px;
+}
+
+.event-history-card:hover {
+  box-shadow: 0 25px 20px 10px rgba(0, 0, 0, 0.2);
+}
+
+.event-history-container {
+  padding: 2px 16px;
+}
 .search {
   width: 900px;
   margin: 5%;
@@ -1117,5 +1180,7 @@ h2 {
 .image-event {
   max-height: 220px !important ;
   min-height: 220px !important ;
+  /* min-width: 120px !important ;
+  max-width: 120px !important ; */
 }
 </style>
