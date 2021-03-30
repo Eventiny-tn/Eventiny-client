@@ -142,68 +142,34 @@
       </div>
     </header>
 
-    <section class="testimonials" id="gobottom">
+    <section class="testimonials" id="gobottom" v-if="latestEvent">
       <div class="container">
         <div class="row">
           <div class="col-md-4 mb-3 wow bounceInUp" data-wow-duration="1.4s">
-            <div class="big-img">
-              <img
-                src="https://cdns-images.dzcdn.net/images/artist/6884b5c198045ed120614f5b01844717/264x264.jpg"
-                class="img-fluid"
-              />
+            <h1><span class="bg-main">Recent Event</span></h1>
+            <div class="big-img" v-if="latestEvent.cover">
+              <img :src="latestEvent.cover" class="img-fluid" />
             </div>
           </div>
           <div class="col-md-8">
             <div class="inner-section wow fadeInUp">
-              <h3>GGA <span class="bg-main">Next Event</span></h3>
+              <h3>
+                <span class="bg-main"> {{ latestEvent.name }}</span>
+              </h3>
               <br />
               <p class="text-justify">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book. It has
-                survived not only five centuries, but also the leap into
-                electronic typesetting, remaining essentially unchanged. It was
-                popularised in the 1960s with the release of Letraset sheets.
+                {{ latestEvent.caption }}
               </p>
 
               <div class="linear-grid">
                 <div class="row">
                   <div
-                    class="col-sm-6 col-md-3 mb-2 wow bounceInUp"
-                    data-wow-duration="1.4s"
-                  >
-                    <img
-                      src="https://images.pexels.com/photos/534031/pexels-photo-534031.jpeg?auto=compress&cs=tinysrgb&h=350"
-                      class="img-thumbnail"
-                    />
-                  </div>
-                  <div
                     class=" col-sm-6 col-md-3 mb-2 wow bounceInUp"
                     data-wow-duration="1.4s"
+                    v-for="(event, i) in latestEvent.images"
+                    :key="i"
                   >
-                    <img
-                      src="https://images.pexels.com/photos/258804/pexels-photo-258804.jpeg?auto=compress&cs=tinysrgb&h=350"
-                      class="img-thumbnail"
-                    />
-                  </div>
-                  <div
-                    class="col-sm-6 col-md-3 mb-2 wow bounceInUp"
-                    data-wow-duration="1.4s"
-                  >
-                    <img
-                      src="https://images.pexels.com/photos/285598/pexels-photo-285598.jpeg?auto=compress&cs=tinysrgb&h=350"
-                      class="img-thumbnail"
-                    />
-                  </div>
-                  <div
-                    class="col-sm-6 col-md-3 mb-2 wow bounceInUp"
-                    data-wow-duration="1.4s"
-                  >
-                    <img
-                      src="https://images.pexels.com/photos/167605/pexels-photo-167605.jpeg?auto=compress&cs=tinysrgb&h=350"
-                      class="img-thumbnail"
-                    />
+                    <img :src="event.image" class="img-thumbnail" />
                   </div>
                 </div>
               </div>
@@ -862,7 +828,34 @@ import $ from "jquery";
 import axios from "axios";
 
 export default {
+  data() {
+    return {
+      latestEvent: {},
+      userinfo: "",
+      isLogged: false,
+    };
+  },
+  created() {
+    this.getTheLastestEvent();
+  },
+  beforeMount() {
+    this.getUserInfo();
+  },
+  mounted() {
+    this.animations();
+  },
+
   methods: {
+    getTheLastestEvent() {
+      axios
+        .get("http://localhost:3000/event/latestEvent")
+        .then(({ data }) => {
+          this.latestEvent = data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
     getUserInfo() {
       const token = localStorage.getItem("token");
       const headers = {
@@ -951,19 +944,6 @@ export default {
         });
       });
     },
-  },
-  beforeMount() {
-    this.getUserInfo();
-  },
-  mounted() {
-    this.animations();
-  },
-
-  data() {
-    return {
-      userinfo: "",
-      isLogged: false,
-    };
   },
 };
 </script>

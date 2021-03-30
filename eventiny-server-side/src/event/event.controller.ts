@@ -21,6 +21,10 @@ export class EventController {
   getAllEvent(@Req() req): Promise<Error | object> {
     return this.eventService.getAllEvent(req);
   }
+  @Get('latestEvent')
+  lastestEvent(@Req() req): Promise<Error | object> {
+    return this.eventService.lastestEvent(req);
+  }
   @Get('category/:id')
   filterEventByCategory(@Param() category: object): Promise<Error | object> {
     return this.eventService.filterEventByCategory(category);
