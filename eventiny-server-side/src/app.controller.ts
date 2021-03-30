@@ -1,4 +1,4 @@
-import { Post, Res, UseGuards } from '@nestjs/common';
+import { Body, Post, Res, UseGuards } from '@nestjs/common';
 import { Req } from '@nestjs/common';
 import { Controller, Get } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
@@ -22,5 +22,9 @@ export class AppController {
   @Get('email')
   email(user): any {
     return this.appService.email(user);
+  }
+  @Post('send/ticket')
+  sendTicket(@Body() ticketData): any {
+    return this.appService.sendTicket(ticketData);
   }
 }
