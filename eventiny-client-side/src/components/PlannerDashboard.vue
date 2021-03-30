@@ -185,7 +185,12 @@
           required
           :v-model="images"
         />
-        <input type="submit" value="Upload Cover" name="submit" />
+        <input
+          @click.prevent="addimagetotheState()"
+          type="submit"
+          value="Upload Cover"
+          name="submit"
+        />
       </form>
 
       <div class="form-group">
@@ -230,11 +235,18 @@ export default {
       },
       image: "",
       images: "",
-      container: [],
     };
   },
 
   methods: {
+    addimagetotheState() {
+      if (this.$data.imagesUrl) {
+        console.log("multiple images", this.$data.imagesUrl);
+        this.event.images.push(this.$data.imagesUrl);
+        console.log(this.event);
+      }
+      console.log("clicked");
+    },
     handleMultipleUpload() {
       this.file = this.$refs.file.files[0];
       console.log(this.file);
@@ -252,7 +264,6 @@ export default {
             console.log("imageId", data.url);
             this.$data.imagesUrl = data.url;
             console.log("===>", this.$data.imagesUrl);
-            this.container.push(this.$data.imagesUrl);
           })
           .catch((err) => console.log(err));
       }
