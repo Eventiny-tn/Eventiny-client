@@ -26,189 +26,11 @@
         </div>
       </div>
     </nav>
-    <form class="ui form">
-      <h1 class="title-basic">Basic Info</h1>
-      <p>
-        Name your event and explain to potential attendees why they absolutely
-        need to come. <br />
-        Add info highlighting its uniqueness.
-      </p>
-      <div class="field">
-        <label>Event name</label>
-        <div class="two field">
-          <div class="fields">
-            <input
-              type="text"
-              name="shipping[first-name]"
-              placeholder="Event Name"
-              v-model="event.name"
-              class="c-inputs"
-              id="eventname"
-            />
-          </div>
-        </div>
-      </div>
-      <div class="field">
-        <label>Caption</label>
-        <div class="fields">
-          <div class="twelve wide field">
-            <input
-              type="text"
-              name="caption"
-              placeholder="Event planner"
-              v-model="event.caption"
-              class="c-inputs"
-            />
-          </div>
-        </div>
-      </div>
-      <div class="field">
-        <label>Price</label>
-        <div class="fields">
-          <div class="twelve wide field">
-            <input
-              type="text"
-              placeholder="Price"
-              v-model="event.price"
-              class="c-inputs"
-            />
-          </div>
-        </div>
-      </div>
-      <div class="field">
-        <label>Max tickets</label>
-        <div class="fields">
-          <div class="twelve wide field">
-            <input
-              type="number"
-              placeholder="Max tickets"
-              v-model="event.ticket"
-              class="c-inputs"
-            />
-          </div>
-        </div>
-      </div>
-      <div class="two fields"></div>
-
-      <div class="field">
-        <label>Event Category</label>
-
-        <fieldset v-for="category in dataCategories" v-bind:key="category.id">
-          <input
-            type="checkbox"
-            name="event.categorie"
-            id="track"
-            v-model="event.categories"
-            v-bind:value="category.name"
-          /><label for="track">{{ category.name }}</label
-          ><br />
-        </fieldset>
-      </div>
-      <form>
-        <div>
-          <label for="bday">Event date :</label>
-          <input
-            v-model="event.eventDate"
-            type="date"
-            id="bday"
-            name="bday"
-            class="c-inputs"
-          />
-        </div>
-      </form>
-      <label for="appt">Start time:</label>
-
-      <input
-        type="time"
-        id="appt"
-        name="appt"
-        min="09:00"
-        max="18:00"
-        required
-        v-model="event.dateStart"
-        class="c-inputs"
-      />
-
-      <label for="appt">End time:</label>
-
-      <input
-        type="time"
-        id="appt"
-        name="appt"
-        min="09:00"
-        max="18:00"
-        required
-        v-model="event.dateEnds"
-        class="c-inputs"
-      />
-
-      <small>24h/24h</small>
-
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="form-group">
-              <label id="locationlabel">Location:</label>
-              <input
-                id="searchinput"
-                type="text"
-                placeholder="Enter a location"
-                v-model="event.location"
-              />
-            </div>
-            <div id="map"></div>
-          </div>
-        </div>
-      </div>
-      <form enctype="multipart/form-data">
-        Select cover image to upload:
-        <input
-          type="file"
-          name="fileToUpload"
-          id="fileToUpload"
-          ref="files"
-          v-on:change="handleFileUpload()"
-          required
-          :v-model="image"
-        />
-        <input type="submit" value="Upload Cover" name="submit" />
-      </form>
-
-      <form enctype="multipart/form-data">
-        Select cover image to upload:
-        <input
-          type="file"
-          name="fileToUpload"
-          id="fileToUpload"
-          ref="file"
-          v-on:change="handleMultipleUpload()"
-          required
-          :v-model="images"
-        />
-        <input
-          @click.prevent="addimagetotheState()"
-          type="submit"
-          value="Upload Cover"
-          name="submit"
-        />
-      </form>
-
-      <div class="form-group">
-        <label id="description">Description:</label>
-        <input
-          type="text"
-          placeholder="Enter a description"
-          v-model="event.description"
-        />
-      </div>
-    </form>
-
-    <div @click="addEvent()" class="ui button" tabindex="0">Submit Order</div>
 
     <div class="testbox">
       <form action="/">
         <div class="banner">
-          <h1>Add event form</h1>
+          <!-- <h1>Add event form</h1> -->
         </div>
         <div class="item">
           <p>Date of Event</p>
@@ -216,78 +38,105 @@
           <i class="fas fa-calendar-alt"></i>
         </div>
         <div class="item">
-          <p>Time of Event</p>
+          <p>Start Time of Event</p>
           <input required v-model="event.dateStart" type="time" name="name" />
-          <i class="fas fa-clock"></i>
         </div>
         <div class="item">
           <p>End Time of Event</p>
-          <input required v-model="event.dateEnds" type="time" name="name" />
-          <i class="fas fa-clock"></i>
+          <input
+            type="time"
+            id="appt"
+            name="appt"
+            min="09:00"
+            max="18:00"
+            required
+            v-model="event.dateEnds"
+            class="c-inputs"
+          />
         </div>
-        <div class="item">
-          <p>Select Artist</p>
-          <select>
-            <option value=""></option>
-            <option value="1">*Please select*</option>
-            <option value="2">Artist 1</option>
-            <option value="3">Artist 2</option>
-            <option value="4">Artist 3</option>
-            <option value="5">Artist 4</option>
-          </select>
-        </div>
-        <div class="item">
-          <p>Description of Event</p>
-          <textarea rows="3"></textarea>
-        </div>
-        <div class="item">
-          <p>Promoter's Name</p>
-          <input type="text" name="name" />
-        </div>
-        <div class="item">
-          <p>Venue Name</p>
-          <input type="text" name="name" />
-        </div>
-
-        <div class="item">
-          <p>Venue Capacity</p>
-          <input type="text" name="name" />
-        </div>
-        <div class="item">
-          <p>Expected Attendance</p>
-          <input type="text" name="name" />
-        </div>
-        <div class="item">
-          <p>Type of Performance</p>
-          <select>
-            <option value=""></option>
-            <option value="1">*Please select*</option>
-            <option value="2">Solo Performance</option>
-            <option value="3">Full Band</option>
-          </select>
-        </div>
-        <div class="item">
-          <p>Set Time (in minutes)</p>
-          <input type="text" name="name" />
-        </div>
-        <div class="item">
-          <p>Contact Person</p>
-          <div class="name-item">
-            <input type="text" name="name" placeholder="First" />
-            <input type="text" name="name" placeholder="Last" />
+        <div class="field">
+          <p>Event Category:</p>
+          <div v-for="category in dataCategories" v-bind:key="category.id">
+            <label for="track">{{ category.name }}</label>
+            <input
+              type="checkbox"
+              name="event.categorie"
+              id="track"
+              v-model="event.categories"
+              v-bind:value="category.name"
+            />
           </div>
         </div>
         <div class="item">
-          <p>Contact Email</p>
-          <input type="text" name="name" />
+          <p>Description of Event</p>
+          <textarea v-model="event.description" rows="3"></textarea>
         </div>
         <div class="item">
-          <p>Contact Number</p>
-          <input type="text" name="name" />
+          <p>Event Name</p>
+          <input v-model="event.name" type="text" name="name" />
+        </div>
+        <div class="item">
+          <p>Caption</p>
+          <input v-model="event.caption" type="text" name="name" />
+        </div>
+
+        <div class="item">
+          <p>Price</p>
+          <input v-model="event.price" type="number" name="name" />
+        </div>
+        <div class="item">
+          <p>Max tickets</p>
+          <input v-model="event.ticket" type="number" name="name" />
+        </div>
+
+        <div class="item">
+          <p>Location</p>
+          <input
+            id="searchinput"
+            type="text"
+            placeholder="Enter a location"
+            v-model="event.location"
+          />
+          <div id="map"></div>
+        </div>
+        <div class="item">
+          Select cover image to upload:
+          <input
+            type="file"
+            name="fileToUpload"
+            id="fileToUpload"
+            ref="files"
+            v-on:change="handleFileUpload()"
+            required
+            :v-model="image"
+          />
+        </div>
+
+        <div class="item">
+          <form enctype="multipart/form-data">
+            Select cover image to upload:
+            <input
+              type="file"
+              name="fileToUpload"
+              id="fileToUpload"
+              ref="file"
+              v-on:change="handleMultipleUpload()"
+              required
+              :v-model="images"
+            />
+            <input
+              @click.prevent="addimagetotheState()"
+              type="submit"
+              value="Upload Cover"
+              name="submit"
+            />
+          </form>
         </div>
 
         <div class="btn-block">
-          <button type="submit" href="/">SEND</button>
+          <button @click="addEvent()" type="submit">
+            SEND
+          </button>
         </div>
       </form>
     </div>
@@ -486,7 +335,8 @@ export default {
         }
         //adding coordonate:
         this.$data.event.lng = place.geometry.viewport.La.g;
-        this.$data.event.lat = place.geometry.viewport.Ra.g;
+        this.$data.event.lat = place.geometry.viewport.Ta.g;
+        console.log("hha", place.geometry.viewport);
 
         marker.setIcon({
           url: place.icon,
@@ -558,9 +408,9 @@ export default {
 
 <style scoped>
 #map {
-  height: 100%;
-  width: 50%;
-  margin-bottom: 150px;
+  height: 200px !important;
+  width: 100% !important;
+  margin-bottom: 150px !important;
 }
 html,
 body {
@@ -569,12 +419,7 @@ body {
   padding: 0;
   width: 80%;
 }
-#searchinput {
-  font-size: 18px;
-  width: 555px;
-  margin-top: 14px;
-  margin-right: 900px !important;
-}
+
 #eventname {
   width: 670px !important;
 }
@@ -1320,7 +1165,7 @@ h1 {
   margin-top: 100px;
 }
 form {
-  width: 40%;
+  width: 60%;
   padding: 20px;
   border-radius: 6px;
   background: #fff;
