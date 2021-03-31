@@ -184,7 +184,7 @@
                     </div>
                     <button
                       class="Neon-input-choose-btn blue"
-                      @click.prevent="onSubmitUpdateInfo()"
+                      @click.prevent="uploadPictureToDataBase()"
                     >
                       Upload Picture
                     </button>
@@ -2258,7 +2258,8 @@ a.text-white:focus {
 }
 
 .avatar img {
-  width: 100%;
+  max-width: 100%;
+  min-height: 100%;
   border-radius: 50%;
 }
 
@@ -2314,7 +2315,8 @@ a.text-white:focus {
 .card-profile-image img {
   position: absolute;
   left: 50%;
-  max-width: 180px;
+  max-width: 320px !important;
+  max-height: 160px;
   transition: all 0.15s ease;
   transform: translate(-50%, -30%);
   border-radius: 0.375rem;

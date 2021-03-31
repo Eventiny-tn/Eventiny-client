@@ -180,7 +180,7 @@ export class UserService {
       console.log(id, body);
       const user = await this.userRepository.findOne({ id: id.id });
       const check = bcrypt.compareSync(body.currentPass, user.password);
-      console.log('==<>', check);
+      console.log('===<>', check);
 
       if (check) {
         const saltRounds = 10;

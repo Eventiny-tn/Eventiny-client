@@ -8,6 +8,7 @@ import EventDetails from "../components/EventDetails";
 import PlannerRequest from "../components/PlannerRequest";
 import PlannerDashboard from "../components/PlannerDashboard";
 import UpgradeToPremium from "../components/UpgradeToPremium";
+import MarketingSolution from "../components/MarketingSolution";
 const routes = [
   {
     path: "/",
@@ -57,6 +58,11 @@ const routes = [
     path: "/PlannerDashboard",
     name: "PlannerDashboard",
     component: PlannerDashboard,
+  },
+  {
+    path: "/MarketingSolution",
+    name: "MarketingSolution",
+    component: MarketingSolution,
   },
 ];
 
