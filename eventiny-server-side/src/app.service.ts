@@ -27,9 +27,6 @@ export class AppService {
         email: req.user.email,
         userimg: req.user.userimg,
       });
-
-      console.log({ token: access_token, data: data });
-
       return {
         user: req.user,
         token: access_token,

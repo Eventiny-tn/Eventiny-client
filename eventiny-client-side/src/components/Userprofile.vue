@@ -144,19 +144,22 @@
                     {{ data.firstname }} {{ data.lastname
                     }}<span class="font-weight-light"></span>
                   </h3>
-
+                  <div class="ui small basic icon buttons" v-if="!uploadPic">
+                    <button
+                      class="ui button"
+                      @click="showUploadPictureSection()"
+                    >
+                      <i class="upload icon"></i>
+                    </button>
+                  </div>
                   <div class="h5 font-weight-300">
                     <i class="ni location_pin mr-2"></i>{{ data.city }},
                     {{ data.country }}
                   </div>
 
                   <hr class="my-4" />
-                  <p>
-                    Welcome to EventinyTN community, Be your own hero! Join,
-                    organise and sponsorise events!
-                  </p>
 
-                  <div class="Neon Neon-theme-dragdropbox">
+                  <div class="Neon Neon-theme-dragdropbox" v-if="uploadPic">
                     <input
                       style="z-index: 999; opacity: 0; width: 320px; height: 200px; position: absolute; right: 0px; left: 0px; margin-right: auto; margin-left: auto;"
                       id="filer_input2 file"
@@ -279,19 +282,6 @@
                           </div>
                         </div>
                         <div class="col-lg-6">
-                          <div class="form-group focused">
-                            <label
-                              class="form-control-label"
-                              for="input-last-name"
-                              >Password</label
-                            >
-                            <input
-                              type="password"
-                              class="form-control
-                          form-control-alternative"
-                              :value="82621270"
-                            />
-                          </div>
                           <div class="form-group focused">
                             <label class="form-control-label" for="input-email"
                               >Email address</label
@@ -522,7 +512,6 @@ export default {
       username: "",
       firstname: "",
       lastname: "",
-      password: "",
       email: "",
       address: "",
       phone: "",
@@ -536,10 +525,14 @@ export default {
       currentPassword: "",
       newPassword: "",
       comfirmPassword: "",
+      uploadPic: false,
     };
   },
   props: {},
   methods: {
+    showUploadPictureSection() {
+      this.uploadPic = true;
+    },
     changePassword() {
       if (
         this.currentPassword !== "" &&
@@ -619,7 +612,7 @@ export default {
             username: this.$data.username,
             firstname: this.$data.firstname,
             lastname: this.$data.lastname,
-            password: this.$data.password,
+
             email: this.$data.email,
             address: this.$data.address,
             phone: this.$data.phone,
@@ -629,9 +622,11 @@ export default {
             userimg: this.$data.userimg,
             postalcode: this.$data.postalcode,
           })
-          .then(({ data }) => console.log(data));
-        swal("Profile Updated", "Profile Updated successfully", "success");
-        return;
+          .then(({ data }) => {
+            this.uploadPic = false;
+            swal("Profile Updated", "Profile Updated successfully", "success");
+            return;
+          });
       } else {
         swal(
           "Please fill up all the informations",
@@ -657,7 +652,6 @@ export default {
           this.$data.username = data.username;
           this.$data.firstname = data.firstname;
           this.$data.lastname = data.lastname;
-          this.$data.password = data.password;
           this.$data.email = data.email;
           this.$data.address = data.address;
           this.$data.phone = data.phone;
