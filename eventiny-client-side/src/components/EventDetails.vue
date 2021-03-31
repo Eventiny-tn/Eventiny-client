@@ -134,56 +134,45 @@
                         </div>
 
                         <div id="input-ticket2">
-                          <button
-                            class="round-black-btn button-buy-t"
-                            @click="clickadd()"
-                            v-if="ticketsBuy.quantity < 10"
-                          >
-                            Buy Ticket
-                          </button>
+                          <div class="header" v-if="ticketsBuy.quantity < 10">
+                            <p>Tickets :{{ eventDetails.ticket }}</p>
+                            <p>
+                              You puchase {{ ticketsBuy.quantity }} / 10 tickets
+                            </p>
+                            <div
+                              class="ui three column grid button-buy-tickets"
+                            >
+                              <div class="ui input focus column">
+                                <input
+                                  type="number"
+                                  name="tentacles"
+                                  min="1"
+                                  v-bind:max="10 - ticketsBuy.quantity"
+                                  v-model="tickets"
+                                />
+                              </div>
+                              <div>
+                                <button
+                                  class="round-black-btn"
+                                  @click="clickadd()"
+                                  v-if="ticketsBuy.quantity < 10"
+                                >
+                                  Buy Ticket
+                                </button>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
                     <div class="statistics"></div>
+
                     <div
                       class="ui negative message"
-                      v-if="ticketsBuy.quantity >= 9"
+                      v-if="ticketsBuy.quantity > 9"
                     >
                       <div class="header">
                         Sorry you cannot buy more tickets
-                        <p>Tickets :{{ eventDetails.ticket }}</p>
-                        <p>
-                          You puchase {{ ticketsBuy.quantity }} / 10 tickets
-                        </p>
-                        <div class="ui three column grid button-buy-tickets">
-                          <div class="ui input focus column">
-                            <input
-                              type="number"
-                              name="tentacles"
-                              min="1"
-                              v-bind:max="10 - ticketsBuy.quantity"
-                              v-model="tickets"
-                            />
-                          </div>
-                          <div>
-                            <button
-                              class="round-black-btn"
-                              @click="clickadd()"
-                              v-if="ticketsBuy.quantity < 10"
-                            >
-                              Buy Ticket
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="statistics"></div>
-                      <div
-                        class="ui negative message"
-                        v-if="ticketsBuy.quantity > 9"
-                      >
-                        <div class="header">
-                          Sorry you cannot buy more tickets
-                        </div>
                       </div>
                     </div>
                   </div>
