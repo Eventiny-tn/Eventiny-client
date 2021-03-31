@@ -75,6 +75,14 @@
             <li
               class="nav-item"
               id="loginbtn"
+              @click.prevent="gosolution()"
+              v-if="isLogged"
+            >
+              <a class="nav-link" id="signupbtn">Marketing solution</a>
+            </li>
+            <li
+              class="nav-item"
+              id="loginbtn"
               @click.prevent="feed()"
               v-if="isLogged"
             >
@@ -112,7 +120,7 @@
       </div>
 
       <div class="container slider-top-text">
-        <div class="row">
+        <div v-if="isLogged == false" class="row">
           <div class="col-md-12 text-center">
             <h3 class="my-heading">
               WELCOME TO Eventiny<span class="bg-main">TN</span>
@@ -794,6 +802,9 @@ export default {
           console.log(err);
           localStorage.removeItem("token");
         });
+    },
+    gosolution() {
+      this.$router.push("/MarketingSolution");
     },
     feed() {
       this.$router.push("/GeneralPage");
