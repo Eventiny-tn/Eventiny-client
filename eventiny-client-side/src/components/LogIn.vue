@@ -95,7 +95,7 @@ export default {
     googleLogin() {
       window.open(
         "http://localhost:3000",
-        "_blank",
+        "_self",
         `scrollbars=no,resizable=no,status=no,location=http://localhost:8080,toolbar=no,menubar=no,width=600,height=600,left=100,top=100`
       );
     },

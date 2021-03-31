@@ -8,6 +8,7 @@ import EventDetails from "../components/EventDetails";
 import PlannerRequest from "../components/PlannerRequest";
 import PlannerDashboard from "../components/PlannerDashboard";
 import UpgradeToPremium from "../components/UpgradeToPremium";
+import EditEvent from "../components/EditEvent";
 const routes = [
   {
     path: "/",
@@ -58,11 +59,22 @@ const routes = [
     name: "PlannerDashboard",
     component: PlannerDashboard,
   },
+  {
+    path: "/editevent",
+    name: "EditEvent",
+    component: EditEvent,
+    meta: {
+      authRequired: true,
+    },
+  },
 ];
-
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
 });
-
+// router.beforeEach((to, from, next) => {
+//   if (to.name === "Login" && localStorage.getItem("token")) {
+//     next({ name: "Home" });
+//   }
+// });
 export default router;

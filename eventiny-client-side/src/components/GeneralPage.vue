@@ -239,6 +239,10 @@ export default {
   },
 
   methods: {
+    
+    editEvent() {
+      this.$router.push("/editevent");
+    },
     goToEventList() {
       this.getevents();
       this.$data.view = "0";

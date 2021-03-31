@@ -6,18 +6,22 @@ import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
+  response: any;
   constructor(
     private readonly appService: AppService, // private readonly userRepo: UserService,
   ) {}
 
   @Get()
   @UseGuards(AuthGuard('google'))
-  googleAuth(@Req() req) {}
+  googleAuth(@Req() req, @Res() res) {
+    this.response = res;
+  }
 
   @Get('auth/google/callback')
   @UseGuards(AuthGuard('google'))
-  googleAuthRedirect(@Req() req, @Res() res) {
-    return this.appService.googleLogin(req, res);
+  async googleAuthRedirect(@Req() req, @Res() res) {
+    const { token } = await this.appService.googleLogin(req, res);
+    res.redirect('http://localhost:8080/' + token);
   }
   @Get('email')
   email(user): any {

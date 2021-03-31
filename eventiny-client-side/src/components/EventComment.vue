@@ -70,7 +70,6 @@
               </div>
             </div>
           </div>
-          
         </div>
         <!-- Contenedor Principal -->
         <div class="ui message" v-if="comments.length > 0">
@@ -198,7 +197,6 @@ export default {
   },
   mounted() {
     this.stopSpinner();
-    console.log("achref", this.comments);
   },
 };
 </script>
@@ -250,7 +248,7 @@ export default {
   border: 1px solid #f2f2f2;
 }
 .comment-btn {
-  float: left;
+  float: right;
   background: #4caf50;
   margin: 5px 0;
   padding: 6px 15px;
