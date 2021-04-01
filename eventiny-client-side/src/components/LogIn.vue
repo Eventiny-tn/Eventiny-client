@@ -110,7 +110,6 @@ export default {
         axios
           .post("http://localhost:3000/login", login)
           .then(({ data }) => {
-            console.log("==>", data);
             if (data.token === undefined) {
               localStorage.removeItem("token");
               swal(
@@ -119,7 +118,7 @@ export default {
                 "error"
               );
               return;
-            } else if (data.user == "banned") {
+            } else if (data.state == false) {
               swal(
                 "Sorry, You have been banned for braking Terms of Use",
                 "wrong",

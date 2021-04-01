@@ -239,7 +239,6 @@ export default {
   },
 
   methods: {
-    
     editEvent() {
       this.$router.push("/editevent");
     },
@@ -398,6 +397,12 @@ jQuery(function($) {
 }
 .modal-body {
   width: 800px;
+}
+.cards {
+  width: 100% !important;
+}
+.fix-row {
+  width: 100% !important;
 }
 .cards-contianer {
   cursor: pointer;
