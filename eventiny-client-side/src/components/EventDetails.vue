@@ -179,6 +179,7 @@
                 </section>
               </div>
             </div>
+
             <div class="ui visible message" v-if="showPayment">
               <Payment  />
             </div>
@@ -186,6 +187,8 @@
               About this Event
             </h2>
             <div class="ui visible message " v-if="eventDetails.description">
+            <h2 class="about-event">About this Event</h2>
+            <div class="ui visible message ">
               <p
                 class="description "
                 v-for="(paragh, i) in eventDetails.description.split('.')"
