@@ -181,74 +181,75 @@
             </div>
 
             <div class="ui visible message" v-if="showPayment">
-              <Payment  />
+              <Payment />
             </div>
             <h2 class="about-event" v-if="eventDetails.description">
               About this Event
             </h2>
             <div class="ui visible message " v-if="eventDetails.description">
-            <h2 class="about-event">About this Event</h2>
-            <div class="ui visible message ">
-              <p
-                class="description "
-                v-for="(paragh, i) in eventDetails.description.split('.')"
-                :key="i"
-              >
-                {{ paragh }}
-              </p>
-            </div>
-          </div>
-
-          <div class="product-info-tabs">
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-              <li class="nav-item">
-                <a
-                  class="nav-link active"
-                  id="description-tab"
-                  data-toggle="tab"
-                  href="#description"
-                  role="tab"
-                  aria-controls="description"
-                  aria-selected="true"
-                  >Comment Section</a
+              <h2 class="about-event">About this Event</h2>
+              <div class="ui visible message ">
+                <p
+                  class="description "
+                  v-for="(paragh, i) in eventDetails.description.split('.')"
+                  :key="i"
                 >
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link"
-                  id="review-tab"
-                  data-toggle="tab"
-                  href="#review"
-                  role="tab"
-                  aria-controls="review"
-                  aria-selected="false"
-                  >Reviews</a
-                >
-              </li>
-            </ul>
-            <div class="tab-content" id="myTabContent">
-              <div
-                class="tab-pane fade show active"
-                id="description"
-                role="tabpanel"
-                aria-labelledby="description-tab"
-              >
-                <div class="ui list cards">
-                  <EventComment
-                    :comments="comments"
-                    :userinfo="userinfo"
-                    :eventDetails="eventDetails"
-                    :getEventComment="getEventComment"
-                  />
-                </div>
+                  {{ paragh }}
+                </p>
               </div>
-              <div
-                class="tab-pane fade"
-                id="review"
-                role="tabpanel"
-                aria-labelledby="review-tab"
-              >
-                <div class="review-heading">REVIEWS</div>
+            </div>
+
+            <div class="product-info-tabs">
+              <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                  <a
+                    class="nav-link active"
+                    id="description-tab"
+                    data-toggle="tab"
+                    href="#description"
+                    role="tab"
+                    aria-controls="description"
+                    aria-selected="true"
+                    >Comment Section</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    id="review-tab"
+                    data-toggle="tab"
+                    href="#review"
+                    role="tab"
+                    aria-controls="review"
+                    aria-selected="false"
+                    >Reviews</a
+                  >
+                </li>
+              </ul>
+              <div class="tab-content" id="myTabContent">
+                <div
+                  class="tab-pane fade show active"
+                  id="description"
+                  role="tabpanel"
+                  aria-labelledby="description-tab"
+                >
+                  <div class="ui list cards">
+                    <EventComment
+                      :comments="comments"
+                      :userinfo="userinfo"
+                      :eventDetails="eventDetails"
+                      :getEventComment="getEventComment"
+                    />
+                  </div>
+                </div>
+                <div
+                  class="tab-pane fade"
+                  id="review"
+                  role="tabpanel"
+                  aria-labelledby="review-tab"
+                >
+                  <div class="review-heading">REVIEWS</div>
+                </div>
               </div>
             </div>
           </div>
