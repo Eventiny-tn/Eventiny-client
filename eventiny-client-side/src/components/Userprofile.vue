@@ -534,6 +534,7 @@ export default {
     },
   },
   created() {
+    
     this.getinfos();
   },
 };
