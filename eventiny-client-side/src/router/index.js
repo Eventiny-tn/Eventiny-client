@@ -7,7 +7,8 @@ import GeneralPage from "../components/GeneralPage";
 import EventDetails from "../components/EventDetails";
 import PlannerRequest from "../components/PlannerRequest";
 import PlannerDashboard from "../components/PlannerDashboard";
-
+import UpgradeToPremium from "../components/UpgradeToPremium";
+import MarketingSolution from "../components/MarketingSolution";
 const routes = [
   {
     path: "/",
@@ -49,15 +50,28 @@ const routes = [
     component: PlannerRequest,
   },
   {
+    path: "/plannerDemand",
+    name: "plannerDemand",
+    component: UpgradeToPremium,
+  },
+  {
     path: "/PlannerDashboard",
     name: "PlannerDashboard",
     component: PlannerDashboard,
   },
+  {
+    path: "/MarketingSolution",
+    name: "MarketingSolution",
+    component: MarketingSolution,
+  },
 ];
-
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
 });
-
+// router.beforeEach((to, from, next) => {
+//   if (to.name === "Login" && localStorage.getItem("token")) {
+//     next({ name: "Home" });
+//   }
+// });
 export default router;

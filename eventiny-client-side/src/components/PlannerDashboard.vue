@@ -26,182 +26,120 @@
         </div>
       </div>
     </nav>
-    <form class="ui form">
-      <h1 class="title-basic">Basic Info</h1>
-      <p>
-        Name your event and explain to potential attendees why they absolutely
-        need to come. <br />
-        Add info highlighting its uniqueness.
-      </p>
-      <div class="field">
-        <label>Event name</label>
-        <div class="two field">
-          <div class="fields">
-            <input
-              type="text"
-              name="shipping[first-name]"
-              placeholder="Event Name"
-              v-model="event.name"
-              class="c-inputs"
-              id="eventname"
-            />
-          </div>
-        </div>
-      </div>
-      <div class="field">
-        <label>Caption</label>
-        <div class="fields">
-          <div class="twelve wide field">
-            <input
-              type="text"
-              name="caption"
-              placeholder="Event planner"
-              v-model="event.caption"
-              class="c-inputs"
-            />
-          </div>
-        </div>
-      </div>
-      <div class="field">
-        <label>Price</label>
-        <div class="fields">
-          <div class="twelve wide field">
-            <input
-              type="text"
-              placeholder="Price"
-              v-model="event.price"
-              class="c-inputs"
-            />
-          </div>
-        </div>
-      </div>
-      <div class="field">
-        <label>Max tickets</label>
-        <div class="fields">
-          <div class="twelve wide field">
-            <input
-              type="number"
-              placeholder="Max tickets"
-              v-model="event.ticket"
-              class="c-inputs"
-            />
-          </div>
-        </div>
-      </div>
-      <div class="two fields"></div>
 
-      <div class="field">
-        <label>Event Category</label>
-
-        <fieldset v-for="category in dataCategories" v-bind:key="category.id">
+    <div class="testbox">
+      <form action="/">
+        <div class="banner">
+          <!-- <h1>Add event form</h1> -->
+        </div>
+        <div class="item">
+          <p>Date of Event</p>
+          <input v-model="event.eventDate" type="date" name="bdate" />
+          <i class="fas fa-calendar-alt"></i>
+        </div>
+        <div class="item">
+          <p>Start Time of Event</p>
+          <input required v-model="event.dateStart" type="time" name="name" />
+        </div>
+        <div class="item">
+          <p>End Time of Event</p>
           <input
-            type="checkbox"
-            name="event.categorie"
-            id="track"
-            v-model="event.categories"
-            v-bind:value="category.name"
-          /><label for="track">{{ category.name }}</label
-          ><br />
-        </fieldset>
-      </div>
-      <form>
-        <div>
-          <label for="bday">Event date :</label>
-          <input
-            v-model="event.eventDate"
-            type="date"
-            id="bday"
-            name="bday"
+            type="time"
+            id="appt"
+            name="appt"
+            min="09:00"
+            max="18:00"
+            required
+            v-model="event.dateEnds"
             class="c-inputs"
           />
         </div>
-      </form>
-      <label for="appt">Start time:</label>
-
-      <input
-        type="time"
-        id="appt"
-        name="appt"
-        min="09:00"
-        max="18:00"
-        required
-        v-model="event.dateStart"
-        class="c-inputs"
-      />
-
-      <label for="appt">End time:</label>
-
-      <input
-        type="time"
-        id="appt"
-        name="appt"
-        min="09:00"
-        max="18:00"
-        required
-        v-model="event.dateEnds"
-        class="c-inputs"
-      />
-
-      <small>24h/24h</small>
-
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="form-group">
-              <label id="locationlabel">Location:</label>
-              <input
-                id="searchinput"
-                type="text"
-                placeholder="Enter a location"
-                v-model="event.location"
-              />
-            </div>
-            <div id="map"></div>
+        <div class="field">
+          <p>Event Category:</p>
+          <div v-for="category in dataCategories" v-bind:key="category.id">
+            <label for="track">{{ category.name }}</label>
+            <input
+              type="checkbox"
+              name="event.categorie"
+              id="track"
+              v-model="event.categories"
+              v-bind:value="category.name"
+            />
           </div>
         </div>
-      </div>
-      <form enctype="multipart/form-data">
-        Select cover image to upload:
-        <input
-          type="file"
-          name="fileToUpload"
-          id="fileToUpload"
-          ref="file"
-          v-on:change="handleFileUpload()"
-          required
-          :v-model="image"
-        />
-        <input type="submit" value="Upload Cover" name="submit" />
-      </form>
-      <div class="form-group">
-        <label class="col-sm-3 control-label">
-          Attachment(s) (Attach multiple files.)
-        </label>
-        <div class="col-sm-9">
-          <span class="btn btn-default btn-file">
-            <input
-              id="input-2"
-              name="input2[]"
-              type="file"
-              class="file"
-              multiple
-              data-show-upload="true"
-              data-show-caption="true"
-            />
-          </span>
+        <div class="item">
+          <p>Description of Event</p>
+          <textarea v-model="event.description" rows="3"></textarea>
         </div>
-      </div>
-      <div class="form-group">
-        <label id="description">Description:</label>
-        <input
-          type="text"
-          placeholder="Enter a description"
-          v-model="event.description"
-        />
-      </div>
-    </form>
+        <div class="item">
+          <p>Event Name</p>
+          <input v-model="event.name" type="text" name="name" />
+        </div>
+        <div class="item">
+          <p>Caption</p>
+          <input v-model="event.caption" type="text" name="name" />
+        </div>
 
-    <div @click="addEvent()" class="ui button" tabindex="0">Submit Order</div>
+        <div class="item">
+          <p>Price</p>
+          <input v-model="event.price" type="number" name="name" />
+        </div>
+        <div class="item">
+          <p>Max tickets</p>
+          <input v-model="event.ticket" type="number" name="name" />
+        </div>
+
+        <div class="item">
+          <p>Location</p>
+          <input
+            id="searchinput"
+            type="text"
+            placeholder="Enter a location"
+            v-model="event.location"
+          />
+          <div id="map"></div>
+        </div>
+        <div class="item">
+          Select cover image to upload:
+          <input
+            type="file"
+            name="fileToUpload"
+            id="fileToUpload"
+            ref="files"
+            v-on:change="handleFileUpload()"
+            required
+            :v-model="image"
+          />
+        </div>
+
+        <div class="item">
+          <form enctype="multipart/form-data">
+            Select cover image to upload:
+            <input
+              type="file"
+              name="fileToUpload"
+              id="fileToUpload"
+              ref="file"
+              v-on:change="handleMultipleUpload()"
+              required
+              :v-model="images"
+            />
+            <input
+              @click.prevent="addimagetotheState()"
+              type="submit"
+              value="Upload Cover"
+              name="submit"
+            />
+          </form>
+        </div>
+
+        <div class="btn-block">
+          <button @click="addEvent()" type="submit">
+            SEND
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -232,29 +170,59 @@ export default {
         userId: 0,
       },
       image: "",
+      images: "",
+      contains: [],
     };
   },
 
   methods: {
+    addimagetotheState() {
+      if (this.$data.imagesUrl) {
+        console.log("multiple images", this.$data.imagesUrl);
+        this.event.images.push(this.$data.imagesUrl);
+        console.log(this.event);
+      }
+      console.log("clicked");
+    },
+    handleMultipleUpload() {
+      for (var i = 0; i < this.$refs.file.files.length; i++) {
+        this.file = this.$refs.file.files[i];
+        console.log(this.file);
+        // Change the src attribute of the image to path
+        if (this.file) {
+          const images = new FormData();
+          images.append("file", this.file);
+          images.append("upload_preset", "lwsk5njh");
+          axios
+            .post(
+              "https://api.cloudinary.com/v1_1/daakldabl/image/upload",
+              images
+            )
+            .then(({ data }) => {
+              console.log("imageId", data.url);
+              this.$data.imagesUrl = data.url;
+              console.log("===>", this.$data.imagesUrl);
+              this.contains.push(this.$data.imagesUrl);
+            })
+            .catch((err) => console.log(err));
+        }
+      }
+    },
     uploadPictureToDataBase() {
       if (this.$data.imageUrl) {
         console.log("this", this.$data.imageUrl);
         this.event.cover = this.$data.imageUrl;
-        this.event.images.push(
-          this.$data.imageUrl,
-          this.$data.imageUrl,
-          this.$data.imageUrl
-        );
+        this.event.images = this.contains;
       }
       console.log("clicked");
     },
     handleFileUpload() {
-      this.file = this.$refs.file.files[0];
-      console.log(this.file);
+      this.files = this.$refs.files.files[0];
+      console.log(this.files);
       // Change the src attribute of the image to path
-      if (this.file) {
+      if (this.files) {
         const image = new FormData();
-        image.append("file", this.file);
+        image.append("file", this.files);
         image.append("upload_preset", "lwsk5njh");
         axios
           .post("https://api.cloudinary.com/v1_1/daakldabl/image/upload", image)
@@ -367,7 +335,8 @@ export default {
         }
         //adding coordonate:
         this.$data.event.lng = place.geometry.viewport.La.g;
-        this.$data.event.lat = place.geometry.viewport.Ra.g;
+        this.$data.event.lat = place.geometry.viewport.Ta.g;
+        console.log("hha", place.geometry.viewport);
 
         marker.setIcon({
           url: place.icon,
@@ -439,9 +408,9 @@ export default {
 
 <style scoped>
 #map {
-  height: 100%;
-  width: 50%;
-  margin-bottom: 150px;
+  height: 200px !important;
+  width: 100% !important;
+  margin-bottom: 150px !important;
 }
 html,
 body {
@@ -450,12 +419,7 @@ body {
   padding: 0;
   width: 80%;
 }
-#searchinput {
-  font-size: 18px;
-  width: 555px;
-  margin-top: 14px;
-  margin-right: 900px !important;
-}
+
 #eventname {
   width: 670px !important;
 }
@@ -1164,5 +1128,203 @@ a.box-btn {
 a.box-btn:hover,
 a.border-btn:hover {
   background-color: #008ba3;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+body,
+div,
+form,
+input,
+select,
+textarea,
+p {
+  padding: 0;
+  margin: 0;
+  outline: none;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 14px;
+  color: #666;
+  line-height: 22px;
+}
+h1 {
+  position: absolute;
+  margin: 0;
+  font-size: 32px;
+  color: #fff;
+  z-index: 2;
+}
+.testbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: inherit;
+  padding: 20px;
+  margin-top: 100px;
+}
+form {
+  width: 60%;
+  padding: 20px;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 0 1px 0 #008ba3;
+}
+.banner {
+  position: relative;
+  height: 210px;
+  background-image: url("https://images.squarespace-cdn.com/content/v1/59d76f41d2b85702e627adfd/1508245883291-7UAEXUIZHIHRVPXJ2ON6/ke17ZwdGBToddI8pDm48kIMUgjWZVp0EPTZEqOkGDrAUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYy7Mythp_T-mtop-vrsUOmeInPi9iDjx9w8K4ZfjXt2dlMmTZY5jIbfUCyj2TgjAyQ7Wmy9LUsJH8eELVbowgqpoRwB-dUGsSquCnVTFQcaRg/event-management-company-in-gurgaon.jpg?format=2500w");
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.banner::after {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+input,
+textarea,
+select {
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+input {
+  width: calc(100% - 10px);
+  padding: 5px;
+}
+select {
+  width: 100%;
+  padding: 7px 0;
+  background: transparent;
+}
+textarea {
+  width: calc(100% - 12px);
+  padding: 5px;
+}
+.item:hover p,
+.item:hover i,
+.question:hover p,
+.question label:hover,
+input:hover::placeholder {
+  color: #008ba3;
+}
+.item input:hover,
+.item select:hover,
+.item textarea:hover {
+  border: 1px solid transparent;
+  box-shadow: 0 0 6px 0 #008ba3;
+  color: #008ba3;
+}
+.item {
+  position: relative;
+  margin: 10px 0;
+}
+input[type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+.item i,
+input[type="date"]::-webkit-calendar-picker-indicator {
+  position: absolute;
+  font-size: 20px;
+  color: #a9a9a9;
+}
+.item i {
+  right: 1%;
+  top: 30px;
+  z-index: 1;
+}
+[type="date"]::-webkit-calendar-picker-indicator {
+  right: 0;
+  z-index: 2;
+  opacity: 0;
+  cursor: pointer;
+}
+input[type="time"]::-webkit-inner-spin-button {
+  margin: 2px 22px 0 0;
+}
+input[type="radio"],
+input.other {
+  display: none;
+}
+label.radio {
+  position: relative;
+  display: inline-block;
+  margin: 5px 20px 10px 0;
+  cursor: pointer;
+}
+.question span {
+  margin-left: 30px;
+}
+label.radio:before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 0;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+}
+#radio_5:checked ~ input.other {
+  display: block;
+}
+input[type="radio"]:checked + label.radio:before {
+  border: 2px solid #008ba3;
+  background: #008ba3;
+}
+label.radio:after {
+  content: "";
+  position: absolute;
+  top: 7px;
+  left: 5px;
+  width: 7px;
+  height: 4px;
+  border: 3px solid #fff;
+  border-top: none;
+  border-right: none;
+  transform: rotate(-45deg);
+  opacity: 0;
+}
+input[type="radio"]:checked + label:after {
+  opacity: 1;
+}
+.btn-block {
+  margin-top: 10px;
+  text-align: center;
+}
+button {
+  width: 150px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background: #008ba3;
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
+}
+button:hover {
+  background: #008ba3;
+}
+@media (min-width: 568px) {
+  .name-item,
+  .city-item {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .name-item input,
+  .city-item input {
+    width: calc(50% - 20px);
+  }
+  .city-item select {
+    width: calc(50% - 8px);
+  }
 }
 </style>

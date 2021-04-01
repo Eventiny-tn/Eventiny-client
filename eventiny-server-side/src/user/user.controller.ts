@@ -1,13 +1,5 @@
-import { Patch, Req, UseGuards } from '@nestjs/common';
-import {
-  Body,
-  Controller,
-  Get,
-  Post,
-  Headers,
-  Put,
-  Param,
-} from '@nestjs/common';
+import { Patch, Req, UseGuards, Param } from '@nestjs/common';
+import { Body, Controller, Get, Post, Headers, Put } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
 import { Userinfo, UserLog } from './user.entity';
@@ -66,7 +58,10 @@ export class UserController {
   ): Promise<Error | string> {
     return this.userRepo.updatetoPlanner(id, body);
   }
-
+  @Get('eventPlanners')
+  getEventPlanner(@Body() req): Promise<Error | object> {
+    return this.userRepo.getEventPlanner(req);
+  }
   @Get('getplanner')
   getplanner(@Req() req): Promise<Error | object> {
     return this.userRepo.getplanner(req);
@@ -75,11 +70,15 @@ export class UserController {
   upgradePlannerDemande(@Param() id): Promise<Error | string> {
     return this.userRepo.upgradePlannerDemande(id);
   }
-  @Patch('upload/:id')
+  @Put('upload/:id')
   uploadPic(
     @Param() id: object,
     @Body() body: object,
   ): Promise<Error | string> {
     return this.userRepo.uploadPic(id, body);
+  }
+  @Put('password/:id')
+  updateUserPassword(@Body() body, @Param() id): Promise<Error | string> {
+    return this.userRepo.updateUserPassword(id, body);
   }
 }

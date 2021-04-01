@@ -16,6 +16,7 @@
     "scriptjs": "^2.5.9",
     "swal": "^0.1.0",
     "sweetalert": "^2.1.2",
+    "sweetalert2": "^10.15.7",
     "vue": "^3.0.0",
     "vue-genesis-forms": "0.0.21",
     "vue-router": "^4.0.0-0",

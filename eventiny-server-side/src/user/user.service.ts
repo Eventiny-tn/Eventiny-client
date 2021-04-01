@@ -41,9 +41,6 @@ export class UserService {
 
   async login(body: UserLog): Promise<object | Error | string> {
     const logger = await this.userRepository.findOne({ email: body.email });
-    // if (logger.isBanned == true) {
-    //   return { user: 'banned' };
-    // }
 
     if (logger) {
       const islogged = bcrypt.compareSync(body.password, logger.password);
@@ -52,6 +49,9 @@ export class UserService {
           username: body.email,
           password: body.password,
         });
+        if (logger.isBanned) {
+          return { auth: false, state: false, token: access_token };
+        }
         return { auth: true, token: access_token };
       }
     } else {
@@ -163,5 +163,38 @@ export class UserService {
       `UPDATE user SET userimg = '${userimg}' where id = ${id.id}; `,
     );
     return 'uploaded';
+  }
+  async getEventPlanner(req): Promise<Error | object> {
+    try {
+      const eventPlanners = await this.userRepository.find({
+        plannerDemand: true,
+      });
+      return eventPlanners;
+    } catch (err) {
+      return new NotFoundException('NOT FOUND');
+    }
+  }
+
+  async updateUserPassword(id, body): Promise<Error | string> {
+    try {
+      console.log(id, body);
+      const user = await this.userRepository.findOne({ id: id.id });
+      const check = bcrypt.compareSync(body.currentPass, user.password);
+      console.log('===<>', check);
+
+      if (check) {
+        const saltRounds = 10;
+        const salt = bcrypt.genSaltSync(saltRounds);
+        const hash = bcrypt.hashSync(body.password, salt);
+        await this.userRepository.query(
+          `update user set password='${hash}' where id=${id.id};`,
+        );
+        return 'ok';
+      } else {
+        return new NotFoundException('WRONG PASSWORD');
+      }
+    } catch (err) {
+      return new NotFoundException('WRONG PASSWORD');
+    }
   }
 }

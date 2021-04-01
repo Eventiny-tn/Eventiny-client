@@ -90,7 +90,7 @@ export class EventService {
         .createQueryBuilder('event')
         .leftJoinAndSelect('event.images', 'image')
         .leftJoinAndSelect('event.user', 'user')
-        // .where(`pending = ${true}`)
+        .where(`pending = ${true}`)
         .getMany();
       return events;
     } else {
@@ -131,5 +131,35 @@ export class EventService {
       .getMany();
 
     return events;
+  }
+
+  async getEventHistory(req): Promise<Error | object> {
+    try {
+      const time = new Date();
+      const events = await this.eventRepository.query(
+        `select * from event where dateEnds <= ${+time}`,
+      );
+      return events.sort((a, b) => {
+        +b.time - +a.time;
+      });
+    } catch (err) {
+      return new NotFoundException('NOT FOUND');
+    }
+  }
+
+  async lastestEvent(req): Promise<Error | object> {
+    try {
+      const lastestEvent = await this.connection.manager
+        .getRepository(Event)
+        .createQueryBuilder('event')
+        .leftJoinAndSelect('event.categories', 'category')
+        .leftJoinAndSelect('event.images', 'image')
+        .leftJoinAndSelect('event.user', 'user')
+        .orderBy('time', 'DESC')
+        .getOne();
+      return lastestEvent;
+    } catch (err) {
+      return new NotFoundException('NOT FOUND');
+    }
   }
 }

@@ -98,9 +98,9 @@
                 Welcome to EventinyTN community, Be your own hero! Join,
                 organise and sponsorise events!
               </p>
-              <a @click="onSubmitUpdateInfo()" class="btn btn-info"
+              <!-- <a @click="onSubmitUpdateInfo()" class="btn btn-info"
                 >Update profile</a
-              >
+              > -->
             </div>
           </div>
         </div>
@@ -117,7 +117,7 @@
                       <img
                         v-if="data"
                         :src="data.userimg"
-                        class="rounded-circle"
+                        class="ui small circular image"
                       />
                     </a>
                   </div>
@@ -144,19 +144,22 @@
                     {{ data.firstname }} {{ data.lastname
                     }}<span class="font-weight-light"></span>
                   </h3>
-
+                  <div class="ui small basic icon buttons" v-if="!uploadPic">
+                    <button
+                      class="ui button"
+                      @click="showUploadPictureSection()"
+                    >
+                      <i class="upload icon"></i>
+                    </button>
+                  </div>
                   <div class="h5 font-weight-300">
                     <i class="ni location_pin mr-2"></i>{{ data.city }},
                     {{ data.country }}
                   </div>
 
                   <hr class="my-4" />
-                  <p>
-                    Welcome to EventinyTN community, Be your own hero! Join,
-                    organise and sponsorise events!
-                  </p>
 
-                  <div class="Neon Neon-theme-dragdropbox">
+                  <div class="Neon Neon-theme-dragdropbox" v-if="uploadPic">
                     <input
                       style="z-index: 999; opacity: 0; width: 320px; height: 200px; position: absolute; right: 0px; left: 0px; margin-right: auto; margin-left: auto;"
                       id="filer_input2 file"
@@ -181,7 +184,7 @@
                     </div>
                     <button
                       class="Neon-input-choose-btn blue"
-                      @click="uploadPictureToDataBase()"
+                      @click.prevent="uploadPictureToDataBase()"
                     >
                       Upload Picture
                     </button>
@@ -197,185 +200,279 @@
                   <div class="col-8">
                     <h3 class="mb-0">My account</h3>
                   </div>
+                  <div>
+                    <br />
+                    <button
+                      class="ui tiny toggle button"
+                      @click="changeView('0')"
+                    >
+                      Your information
+                    </button>
+                    <button
+                      class="ui tiny toggle button"
+                      @click="changeView('1')"
+                    >
+                      More information
+                    </button>
+                    <button
+                      class="ui tiny toggle button"
+                      @click="changeView('2')"
+                    >
+                      Change Password
+                    </button>
+                  </div>
                 </div>
               </div>
               <div class="card-body">
                 <form>
-                  <h6 class="heading-small text-muted mb-4">
-                    User information
-                  </h6>
-                  <div class="pl-lg-4">
-                    <div class="row">
-                      <div class="col-lg-6">
-                        <div class="form-group focused">
-                          <label class="form-control-label" for="input-username"
-                            >Username</label
-                          >
-                          <input
-                            v-if="data"
-                            type="text"
-                            id="input-username"
-                            class="form-control form-control-alternative"
-                            v-model="username"
-                          />
+                  <div class="first-info" v-if="view === '0'">
+                    <h6 class="heading-small text-muted mb-4">
+                      User information
+                    </h6>
+                    <div class="pl-lg-4">
+                      <div class="row">
+                        <div class="col-lg-6">
+                          <div class="form-group focused">
+                            <label
+                              class="form-control-label"
+                              for="input-username"
+                              >Username</label
+                            >
+                            <input
+                              v-if="data"
+                              type="text"
+                              id="input-username"
+                              class="form-control form-control-alternative"
+                              v-model="username"
+                            />
+                          </div>
                         </div>
-                      </div>
-                      <div class="col-lg-6">
-                        <div class="form-group">
-                          <label
-                            class="form-control-label"
-                            for="input-first-name"
-                            >First name</label
-                          >
+                        <div class="col-lg-6">
+                          <div class="form-group">
+                            <label
+                              class="form-control-label"
+                              for="input-first-name"
+                              >First name</label
+                            >
 
-                          <input
-                            type="email"
-                            id="input-first-name"
-                            class="form-control form-control-alternative"
-                            v-model="firstname"
-                          />
+                            <input
+                              type="text"
+                              id="input-first-name"
+                              class="form-control form-control-alternative"
+                              v-model="firstname"
+                            />
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-lg-6">
-                        <div class="form-group focused">
-                          <label
-                            class="form-control-label"
-                            for="input-last-name"
-                            >Last name</label
-                          >
-                          <input
-                            type="text"
-                            id="input-last-name"
-                            class="form-control form-control-alternative"
-                            :placeholder="data.lastname"
-                            v-model="lastname"
-                          />
+                      <div class="row">
+                        <div class="col-lg-6">
+                          <div class="form-group focused">
+                            <label
+                              class="form-control-label"
+                              for="input-last-name"
+                              >Last name</label
+                            >
+                            <input
+                              type="text"
+                              id="input-last-name"
+                              class="form-control form-control-alternative"
+                              :placeholder="data.lastname"
+                              v-model="lastname"
+                            />
+                          </div>
                         </div>
-                      </div>
-                      <div class="col-lg-6">
-                        <div class="form-group focused">
-                          <label
-                            class="form-control-label"
-                            for="input-last-name"
-                            >Password</label
+                        <div class="col-lg-6">
+                          <div class="form-group focused">
+                            <label class="form-control-label" for="input-email"
+                              >Email address</label
+                            >
+                            <input
+                              type="email"
+                              id="input-email"
+                              class="form-control form-control-alternative"
+                              :placeholder="data.email"
+                              v-model="email"
+                            />
+                          </div>
+                          <div class="form-group focused">
+                            <label
+                              class="form-control-label"
+                              for="input-last-name"
+                              >Date of birth</label
+                            >
+                            <input
+                              type="text"
+                              id="input-birthdate"
+                              class="form-control form-control-alternative"
+                              :placeholder="data.birthday"
+                              v-model="birthday"
+                            />
+                          </div>
+                          <button
+                            class="ui basic button"
+                            @click.prevent="onSubmitUpdateInfo()"
                           >
-                          <input
-                            type="password"
-                            class="form-control
-                          form-control-alternative"
-                            :value="82621270"
-                          />
-                        </div>
-                        <div class="form-group focused">
-                          <label class="form-control-label" for="input-email"
-                            >Email address</label
-                          >
-                          <input
-                            type="email"
-                            id="input-email"
-                            class="form-control form-control-alternative"
-                            :placeholder="data.email"
-                            v-model="email"
-                          />
-                        </div>
-                        <div class="form-group focused">
-                          <label
-                            class="form-control-label"
-                            for="input-last-name"
-                            >Date of birth</label
-                          >
-                          <input
-                            type="text"
-                            id="input-birthdate"
-                            class="form-control form-control-alternative"
-                            :placeholder="data.birthday"
-                            v-model="birthday"
-                          />
+                            <i class="update user"></i>
+                            UPDATE YOUR INFO
+                          </button>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <hr class="my-4" />
                   <!-- Address -->
-                  <h6 class="heading-small text-muted mb-4">
-                    Contact information
-                  </h6>
-                  <div class="pl-lg-4">
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="form-group focused">
-                          <label class="form-control-label" for="input-address"
-                            >Address</label
-                          >
-                          <input
-                            id="input-address"
-                            class="form-control form-control-alternative"
-                            :placeholder="data.address"
-                            v-model="address"
-                            type="text"
-                          />
-                        </div>
-                        <div class="form-group focused">
-                          <label class="form-control-label" for="input-phone"
-                            >Phone number</label
-                          >
-                          <input
-                            id="input-address"
-                            class="form-control form-control-alternative"
-                            :placeholder="data.phone"
-                            v-model="phone"
-                            type="text"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-lg-4">
-                        <div class="form-group focused">
-                          <label class="form-control-label" for="input-city"
-                            >City</label
-                          >
-                          <input
-                            type="text"
-                            id="input-city"
-                            class="form-control form-control-alternative"
-                            :placeholder="data.city"
-                            v-model="city"
-                          />
+                  <div class="second-info" v-if="view === '1'">
+                    <h6 class="heading-small text-muted mb-4">
+                      Contact information
+                    </h6>
+                    <div class="pl-lg-4">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group focused">
+                            <label
+                              class="form-control-label"
+                              for="input-address"
+                              >Address</label
+                            >
+                            <input
+                              id="input-address"
+                              class="form-control form-control-alternative"
+                              :placeholder="data.address"
+                              v-model="address"
+                              type="text"
+                            />
+                          </div>
+                          <div class="form-group focused">
+                            <label class="form-control-label" for="input-phone"
+                              >Phone number</label
+                            >
+                            <input
+                              id="input-address"
+                              class="form-control form-control-alternative"
+                              :placeholder="data.phone"
+                              v-model="phone"
+                              type="text"
+                            />
+                          </div>
                         </div>
                       </div>
-                      <div class="col-lg-4">
-                        <div class="form-group focused">
-                          <label class="form-control-label" for="input-country"
-                            >Country</label
-                          >
-                          <input
-                            type="text"
-                            id="input-country"
-                            class="form-control form-control-alternative"
-                            :placeholder="data.country"
-                            v-model="country"
-                          />
+                      <div class="row">
+                        <div class="col-lg-4">
+                          <div class="form-group focused">
+                            <label class="form-control-label" for="input-city"
+                              >City</label
+                            >
+                            <input
+                              type="text"
+                              id="input-city"
+                              class="form-control form-control-alternative"
+                              :placeholder="data.city"
+                              v-model="city"
+                            />
+                          </div>
                         </div>
-                      </div>
-                      <div class="col-lg-4">
-                        <div class="form-group">
-                          <label class="form-control-label" for="input-country"
-                            >Postal code</label
+                        <div class="col-lg-4">
+                          <div class="form-group focused">
+                            <label
+                              class="form-control-label"
+                              for="input-country"
+                              >Country</label
+                            >
+                            <input
+                              type="text"
+                              id="input-country"
+                              class="form-control form-control-alternative"
+                              :placeholder="data.country"
+                              v-model="country"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-lg-4">
+                          <div class="form-group">
+                            <label
+                              class="form-control-label"
+                              for="input-country"
+                              >Postal code</label
+                            >
+                            <input
+                              type="number"
+                              id="input-postal-code"
+                              class="form-control form-control-alternative"
+                              :placeholder="data.postalcode"
+                              v-model="postalcode"
+                            />
+                          </div>
+                          <button
+                            class="ui basic button"
+                            @click.prevent="onSubmitUpdateInfo()"
                           >
-                          <input
-                            type="number"
-                            id="input-postal-code"
-                            class="form-control form-control-alternative"
-                            :placeholder="data.postalcode"
-                            v-model="postalcode"
-                          />
+                            <i class="update user"></i>
+                            UPDATE YOUR INFO
+                          </button>
                         </div>
                       </div>
                     </div>
                   </div>
+                  <div class="second-info" v-if="view === '2'">
+                    <h6 class="heading-small text-muted mb-4">
+                      Change you password
+                    </h6>
+                    <div class="pl-lg-4">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group focused">
+                            <label
+                              class="form-control-label"
+                              for="input-address"
+                              >Current Password</label
+                            >
+                            <input
+                              id="input-address"
+                              class="form-control form-control-alternative"
+                              placeholder="Current password please..."
+                              v-model="currentPassword"
+                              type="password"
+                            />
+                          </div>
+                          <div class="form-group focused">
+                            <label class="form-control-label"
+                              >New Password</label
+                            >
+                            <input
+                              id="input-address"
+                              class="form-control form-control-alternative"
+                              placeholder=""
+                              v-model="newPassword"
+                              type="password"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-lg-4">
+                          <div class="form-group focused">
+                            <label class="form-control-label" for="input-city"
+                              >Comfirm Password</label
+                            >
+                            <input
+                              type="password"
+                              id="input-city"
+                              class="form-control form-control-alternative"
+                              placeholder="....."
+                              v-model="comfirmPassword"
+                            />
+                          </div>
+                          <button
+                            class="ui basic button"
+                            @click.prevent="changePassword()"
+                          >
+                            <i class="update user"></i>
+                            UPDATE PASSWORD
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                   <hr class="my-4" />
                   <!-- Description -->
                 </form>
@@ -406,6 +503,7 @@
 <script>
 import axios from "axios";
 import swal from "sweetalert";
+import Swal from "sweetalert2";
 
 export default {
   data() {
@@ -414,7 +512,6 @@ export default {
       username: "",
       firstname: "",
       lastname: "",
-      password: "",
       email: "",
       address: "",
       phone: "",
@@ -424,10 +521,55 @@ export default {
       userimg: "",
       postalcode: "",
       image: "",
+      view: "0",
+      currentPassword: "",
+      newPassword: "",
+      comfirmPassword: "",
+      uploadPic: false,
     };
   },
   props: {},
   methods: {
+    showUploadPictureSection() {
+      this.uploadPic = true;
+    },
+    changePassword() {
+      if (
+        this.currentPassword !== "" &&
+        this.newPassword === this.comfirmPassword
+      ) {
+        axios
+          .put("http://localhost:3000/password/" + this.$data.data.id, {
+            currentPass: this.currentPassword,
+            password: this.newPassword,
+          })
+          .then(({ data }) => {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Pasword has been changed",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            this.changeView("1");
+            return;
+          });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Wrong Information",
+          showClass: {
+            popup: "animate__animated animate__fadeInDown",
+          },
+          hideClass: {
+            popup: "animate__animated animate__fadeOutUp",
+          },
+        });
+      }
+    },
+    changeView(state) {
+      this.$data.view = state;
+    },
     handleFileUpload() {
       this.file = this.$refs.file.files[0];
       console.log(this.file);
@@ -449,7 +591,7 @@ export default {
     uploadPictureToDataBase() {
       if (this.$data.imageUrl) {
         axios
-          .patch("http://localhost:3000/upload/" + this.data.id, {
+          .put("http://localhost:3000/upload/" + this.data.id, {
             image: this.$data.imageUrl,
           })
           .then(({ data }) => {
@@ -470,7 +612,7 @@ export default {
             username: this.$data.username,
             firstname: this.$data.firstname,
             lastname: this.$data.lastname,
-            password: this.$data.password,
+
             email: this.$data.email,
             address: this.$data.address,
             phone: this.$data.phone,
@@ -480,9 +622,11 @@ export default {
             userimg: this.$data.userimg,
             postalcode: this.$data.postalcode,
           })
-          .then(({ data }) => console.log(data));
-        swal("Profile Updated", "Profile Updated successfully", "success");
-        return;
+          .then(({ data }) => {
+            this.uploadPic = false;
+            swal("Profile Updated", "Profile Updated successfully", "success");
+            return;
+          });
       } else {
         swal(
           "Please fill up all the informations",
@@ -508,7 +652,6 @@ export default {
           this.$data.username = data.username;
           this.$data.firstname = data.firstname;
           this.$data.lastname = data.lastname;
-          this.$data.password = data.password;
           this.$data.email = data.email;
           this.$data.address = data.address;
           this.$data.phone = data.phone;
@@ -629,7 +772,7 @@ export default {
   --danger: #f5365c;
   --light: #adb5bd;
   --dark: #212529;
-  --default: #172b4d;
+  --default: #11cdef;
   --white: #fff;
   --neutral: #fff;
   --darker: black;
@@ -1229,7 +1372,7 @@ textarea.form-control {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+  transition: color 0.15s ease-in-out, 0.15s ease-in-out,
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   text-align: center;
   vertical-align: middle;
@@ -1349,8 +1492,8 @@ textarea.form-control {
 
 .btn-default:hover {
   color: #fff;
-  border-color: #172b4d;
-  background-color: #172b4d;
+  border-color: #11cdef;
+  background-color: #11cdef;
 }
 
 .btn-default:focus {
@@ -1360,13 +1503,13 @@ textarea.form-control {
 
 .btn-default:disabled {
   color: #fff;
-  border-color: #172b4d;
-  background-color: #172b4d;
+  border-color: #11cdef;
+  background-color: #11cdef;
 }
 
 .btn-default:not(:disabled):not(.disabled):active {
   color: #fff;
-  border-color: #172b4d;
+  border-color: #11cdef;
   background-color: #0b1526;
 }
 
@@ -2116,7 +2259,8 @@ a.text-white:focus {
 }
 
 .avatar img {
-  width: 100%;
+  max-width: 100%;
+  min-height: 100%;
   border-radius: 50%;
 }
 
@@ -2172,7 +2316,8 @@ a.text-white:focus {
 .card-profile-image img {
   position: absolute;
   left: 50%;
-  max-width: 180px;
+  max-width: 320px !important;
+  max-height: 160px;
   transition: all 0.15s ease;
   transform: translate(-50%, -30%);
   border-radius: 0.375rem;

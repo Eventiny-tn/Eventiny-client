@@ -5,6 +5,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './user/user.entity';
 import { ticket } from '../template/ticket.js';
+import axios from 'axios';
+
 @Injectable()
 export class AppService {
   constructor(
@@ -27,9 +29,6 @@ export class AppService {
         email: req.user.email,
         userimg: req.user.userimg,
       });
-
-      console.log({ token: access_token, data: data });
-
       return {
         user: req.user,
         token: access_token,
@@ -79,4 +78,5 @@ export class AppService {
         console.log(err);
       });
   }
+  
 }
