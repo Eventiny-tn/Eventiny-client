@@ -5,6 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './user/user.entity';
 import { ticket } from '../template/ticket.js';
+import * as bcrypt from 'bcrypt';
 @Injectable()
 export class AppService {
   constructor(
@@ -17,20 +18,37 @@ export class AppService {
       return 'No user from google';
     } else {
       let access_token = await this.jwtService.sign({
-        email: req.user.email,
-        secret: 'Liiim',
+        username: req.user.email,
       });
+
+      // const user = await this.userRepository.find({ email: req.user.email });
+
+      console.log('==+>', access_token);
+
+      // if (user) {
+      //   return {
+      //     user: req.user,
+      //     token: access_token,
+      // };
+      // }
+      //  else {
+      const saltRounds = 10;
+      const salt = bcrypt.genSaltSync(saltRounds);
+      const hash = bcrypt.hashSync(req.user.email, salt);
+
       const data = await this.userRepository.save({
         firstname: req.user.firstname,
         username: req.user.firstname,
         lastname: req.user.lastname,
         email: req.user.email,
         userimg: req.user.userimg,
+        password: hash,
       });
       return {
-        user: req.user,
+        user: data,
         token: access_token,
       };
+      // }
     }
   }
   public email(user): void {

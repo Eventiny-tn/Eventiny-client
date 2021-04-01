@@ -1,6 +1,12 @@
+import { PreauthMiddleware } from './firebase-auth/preauth.middleware';
 import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
 import { GoogleStrategy } from 'src/auth/google-strategy';
-import { Module } from '@nestjs/common';
+import {
+  MiddlewareConsumer,
+  Module,
+  NestModule,
+  RequestMethod,
+} from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -15,6 +21,8 @@ import { ConfigModule } from '@nestjs/config';
 import { CommentsModule } from './comments/comments.module';
 import { ParticipantService } from './participant/participant.service';
 import { ParticipantController } from './participant/participant.controller';
+import { FirebaseAuthModule } from './firebase-auth/firebase-auth.module';
+
 @Module({
   imports: [
     TypeOrmModule.forRoot(),
@@ -47,10 +55,18 @@ import { ParticipantController } from './participant/participant.controller';
       },
     }),
     CommentsModule,
+    FirebaseAuthModule,
     // ParticipantModule,
   ],
   controllers: [AppController, ParticipantController],
   providers: [AppService, GoogleStrategy, ParticipantService],
   exports: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+  // configure(consumer: MiddlewareConsumer) {
+  //   consumer.apply(PreauthMiddleware).forRoutes({
+  //     path: '*',
+  //     method: RequestMethod.ALL,
+  //   });
+  // }
+}
