@@ -179,6 +179,14 @@
                 </section>
               </div>
             </div>
+
+            <div class="ui visible message" v-if="showPayment">
+              <Payment  />
+            </div>
+            <h2 class="about-event" v-if="eventDetails.description">
+              About this Event
+            </h2>
+            <div class="ui visible message " v-if="eventDetails.description">
             <h2 class="about-event">About this Event</h2>
             <div class="ui visible message ">
               <p
@@ -254,9 +262,11 @@ import axios from "axios";
 import $Scriptjs from "scriptjs";
 import EventComment from "./EventComment.vue";
 import moment from "moment";
+import Payment from "./Payment.vue";
 export default {
   components: {
     EventComment,
+    Payment,
   },
   data() {
     return {
@@ -267,6 +277,7 @@ export default {
       comments: [],
       userinfo: {},
       currentImage: this.eventDetails.images[0].image,
+      showPayment: false,
     };
   },
   props: {
