@@ -65,10 +65,13 @@ const routes = [
     component: MarketingSolution,
   },
 ];
-
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
 });
-
+// router.beforeEach((to, from, next) => {
+//   if (to.name === "Login" && localStorage.getItem("token")) {
+//     next({ name: "Home" });
+//   }
+// });
 export default router;
