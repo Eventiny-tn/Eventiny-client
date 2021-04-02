@@ -56,15 +56,6 @@
           </ul>
         </div>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-          <form class="form-inline my-2 my-lg-0 col-md-7">
-            <!-- <input
-              class="myform-control mr-sm-2"
-              type="search"
-              placeholder="find peoples, instruments, bands and more..."
-              aria-label="Search"
-            /> -->
-            <!-- <button class="btn btn-light"><i class="fa fa-search"></i></button> -->
-          </form>
           <ul class="navbar-nav ml-auto">
             <li class="nav-link " id="loginbtn" v-if="isLogged == false">
               <a @click.prevent="signin()">Sign in</a>
@@ -341,7 +332,7 @@
               >
                 <img
                   class="img-fluid"
-                  src="https://images.pexels.com/photos/761963/pexels-photo-761963.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+                  src="../assets/images/business-event/pexels-photo-1684149.jpeg"
                 />
               </a>
             </div>
@@ -358,7 +349,7 @@
               >
                 <img
                   class="img-fluid"
-                  src="https://images.pexels.com/photos/838696/pexels-photo-838696.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+                  src="../assets/images/business-event/pexels-photo-3182759.jpeg"
                 />
               </a>
             </div>
@@ -375,7 +366,7 @@
               >
                 <img
                   class="img-fluid"
-                  src="https://pbs.twimg.com/profile_images/704747899750629376/anYFUGY3.jpg"
+                  src="../assets/images/business-event/pexels-photo-3321795.jpeg"
                 />
               </a>
             </div>
@@ -392,7 +383,7 @@
               >
                 <img
                   class="img-fluid"
-                  src="https://images.pexels.com/photos/164693/pexels-photo-164693.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+                  src="../assets/images/conference/pexels-photo-207691.jpeg"
                 />
               </a>
             </div>
@@ -409,7 +400,7 @@
               >
                 <img
                   class="img-fluid"
-                  src="https://images.pexels.com/photos/876713/pexels-photo-876713.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+                  src="../assets/images/conference/pexels-photo-6476778.jpeg"
                 />
               </a>
             </div>
@@ -419,14 +410,10 @@
             data-wow-duration="1.4s"
           >
             <div class="music-gal item box">
-              <a
-                href="https://images.pexels.com/photos/258732/pexels-photo-258732.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
-                class="fancybox"
-                rel="ligthbox"
-              >
+              <a class="fancybox" rel="ligthbox">
                 <img
                   class="img-fluid"
-                  src="https://images.pexels.com/photos/258732/pexels-photo-258732.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+                  src="../assets/images/conference/pexels-photo-1708936.jpeg"
                 />
               </a>
             </div>
@@ -436,14 +423,10 @@
             data-wow-duration="1.4s"
           >
             <div class="music-gal item box">
-              <a
-                href="https://images.pexels.com/photos/210887/pexels-photo-210887.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
-                class="fancybox"
-                rel="ligthbox"
-              >
+              <a class="fancybox" rel="ligthbox">
                 <img
                   class="img-fluid"
-                  src="https://images.pexels.com/photos/210887/pexels-photo-210887.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+                  src="https://images.pexels.com/photos/5922322/pexels-photo-5922322.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
                 />
               </a>
             </div>
@@ -453,14 +436,10 @@
             data-wow-duration="1.4s"
           >
             <div class="music-gal item box">
-              <a
-                href="https://images.pexels.com/photos/210922/pexels-photo-210922.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
-                class="fancybox"
-                rel="ligthbox"
-              >
+              <a class="fancybox" rel="ligthbox">
                 <img
                   class="img-fluid"
-                  src="https://images.pexels.com/photos/210922/pexels-photo-210922.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+                  src="https://images.pexels.com/photos/6804605/pexels-photo-6804605.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
                 />
               </a>
             </div>
@@ -470,14 +449,10 @@
             data-wow-duration="1.4s"
           >
             <div class="music-gal item box">
-              <a
-                href="https://images.pexels.com/photos/756242/pexels-photo-756242.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
-                class="fancybox"
-                rel="ligthbox"
-              >
+              <a class="fancybox" rel="ligthbox">
                 <img
                   class="img-fluid"
-                  src="https://images.pexels.com/photos/756242/pexels-photo-756242.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+                  src="https://images.pexels.com/photos/6774141/pexels-photo-6774141.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
                 />
               </a>
             </div>
@@ -487,14 +462,10 @@
             data-wow-duration="1.4s"
           >
             <div class="music-gal item box">
-              <a
-                href="https://images.pexels.com/photos/167589/pexels-photo-167589.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
-                class="fancybox"
-                rel="ligthbox"
-              >
+              <a class="fancybox" rel="ligthbox">
                 <img
                   class="img-fluid"
-                  src="https://images.pexels.com/photos/167589/pexels-photo-167589.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+                  src="https://images.pexels.com/photos/7234241/pexels-photo-7234241.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
                 />
               </a>
             </div>
@@ -869,6 +840,7 @@ export default {
 <style scoped>
 .navbar-brand {
   margin-right: 5em !important;
+  /* background-color: transparent; */
 }
 section {
   position: relative;
@@ -940,6 +912,7 @@ body {
 
 .navbar-shrink {
   padding-top: 0;
+
   padding-bottom: 0;
 }
 .mybg-dark {
@@ -951,7 +924,7 @@ body {
 
 header.masthead {
   position: relative;
-  height: 100vh;
+  height: 78vh;
   background-color: white;
   /* background: url("https://images.pexels.com/photos/1267350/pexels-photo-1267350.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
     no-repeat center center; */
@@ -1300,7 +1273,7 @@ section#group {
 }
 
 .mybg-music {
-  background: url("https://images.pexels.com/photos/274131/pexels-photo-274131.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
+  background: url("https://images.pexels.com/photos/6430743/pexels-photo-6430743.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
     no-repeat center center fixed;
   background-size: cover;
 }
