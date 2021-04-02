@@ -29,7 +29,7 @@
                 <a
                   class="nav-item nav-link active"
                   @click="changeView(null, '2')"
-                  >Event History</a
+                  >Previous Event</a
                 >
               </li>
 

@@ -68,7 +68,7 @@
                     <div class="form-group">
                       <button
                         @click.prevent="onSubmitSignup(signup)"
-                        class="btn col-xs-4 submit_h"
+                        class="ui button btn col-xs-4 submit_h"
                       >
                         Sign up
                       </button>
@@ -76,9 +76,10 @@
                     <br /><br />
                     <br /><br />
 
-                    <a class="noaccount" @click="signin()"
-                      >Have an Account ? Go login!</a
-                    >
+                    <a
+                      >Have an Account ?
+                      <span class="noaccount" @click="signin()">Go login!</span>
+                    </a>
                     <br /><br />
                     <a class="col_g" id="home-signup">
                       Go back to
@@ -184,7 +185,12 @@ a {
   cursor: pointer;
   color: #008ba3 !important;
 }
-
+.noaccount:hover {
+  text-decoration: underline;
+}
+#cursor:hover {
+  text-decoration: underline;
+}
 .noaccount {
   color: #008ba3 !important;
   cursor: pointer;

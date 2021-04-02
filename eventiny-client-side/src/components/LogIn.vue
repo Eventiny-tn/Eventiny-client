@@ -19,7 +19,7 @@
                     type="email"
                     class="form-control"
                     v-model="login.email"
-                    placeholder="Email..."
+                    placeholder="Email"
                   />
                 </div>
                 <div class="form-group">
@@ -27,27 +27,33 @@
                     type="password"
                     class="form-control"
                     v-model="login.password"
-                    placeholder="Enter Password Here"
+                    placeholder="Password"
                   />
                 </div>
 
-                <div class="form-group" @click.prevent="onSubmitLogin(login)">
-                  <button class="btn col-xs-4 submit_h">
+                <div
+                  class=" form-group"
+                  @click.prevent="onSubmitLogin(login)"
+                  id="login-btn"
+                >
+                  <button class="ui button btn submit_h">
                     Login
                   </button>
-                </div>
-                <!-- <br /><br />  -->
-                <div @click.prevent="googleLogin()">
-                  <button class="ui google plus button">
+                  <button
+                    class="ui google plus button"
+                    @click.prevent="googleLogin()"
+                  >
                     <i class="google icon"></i>
                     Google
                   </button>
                 </div>
+                <!-- <br /><br />  -->
                 <br /><br />
 
-                <a class="noaccount" @click="signup()"
-                  >No Account ? Create One!</a
-                >
+                <a
+                  >No Account ?
+                  <span class="noaccount" @click="signup()">Create One!</span>
+                </a>
                 <br /><br />
                 <a class="col_g" id="home-login">
                   Go back to
@@ -170,14 +176,23 @@ export default {
 a {
   color: #1985e2;
 }
+#login-btn {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+}
 #home-login {
   color: #887c7c !important;
   float: right !important;
   float: left !important;
 }
+
 #cursor {
   cursor: pointer;
   color: #008ba3;
+}
+#cursor:hover {
+  text-decoration: underline;
 }
 .row {
   background-color: white;
@@ -198,6 +213,10 @@ a {
 .noaccount {
   color: #008ba3 !important;
   cursor: pointer;
+}
+.noaccount:hover {
+  text-decoration: underline;
+  color: blue;
 }
 .container {
   position: relative;
@@ -323,11 +342,13 @@ a {
 .btn.btn-hero,
 .btn.btn-hero:hover,
 .btn.btn-hero:focus {
+  justify-content: center !important;
+  align-content: center;
   color: #f5f5f5;
   background-color: #1abc9c;
   border-color: #1abc9c;
   outline: none;
-  margin: 20px auto;
+  margin: auto;
 }
 /********************************/
 /*       Slides backgrounds     */
