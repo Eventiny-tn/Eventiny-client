@@ -22,11 +22,11 @@ export class AppService {
       const user = await this.userRepository.findOne({ email: req.user.email });
       if (user && user.password == null) {
         let token = await this.jwtService.sign({
-          username: req.user.email,
+          username: user.email,
         });
         return {
-          user: req.user,
-          token:token,
+          user: user,
+          token: token,
         };
       }
       const data = await this.userRepository.save({
