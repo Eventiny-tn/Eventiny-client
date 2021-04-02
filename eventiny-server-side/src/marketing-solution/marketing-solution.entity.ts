@@ -1,6 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn, Unique } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('user')
+@Entity('marketing_solution')
 export class MarketingSolution {
   @PrimaryGeneratedColumn()
   id: number;
@@ -11,5 +11,12 @@ export class MarketingSolution {
   @Column()
   price: string;
   @Column()
+  userId: number;
+}
+
+export interface PlannerRequestinfo {
+  pahename: string;
+  paagelink: string;
+  price: string;
   userId: number;
 }
