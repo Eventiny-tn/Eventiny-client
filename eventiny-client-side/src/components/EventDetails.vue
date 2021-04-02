@@ -141,7 +141,8 @@
                               }}
                             </p>
                             <p>
-                              You puchase {{ ticketsBuy.quantity }} / 10 tickets
+                              You puchase {{ ticketsBuy.quantity }} /
+                              {{ ticketLimit }} tickets
                             </p>
                             <div
                               class="ui three column grid button-buy-tickets"
@@ -153,7 +154,7 @@
                                   min="1"
                                   v-bind:max="10 - ticketsBuy.quantity"
                                   v-model="tickets"
-                                />  
+                                />
                               </div>
                               <div>
                                 <button
@@ -183,6 +184,7 @@
                 </section>
               </div>
             </div>
+
             <div class="ui visible message" v-if="showPayment">
               <Payment :submittedPay="submittedPay" />
             </div>
@@ -190,66 +192,69 @@
               About this Event
             </h2>
             <div class="ui visible message " v-if="eventDetails.description">
-              <p
-                class="description "
-                v-for="(paragh, i) in eventDetails.description.split('.')"
-                :key="i"
-              >
-                {{ paragh }}
-              </p>
-            </div>
-          </div>
-
-          <div class="product-info-tabs">
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-              <li class="nav-item">
-                <a
-                  class="nav-link active"
-                  id="description-tab"
-                  data-toggle="tab"
-                  href="#description"
-                  role="tab"
-                  aria-controls="description"
-                  aria-selected="true"
-                  >Comment Section</a
+              <h2 class="about-event">About this Event</h2>
+              <div class="ui visible message ">
+                <p
+                  class="description "
+                  v-for="(paragh, i) in eventDetails.description.split('.')"
+                  :key="i"
                 >
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link"
-                  id="review-tab"
-                  data-toggle="tab"
-                  href="#review"
-                  role="tab"
-                  aria-controls="review"
-                  aria-selected="false"
-                  >Reviews</a
-                >
-              </li>
-            </ul>
-            <div class="tab-content" id="myTabContent">
-              <div
-                class="tab-pane fade show active"
-                id="description"
-                role="tabpanel"
-                aria-labelledby="description-tab"
-              >
-                <div class="ui list cards">
-                  <EventComment
-                    :comments="comments"
-                    :userinfo="userinfo"
-                    :eventDetails="eventDetails"
-                    :getEventComment="getEventComment"
-                  />
-                </div>
+                  {{ paragh }}
+                </p>
               </div>
-              <div
-                class="tab-pane fade"
-                id="review"
-                role="tabpanel"
-                aria-labelledby="review-tab"
-              >
-                <div class="review-heading">REVIEWS</div>
+            </div>
+
+            <div class="product-info-tabs">
+              <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                  <a
+                    class="nav-link active"
+                    id="description-tab"
+                    data-toggle="tab"
+                    href="#description"
+                    role="tab"
+                    aria-controls="description"
+                    aria-selected="true"
+                    >Comment Section</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    id="review-tab"
+                    data-toggle="tab"
+                    href="#review"
+                    role="tab"
+                    aria-controls="review"
+                    aria-selected="false"
+                    >Reviews</a
+                  >
+                </li>
+              </ul>
+              <div class="tab-content" id="myTabContent">
+                <div
+                  class="tab-pane fade show active"
+                  id="description"
+                  role="tabpanel"
+                  aria-labelledby="description-tab"
+                >
+                  <div class="ui list cards">
+                    <EventComment
+                      :comments="comments"
+                      :userinfo="userinfo"
+                      :eventDetails="eventDetails"
+                      :getEventComment="getEventComment"
+                    />
+                  </div>
+                </div>
+                <div
+                  class="tab-pane fade"
+                  id="review"
+                  role="tabpanel"
+                  aria-labelledby="review-tab"
+                >
+                  <div class="review-heading">REVIEWS</div>
+                </div>
               </div>
             </div>
           </div>
@@ -280,6 +285,7 @@ export default {
       currentImage: this.eventDetails.images[0].image,
       showPayment: false,
       ticketRiserved: 0,
+      ticketLimit: 10,
     };
   },
   props: {
@@ -300,6 +306,10 @@ export default {
               return i + el.quantity;
             }, 0);
             this.$data.ticketRiserved = allTicket;
+            if (this.eventDetails.ticket - this.ticketRiserved <= 10) {
+              this.$data.ticketLimit =
+                this.eventDetails.ticket - this.ticketRiserved;
+            }
           }
         })
         .catch((err) => console.log(err));

@@ -5,8 +5,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './user/user.entity';
 import { ticket } from '../template/ticket.js';
-import axios from 'axios';
-
 @Injectable()
 export class AppService {
   constructor(
@@ -19,18 +17,25 @@ export class AppService {
       return 'No user from google';
     } else {
       let access_token = await this.jwtService.sign({
-        email: req.user.email,
-        secret: 'Liiim',
+        username: req.user.email,
       });
+      const user = await this.userRepository.findOne({ email: req.user.email });
+      if (user && user.password == null) {
+        return {
+          user: req.user,
+          token: access_token,
+        };
+      }
       const data = await this.userRepository.save({
         firstname: req.user.firstname,
         username: req.user.firstname,
         lastname: req.user.lastname,
         email: req.user.email,
         userimg: req.user.userimg,
+        password: null,
       });
       return {
-        user: req.user,
+        user: data,
         token: access_token,
       };
     }

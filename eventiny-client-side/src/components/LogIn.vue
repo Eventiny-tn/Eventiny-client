@@ -79,7 +79,6 @@
 </template>
 <script>
 import axios from "axios";
-
 import swal from "sweetalert";
 
 export default {
@@ -92,12 +91,34 @@ export default {
     };
   },
   methods: {
-    googleLogin() {
-      window.open(
+    async googleLogin() {
+      const win = window.open(
         "http://localhost:3000",
-        "_self",
-        `scrollbars=no,resizable=no,status=no,location=http://localhost:8080,toolbar=no,menubar=no,width=600,height=600,left=100,top=100`
+        "windowname1",
+        "width=800, height=600"
       );
+      const validateToken = (token) => {
+        localStorage.setItem("token", token);
+        this.$router.push("/GeneralPage");
+        window.clearInterval(pollTimer);
+        clearInterval(pollTimer);
+        win.close();
+      };
+      const pollTimer = window.setInterval(async () => {
+        try {
+          let url = win.document.URL;
+          let token = url.slice(22, url.length);
+          if (token !== "") {
+            localStorage.setItem("token", token);
+            this.$router.push("/GeneralPage");
+            clearInterval(pollTimer);
+            win.close();
+            validateToken(token);
+            return;
+          }
+          return;
+        } catch (e) {}
+      }, 1000);
     },
     onSubmitLogin(login) {
       if (login.email == "" || login.password == "") {
