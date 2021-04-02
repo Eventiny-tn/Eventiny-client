@@ -119,7 +119,7 @@
                         {{ eventDetails.name.toUpperCase() }}
                       </div>
                       <div class="product-price-discount">
-                        <span>${{ eventDetails.price }}</span>
+                        <span>{{ eventDetails.price }} TND</span>
                       </div>
                     </div>
                     <div class="ui visible message">
@@ -135,7 +135,11 @@
 
                         <div id="input-ticket2">
                           <div class="header" v-if="ticketsBuy.quantity < 10">
-                            <p>Tickets :{{ eventDetails.ticket }}</p>
+                            <p>
+                              Tickets :{{
+                                eventDetails.ticket - ticketRiserved
+                              }}
+                            </p>
                             <p>
                               You puchase {{ ticketsBuy.quantity }} / 10 tickets
                             </p>
@@ -149,12 +153,12 @@
                                   min="1"
                                   v-bind:max="10 - ticketsBuy.quantity"
                                   v-model="tickets"
-                                />
+                                />  
                               </div>
                               <div>
                                 <button
                                   class="round-black-btn"
-                                  @click="clickadd()"
+                                  @click="clickPay()"
                                   v-if="ticketsBuy.quantity < 10"
                                 >
                                   Buy Ticket
@@ -180,7 +184,7 @@
               </div>
             </div>
             <div class="ui visible message" v-if="showPayment">
-              <Payment  />
+              <Payment :submittedPay="submittedPay" />
             </div>
             <h2 class="about-event" v-if="eventDetails.description">
               About this Event
@@ -275,6 +279,7 @@ export default {
       userinfo: {},
       currentImage: this.eventDetails.images[0].image,
       showPayment: false,
+      ticketRiserved: 0,
     };
   },
   props: {
@@ -286,11 +291,16 @@ export default {
     showImage(url) {
       this.$data.currentImage = url;
     },
-    getParticipent() {
+    getAllParticipent() {
       axios
         .get(`http://localhost:3000/participant/${this.eventDetails.id}`)
-        .then((data) => {
-          console.log(this.eventDetails);
+        .then(({ data }) => {
+          if (data) {
+            const allTicket = data.reduce((i, el) => {
+              return i + el.quantity;
+            }, 0);
+            this.$data.ticketRiserved = allTicket;
+          }
         })
         .catch((err) => console.log(err));
     },
@@ -306,7 +316,9 @@ export default {
       }, 2000);
     },
 
-    clickadd() {
+    submittedPay(PayMeth) {
+      PayMeth.amount = this.tickets * 1 * this.eventDetails.price * 1;
+      PayMeth.receiverWallet = "6064c027c7e3ca6b3c9fa682";
       axios
         .post(
           `http://localhost:3000/ticket/${this.userinfo.id}/${this.eventDetails.id}`,
@@ -330,13 +342,22 @@ export default {
           axios
             .post(`http://localhost:3000/send/ticket`, ticketData)
             .then(({ data }) => {
-              console.log("done");
+              axios
+                .post(`http://localhost:3000/payment`, PayMeth)
+                .then(({ data }) => {
+                  window.open(data.payUrl);
+                  this.$data.showPayment = false;
+                })
+                .catch((err) => console.log(err));
             })
             .catch((err) => console.log(err));
         })
         .catch((err) => {
           console.log(err);
         });
+    },
+    clickPay() {
+      this.$data.showPayment = true;
     },
 
     initMap() {
@@ -403,6 +424,7 @@ export default {
   },
   beforeMount() {},
   mounted() {
+    this.getAllParticipent();
     console.log("detailsevent", this.eventDetails);
     console.log("user: ", this.userinfo);
     $Scriptjs(

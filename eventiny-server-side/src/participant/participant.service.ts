@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, HttpService } from '@nestjs/common';
 import { User } from 'src/user/user.entity';
 import { Connection, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -8,6 +8,7 @@ import { Participant } from './participant.entity';
 @Injectable()
 export class ParticipantService {
   constructor(
+    private readonly http: HttpService,
     @InjectRepository(User)
     private userRepository: Repository<User>,
     @InjectRepository(Event)
@@ -17,13 +18,6 @@ export class ParticipantService {
     private connection: Connection,
   ) {}
   async buyTicket(user_id, event_id, body): Promise<Error | Object> {
-    console.log(
-      '=>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',
-      user_id,
-      event_id,
-      body.quantity,
-    );
-
     try {
       const participants = await this.connection
         .getRepository(Participant)
@@ -33,8 +27,6 @@ export class ParticipantService {
         .where(`participant.event =${event_id}`)
         .andWhere(`participant.user =${user_id}`)
         .getOne();
-      console.log('participant ============================', participants);
-
       if (!participants) {
         console.log('Creating reservation ...');
         let participant = await new Participant(body.quantity);
@@ -69,5 +61,48 @@ export class ParticipantService {
       .andWhere(`participant.user =${user_id}`)
       .getMany();
     return participant;
+  }
+  async getAllParticipant(event_id): Promise<Error | Object> {
+    const participant = await this.connection
+      .getRepository(Participant)
+      .createQueryBuilder('participant') // first argument is an alias. Alias is what you are selecting - photos. You must specify it.
+      .leftJoinAndSelect('participant.event', 'event')
+      .where(`participant.event =${event_id}`)
+      .getMany();
+    return participant;
+  }
+  async Pay(payMeth): Promise<Error | Object> {
+    try {
+      payMeth.selectedPaymentMethod = 'gateway';
+      payMeth.token = 'TND';
+      payMeth.orderId = '2458715';
+      payMeth.webhook = 'merchant.tech/api/notification_payment';
+      payMeth.successUrl = 'success@merchant.tech';
+      payMeth.failUrl = 'fail@merchant.tech';
+      // const payMeth2 = {
+      //   receiverWallet: '6064c027c7e3ca6b3c9fa682',
+      //   amount: 2000,
+      //   selectedPaymentMethod: 'gateway',
+      //   token: 'TND',
+      //   firstName: 'Haythem',
+      //   lastName: 'Zribi',
+      //   phoneNumber: '55513859',
+      //   email: 'zribihaythem@gmail.com',
+      //   orderId: '2458715',
+      //   webhook: 'merchant.tech/api/notification_payment',
+      //   successUrl: 'success@merchant.tech',
+      //   failUrl: 'fail@merchant.tech',
+      // };
+
+      const response = await this.http
+        .post(
+          'https://api.preprod.konnect.network/api/v1/payments/init-payment',
+          payMeth,
+        )
+        .toPromise();
+      return response.data;
+    } catch (error) {
+      return new Error(error);
+    }
   }
 }
