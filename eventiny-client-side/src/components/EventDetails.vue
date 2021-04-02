@@ -301,9 +301,9 @@ export default {
       axios
         .get(`http://localhost:3000/participant/${this.eventDetails.id}`)
         .then(({ data }) => {
-          if (data) {
-            const allTicket = data.reduce((i, el) => {
-              return i + el.quantity;
+          if (data[0] !== undefined) {
+            const allTicket = data.reduce((acc, el) => {
+              return acc + el.quantity;
             }, 0);
             this.$data.ticketRiserved = allTicket;
             if (this.eventDetails.ticket - this.ticketRiserved <= 10) {
@@ -349,7 +349,7 @@ export default {
               place: this.$data.tickets,
             },
           };
-          
+
           axios
             .post(`http://localhost:3000/send/ticket`, ticketData)
             .then(({ data }) => {
