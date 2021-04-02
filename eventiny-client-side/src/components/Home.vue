@@ -57,13 +57,13 @@
         </div>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <form class="form-inline my-2 my-lg-0 col-md-7">
-            <input
+            <!-- <input
               class="myform-control mr-sm-2"
               type="search"
               placeholder="find peoples, instruments, bands and more..."
               aria-label="Search"
-            />
-            <button class="btn btn-light"><i class="fa fa-search"></i></button>
+            /> -->
+            <!-- <button class="btn btn-light"><i class="fa fa-search"></i></button> -->
           </form>
           <ul class="navbar-nav ml-auto">
             <li class="nav-link " id="loginbtn" v-if="isLogged == false">
@@ -324,10 +324,7 @@
               EventinyTn LATEST Event
             </h3>
             <p class="myp text-center">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book.
+              Here is some of the latest event
             </p>
           </div>
         </div>
@@ -870,6 +867,9 @@ export default {
 };
 </script>
 <style scoped>
+.navbar-brand {
+  margin-right: 5em !important;
+}
 section {
   position: relative;
   height: 75vh;
@@ -1300,7 +1300,7 @@ section#group {
 }
 
 .mybg-music {
-  background: url("https://images.pexels.com/photos/1540406/pexels-photo-1540406.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
+  background: url("https://images.pexels.com/photos/274131/pexels-photo-274131.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
     no-repeat center center fixed;
   background-size: cover;
 }

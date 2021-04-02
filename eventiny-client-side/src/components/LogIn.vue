@@ -79,8 +79,6 @@
 </template>
 <script>
 import axios from "axios";
-// import * as firebase from "firebase/app";
-// import "firebase/auth";
 import swal from "sweetalert";
 
 export default {
@@ -108,10 +106,8 @@ export default {
       };
       const pollTimer = window.setInterval(async () => {
         try {
-          console.log("===>", win.document.URL);
           let url = win.document.URL;
           let token = url.slice(22, url.length);
-          console.log("inside if condition =>", token);
           if (token !== "") {
             localStorage.setItem("token", token);
             this.$router.push("/GeneralPage");
