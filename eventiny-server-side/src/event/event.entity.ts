@@ -41,7 +41,7 @@ export class Event {
   lng: string;
   @Column()
   cover: string;
-  @Column()
+  @Column('longtext')
   description: string;
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   time: string;
