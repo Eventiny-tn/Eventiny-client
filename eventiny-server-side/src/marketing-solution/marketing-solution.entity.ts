@@ -14,9 +14,9 @@ export class MarketingSolution {
   userId: number;
 }
 
-export interface PlannerRequestinfo {
-  pahename: string;
-  paagelink: string;
+export interface MarketingSolutioninfo {
+  pagename: string;
+  pagelink: string;
   price: string;
   userId: number;
 }
