@@ -61,9 +61,7 @@ export class AppService {
       });
   }
   public sendTicket({ data }): void {
-    console.log('----------------------------', data);
     const template = ticket(data);
-    console.log(template);
     this.mailerService
       .sendMail({
         to: data.userEmail, // List of receivers email address
