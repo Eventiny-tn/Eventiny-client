@@ -1183,7 +1183,7 @@ h1 {
   position: absolute;
   margin: 0;
   font-size: 32px;
-  color: #fff;
+  color: rgb(255, 255, 255);
   z-index: 2;
 }
 .testbox {
@@ -1198,7 +1198,7 @@ form {
   width: 60%;
   padding: 20px;
   border-radius: 6px;
-  background: #fff;
+  background: rgb(243, 241, 241);
   box-shadow: 0 0 1px 0 #008ba3;
 }
 .banner {
