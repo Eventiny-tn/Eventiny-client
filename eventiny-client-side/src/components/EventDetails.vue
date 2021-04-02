@@ -119,7 +119,9 @@
                         {{ eventDetails.name.toUpperCase() }}
                       </div>
                       <div class="product-price-discount">
-                        <span>{{ eventDetails.price }} TND</span>
+                        <span style="color :#D31C06;"
+                          >{{ eventDetails.price }} TND</span
+                        >
                       </div>
                     </div>
                     <div class="ui visible message">

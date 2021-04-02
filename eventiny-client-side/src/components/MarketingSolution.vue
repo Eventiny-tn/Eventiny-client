@@ -38,18 +38,35 @@
         <fieldset>
           <div class="item">
             <label for="fname"> Facebook Page Name<span>*</span></label>
-            <input id="fname" type="text" name="fname" required />
+            <input
+              id="fname"
+              type="text"
+              name="fname"
+              required
+              v-model="fbinfo.pagename"
+            />
           </div>
           <div class="item">
             <label for="lname"> Facebook Page Link<span>*</span></label>
-            <input id="lname" type="text" name="lname" required />
+            <input
+              id="lname"
+              type="text"
+              name="lname"
+              required
+              v-model="fbinfo.pagelink"
+            />
           </div>
 
-          <select class="ui dropdown">
+          <select
+            value="price"
+            v-model="fbinfo.price"
+            required
+            class="ui dropdown"
+          >
             <option value="">Price</option>
-            <option value="1">50 Dt (2Days) </option>
-            <option value="0">90 Dt (4Days) </option>
-            <option value="0">120 Dt (1 Week) </option>
+            <option value="50 Dt (2Days)">50 Dt (2Days) </option>
+            <option value="90 Dt (4Days)">90 Dt (4Days) </option>
+            <option value="120 Dt (1 Week)">120 Dt (1 Week) </option>
           </select>
           <img
             class="fbimg"
@@ -58,7 +75,7 @@
         </fieldset>
         <br />
         <div class="btn-block">
-          <button @click="submit()" type="submit">Submit</button>
+          <button @click.prevent="submit()" type="submit">Submit</button>
         </div>
       </form>
     </div>
@@ -67,10 +84,17 @@
 
 <script>
 import axios from "axios";
+import swal from "sweetalert";
 export default {
   data() {
     return {
       data: [],
+      fbinfo: {
+        pagename: "",
+        pageink: "",
+        price: "",
+        userId: "",
+      },
     };
   },
   methods: {
@@ -91,6 +115,7 @@ export default {
           console.log("==>", data);
           if (data.username !== undefined) {
             this.$data.data = data;
+            this.fbinfo.userId = data.id;
             // if (data.plannerDemand == true) {
             //   this.$router.push("/GeneralPage");
             // }
@@ -104,16 +129,23 @@ export default {
           localStorage.removeItem("token");
         });
     },
+
     submit() {
-      swal("Purshase has been done!", "success");
-      this.$router.push("/GeneralPage");
-    },
-    onSubmitPlannerForm() {
+      console.log(this.fbinfo);
       axios
-        .patch("http://localhost:3000/plannerDemand/" + this.data.id, {})
-        .then(({ data }) => {
-          swal("Purshase has been done!", "success");
-          this.$router.push("/GeneralPage");
+        .post("http://localhost:3000/marketingsolution", this.fbinfo)
+        .then(function(res) {
+          console.log(res);
+          swal(
+            "Thank you for your trust! Purshase has been done!",
+            "You will recieve an email for 24hours to inform you that your page has been sponsorised",
+            "success"
+          );
+          // this.$router.push("/GeneralPage");
+          return;
+        })
+        .catch(function(error) {
+          console.log(error);
         });
     },
   },

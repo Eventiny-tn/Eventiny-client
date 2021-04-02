@@ -65,7 +65,7 @@
                   class="ui tiny positive button"
                   @click="beforeUpdate(comment.id)"
                 >
-                  update
+                  Update
                 </button>
               </div>
             </div>
