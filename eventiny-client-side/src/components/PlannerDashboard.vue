@@ -28,7 +28,7 @@
     </nav>
 
     <div class="testbox">
-      <form action="/">
+      <form>
         <div class="banner">
           <!-- <h1>Add event form</h1> -->
         </div>
@@ -56,7 +56,11 @@
         </div>
         <div class="field">
           <p>Event Category:</p>
-          <div v-for="category in dataCategories" v-bind:key="category.id">
+          <div
+            class="check-box"
+            v-for="category in dataCategories"
+            v-bind:key="category.id"
+          >
             <label for="track">{{ category.name }}</label>
             <input
               type="checkbox"
@@ -69,7 +73,7 @@
         </div>
         <div class="item">
           <p>Description of Event</p>
-          <textarea v-model="event.description" rows="3"></textarea>
+          <textarea type="text" v-model="event.description" rows="3"></textarea>
         </div>
         <div class="item">
           <p>Event Name</p>
@@ -110,11 +114,23 @@
             required
             :v-model="image"
           />
+          <div class="linear-grid">
+            <div class="row">
+              <div
+                class=" col-sm-6 col-md-3 mb-2 wow bounceInUp"
+                data-wow-duration="1.4s"
+                v-for="(image, i) in event.images"
+                :key="i"
+              >
+                <img :src="image" class="img-thumbnail" />
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="item">
           <form enctype="multipart/form-data">
-            Select cover image to upload:
+            Select related images to upload:
             <input
               type="file"
               name="fileToUpload"
@@ -285,6 +301,7 @@ export default {
           if (res) {
             console.log(res);
             swal("Thank you for adding your event", "Thank you", "success");
+            // this.$router.push("/GeneralPage");
             return;
           }
         })
@@ -426,6 +443,16 @@ body {
 #locationlabel {
   margin-right: 560px;
 }
+
+.linear-grid img {
+  width: 100%;
+  height: 124px;
+  object-fit: cover;
+}
+.check-box {
+  display: inline-block;
+  padding: 30px;
+}
 .fields {
   margin-left: 620px !important;
   width: 900px;
@@ -476,6 +503,9 @@ body {
   border-color: #80bdff;
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+#main-nav {
+  margin-left: 690%;
 }
 
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700,800");

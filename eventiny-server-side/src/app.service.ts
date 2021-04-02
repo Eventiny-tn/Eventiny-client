@@ -5,7 +5,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './user/user.entity';
 import { ticket } from '../template/ticket.js';
-import * as bcrypt from 'bcrypt';
 @Injectable()
 export class AppService {
   constructor(
@@ -21,25 +20,19 @@ export class AppService {
         username: req.user.email,
       });
       const user = await this.userRepository.findOne({ email: req.user.email });
-      if (user) {
-        console.log('im here');
-
+      if (user && user.password == null) {
         return {
           user: req.user,
           token: access_token,
         };
       }
-      console.log('im out');
-      const saltRounds = 10;
-      const salt = bcrypt.genSaltSync(saltRounds);
-      const hash = bcrypt.hashSync(req.user.email, salt);
       const data = await this.userRepository.save({
         firstname: req.user.firstname,
         username: req.user.firstname,
         lastname: req.user.lastname,
         email: req.user.email,
         userimg: req.user.userimg,
-        password: hash,
+        password: null,
       });
       return {
         user: data,

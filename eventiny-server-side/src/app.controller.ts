@@ -3,7 +3,6 @@ import { Req } from '@nestjs/common';
 import { Controller, Get } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { AppService } from './app.service';
-
 @Controller()
 export class AppController {
   response: any;
@@ -36,4 +35,5 @@ export class AppController {
   sendTicket(@Body() ticketData): any {
     return this.appService.sendTicket(ticketData);
   }
+
 }
