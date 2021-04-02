@@ -4,8 +4,6 @@ import { ParticipantController } from './participant.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection, Repository } from 'typeorm';
 import { Participant } from './participant.entity';
-import { EventModule } from 'src/event/event.module';
-import { UserModule } from 'src/user/user.module';
 import { UserService } from 'src/user/user.service';
 import { EventService } from 'src/event/event.service';
 

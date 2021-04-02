@@ -1,9 +1,18 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+} from '@nestjs/common';
 import { ParticipantService } from './participant.service';
 
 @Controller()
 export class ParticipantController {
-  constructor(private readonly participantService: ParticipantService) {}
+  constructor(
+    private readonly participantService: ParticipantService,
+  
+  ) {}
   @Post('ticket/:user_id/:event_id')
   buyTicket(
     @Param('user_id') user_id: number,
@@ -16,7 +25,17 @@ export class ParticipantController {
   getParticipant(
     @Param('event_id') event_id: number,
     @Param('user_id') user_id: number,
-  ): Promise<Error | object> {
+  ): Promise<Error | Object> {
     return this.participantService.getParticipant(event_id, user_id);
+  }
+  @Get('participant/:event_id')
+  getAllParticipant(
+    @Param('event_id') event_id: number,
+  ): Promise<Error | Object> {
+    return this.participantService.getAllParticipant(event_id);
+  }
+  @Post('payment')
+  Pay(@Body() payMeth: Object): Promise<Error | Object> {
+    return this.participantService.Pay(payMeth);
   }
 }

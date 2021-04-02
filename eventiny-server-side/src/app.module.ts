@@ -1,6 +1,6 @@
 import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
 import { GoogleStrategy } from 'src/auth/google-strategy';
-import { Module } from '@nestjs/common';
+import { HttpModule, HttpService, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -48,6 +48,7 @@ import { ParticipantController } from './participant/participant.controller';
       },
     }),
     CommentsModule,
+    HttpModule,
   ],
   controllers: [AppController, ParticipantController],
   providers: [AppService, GoogleStrategy, ParticipantService],
