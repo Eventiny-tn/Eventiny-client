@@ -49,7 +49,6 @@ import { ParticipantController } from './participant/participant.controller';
     }),
     CommentsModule,
     HttpModule,
-    // ParticipantModule,
   ],
   controllers: [AppController, ParticipantController],
   providers: [AppService, GoogleStrategy, ParticipantService],

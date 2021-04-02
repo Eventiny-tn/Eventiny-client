@@ -187,6 +187,7 @@
 
             <div class="ui visible message" v-if="showPayment">
               <Payment :submittedPay="submittedPay" />
+
             </div>
             <h2 class="about-event" v-if="eventDetails.description">
               About this Event
