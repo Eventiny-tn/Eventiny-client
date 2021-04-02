@@ -15,6 +15,7 @@ import { ConfigModule } from '@nestjs/config';
 import { CommentsModule } from './comments/comments.module';
 import { ParticipantService } from './participant/participant.service';
 import { ParticipantController } from './participant/participant.controller';
+import { MarketingSolutionModule } from './marketing-solution/marketing-solution.module';
 
 @Module({
   imports: [
@@ -49,6 +50,7 @@ import { ParticipantController } from './participant/participant.controller';
     }),
     CommentsModule,
     HttpModule,
+    MarketingSolutionModule,
   ],
   controllers: [AppController, ParticipantController],
   providers: [AppService, GoogleStrategy, ParticipantService],
