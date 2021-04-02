@@ -20,22 +20,19 @@ export class AppService {
       let access_token = await this.jwtService.sign({
         username: req.user.email,
       });
+      const user = await this.userRepository.findOne({ email: req.user.email });
+      if (user) {
+        console.log('im here');
 
-      // const user = await this.userRepository.find({ email: req.user.email });
-
-      console.log('==+>', access_token);
-
-      // if (user) {
-      //   return {
-      //     user: req.user,
-      //     token: access_token,
-      // };
-      // }
-      //  else {
+        return {
+          user: req.user,
+          token: access_token,
+        };
+      }
+      console.log('im out');
       const saltRounds = 10;
       const salt = bcrypt.genSaltSync(saltRounds);
       const hash = bcrypt.hashSync(req.user.email, salt);
-
       const data = await this.userRepository.save({
         firstname: req.user.firstname,
         username: req.user.firstname,
@@ -48,7 +45,6 @@ export class AppService {
         user: data,
         token: access_token,
       };
-      // }
     }
   }
   public email(user): void {

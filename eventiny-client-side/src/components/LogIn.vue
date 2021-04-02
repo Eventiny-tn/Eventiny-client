@@ -110,7 +110,7 @@ export default {
         try {
           console.log("===>", win.document.URL);
           let url = win.document.URL;
-          let token = await url.slice(22, url.length);
+          let token = url.slice(22, url.length);
           console.log("inside if condition =>", token);
           if (token !== "") {
             localStorage.setItem("token", token);
