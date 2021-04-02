@@ -144,7 +144,7 @@
                             </p>
                             <p>
                               You puchase {{ ticketsBuy.quantity }} /
-                              {{ ticketLimit }} tickets
+                              {{ ticketLimit > 10 ? 10 : ticketLimit }} tickets
                             </p>
                             <div
                               class="ui three column grid button-buy-tickets"
@@ -162,9 +162,22 @@
                                 <button
                                   class="round-black-btn"
                                   @click="clickPay()"
-                                  v-if="ticketsBuy.quantity < 10"
+                                  v-if="
+                                    ticketsBuy.quantity < 10 &&
+                                      eventDetails.price > 0
+                                  "
                                 >
                                   Buy Ticket
+                                </button>
+                                <button
+                                  class="round-black-btn"
+                                  @click="clickFree()"
+                                  v-if="
+                                    ticketsBuy.quantity < 10 &&
+                                      eventDetails.price == 0
+                                  "
+                                >
+                                  Free
                                 </button>
                               </div>
                             </div>
@@ -294,41 +307,7 @@ export default {
     },
   },
   methods: {
-    showImage(url) {
-      this.$data.currentImage = url;
-    },
-    getAllParticipent() {
-      axios
-        .get(`http://localhost:3000/participant/${this.eventDetails.id}`)
-        .then(({ data }) => {
-          if (data) {
-            const allTicket = data.reduce((i, el) => {
-              return i + el.quantity;
-            }, 0);
-            this.$data.ticketRiserved = allTicket;
-            if (this.eventDetails.ticket - this.ticketRiserved <= 10) {
-              this.$data.ticketLimit =
-                this.eventDetails.ticket - this.ticketRiserved;
-            }
-          }
-        })
-        .catch((err) => console.log(err));
-    },
-
-    getEventComment() {
-      setInterval(() => {
-        axios
-          .get("http://localhost:3000/comments/" + this.eventDetails.id)
-          .then(({ data }) => {
-            this.$data.comments = data;
-          })
-          .catch((err) => console.log(err));
-      }, 2000);
-    },
-
-    submittedPay(PayMeth) {
-      PayMeth.amount = this.tickets * 1 * this.eventDetails.price * 1;
-      PayMeth.receiverWallet = "6064c027c7e3ca6b3c9fa682";
+    clickFree() {
       axios
         .post(
           `http://localhost:3000/ticket/${this.userinfo.id}/${this.eventDetails.id}`,
@@ -349,7 +328,69 @@ export default {
               place: this.$data.tickets,
             },
           };
+          axios
+            .post(`http://localhost:3000/send/ticket`, ticketData)
+            .then(({ data }) => {})
+            .catch((err) => console.log(err));
+        })
+        .catch((err) => console.log(err));
+    },
+    showImage(url) {
+      this.$data.currentImage = url;
+    },
+    getAllParticipent() {
+      axios
+        .get(`http://localhost:3000/participant/${this.eventDetails.id}`)
+        .then(({ data }) => {
+          if (data[0] !== undefined) {
+            const allTicket = data.reduce((acc, el) => {
+              return acc + el.quantity;
+            }, 0);
+            this.$data.ticketRiserved = allTicket;
+            if (this.eventDetails.ticket - this.ticketRiserved <= 10) {
+              this.$data.ticketLimit =
+                this.eventDetails.ticket - this.ticketRiserved;
+            }
+          } else {
+            this.$data.ticketRiserved = 0;
+          }
+        })
+        .catch((err) => console.log(err));
+    },
 
+    getEventComment() {
+      setInterval(() => {
+        axios
+          .get("http://localhost:3000/comments/" + this.eventDetails.id)
+          .then(({ data }) => {
+            this.$data.comments = data;
+          })
+          .catch((err) => console.log(err));
+      }, 2000);
+    },
+
+    submittedPay(PayMeth) {
+      PayMeth.amount = this.tickets * 1 * this.eventDetails.price * 1;
+      axios
+        .post(
+          `http://localhost:3000/ticket/${this.userinfo.id}/${this.eventDetails.id}`,
+          { quantity: this.$data.tickets }
+        )
+        .then(({ data }) => {
+          this.getParticipant();
+          const ticketData = {
+            data: {
+              userEmail: this.userinfo.email,
+              userName: this.userinfo.username,
+              eventName: this.eventDetails.name,
+              eventLocation: this.eventDetails.location,
+              eventDate: this.eventDetails.eventDate,
+              purchaseTime: `${moment().format("MMM Do YY")}`,
+              from: this.eventDetails.dateEnds,
+              to: this.eventDetails.dateStart,
+              place: this.$data.tickets,
+            },
+          };
           axios
             .post(`http://localhost:3000/send/ticket`, ticketData)
             .then(({ data }) => {

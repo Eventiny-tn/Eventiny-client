@@ -14,7 +14,6 @@ import {
 import { Comment } from '../comments/comment.entity';
 import { Participant } from 'src/participant/participant.entity';
 
-// import { Participant } from 'src/participant/participant.entity';
 @Entity('event')
 export class Event {
   @PrimaryGeneratedColumn()
