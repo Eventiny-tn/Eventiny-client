@@ -32,12 +32,12 @@
     <div class="testbox">
       <form action="/">
         <div class="banner">
-          <h1>Sposorise facebook page</h1>
+          <h1>Sponsorise facebook page</h1>
         </div>
         <br />
         <fieldset>
           <div class="item">
-            <label for="fname"> Facebook Pge Name<span>*</span></label>
+            <label for="fname"> Facebook Page Name<span>*</span></label>
             <input id="fname" type="text" name="fname" required />
           </div>
           <div class="item">
