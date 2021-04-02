@@ -505,7 +505,7 @@ body {
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 #main-nav {
-  margin-left: 690%;
+  float: right;
 }
 
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700,800");
