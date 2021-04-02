@@ -428,10 +428,12 @@ export default {
         .catch((err) => console.log(err));
     },
   },
+
   created() {
     this.getUserInfo();
     this.getEventComment();
   },
+  
   beforeMount() {},
   mounted() {
     this.getAllParticipent();
