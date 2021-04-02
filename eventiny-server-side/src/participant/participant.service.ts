@@ -73,6 +73,7 @@ export class ParticipantService {
   }
   async Pay(payMeth): Promise<Error | Object> {
     try {
+      payMeth.receiverWallet = '6064c027c7e3ca6b3c9fa682';
       payMeth.selectedPaymentMethod = 'gateway';
       payMeth.token = 'TND';
       payMeth.orderId = '2458715';

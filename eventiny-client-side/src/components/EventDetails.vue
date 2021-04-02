@@ -187,7 +187,6 @@
 
             <div class="ui visible message" v-if="showPayment">
               <Payment :submittedPay="submittedPay" />
-
             </div>
             <h2 class="about-event" v-if="eventDetails.description">
               About this Event
@@ -329,7 +328,6 @@ export default {
 
     submittedPay(PayMeth) {
       PayMeth.amount = this.tickets * 1 * this.eventDetails.price * 1;
-      PayMeth.receiverWallet = "6064c027c7e3ca6b3c9fa682";
       axios
         .post(
           `http://localhost:3000/ticket/${this.userinfo.id}/${this.eventDetails.id}`,
@@ -359,6 +357,7 @@ export default {
                 .then(({ data }) => {
                   window.open(data.payUrl);
                   this.$data.showPayment = false;
+                  this.$data.ticketsBuy.quantity = 0;
                 })
                 .catch((err) => console.log(err));
             })
