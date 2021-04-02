@@ -19,9 +19,9 @@ import { Participant } from 'src/participant/participant.entity';
 export class Event {
   @PrimaryGeneratedColumn()
   id: number;
-  @Column({ length: 25 })
+  @Column('text')
   name: string;
-  @Column()
+  @Column('text')
   caption: string;
   @Column({ default: 'Free' })
   price: string;
