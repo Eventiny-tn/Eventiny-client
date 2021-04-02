@@ -187,7 +187,6 @@
 
             <div class="ui visible message" v-if="showPayment">
               <Payment :submittedPay="submittedPay" />
-
             </div>
             <h2 class="about-event" v-if="eventDetails.description">
               About this Event
@@ -350,7 +349,7 @@ export default {
               place: this.$data.tickets,
             },
           };
-          
+
           axios
             .post(`http://localhost:3000/send/ticket`, ticketData)
             .then(({ data }) => {
