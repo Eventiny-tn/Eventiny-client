@@ -38,7 +38,6 @@ export class UserService {
     });
     return { user: user, token: access_token };
   }
-
   async login(body: UserLog): Promise<object | Error | string> {
     const logger = await this.userRepository.findOne({ email: body.email });
 
@@ -64,7 +63,7 @@ export class UserService {
     // if (header) {
     const token = header.split(' ')[1];
     let access_token = this.jwtService.verify(token, { secret: 'Liiim' });
-    
+
     const info = await this.userRepository.findOne({
       email: access_token.username,
     });
