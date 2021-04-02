@@ -349,6 +349,7 @@ export default {
               place: this.$data.tickets,
             },
           };
+          
           axios
             .post(`http://localhost:3000/send/ticket`, ticketData)
             .then(({ data }) => {
@@ -433,7 +434,7 @@ export default {
     this.getUserInfo();
     this.getEventComment();
   },
-  
+
   beforeMount() {},
   mounted() {
     this.getAllParticipent();
