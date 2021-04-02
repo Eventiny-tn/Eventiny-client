@@ -14,6 +14,18 @@
             </h3>
           </a>
           >
+          <div
+            id="main-nav"
+            class="my-heading bg-main collapse navbar-collapse"
+          >
+            <ul class="navbar-nav ml-auto">
+              <li>
+                <a class="nav-item nav-link active " href="/GeneralPage"
+                  ><strong>Home</strong>
+                </a>
+              </li>
+            </ul>
+          </div>
           <!-- Form -->
           <form
             class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto"
@@ -44,34 +56,6 @@
                   </div>
                 </div>
               </a>
-              <div
-                class="dropdown-menu dropdown-menu-arrow dropdown-menu-right"
-              >
-                <div class=" dropdown-header noti-title">
-                  <h6 class="text-overflow m-0">Welcome!</h6>
-                </div>
-                <a class="dropdown-item">
-                  <i class="ni ni-single-02"></i>
-                  <span>My profile</span>
-                </a>
-                <a class="dropdown-item">
-                  <i class="ni ni-settings-gear-65"></i>
-                  <span>Settings</span>
-                </a>
-                <a class="dropdown-item">
-                  <i class="ni ni-calendar-grid-58"></i>
-                  <span>Activity</span>
-                </a>
-                <a class="dropdown-item">
-                  <i class="ni ni-support-16"></i>
-                  <span>Support</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#!" class="dropdown-item">
-                  <i class="ni ni-user-run"></i>
-                  <span>Logout</span>
-                </a>
-              </div>
             </li>
             <li class="nav-item" @click.prevent="feed()" v-if="isLogged">
               <a class="nav-link">Feed</a>
@@ -217,6 +201,7 @@
                     <button
                       class="ui tiny toggle button"
                       @click="changeView('2')"
+                      v-if="data.password !== null"
                     >
                       Change Password
                     </button>
@@ -677,7 +662,6 @@ export default {
     },
   },
   created() {
-    
     this.getinfos();
   },
 };
