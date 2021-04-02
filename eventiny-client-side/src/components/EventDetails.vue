@@ -144,7 +144,7 @@
                             </p>
                             <p>
                               You puchase {{ ticketsBuy.quantity }} /
-                              {{ 10 }} tickets
+                              {{ ticketLimit > 10 ? 10 : ticketLimit }} tickets
                             </p>
                             <div
                               class="ui three column grid button-buy-tickets"
@@ -162,9 +162,22 @@
                                 <button
                                   class="round-black-btn"
                                   @click="clickPay()"
-                                  v-if="ticketsBuy.quantity < 10"
+                                  v-if="
+                                    ticketsBuy.quantity < 10 &&
+                                      eventDetails.price > 0
+                                  "
                                 >
                                   Buy Ticket
+                                </button>
+                                <button
+                                  class="round-black-btn"
+                                  @click="clickFree()"
+                                  v-if="
+                                    ticketsBuy.quantity < 10 &&
+                                      eventDetails.price == 0
+                                  "
+                                >
+                                  Free
                                 </button>
                               </div>
                             </div>
@@ -296,6 +309,34 @@ export default {
     },
   },
   methods: {
+    clickFree() {
+      axios
+        .post(
+          `http://localhost:3000/ticket/${this.userinfo.id}/${this.eventDetails.id}`,
+          { quantity: this.$data.tickets }
+        )
+        .then(({ data }) => {
+          this.getParticipant();
+          const ticketData = {
+            data: {
+              userEmail: this.userinfo.email,
+              userName: this.userinfo.username,
+              eventName: this.eventDetails.name,
+              eventLocation: this.eventDetails.location,
+              eventDate: this.eventDetails.eventDate,
+              purchaseTime: `${moment().format("MMM Do YY")}`,
+              from: this.eventDetails.dateEnds,
+              to: this.eventDetails.dateStart,
+              place: this.$data.tickets,
+            },
+          };
+          axios
+            .post(`http://localhost:3000/send/ticket`, ticketData)
+            .then(({ data }) => {})
+            .catch((err) => console.log(err));
+        })
+        .catch((err) => console.log(err));
+    },
     showImage(url) {
       this.$data.currentImage = url;
     },
