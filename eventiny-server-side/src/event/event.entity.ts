@@ -14,14 +14,13 @@ import {
 import { Comment } from '../comments/comment.entity';
 import { Participant } from 'src/participant/participant.entity';
 
-// import { Participant } from 'src/participant/participant.entity';
 @Entity('event')
 export class Event {
   @PrimaryGeneratedColumn()
   id: number;
-  @Column({ length: 25 })
+  @Column('text')
   name: string;
-  @Column()
+  @Column('text')
   caption: string;
   @Column({ default: 'Free' })
   price: string;
