@@ -142,7 +142,7 @@
                             </p>
                             <p>
                               You puchase {{ ticketsBuy.quantity }} /
-                              {{ ticketLimit }} tickets
+                              {{ 10 }} tickets
                             </p>
                             <div
                               class="ui three column grid button-buy-tickets"
@@ -310,6 +310,8 @@ export default {
               this.$data.ticketLimit =
                 this.eventDetails.ticket - this.ticketRiserved;
             }
+          } else {
+            this.$data.ticketRiserved = 0;
           }
         })
         .catch((err) => console.log(err));
@@ -348,7 +350,6 @@ export default {
               place: this.$data.tickets,
             },
           };
-
           axios
             .post(`http://localhost:3000/send/ticket`, ticketData)
             .then(({ data }) => {
@@ -357,7 +358,6 @@ export default {
                 .then(({ data }) => {
                   window.open(data.payUrl);
                   this.$data.showPayment = false;
-                  this.$data.ticketsBuy.quantity = 0;
                 })
                 .catch((err) => console.log(err));
             })

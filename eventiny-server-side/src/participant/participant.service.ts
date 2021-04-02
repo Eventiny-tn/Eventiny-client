@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException, HttpService } from '@nestjs/common';
+import { Injectable, HttpService } from '@nestjs/common';
 import { User } from 'src/user/user.entity';
 import { Connection, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -13,8 +13,6 @@ export class ParticipantService {
     private userRepository: Repository<User>,
     @InjectRepository(Event)
     private eventRepository: Repository<Event>,
-    // @InjectRepository(Participant)
-    // private participantRepository: Repository<Participant>,
     private connection: Connection,
   ) {}
   async buyTicket(user_id, event_id, body): Promise<Error | Object> {
@@ -73,27 +71,13 @@ export class ParticipantService {
   }
   async Pay(payMeth): Promise<Error | Object> {
     try {
-      payMeth.receiverWallet = '6064c027c7e3ca6b3c9fa682';
+      payMeth.receiverWallet = process.env.Eventiny_Wallet;
       payMeth.selectedPaymentMethod = 'gateway';
       payMeth.token = 'TND';
       payMeth.orderId = '2458715';
       payMeth.webhook = 'merchant.tech/api/notification_payment';
       payMeth.successUrl = 'success@merchant.tech';
       payMeth.failUrl = 'fail@merchant.tech';
-      // const payMeth2 = {
-      //   receiverWallet: '6064c027c7e3ca6b3c9fa682',
-      //   amount: 2000,
-      //   selectedPaymentMethod: 'gateway',
-      //   token: 'TND',
-      //   firstName: 'Haythem',
-      //   lastName: 'Zribi',
-      //   phoneNumber: '55513859',
-      //   email: 'zribihaythem@gmail.com',
-      //   orderId: '2458715',
-      //   webhook: 'merchant.tech/api/notification_payment',
-      //   successUrl: 'success@merchant.tech',
-      //   failUrl: 'fail@merchant.tech',
-      // };
 
       const response = await this.http
         .post(
