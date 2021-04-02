@@ -31,21 +31,18 @@
                   />
                 </div>
 
-                <div
-                  class=" form-group"
-                  @click.prevent="onSubmitLogin(login)"
-                  id="login-btn"
-                >
-                  <button class="ui button btn submit_h">
-                    Login
-                  </button>
-                  <button
-                    class="ui google plus button"
-                    @click.prevent="googleLogin()"
-                  >
-                    <i class="google icon"></i>
-                    Google
-                  </button>
+                <div class=" form-group" id="login-btn">
+                  <div @click.prevent="onSubmitLogin(login)">
+                    <button class="ui button btn submit_h">
+                      Login
+                    </button>
+                  </div>
+                  <div @click.prevent="googleLogin()">
+                    <button class="ui google plus button">
+                      <i class="google icon"></i>
+                      Google
+                    </button>
+                  </div>
                 </div>
                 <!-- <br /><br />  -->
                 <br /><br />

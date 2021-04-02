@@ -126,8 +126,8 @@
           <!-- v-if="onDetails === false" -->
           <div v-if="view === '0'">
             <section id="gobottom" class="content">
-              <div class="container mt-40 mb-30">
-                <div class="container">
+              <div class=" mt-40 mb-30">
+                <div class="container" id="search-bar-event">
                   <div class="ui icon input search">
                     <input
                       type="text"
@@ -378,6 +378,9 @@ jQuery(function($) {
 </script>
 
 <style scoped>
+/* .card {
+  width: 10% !important;
+} */
 .btn-defaultt {
   background-color: teal;
 }
@@ -464,8 +467,11 @@ section video {
 section .container {
   position: relative;
   z-index: 2;
+  width: 100% !important;
 }
-
+.container {
+  width: 100%;
+}
 section .overlay-wcs {
   position: absolute;
   top: 0;
@@ -561,7 +567,7 @@ p {
 }
 .header-area {
   position: relative;
-  height: 100vh;
+  height: 80vh;
   background-attachment: fixed;
   background-position: center center;
   background-repeat: no-repear;
@@ -1026,6 +1032,7 @@ a.btn.btn-default.btn-scroll {
   overflow: hidden;
   background: #3085a3;
   text-align: center;
+  width: 100% !important;
   cursor: pointer;
 }
 
@@ -1039,6 +1046,8 @@ a.btn.btn-default.btn-scroll {
 }
 
 .grid figure figcaption {
+  width: 100% !important;
+
   padding: 2em;
   color: #fff;
   text-transform: uppercase;
@@ -1058,15 +1067,19 @@ a.btn.btn-default.btn-scroll {
   top: 0;
   left: 0;
   width: 100%;
+
   height: 100%;
 }
-
+.row {
+  width: 100% !important;
+}
 .grid figure figcaption > a {
   z-index: 1000;
   text-indent: 200%;
   white-space: nowrap;
   font-size: 0;
   opacity: 0;
+  width: 100% !important;
 }
 
 .grid figure h2 {
