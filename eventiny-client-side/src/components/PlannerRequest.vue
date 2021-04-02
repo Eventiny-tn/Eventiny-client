@@ -68,8 +68,8 @@
             <div class="card__side card__side--back card__side--back-1">
               <div class="card__cta">
                 <div class="card__price-box">
-                  <p class="card__price-only">Only</p>
-                  <p class="card__price-value">$0</p>
+                  <p class="card__price-value">Only</p>
+                  <p class="card__price-only">0 TND</p>
                 </div>
                 <a
                   href="#0"
@@ -103,8 +103,8 @@
             <div class="card__side card__side--back card__side--back-2">
               <div class="card__cta">
                 <div class="card__price-box">
-                  <p class="card__price-only">3 Months</p>
-                  <p class="card__price-value">$120</p>
+                  <p class="card__price-value">3 Months</p>
+                  <p class="card__price-only">120 TND</p>
                 </div>
                 <a href="#0" class="btn btn--white">Purshase Now</a>
               </div>
@@ -134,8 +134,8 @@
             <div class="card__side card__side--back card__side--back-3">
               <div class="card__cta">
                 <div class="card__price-box">
-                  <p class="card__price-only">Year</p>
-                  <p class="card__price-value">$295</p>
+                  <p class="card__price-value">1 Year</p>
+                  <p class="card__price-only">295 TND</p>
                 </div>
                 <a href="#0" class="btn btn--white">Purshase Now</a>
               </div>
@@ -208,6 +208,9 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Lobster");
 html {
   font-size: 62.5%;
+}
+#main-nav {
+  float: right;
 }
 .fa-sign-out-alt {
   cursor: pointer;
