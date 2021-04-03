@@ -23,7 +23,7 @@ export class AppController {
   @UseGuards(AuthGuard('google'))
   async googleAuthRedirect(@Req() req, @Res() res) {
     const { token, data } = await this.appService.googleLogin(req, res);
-    res.redirect('http://localhost:8080/' + token);
+    res.redirect('http://104.248.253.154:8080/' + token);
     // return this.data;
   }
 
@@ -35,5 +35,4 @@ export class AppController {
   sendTicket(@Body() ticketData): any {
     return this.appService.sendTicket(ticketData);
   }
-
 }
