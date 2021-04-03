@@ -155,7 +155,7 @@ export default {
       }
       console.log("header generalpage ===>", header);
       axios
-        .get("http://192.168.22.75:3000/profile", { headers: header })
+        .get("http://104.248.253.154:3000/profile", { headers: header })
         .then(({ data }) => {
           if (data) {
             this.$data.data = data;
@@ -181,7 +181,7 @@ export default {
       ) {
         console.log("haalim", this.$data.data.id);
         axios
-          .post("http://192.168.22.75:3000/plannerRequest", {
+          .post("http://104.248.253.154:3000/plannerRequest", {
             firstQ: this.firstQ,
             secondQ: this.secondQ,
             thirdQ: this.thirdQ,
