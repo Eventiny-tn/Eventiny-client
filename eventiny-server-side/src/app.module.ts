@@ -17,8 +17,15 @@ import { ParticipantService } from './participant/participant.service';
 import { ParticipantController } from './participant/participant.controller';
 import { MarketingSolutionModule } from './marketing-solution/marketing-solution.module';
 
+// Static Client Side Rendering
+// import { ServeStaticModule } from '@nestjs/serve-static';
+// import { join } from 'path';
+
 @Module({
   imports: [
+    // ServeStaticModule.forRoot({
+    //   rootPath: join(__dirname, '..', '..', '/eventiny-client-side/dist'),
+    // }),
     TypeOrmModule.forRoot(),
     UserModule,
     EventModule,
