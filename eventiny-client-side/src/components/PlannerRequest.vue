@@ -170,7 +170,7 @@ export default {
         return;
       }
       axios
-        .get("http://localhost:3000/verify", headers)
+        .get("http://http://192.168.22.75:3000/verify", headers)
         .then(({ data }) => {
           console.log("==>", data);
           if (data.username !== undefined) {
@@ -190,7 +190,10 @@ export default {
     },
     onSubmitPlannerForm() {
       axios
-        .patch("http://localhost:3000/plannerDemand/" + this.data.id, {})
+        .patch(
+          "http://http://192.168.22.75:3000/plannerDemand/" + this.data.id,
+          {}
+        )
         .then(({ data }) => {
           swal("Purshase has been done!", "success");
           this.$router.push("/GeneralPage");

@@ -247,10 +247,12 @@ export default {
       this.$data.view = "0";
     },
     goToEvenHistory() {
-      axios.get("http://localhost:3000/event/eventhistory").then(({ data }) => {
-        this.$data.dataEvents = data.slice(0, data.length);
-        this.$data.view = "2";
-      });
+      axios
+        .get("http://http://192.168.22.75:3000/event/eventhistory")
+        .then(({ data }) => {
+          this.$data.dataEvents = data.slice(0, data.length);
+          this.$data.view = "2";
+        });
     },
     start() {
       this.$router.push("/plannerDemand");
@@ -284,7 +286,7 @@ export default {
       }
       console.log("header generalpage ===>", header);
       axios
-        .get("http://localhost:3000/profile", { headers: header })
+        .get("http://http://192.168.22.75:3000/profile", { headers: header })
         .then(({ data }) => {
           if (data) {
             this.$data.data = data;
@@ -302,7 +304,7 @@ export default {
     },
     getevents() {
       axios
-        .get("http://localhost:3000/event")
+        .get("http://http://192.168.22.75:3000/event")
         .then(({ data }) => {
           console.log("events ==>", data);
           this.$data.dataEvents = data;
@@ -310,13 +312,15 @@ export default {
         .catch((err) => console.log(err));
     },
     getCategories() {
-      axios.get("http://localhost:3000/category").then(({ data }) => {
-        this.$data.dataCategories = data;
-      });
+      axios
+        .get("http://http://192.168.22.75:3000/category")
+        .then(({ data }) => {
+          this.$data.dataCategories = data;
+        });
     },
     getEventByCategory(id, value) {
       axios
-        .get("http://localhost:3000/event/category/" + id)
+        .get("http://http://192.168.22.75:3000/event/category/" + id)
         .then(({ data }) => {
           console.log("ikdem====>", data);
           this.$data.dataEvents = data.slice(0, data.length);

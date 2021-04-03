@@ -729,13 +729,15 @@ export default {
 
   methods: {
     getEventPlanner() {
-      axios.get("http://localhost:3000/eventPlanners").then(({ data }) => {
-        this.eventPlanner = data.slice(0, 4);
-      });
+      axios
+        .get("http://http://192.168.22.75:3000/eventPlanners")
+        .then(({ data }) => {
+          this.eventPlanner = data.slice(0, 4);
+        });
     },
     getTheLastestEvent() {
       axios
-        .get("http://localhost:3000/event/latestEvent")
+        .get("http://http://192.168.22.75:3000/event/latestEvent")
         .then(({ data }) => {
           this.latestEvent = data;
         })
@@ -755,7 +757,7 @@ export default {
         return;
       }
       axios
-        .get("http://localhost:3000/verify", headers)
+        .get("http://http://192.168.22.75:3000/verify", headers)
         .then(({ data }) => {
           console.log("==>", data);
           if (data.username !== undefined) {
