@@ -151,7 +151,7 @@ export default {
       this.$data.update = false;
       axios
         .put(
-          "http://http://192.168.22.75:3000/comments/" +
+          "http://192.168.22.75:3000/comments/" +
             commentId +
             "/" +
             userId +
@@ -173,7 +173,7 @@ export default {
     },
     deleteComment(id) {
       axios
-        .delete("http://http://192.168.22.75:3000/comments/" + id)
+        .delete("http://192.168.22.75:3000/comments/" + id)
         .then(({ data }) => {
           this.getEventComment();
         })
@@ -187,7 +187,7 @@ export default {
     postComment() {
       axios
         .post(
-          `http://http://192.168.22.75:3000/comments/${this.userinfo.id}/${this.eventDetails.id}`,
+          `http://192.168.22.75:3000/comments/${this.userinfo.id}/${this.eventDetails.id}`,
           { comment: this.newComment }
         )
         .then(({ data }) => {

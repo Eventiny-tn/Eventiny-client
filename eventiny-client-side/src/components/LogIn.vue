@@ -96,7 +96,7 @@ export default {
   methods: {
     async googleLogin() {
       const win = window.open(
-        "http://http://192.168.22.75:3000",
+        "http://192.168.22.75:3000",
         "windowname1",
         "width=800, height=600"
       );
@@ -132,7 +132,7 @@ export default {
         );
       } else {
         axios
-          .post("http://http://192.168.22.75:3000/login", login)
+          .post("http://192.168.22.75:3000/login", login)
           .then(({ data }) => {
             if (data.token === undefined) {
               localStorage.removeItem("token");

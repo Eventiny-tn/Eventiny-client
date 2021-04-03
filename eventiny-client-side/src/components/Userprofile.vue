@@ -524,13 +524,10 @@ export default {
         this.newPassword === this.comfirmPassword
       ) {
         axios
-          .put(
-            "http://http://192.168.22.75:3000/password/" + this.$data.data.id,
-            {
-              currentPass: this.currentPassword,
-              password: this.newPassword,
-            }
-          )
+          .put("http://192.168.22.75:3000/password/" + this.$data.data.id, {
+            currentPass: this.currentPassword,
+            password: this.newPassword,
+          })
           .then(({ data }) => {
             Swal.fire({
               position: "top-end",
@@ -579,7 +576,7 @@ export default {
     uploadPictureToDataBase() {
       if (this.$data.imageUrl) {
         axios
-          .put("http://http://192.168.22.75:3000/upload/" + this.data.id, {
+          .put("http://192.168.22.75:3000/upload/" + this.data.id, {
             image: this.$data.imageUrl,
           })
           .then(({ data }) => {
@@ -596,7 +593,7 @@ export default {
       console.log(this.data.username);
       if (this.username && this.email && this.firstname && this.lastname) {
         axios
-          .put("http://http://192.168.22.75:3000/updateinfo/" + this.data.id, {
+          .put("http://192.168.22.75:3000/updateinfo/" + this.data.id, {
             username: this.$data.username,
             firstname: this.$data.firstname,
             lastname: this.$data.lastname,
@@ -633,7 +630,7 @@ export default {
         return;
       }
       axios
-        .get("http://http://192.168.22.75:3000/profile", { headers: header })
+        .get("http://192.168.22.75:3000/profile", { headers: header })
         .then(({ data }) => {
           console.log("userinfo", data);
           this.$data.data = data;
