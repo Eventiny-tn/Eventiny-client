@@ -96,7 +96,7 @@ export default {
   methods: {
     async googleLogin() {
       const win = window.open(
-        "http://104.248.253.154:3000",
+        "http://localhost:3000",
         "windowname1",
         "width=800, height=600"
       );
