@@ -153,7 +153,7 @@
           <div class="col-md-8">
             <div class="inner-section wow fadeInUp">
               <h3>
-                {{ latestEvent.user?.firstname }}:
+                By {{ latestEvent.user?.firstname }}:
                 <span class="bg-main"> {{ latestEvent.name }}</span>
               </h3>
               <br />
@@ -185,10 +185,11 @@
           <div class="col-md-12 wow fadeInUp">
             <h3 class="title-heading text-center">EventinyTN EVENTS</h3>
             <p class="myp text-center">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book.
+              At EVENTINYTn, we have a wide variety of event planners from
+              across the globe planning super special events from musical
+              festival and private parties to surfing and camping events. Take a
+              look at our event planners available this period, and check out
+              the events they have been organizing!
             </p>
           </div>
         </div>
@@ -221,17 +222,16 @@
                   <div class="col-md-8 mb-3">
                     <div class="text-block">
                       <h5 class="events-heading">
-                        Lorem ipsum is simply dummy text of the printing and
-                        typesetting industry.
+                        Welcome to EventinyTN community, Be your own hero! Join,
+                        organise and sponsorise events!
                       </h5>
                       <p class="myp-font">
-                        contrary to popular belief, Lorem Ipsum is simply dummy
-                        text of the printing and typesetting industry. Lorem
-                        Ipsum has been the industry's standard dummy text ever
-                        since the 1500s, when an unknown printer took a galley
-                        of type and scrambled it to make a type specimen book
-                        and more recently with desktop publishing software like
-                        Aldus PageMaker.
+                        At EVENTINYTn, we have a wide variety of event planners
+                        from across the globe planning super special events from
+                        musical festival and private parties to surfing and
+                        camping events. Take a look at our event planners
+                        available this period, and check out the events they
+                        have been organizing!
                       </p>
                     </div>
                   </div>
@@ -296,10 +296,7 @@
                 </div>
               </div>
               <div class="card-footer text-center">
-                <small
-                  >Lorem Ipsum is simply dummy text of the printing and
-                  typesetting</small
-                >
+                <small>JOIN EVENTINYTn EVENT PLANNERS </small>
               </div>
             </div>
           </div>
@@ -516,9 +513,10 @@
               Eventiny<span class="bg-main">Tn</span> MARKET PLACE
             </h3>
             <p class=" text-center">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s.
+              Our Kendall-Jackson Chefs bring you an amazing (and delicious!)
+              virtual cooking class featuring Chicken, Chorizo and Seafood
+              Paella. Download the recipes to cook along or simply pour a glass
+              of wine, invite a friend and enjoy!
             </p>
           </div>
         </div>
@@ -530,15 +528,19 @@
             <div class="card">
               <img
                 class="card-img-top h-262"
-                src="https://images.pexels.com/photos/449627/pexels-photo-449627.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+                src="https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F125802659%2F55953549179%2F1%2Foriginal.20201216-001341?w=800&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C127%2C800%2C400&s=4d6d54c80c9dd66d12ec4b1f8311de20"
               />
               <div class="card-block">
-                <h4 class="card-title">Lorem Ipsum Dolor Site Amet</h4>
+                <h4 class="card-title">
+                  Join us for a (Live!) virtual cooking class hosted by the KJ
+                  Culinary Team.
+                </h4>
 
                 <div class="card-text">
                   <p>
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's.
+                    Registration is free and required in advance. All registered
+                    participants will be sent a Zoom link and password, via
+                    email prior to the event.
                   </p>
                 </div>
               </div>
@@ -555,15 +557,18 @@
             <div class="card">
               <img
                 class="card-img-top h-262"
-                src="https://images.pexels.com/photos/56005/fiji-beach-sand-palm-trees-56005.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+                src="https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F125837037%2F160816381444%2F1%2Foriginal.20210211-091403?w=800&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C0%2C2160%2C1080&s=8926f0ace7644aec065e96a0ff0cd333"
               />
               <div class="card-block">
-                <h4 class="card-title">Lorem Ipsum Dolor Site Amet</h4>
+                <h4 class="card-title">
+                  Singing With Nightingales: Earth Day 2021
+                </h4>
 
                 <div class="card-text">
                   <p>
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's.
+                    Hosted by folk singer Sam Lee this audio broadcast, live on
+                    Youtube, will take you on a journey into the woods of Sussex
+                    to hear the unforgettable song of the nightingale.
                   </p>
                 </div>
               </div>
@@ -581,15 +586,19 @@
             <div class="card">
               <img
                 class="card-img-top h-262"
-                src="https://images.pexels.com/photos/753626/pexels-photo-753626.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+                src="https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F107523925%2F81112102855%2F1%2Foriginal.20200801-160340?w=800&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C0%2C1280%2C640&s=b435e54d30680866e0aa44af595cd588"
               />
               <div class="card-block">
-                <h4 class="card-title ">Lorem Ipsum Dolor Site Amet</h4>
+                <h4 class="card-title ">
+                  Knee Pain Corrective Exercise Workshop - For Women Only
+                </h4>
 
                 <div class="card-text ">
                   <p>
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's.
+                    Strengthening the muscles around the knee is not the answer
+                    to knee pain reduction. If you or a loved one is
+                    experiencing hip or knee pain, you won't want to miss this
+                    special event.
                   </p>
                 </div>
               </div>
@@ -611,9 +620,11 @@
               Eventiny<span class="bg-main">Tn</span> FEATURED
             </h3>
             <p class=" text-center">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s.
+              Camping at a festival, especially multi-day festivals, can be a
+              significant undertaking but can also establish your festival as a
+              destination event, where people will travel great distances to
+              enjoy a full weekend and increase the amount of revenue streams
+              for your festival.
             </p>
           </div>
         </div>
@@ -632,21 +643,17 @@
           <div class="col-sm-6 col-md-4 col-lg-6 mt-4">
             <div class="my-right-text wow fadeInUp">
               <p class="text-justify font-italic">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book. It has
-                survived not only five centuries, but also the leap into
-                electronic typesetting, remaining essentially unchanged. It was
-                popularised in the 1960s with the release of Letraset sheets.
-                remaining essentially unchanged. It was popularised in the 1960s
-                with the release of Letraset sheets containing Lorem Ipsum
-                passages, Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown.
+                There comes a time in every traveler’s life when on the road &
+                you feel you need the finer things in life. A time where being
+                amongst the action is still important and where you want your
+                festival travel experiences to surround you with like-minded
+                people who want to party and socialize. Where you want to stay
+                in Europe’s finest campsites, but would prefer not to crawl into
+                a twin-share tent at the end of the day.
               </p>
 
               <a href="#" class="link-color">Eventiny</a>
-              <p class="text-muted">name of the event</p>
+              <p class="text-muted">Camping in festivals</p>
             </div>
           </div>
         </div>
@@ -1101,7 +1108,7 @@ a.btn.btn-circle.my-social-btn {
 .inner-section h3:after {
   content: "";
   position: absolute;
-  border-bottom: 4px solid #008ba3;
+  border-bottom: 0px solid #008ba3;
   width: 100%;
   max-width: 10%;
   top: 37px;
@@ -1156,7 +1163,7 @@ a:hover {
   color: #6c6d83;
 }
 .mybg-events {
-  background: url("../assets/images/photo-1507608869274-d3177c8bb4c7.jpeg")
+  background: url("https://groupelemetal.com/wp-content/uploads/2016/05/Table-Conferance.jpg")
     no-repeat center center fixed;
   background-size: cover;
 }
