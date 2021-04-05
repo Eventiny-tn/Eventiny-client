@@ -196,7 +196,7 @@
                       class="ui tiny toggle button"
                       @click="changeView('1')"
                     >
-                      Contact Info  
+                      Contact Info
                     </button>
                     <button
                       class="ui tiny toggle button"

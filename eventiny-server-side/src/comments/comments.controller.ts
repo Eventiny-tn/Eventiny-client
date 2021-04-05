@@ -1,3 +1,4 @@
+import { ApiTags } from '@nestjs/swagger';
 import {
   Controller,
   Param,
@@ -9,7 +10,7 @@ import {
   Put,
 } from '@nestjs/common';
 import { CommentsService } from './comments.service';
-
+@ApiTags('comments')
 @Controller('comments')
 export class CommentsController {
   constructor(private readonly commentsService: CommentsService) {}
