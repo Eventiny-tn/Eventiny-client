@@ -260,7 +260,7 @@ export default {
         return;
       }
       axios
-        .get("http://104.248.253.154:3000/profile", { headers: header })
+        .get("http://localhost:3000/profile", { headers: header })
         .then(({ data }) => {
           console.log("userinfo", data);
           this.$data.data = data;
@@ -296,7 +296,7 @@ export default {
       this.uploadPictureToDataBase();
       console.log("event===>", this.event);
       axios
-        .post("http://104.248.253.154:3000/event", this.event)
+        .post("http://localhost:3000/event", this.event)
         .then((res) => {
           if (res) {
             console.log(res);
@@ -312,7 +312,7 @@ export default {
     },
 
     getCategories() {
-      axios.get("http://104.248.253.154:3000/category").then(({ data }) => {
+      axios.get("http://localhost:3000/category").then(({ data }) => {
         console.log(data);
         this.$data.dataCategories = data;
       });

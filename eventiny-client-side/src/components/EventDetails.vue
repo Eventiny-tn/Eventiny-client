@@ -310,7 +310,7 @@ export default {
     clickFree() {
       axios
         .post(
-          `http://104.248.253.154:3000/ticket/${this.userinfo.id}/${this.eventDetails.id}`,
+          `http://localhost:3000/ticket/${this.userinfo.id}/${this.eventDetails.id}`,
           { quantity: this.$data.tickets }
         )
         .then(({ data }) => {
@@ -329,7 +329,7 @@ export default {
             },
           };
           axios
-            .post(`http://104.248.253.154:3000/send/ticket`, ticketData)
+            .post(`http://localhost:3000/send/ticket`, ticketData)
             .then(({ data }) => {})
             .catch((err) => console.log(err));
         })
@@ -340,7 +340,7 @@ export default {
     },
     getAllParticipent() {
       axios
-        .get(`http://104.248.253.154:3000/participant/${this.eventDetails.id}`)
+        .get(`http://localhost:3000/participant/${this.eventDetails.id}`)
         .then(({ data }) => {
           if (data[0] !== undefined) {
             const allTicket = data.reduce((acc, el) => {
@@ -361,7 +361,7 @@ export default {
     getEventComment() {
       setInterval(() => {
         axios
-          .get("http://104.248.253.154:3000/comments/" + this.eventDetails.id)
+          .get("http://localhost:3000/comments/" + this.eventDetails.id)
           .then(({ data }) => {
             this.$data.comments = data;
           })
@@ -373,7 +373,7 @@ export default {
       PayMeth.amount = this.tickets * 1 * this.eventDetails.price * 1;
       axios
         .post(
-          `http://104.248.253.154:3000/ticket/${this.userinfo.id}/${this.eventDetails.id}`,
+          `http://localhost:3000/ticket/${this.userinfo.id}/${this.eventDetails.id}`,
           { quantity: this.$data.tickets }
         )
         .then(({ data }) => {
@@ -392,10 +392,10 @@ export default {
             },
           };
           axios
-            .post(`http://104.248.253.154:3000/send/ticket`, ticketData)
+            .post(`http://localhost:3000/send/ticket`, ticketData)
             .then(({ data }) => {
               axios
-                .post(`http://104.248.253.154:3000/payment`, PayMeth)
+                .post(`http://localhost:3000/payment`, PayMeth)
                 .then(({ data }) => {
                   window.open(data.payUrl);
                   this.$data.showPayment = false;
@@ -441,7 +441,7 @@ export default {
         return;
       }
       axios
-        .get("http://104.248.253.154:3000/verify", headers)
+        .get("http://localhost:3000/verify", headers)
         .then(({ data }) => {
           if (data !== undefined) {
             this.$data.isLogged = true;
@@ -459,7 +459,7 @@ export default {
     getParticipant() {
       axios
         .get(
-          `http://104.248.253.154:3000/participant/${this.userinfo.id}/${this.eventDetails.id}`
+          `http://localhost:3000/participant/${this.userinfo.id}/${this.eventDetails.id}`
         )
         .then(({ data }) => {
           if (data[0].quantity !== undefined) {

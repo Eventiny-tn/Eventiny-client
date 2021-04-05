@@ -1,13 +1,47 @@
 import { Patch, Req, UseGuards, Param } from '@nestjs/common';
 import { Body, Controller, Get, Post, Headers, Put } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import {
+  ApiBody,
+  ApiCreatedResponse,
+  ApiProperty,
+  ApiResponse,
+  ApiTags,
+  ApiUnauthorizedResponse,
+} from '@nestjs/swagger';
 
 import { Userinfo, UserLog } from './user.entity';
 import { UserService } from './user.service';
-@Controller()
+
+export class UserSignUp {
+  @ApiProperty()
+  username: string;
+  @ApiProperty()
+  firstname: string;
+  @ApiProperty()
+  lastname: string;
+  @ApiProperty()
+  password: string;
+  @ApiProperty()
+  email: string;
+}
+export class UserAfterSignUp {
+  @ApiProperty()
+  user: Userinfo;
+  @ApiProperty()
+  token: string;
+}
+@ApiTags('users')
+@Controller('users')
 export class UserController {
   constructor(private readonly userRepo: UserService) {}
   @Post('signup')
+  @ApiCreatedResponse({
+    description: 'User has been successfully created.',
+    type: UserAfterSignUp,
+  })
+  @ApiUnauthorizedResponse({ description: 'Invalide Cridentials' })
+  @ApiBody({ type: UserSignUp, required: true })
   signup(@Body() body: Userinfo): Promise<object | Error> {
     return this.userRepo.signup(body);
   }

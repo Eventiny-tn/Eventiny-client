@@ -132,7 +132,7 @@ export default {
         );
       } else {
         axios
-          .post("http://104.248.253.154:3000/login", login)
+          .post("http://localhost:3000/login", login)
           .then(({ data }) => {
             if (data.token === undefined) {
               localStorage.removeItem("token");

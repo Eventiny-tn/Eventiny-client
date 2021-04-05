@@ -23,7 +23,6 @@ export class UserService {
     });
     const email = await this.userRepository.findOne({ email: user.email });
     if (username || email) {
-      console.log('here same username');
       return new NotFoundException('NOT FOUND');
     }
     const saltRounds = 10;

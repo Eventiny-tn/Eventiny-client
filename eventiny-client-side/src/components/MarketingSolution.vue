@@ -110,7 +110,7 @@ export default {
         return;
       }
       axios
-        .get("http://104.248.253.154:3000/verify", headers)
+        .get("http://localhost:3000/verify", headers)
         .then(({ data }) => {
           console.log("==>", data);
           if (data.username !== undefined) {
@@ -133,7 +133,7 @@ export default {
     submit() {
       console.log(this.fbinfo);
       axios
-        .post("http://104.248.253.154:3000/marketingsolution", this.fbinfo)
+        .post("http://localhost:3000/marketingsolution", this.fbinfo)
         .then(function(res) {
           console.log(res);
           swal(

@@ -151,7 +151,7 @@ export default {
         signup.confirmPassword !== ""
       ) {
         axios
-          .post("http://104.248.253.154:3000/signup", signup)
+          .post("http://localhost:3000/signup", signup)
           .then(({ data }) => {
             if (data.message === "NOT FOUND") {
               swal("Username or email exist", "Please check again", "error");

@@ -1,3 +1,4 @@
+import { ApiTags } from '@nestjs/swagger';
 import { EventService } from './event.service';
 import {
   Body,
@@ -9,6 +10,7 @@ import {
   Put,
   Req,
 } from '@nestjs/common';
+@ApiTags('event')
 @Controller('event')
 export class EventController {
   constructor(private readonly eventService: EventService) {}
