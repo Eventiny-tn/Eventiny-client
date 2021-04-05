@@ -112,14 +112,15 @@ export class UserService {
   }
   async buyTicket(user_id, event_id): Promise<Error | any> {
     try {
-      return await getConnection()
+      await getConnection()
         .createQueryBuilder()
         .insert()
         .into('participant')
         .values([{ event_id, user_id }])
         .execute();
+      return 'success';
     } catch (error) {
-      console.log(error);
+      return new NotFoundException('NOT FOUND');
     }
   }
   async getplanner(req): Promise<object | Error> {
@@ -144,12 +145,20 @@ export class UserService {
     }
   }
   async upgradePlannerDemande(id): Promise<Error | string> {
-    if (id) {
-      await this.userRepository.update(id.id, { plannerDemand: true });
-      const { email } = await this.userRepository.findOne(id);
-      await this.email.email(email);
-      return 'upgraded';
-    } else {
+    try {
+      if (id) {
+        const { email } = await this.userRepository.findOne(id);
+        if (email !== undefined || email !== null || email == typeof 'object') {
+          await this.userRepository.update(id.id, { plannerDemand: true });
+          await this.email.email(email);
+          return 'upgraded';
+        } else {
+          return new NotFoundException('NOT FOUND');  
+        }
+      } else {
+        return new NotFoundException('NOT FOUND');
+      }
+    } catch (error) {
       return new NotFoundException('NOT FOUND');
     }
   }
