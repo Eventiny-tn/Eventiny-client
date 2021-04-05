@@ -153,7 +153,7 @@ export class UserService {
           await this.email.email(email);
           return 'upgraded';
         } else {
-          return new NotFoundException('NOT FOUND');  
+          return new NotFoundException('NOT FOUND');
         }
       } else {
         return new NotFoundException('NOT FOUND');
