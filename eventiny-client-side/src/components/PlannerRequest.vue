@@ -170,7 +170,7 @@ export default {
         return;
       }
       axios
-        .get("http://localhost:3000/verify", headers)
+        .get("http://localhost:3000/users/verify", headers)
         .then(({ data }) => {
           console.log("==>", data);
           if (data.username !== undefined) {

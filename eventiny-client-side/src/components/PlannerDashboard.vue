@@ -260,7 +260,7 @@ export default {
         return;
       }
       axios
-        .get("http://localhost:3000/profile", { headers: header })
+        .get("http://localhost:3000/users/profile", { headers: header })
         .then(({ data }) => {
           console.log("userinfo", data);
           this.$data.data = data;

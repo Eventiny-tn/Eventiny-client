@@ -524,7 +524,7 @@ export default {
         this.newPassword === this.comfirmPassword
       ) {
         axios
-          .put("http://localhost:3000/password/" + this.$data.data.id, {
+          .put("http://localhost:3000/users/password/" + this.$data.data.id, {
             currentPass: this.currentPassword,
             password: this.newPassword,
           })
@@ -576,7 +576,7 @@ export default {
     uploadPictureToDataBase() {
       if (this.$data.imageUrl) {
         axios
-          .put("http://localhost:3000/upload/" + this.data.id, {
+          .put("http://localhost:3000/users/upload/" + this.data.id, {
             image: this.$data.imageUrl,
           })
           .then(({ data }) => {
@@ -593,7 +593,7 @@ export default {
       console.log(this.data.username);
       if (this.username && this.email && this.firstname && this.lastname) {
         axios
-          .put("http://localhost:3000/updateinfo/" + this.data.id, {
+          .put("http://localhost:3000/users/updateinfo/" + this.data.id, {
             username: this.$data.username,
             firstname: this.$data.firstname,
             lastname: this.$data.lastname,
@@ -630,7 +630,7 @@ export default {
         return;
       }
       axios
-        .get("http://localhost:3000/profile", { headers: header })
+        .get("http://localhost:3000/users/profile", { headers: header })
         .then(({ data }) => {
           console.log("userinfo", data);
           this.$data.data = data;

@@ -127,11 +127,20 @@ export class UserController {
     return this.userRepo.login(body);
   }
   /***** */
-
-  // @Get('profile')
-  // getinfo(@Headers() header): Promise<object | string> {
-  //   return this.userRepo.getinfo(header.authorisation);
-  // }
+  @ApiTags('users')
+  @ApiCreatedResponse({
+    description: 'User has been successfully logged.',
+    type: UserAfterLogin,
+  })
+  @ApiUnauthorizedResponse({ description: 'Invalide Cridentials' })
+  @ApiHeader({
+    name: 'Authorization',
+    description: 'Bearer token',
+  })
+  @Get('profile')
+  getinfo(@Headers() header): Promise<object | string> {
+    return this.userRepo.getinfo(header.authorisation);
+  }
 
   /***** */
 
@@ -174,23 +183,6 @@ export class UserController {
   // googleAuthRedirect(@Req() req) {
   //   return this.userRepo.googleLogin(req);
   // }
-
-  /***** */
-
-  @ApiTags('users')
-  @ApiCreatedResponse({
-    description: 'User ID and Event ID are required',
-    type: TicketUserEvent,
-  })
-  @ApiUnauthorizedResponse({ description: 'Not Found' })
-  @Post('ticket/:user_id/:event_id')
-  buyTicket(
-    @Param('user_id') user_id: number,
-    @Param('event_id') event_id: number,
-  ): Promise<Error | string | any> {
-    return this.userRepo.buyTicket(user_id, event_id);
-  }
-  /***** */
 
   @ApiTags('users')
   @Put('updateplanner/:id')

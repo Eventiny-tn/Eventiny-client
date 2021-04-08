@@ -736,9 +736,11 @@ export default {
 
   methods: {
     getEventPlanner() {
-      axios.get("http://localhost:3000/eventPlanners").then(({ data }) => {
-        this.eventPlanner = data.slice(0, 4);
-      });
+      axios
+        .get("http://localhost:3000/users/eventPlanners")
+        .then(({ data }) => {
+          this.eventPlanner = data.slice(0, 4);
+        });
     },
     getTheLastestEvent() {
       axios
@@ -762,7 +764,7 @@ export default {
         return;
       }
       axios
-        .get("http://localhost:3000/verify", headers)
+        .get("http://localhost:3000/users/verify", headers)
         .then(({ data }) => {
           console.log("==>", data);
           if (data.username !== undefined) {

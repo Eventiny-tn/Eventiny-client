@@ -155,7 +155,7 @@ export default {
       }
       console.log("header generalpage ===>", header);
       axios
-        .get("http://localhost:3000/profile", { headers: header })
+        .get("http://localhost:3000/users/profile", { headers: header })
         .then(({ data }) => {
           if (data) {
             this.$data.data = data;

@@ -38,6 +38,8 @@ export class UserService {
     return { user: user, token: access_token };
   }
   async login(body: UserLog): Promise<object | Error | string> {
+    console.log('====>', body);
+
     const logger = await this.userRepository.findOne({ email: body.email });
 
     if (logger) {
@@ -110,19 +112,7 @@ export class UserService {
       return data;
     }
   }
-  async buyTicket(user_id, event_id): Promise<Error | any> {
-    try {
-      await getConnection()
-        .createQueryBuilder()
-        .insert()
-        .into('participant')
-        .values([{ event_id, user_id }])
-        .execute();
-      return 'success';
-    } catch (error) {
-      return new NotFoundException('NOT FOUND');
-    }
-  }
+
   async getplanner(req): Promise<object | Error> {
     console.log(req);
     const info = await this.userRepository.find({});

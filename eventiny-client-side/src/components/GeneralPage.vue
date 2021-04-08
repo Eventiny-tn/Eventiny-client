@@ -3,9 +3,9 @@
     <header class="header-area overlay">
       <nav class="navbar navbar-expand-md navbar-dark">
         <div class="container">
-          <a class="navbar-brand" @click="langingPage()">
+          <router-link to="/" class="navbar-brand">
             <h3 class="my-heading">Eventiny<span class="bg-main">TN</span></h3>
-          </a>
+          </router-link>
 
           <button
             type="button"
@@ -284,7 +284,7 @@ export default {
       }
       console.log("header generalpage ===>", header);
       axios
-        .get("http://localhost:3000/profile", { headers: header })
+        .get("http://localhost:3000/users/profile", { headers: header })
         .then(({ data }) => {
           if (data) {
             this.$data.data = data;
