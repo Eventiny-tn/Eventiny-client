@@ -2,9 +2,9 @@
   <div>
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
       <div class="container">
-        <a class="navbar-brand" href="/">
+        <router-link to="/" class="navbar-brand">
           <h3 class="my-heading ">Eventiny<span class="bg-main">TN</span></h3>
-        </a>
+        </router-link>
         <p></p>
         <button
           class="navbar-toggler navbar-toggler-right"
@@ -63,13 +63,13 @@
             <li class="nav-link" id="loginbtn" v-if="isLogged == false">
               <a id="signupbtns" @click.prevent="signup()">Get started</a>
             </li>
-            <li
-              class="nav-item"
-              id="loginbtn"
-              @click.prevent="gosolution()"
-              v-if="isLogged"
-            >
-              <a class="nav-link" id="signupbtn">Marketing solution</a>
+            <li class="nav-item" id="loginbtn" v-if="isLogged">
+              <router-link
+                to="/MarketingSolution"
+                class="nav-link"
+                id="signupbtn"
+                >Marketing solution</router-link
+              >
             </li>
             <li
               class="nav-item"

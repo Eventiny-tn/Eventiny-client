@@ -368,10 +368,8 @@ export default {
           .catch((err) => console.log(err));
       }, 2000);
     },
-    submittedPay(PayMeth) {
-      // console.log("clicked", PayMeth);
-
-      PayMeth.amount = this.tickets * 1 * this.eventDetails.price * 1;
+    submittedPay(payMeth) {
+      payMeth.amount = this.tickets * 1 * this.eventDetails.price * 1;
       axios
         .post(
           `http://localhost:3000/participant/ticket/${this.userinfo.id}/${this.eventDetails.id}`,
@@ -392,30 +390,28 @@ export default {
               place: this.$data.tickets,
             },
           };
+          console.log("pau data ===>", ticketData);
           axios
             .post(`http://localhost:3000/send/ticket`, ticketData)
             .then(({ data }) => {
               axios
-                .post(`http://localhost:3000/participant/payment`, PayMeth)
+                .post(`http://localhost:3000/participant/payment`,payMeth)
                 .then(({ data }) => {
-                  const win = window.open(
-                    data.payUrl,
-                    "windowname1",
-                    "width=800, height=600"
-                  );
-                  const pollTimer = window.setInterval(async () => {
-                    try {
-                      let url = win.document.URL;
-                      console.log(url);
-                      if (url !== undefined) {
-                        window.clearInterval(pollTimer);
-                        clearInterval(pollTimer);
-                        win.close();
-                      }
-                      return;
-                    } catch (e) {}
-                  }, 1000);
-                  // this.$data.showPayment = false;
+                  console.log("==>", data);
+                  window.open(data.payUrl);
+                  // const pollTimer = window.setInterval(async () => {
+                  //   try {
+                  //     let url = win.document.URL;
+                  //     console.log(url);
+                  //     if (url !== undefined) {
+                  //       window.clearInterval(pollTimer);
+                  //       clearInterval(pollTimer);
+                  //       win.close();
+                  //     }
+                  //     return;
+                  //   } catch (e) {}
+                  // }, 1000);
+                  this.$data.showPayment = false;
                 })
                 .catch((err) => console.log(err));
             })

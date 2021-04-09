@@ -1,4 +1,4 @@
-import { Injectable, HttpService } from '@nestjs/common';
+import { Injectable, HttpService, UnauthorizedException } from '@nestjs/common';
 import { User } from 'src/user/user.entity';
 import { Connection, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -83,6 +83,8 @@ export class ParticipantService {
   }
 
   async Pay(payMeth): Promise<Error | Object> {
+    console.log('haythem', payMeth);
+
     try {
       payMeth.receiverWallet = process.env.Eventiny_Wallet;
       payMeth.selectedPaymentMethod = 'gateway';
@@ -91,16 +93,17 @@ export class ParticipantService {
       payMeth.webhook = 'merchant.tech/api/notification_payment';
       payMeth.successUrl = 'success@merchant.tech';
       payMeth.failUrl = 'fail@merchant.tech';
-
       const response = await this.http
         .post(
           'https://api.preprod.konnect.network/api/v1/payments/init-payment',
           payMeth,
         )
         .toPromise();
+      console.log(payMeth);
+      console.log('URL==>', response.data);
       return response.data;
     } catch (error) {
-      return new Error(error);
+      return new UnauthorizedException('Payment failed');
     }
   }
 }

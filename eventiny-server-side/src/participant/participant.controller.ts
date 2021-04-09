@@ -26,6 +26,7 @@ export class ParticipantController {
   ): Promise<Error | Object> {
     return this.participantService.getAllParticipant(event_id);
   }
+  
   @Post('payment')
   Pay(@Body() payMeth: Object): Promise<Error | Object> {
     return this.participantService.Pay(payMeth);
