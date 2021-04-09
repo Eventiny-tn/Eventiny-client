@@ -138,12 +138,11 @@
                         <div id="input-ticket2">
                           <div class="header" v-if="ticketsBuy.quantity < 10">
                             <p>
-                              Tickets :{{
-                                eventDetails.ticket - ticketRiserved
-                              }}
+                              Tickets left:
+                              {{ eventDetails.ticket - ticketRiserved }}
                             </p>
                             <p>
-                              You puchase {{ ticketsBuy.quantity }} /
+                              You purchased {{ ticketsBuy.quantity }} /
                               {{ ticketLimit > 10 ? 10 : ticketLimit }} tickets
                             </p>
                             <div
@@ -369,7 +368,7 @@ export default {
       }, 2000);
     },
     submittedPay(payMeth) {
-      payMeth.amount = this.tickets * 1 * this.eventDetails.price * 1;
+      payMeth.amount = this.tickets * 1 * this.eventDetails.price * 1000;
       axios
         .post(
           `http://localhost:3000/participant/ticket/${this.userinfo.id}/${this.eventDetails.id}`,
@@ -395,7 +394,7 @@ export default {
             .post(`http://localhost:3000/send/ticket`, ticketData)
             .then(({ data }) => {
               axios
-                .post(`http://localhost:3000/participant/payment`,payMeth)
+                .post(`http://localhost:3000/participant/payment`, payMeth)
                 .then(({ data }) => {
                   console.log("==>", data);
                   window.open(data.payUrl);

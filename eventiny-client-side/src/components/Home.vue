@@ -102,7 +102,7 @@
             muted="muted"
             loop="loop"
           >
-            <source src="../assets/backgroundtn.mp4" type="video/mp4" />
+            <source src="../assets/eventinytnn.mp4" type="video/mp4" />
           </video>
           <!-- <div class="container h-100">
             <div class="d-flex h-100 text-center align-items-center"></div>
@@ -277,7 +277,9 @@
               <div class="card-block">
                 <h4 class="card-title text-center">
                   <strong>
-                    <span class="bg-main">{{ planner.firstname }}</span></strong
+                    <span class="bg-main">{{
+                      planner.firstname.toUpperCase()
+                    }}</span></strong
                   >
                 </h4>
 
