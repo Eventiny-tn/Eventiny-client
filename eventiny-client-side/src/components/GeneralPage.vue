@@ -275,6 +275,9 @@ export default {
     },
     getinfos() {
       const token = localStorage.getItem("token");
+      console.log("====================================1");
+      console.log(token);
+      console.log("====================================");
       const header = {
         Authorisation: `Bearer ${token}`,
       };

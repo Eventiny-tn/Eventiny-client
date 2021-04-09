@@ -368,7 +368,7 @@ export default {
       }, 2000);
     },
     submittedPay(payMeth) {
-      payMeth.amount = this.tickets * 1 * this.eventDetails.price * 1000;
+      payMeth.amount = this.tickets * 1 * this.eventDetails.price * 100;
       axios
         .post(
           `http://localhost:3000/participant/ticket/${this.userinfo.id}/${this.eventDetails.id}`,

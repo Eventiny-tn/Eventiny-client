@@ -60,9 +60,11 @@ export class UserService {
   }
 
   async getinfo(header): Promise<object | Error | string> {
-    console.log('service ===>', header);
     // if (header) {
     const token = header.split(' ')[1];
+    console.log('====================================');
+    console.log(token);
+    console.log('====================================');
     let access_token = this.jwtService.verify(token, { secret: 'Liiim' });
 
     const info = await this.userRepository.findOne({

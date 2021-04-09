@@ -110,12 +110,12 @@ export default {
       const pollTimer = window.setInterval(async () => {
         try {
           let url = win.document.URL;
-          let token = url.slice(22, url.length);
+          let token = url.slice(22, url.length - 1);
+          console.log("====================================");
+          console.log(token);
+          console.log("====================================");
           if (token !== "") {
             localStorage.setItem("token", token);
-            this.$router.push("/GeneralPage");
-            clearInterval(pollTimer);
-            win.close();
             validateToken(token);
             return;
           }

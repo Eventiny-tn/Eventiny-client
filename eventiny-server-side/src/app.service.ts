@@ -16,14 +16,20 @@ export class AppService {
     if (!req.user) {
       return 'No user from google';
     } else {
-      let access_token = await this.jwtService.sign({
-        username: req.user.email,
-      });
+      let access_token = await this.jwtService.sign(
+        {
+          username: req.user.email,
+        },
+        { secret: 'Liiim' },
+      );
       const user = await this.userRepository.findOne({ email: req.user.email });
       if (user && user.password == null) {
-        let token = await this.jwtService.sign({
-          username: user.email,
-        });
+        let token = await this.jwtService.sign(
+          {
+            username: user.email,
+          },
+          { secret: 'Liiim' },
+        );
         return {
           user: user,
           token: token,
