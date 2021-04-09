@@ -2,9 +2,9 @@
   <div>
     <nav class="navbar navbar-expand-md navbar-dark">
       <div class="containernav">
-        <a class="navbar-brand" @click="langingPage()">
+        <router-link to="/" class="navbar-brand">
           <h3 class="my-heading">Eventiny<span class="bg-main">TN</span></h3>
-        </a>
+        </router-link>
 
         <button
           type="button"
@@ -20,7 +20,9 @@
         <div id="main-nav" class="collapse navbar-collapse">
           <ul class="navbar-nav ml-auto">
             <li>
-              <a class="nav-item nav-link active" href="/GeneralPage">Home</a>
+              <router-link to="/" class="nav-item nav-link active"
+                >Home</router-link
+              >
             </li>
           </ul>
         </div>
@@ -30,7 +32,7 @@
     <br />
     <br />
     <div class="testbox">
-      <form action="/">
+      <form>
         <div class="banner">
           <h1>Sponsorise facebook page</h1>
         </div>
@@ -110,15 +112,12 @@ export default {
         return;
       }
       axios
-        .get("http://localhost:3000/verify", headers)
+        .get("http://localhost:3000/users/verify", headers)
         .then(({ data }) => {
           console.log("==>", data);
           if (data.username !== undefined) {
             this.$data.data = data;
             this.fbinfo.userId = data.id;
-            // if (data.plannerDemand == true) {
-            //   this.$router.push("/GeneralPage");
-            // }
             return;
           } else {
             localStorage.removeItem("token");

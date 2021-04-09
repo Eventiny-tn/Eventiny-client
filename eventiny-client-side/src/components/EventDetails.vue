@@ -138,12 +138,11 @@
                         <div id="input-ticket2">
                           <div class="header" v-if="ticketsBuy.quantity < 10">
                             <p>
-                              Tickets :{{
-                                eventDetails.ticket - ticketRiserved
-                              }}
+                              Tickets left:
+                              {{ eventDetails.ticket - ticketRiserved }}
                             </p>
                             <p>
-                              You puchase {{ ticketsBuy.quantity }} /
+                              You purchased {{ ticketsBuy.quantity }} /
                               {{ ticketLimit > 10 ? 10 : ticketLimit }} tickets
                             </p>
                             <div
@@ -310,7 +309,7 @@ export default {
     clickFree() {
       axios
         .post(
-          `http://localhost:3000/ticket/${this.userinfo.id}/${this.eventDetails.id}`,
+          `http://localhost:3000/participant/ticket/${this.userinfo.id}/${this.eventDetails.id}`,
           { quantity: this.$data.tickets }
         )
         .then(({ data }) => {
@@ -368,12 +367,11 @@ export default {
           .catch((err) => console.log(err));
       }, 2000);
     },
-
-    submittedPay(PayMeth) {
-      PayMeth.amount = this.tickets * 1 * this.eventDetails.price * 1;
+    submittedPay(payMeth) {
+      payMeth.amount = this.tickets * 1 * this.eventDetails.price * 100;
       axios
         .post(
-          `http://localhost:3000/ticket/${this.userinfo.id}/${this.eventDetails.id}`,
+          `http://localhost:3000/participant/ticket/${this.userinfo.id}/${this.eventDetails.id}`,
           { quantity: this.$data.tickets }
         )
         .then(({ data }) => {
@@ -391,13 +389,27 @@ export default {
               place: this.$data.tickets,
             },
           };
+          console.log("pau data ===>", ticketData);
           axios
             .post(`http://localhost:3000/send/ticket`, ticketData)
             .then(({ data }) => {
               axios
-                .post(`http://localhost:3000/payment`, PayMeth)
+                .post(`http://localhost:3000/participant/payment`, payMeth)
                 .then(({ data }) => {
+                  console.log("==>", data);
                   window.open(data.payUrl);
+                  // const pollTimer = window.setInterval(async () => {
+                  //   try {
+                  //     let url = win.document.URL;
+                  //     console.log(url);
+                  //     if (url !== undefined) {
+                  //       window.clearInterval(pollTimer);
+                  //       clearInterval(pollTimer);
+                  //       win.close();
+                  //     }
+                  //     return;
+                  //   } catch (e) {}
+                  // }, 1000);
                   this.$data.showPayment = false;
                 })
                 .catch((err) => console.log(err));
@@ -441,7 +453,7 @@ export default {
         return;
       }
       axios
-        .get("http://localhost:3000/verify", headers)
+        .get("http://localhost:3000/users/verify", headers)
         .then(({ data }) => {
           if (data !== undefined) {
             this.$data.isLogged = true;
@@ -457,14 +469,16 @@ export default {
         });
     },
     getParticipant() {
+      console.log(this.userinfo.id, this.eventDetails.id);
       axios
         .get(
           `http://localhost:3000/participant/${this.userinfo.id}/${this.eventDetails.id}`
+          // "http://localhost:3000/participant/2/10"
         )
         .then(({ data }) => {
+          console.log("particiapnt", data);
           if (data[0].quantity !== undefined) {
             this.$data.ticketsBuy = data[0];
-          } else {
           }
         })
         .catch((err) => console.log(err));

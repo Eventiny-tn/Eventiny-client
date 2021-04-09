@@ -170,7 +170,7 @@ export default {
         return;
       }
       axios
-        .get("http://localhost:3000/verify", headers)
+        .get("http://localhost:3000/users/verify", headers)
         .then(({ data }) => {
           console.log("==>", data);
           if (data.username !== undefined) {
@@ -190,9 +190,12 @@ export default {
     },
     onSubmitPlannerForm() {
       axios
-        .patch("http://localhost:3000/plannerDemand/" + this.data.id, {})
+        .patch("http://localhost:3000/users/plannerDemand/" + this.data.id, {})
         .then(({ data }) => {
-          swal("Purshase has been done!", "success");
+          swal(
+            "Purshase has been done!thank you for chossing Eventiny ",
+            "success"
+          );
           this.$router.push("/GeneralPage");
         });
     },

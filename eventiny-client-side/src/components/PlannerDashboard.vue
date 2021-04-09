@@ -129,7 +129,7 @@
         </div>
 
         <div class="item">
-          <form enctype="multipart/form-data">
+          <form enctype="multipart/form-data" id="form-multi-pic">
             Select related images to upload:
             <input
               type="file"
@@ -260,7 +260,7 @@ export default {
         return;
       }
       axios
-        .get("http://localhost:3000/profile", { headers: header })
+        .get("http://localhost:3000/users/profile", { headers: header })
         .then(({ data }) => {
           console.log("userinfo", data);
           this.$data.data = data;
@@ -424,6 +424,10 @@ export default {
 </script>
 
 <style scoped>
+#form-multi-pic {
+  position: relative;
+  margin: auto;
+}
 #map {
   height: 200px !important;
   width: 100% !important;

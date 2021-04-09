@@ -38,6 +38,8 @@ export class UserService {
     return { user: user, token: access_token };
   }
   async login(body: UserLog): Promise<object | Error | string> {
+    console.log('====>', body);
+
     const logger = await this.userRepository.findOne({ email: body.email });
 
     if (logger) {
@@ -58,9 +60,11 @@ export class UserService {
   }
 
   async getinfo(header): Promise<object | Error | string> {
-    console.log('service ===>', header);
     // if (header) {
     const token = header.split(' ')[1];
+    console.log('====================================');
+    console.log(token);
+    console.log('====================================');
     let access_token = this.jwtService.verify(token, { secret: 'Liiim' });
 
     const info = await this.userRepository.findOne({
@@ -110,18 +114,7 @@ export class UserService {
       return data;
     }
   }
-  async buyTicket(user_id, event_id): Promise<Error | any> {
-    try {
-      return await getConnection()
-        .createQueryBuilder()
-        .insert()
-        .into('participant')
-        .values([{ event_id, user_id }])
-        .execute();
-    } catch (error) {
-      console.log(error);
-    }
-  }
+
   async getplanner(req): Promise<object | Error> {
     console.log(req);
     const info = await this.userRepository.find({});
@@ -144,12 +137,20 @@ export class UserService {
     }
   }
   async upgradePlannerDemande(id): Promise<Error | string> {
-    if (id) {
-      await this.userRepository.update(id.id, { plannerDemand: true });
-      const { email } = await this.userRepository.findOne(id);
-      await this.email.email(email);
-      return 'upgraded';
-    } else {
+    try {
+      if (id) {
+        const { email } = await this.userRepository.findOne(id);
+        if (email !== undefined || email !== null || email == typeof 'object') {
+          await this.userRepository.update(id.id, { plannerDemand: true });
+          await this.email.email(email);
+          return 'upgraded';
+        } else {
+          return new NotFoundException('NOT FOUND');
+        }
+      } else {
+        return new NotFoundException('NOT FOUND');
+      }
+    } catch (error) {
       return new NotFoundException('NOT FOUND');
     }
   }

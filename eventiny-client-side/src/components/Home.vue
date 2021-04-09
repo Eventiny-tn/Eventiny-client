@@ -2,9 +2,9 @@
   <div>
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
       <div class="container">
-        <a class="navbar-brand" href="/">
+        <router-link to="/" class="navbar-brand">
           <h3 class="my-heading ">Eventiny<span class="bg-main">TN</span></h3>
-        </a>
+        </router-link>
         <p></p>
         <button
           class="navbar-toggler navbar-toggler-right"
@@ -63,13 +63,13 @@
             <li class="nav-link" id="loginbtn" v-if="isLogged == false">
               <a id="signupbtns" @click.prevent="signup()">Get started</a>
             </li>
-            <li
-              class="nav-item"
-              id="loginbtn"
-              @click.prevent="gosolution()"
-              v-if="isLogged"
-            >
-              <a class="nav-link" id="signupbtn">Marketing solution</a>
+            <li class="nav-item" id="loginbtn" v-if="isLogged">
+              <router-link
+                to="/MarketingSolution"
+                class="nav-link"
+                id="signupbtn"
+                >Marketing solution</router-link
+              >
             </li>
             <li
               class="nav-item"
@@ -102,7 +102,7 @@
             muted="muted"
             loop="loop"
           >
-            <source src="../assets/backgroundtn.mp4" type="video/mp4" />
+            <source src="../assets/eventinytnn.mp4" type="video/mp4" />
           </video>
           <!-- <div class="container h-100">
             <div class="d-flex h-100 text-center align-items-center"></div>
@@ -277,7 +277,9 @@
               <div class="card-block">
                 <h4 class="card-title text-center">
                   <strong>
-                    <span class="bg-main">{{ planner.firstname }}</span></strong
+                    <span class="bg-main">{{
+                      planner.firstname.toUpperCase()
+                    }}</span></strong
                   >
                 </h4>
 
@@ -736,9 +738,11 @@ export default {
 
   methods: {
     getEventPlanner() {
-      axios.get("http://localhost:3000/eventPlanners").then(({ data }) => {
-        this.eventPlanner = data.slice(0, 4);
-      });
+      axios
+        .get("http://localhost:3000/users/eventPlanners")
+        .then(({ data }) => {
+          this.eventPlanner = data.slice(0, 4);
+        });
     },
     getTheLastestEvent() {
       axios
@@ -762,7 +766,7 @@ export default {
         return;
       }
       axios
-        .get("http://localhost:3000/verify", headers)
+        .get("http://localhost:3000/users/verify", headers)
         .then(({ data }) => {
           console.log("==>", data);
           if (data.username !== undefined) {
